@@ -15,7 +15,7 @@ team project
        - commit commit message시 issue 번호 입력 후 변경 내용 입력
        - vo, dao, xml, jsp, css 등
        - mapping 관련하여 수정은 일괄 적용, 최초 merge시 master 적용 후 각 fetch시 에는 적용되어있을 겁니다.
-         1) RequestControllerMapping은 각자 사용하시되 변경내용은 메일로 전달 - hyc422@naver.com
+         1) RequestControllerMapping은 각자 사용하시되 변경내용 push X
          2) maybatis-config.xml도 위와 동일
        
     4) git에서 각 branch merge는 제가 관리하겠습니다. push만 하시면 됩니다.
