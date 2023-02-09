@@ -1,2 +1,0 @@
-# shoppingMall
-team project
