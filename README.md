@@ -1,2 +1,2 @@
-# shoppin-mall
+# shopping-mall
 team project
