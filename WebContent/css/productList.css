@@ -1,0 +1,80 @@
+@charset "UTF-8";
+.serv-list {
+	padding-top: 70px;
+	padding-bottom: 70px;
+	margin-left: 75px;
+	margin-right: 75px;
+}
+
+.serv-list .container {
+	max-width: 1300px;
+	margin: auto;
+}
+
+.serv-list .container .item-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.serv-list .container .item-list .card {
+	height: 400px;
+	width: 300px;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.serv-list .container .item-list .card img {
+	height: 250px;
+	width: 250px;
+}
+
+.serv-list .container .item-list .card .text p {
+	text-decoration: none;
+	font-size: 12px;
+	opacity: .8;
+}
+
+.serv-list .container .item-list .card .text button {
+	background: black;
+	color: white;
+	border: 2px solid white;
+	border-radius: 5px;
+	padding: 5px 10px;
+	font-size: 8px;
+	transition: .5s ease;
+}
+
+.serv-list .container .item-list .card .text button:hover {
+	transition: .5s ease;
+	border: 2px solid black;
+	background: transparent;
+	color: black;
+}
+.shop {
+	max-width: 1300px;
+	margin: auto;
+}
+
+.main-menu {
+	max-width: 1300px;
+	margin: auto;
+	display: inline-block;
+	padding-bottom: 50px;
+}
+
+.main-menu a {
+	text-decoration: none;
+	font-size: 17px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.main-menu a:visited {
+	text-decoration: none;
+	color: #666666;
+}
+
+.main-menu a:hover {
+	color: #66ff66;
+}
