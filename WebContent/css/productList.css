@@ -78,3 +78,6 @@
 .main-menu a:hover {
 	color: #66ff66;
 }
+.category li{
+	margin: auto;
+}
