@@ -115,7 +115,7 @@
 
 <!-- header -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">술공장</a>
+  <a class="navbar-brand" href="<%=request.getContextPath() %>"  id="top">술공장</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -149,16 +149,16 @@
     <div class="title">인기 주류 TOP5 </div>
     <div class="wrap">
         <ul>
-            <li class="current"><a href="#">맥주</a></li>
-            <li class="next"><a href="#">소주</a></li>
-            <li><a href="#">양주</a></li>
-            <li><a href="#">와인</a></li>
-            <li class="prev"><a href="#">막걸리</a></li>
+            <li class="current"><a href="#"> 1등 : 맥주</a></li>
+            <li class="next"><a href="#"> 2등 : 소주</a></li>
+            <li><a href="#"> 3등 : 양주</a></li>
+            <li><a href="#"> 4등 : 와인</a></li>
+            <li class="prev"><a href="#"> 5등 : 막걸리</a></li>
         </ul>
     </div>
 </div>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" action="get">
+      <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search" name = "ssearch">
      <button type="button" class="btn btn-outline-light">검색</button>
     </form>
   </div>
@@ -209,8 +209,9 @@
 
 </ul>
 </div>
-
-
+<br>
+<hr>
+<br>
 
 
 
