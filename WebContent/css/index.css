@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.bannerOut{
+	width: 100%;
+}
+.bannerInner{
+	float: left;
+}
+
+.bannerimg{
+	width: 100%;
+	float: left;
+}
