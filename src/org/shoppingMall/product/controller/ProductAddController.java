@@ -14,7 +14,7 @@ import org.shoppingMall.vo.ProductVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class ProductController implements Controller {
+public class ProductAddController implements Controller {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

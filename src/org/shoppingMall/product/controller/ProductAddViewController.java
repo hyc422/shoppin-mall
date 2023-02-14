@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.shoppingMall.controller.Controller;
 
-public class ProductViewController implements Controller {
+public class ProductAddViewController implements Controller {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
