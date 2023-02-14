@@ -1,6 +1,7 @@
 package org.shoppingMall.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.shoppingMall.vo.Member;
@@ -31,6 +32,12 @@ public class MemberDao {
 		mapper.commit();
 		mapper.close();
 		return result;
+	}
+	public Member login(Map<String,String> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		Member vo = mapper.selectOne("member.login",map);
+		mapper.close();
+		return vo;
 	}
 
 }
