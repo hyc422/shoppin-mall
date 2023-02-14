@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.shoppingMall.controller.Controller;
 
 public class ProductAddViewController implements Controller {
-
+	//상품등록 GET
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");

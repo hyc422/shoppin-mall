@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productDetail.css" />
 </head>
 <body>
+<!-- 상풍등록 -->
 <%@ include file="../top.jsp" %>
 	<div>
 		<h1 style="text-align: center;">상품 등록 페이지</h1>
@@ -49,7 +50,7 @@
 			</div>
 			<div style="display:flex; justify-content:space-around; margin: 10px 0px;">
 			<div class="files1" style="width:40%;">
-				<span id="productManual">제품설명</span>  
+				<span id="productManual">제품 설명</span>  
 				<div>
 					<label for="product_file1" style="display:inline;">
 						<img id="product_file1Img" src="${pageContext.request.contextPath}/images/filePlus.png" width="110px" height="110px" style="display:inline;">
