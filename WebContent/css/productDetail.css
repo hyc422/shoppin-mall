@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+label{
+	font-size: 20px;
+	margin: 10px 0;
+}
+
+#productNum, #productPrice{
+	margin-left: 50px;
+	width: 400px;
+}
+#productCategories{
+	margin-left: 50px;
+}
+
+#productName, #productStock{
+	margin-left: 70px;
+	width: 400px;
+}
+
+#product_file1Img, #productImageImg{
+	height: 200px;
+	width: 200px;
+}
+
+#okButtonOption{
+	background-color: gray;
+	font-size: 20px;
+	margin: 20px;
+	width: 90px;
+}   
+
+.okButton{
+	display: flex;
+    justify-content: center;
+    margin-left: -300px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
