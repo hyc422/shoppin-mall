@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +18,7 @@
 
 <link rel="stylesheet" href="../css/product.css" />
 <script type="text/javascript" src="../js/product.js"></script>
+<script type="text/javascript" src="../js/productList.js"></script>
 
 </head>
 <body>
@@ -81,9 +85,9 @@
 					<div class="cart_put">
 						<!-- 비회원/회원 설정 -->
 						<button type="button" id="no_member_cart_put" class="order"
-							onclick="location.href='#">장바구니</button>
+							onclick="addCart()">장바구니</button>
 						<button type="button" id="no_member_payBtn" class="order"
-							onclick="location.href='#">구매하기</button>
+							onclick="location.href='#''">구매하기</button>
 					</div>
 				</div>
 				<br>
@@ -91,10 +95,15 @@
 		</div>
 	</div>
 	<br>
+
+
+
+	<!-- 네비게이션 Tab -->
 	<div class="sticky">
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item"><a class="nav-link active"
-				data-bs-toggle="tab" href="#home"  style="margin-left: 600px;">상세 설명</a></li>
+				data-bs-toggle="tab" href="#home" style="margin-left: 600px;">상세
+					설명</a></li>
 			<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
 				href="#menu1">리뷰</a></li>
 			<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
@@ -110,7 +119,7 @@
 				<img class="detailImg" alt="prodectdtail"
 					src="images/sdfg 2023-02-10 150005.png">
 			</div>
-		<!-- 	<div>
+			<!-- 	<div>
 				<button>펼치기</button>
 			</div> -->
 			<hr>
@@ -150,8 +159,7 @@
 							</tbody>
 						</table>
 
-						<br>
-						<br>
+						<br> <br>
 						<div style="text-align: center;">[ &lt; ] 페이지 [ &gt; ]</div>
 					</div>
 				</div>
@@ -201,11 +209,16 @@
 										<div class="search-wrap">
 											<input type="hidden" name="p_num" value="102"> <input
 												type="hidden" name="p_name" value="ECTO BTK-11"> <label
-												for="search" class="blind">리뷰 작성</label>
+												for="search" class="blind">QnA 작성</label>
 											<textarea style="width: 450px; height: 65px;" name="rContent"
 												id="board_content" placeholder="내용을 입력해주세요."></textarea>
-											<button style="height: 65px;" type="submit"
-												class="btn btn-dark">작성</button>
+											<c:if test="${sessionScope.user != null }">
+												<button style="height: 65px;" type="submit"
+													class="btn btn-dark">작성</button>
+											</c:if>
+											<c:if test="${sessionScope.user == null }">	
+												<button class="btn btn-dark" type="button" style="height: 65px;" onclick="">로그인</button>
+											</c:if>
 
 										</div>
 									</form>
@@ -230,7 +243,7 @@
 
 	<br>
 	<br>
-	<%@ include file="../footer.jsp" %>
+	<%@ include file="../footer.jsp"%>
 </body>
 
 </html>
