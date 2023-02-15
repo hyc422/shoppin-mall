@@ -25,8 +25,14 @@
 			FROM dual
 		</selectKey>	
 	</insert>
-	
-	
+	<select id="selectidx" resultType="org.shoppingMall.vo.Member" parameterType="long">
+  	SELECT * FROM JS_MEMBER WHERE idx=#{idx}
+  	</select>
+  	<update id="update" parameterType="org.shoppingMall.vo.Member">
+  		UPDATE js_member SET password = #{password}, NAME = #{name}, NICKNAME = #{nickname}, EMAIL =#{email}
+	, PHONE = #{phone}, C_CODE=#{c_code}
+	WHERE idx = #{idx}
+  	</update>
 </mapper>
  
  
