@@ -23,12 +23,12 @@
 
 .div_cont {
 	width: 80%;
-	height: 350px;
+	height: 800px;
 	overflow: hidden;
 	margin: auto;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr;
+	grid-template-rows: 1fr 1fr;
 	column-gap: 20px;
 }
 </style>
@@ -80,10 +80,10 @@
 			</div>
 		</div>
 		<br>
-		<br>
-				<div
+		<br>			<!-- 상품 더보기 -->
+				<div		
 					style="float:right; display: inline; margin-right: 20px; width: 60px; height: 25px; background-color: white; border: 1px solid black; text-align: center;">
-					<a href=""
+					<a href=""			
 						style="color: black; text-decoration: none; font-size: 13px;">More</a>
 				</div>
 				<h3 style="text-align: center;">추천상품</h3>
@@ -130,8 +130,54 @@
 				<h5 style="text-align: center;">상품이름</h5>
 				<p style="text-align: center; margin: 0px;">상품가격 : 30000원</p>
 			</div>
-		</div>
+			<div
+				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
+				<div>
+					<img alt="" src="<%=request.getContextPath() %>/image/시트러스 혼디주 12도 330ml 제주감귤과실주.jpg"
+						style="width: 80%; height: 240px;">
+				</div>
+				<hr style="margin: 0px;">
+				<h5 style="text-align: center;">상품이름</h5>
+				<p style="text-align: center; margin: 0px;">상품가격 : 30000원</p>
+			</div>
+			<div
+				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
+				<div>
+					<img alt="" src="<%=request.getContextPath() %>/image/시트러스 혼디주 12도 330ml 제주감귤과실주.jpg"
+						style="width: 80%; height: 240px;">
+				</div>
+				<hr style="margin: 0px;">
+				<h5 style="text-align: center;">상품이름</h5>
+				<p style="text-align: center; margin: 0px;">상품가격 : 30000원</p>
+			</div>
+			<div
+				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
+				<div>
+					<img alt="" src="<%=request.getContextPath() %>/image/시트러스 혼디주 12도 330ml 제주감귤과실주.jpg"
+						style="width: 80%; height: 240px;">
+				</div>
+				<hr style="margin: 0px;">
+				<h5 style="text-align: center;">상품이름</h5>
+				<p style="text-align: center; margin: 0px;">상품가격 : 30000원</p>
+			</div>
+			<div
+				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
+				<div>
+					<img alt="" src="<%=request.getContextPath() %>/image/시트러스 혼디주 12도 330ml 제주감귤과실주.jpg"
+						style="width: 80%; height: 240px;">
+				</div>
+				<hr style="margin: 0px;">
+				<h5 style="text-align: center;">상품이름</h5>
+				<p style="text-align: center; margin: 0px;">상품가격 : 30000원</p>
+			</div>
+		</div>			<!-- 관리자 추천상품 변경 -->
+				<div style="border: 1px solid silver; float: right; display:inline; width: 90px; height:25px; margin-bottom :20px; margin-right: 10px; text-align: center; background-color: #e1e4ed;">
+				<a style= "text-decoration: none; color: black; font-size: 13px;'" href="">추천상품 수정</a></div>
 		<br>
+		<br>
+		
+
+
 
 
 		<script>

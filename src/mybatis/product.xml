@@ -2,20 +2,35 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="product">
- 	<insert id="productInsert" parameterType="org.shoppingMall.vo.ProductVO">
- 		INSERT INTO TBL_PRODUCT
-		(PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE, PRODUCTSTOCK, PRODUCTCATEGORIES)
-		VALUES(SEQ_PRODUCT.NEXTVAL, #{productName}, #{productPrice}, #{productStock}, #{productCategories})
- 	</insert>
- 	
- 	<select id="getSeq" resultType="_int">
- 		SELECT SEQ_PRODUCT.CURRVAL FROM DUAL
- 	</select>
- 	
- </mapper>
+<mapper namespace="product">
+	<insert id="productInsert"
+		parameterType="org.shoppingMall.vo.ProductVO">
+		INSERT INTO TBL_PRODUCT
+		(PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE, PRODUCTSTOCK,
+		PRODUCTCATEGORIES)
+		VALUES(SEQ_PRODUCT.NEXTVAL, #{productName},
+		#{productPrice}, #{productStock}, #{productCategories})
+	</insert>
+
+	<select id="getSeq" resultType="_int">
+		SELECT SEQ_PRODUCT.CURRVAL FROM DUAL
+	</select>
+
+	<select id="selectOneList" parameterType="String" resultType="org.shoppingMall.vo.ProductFileList">
+		SELECT * FROM TBL_PRODUCT tp
+		JOIN TBL_FILE tf
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM
+		WHERE PRODUCTCATEGORIES = '${value}'
+	</select>
+
+	<select id="categoiesList" resultType="org.shoppingMall.vo.ProductVO">
+		SELECT PRODUCTCATEGORIES FROM TBL_PRODUCT
+			GROUP by PRODUCTCATEGORIES
+	</select>
+	
+</mapper>
  
- 
+
  
  
  

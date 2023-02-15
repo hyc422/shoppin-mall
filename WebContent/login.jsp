@@ -29,10 +29,14 @@
 			<button type="submit" class="btn btn-primary">로그인</button>
 			</form>
 			<ul>
-				<li>아이디찾기</li>
-				<li>비밀번호찾기</li>
+				<li><a href="javascript:find_member()">아이디/비밀번호 찾기</a></li>
 				<li><a href="member/register">회원가입</a></li>
 			</ul>
 		</div>
 </body>
+<script>
+function find_member(){
+	window.open( "member/findmem.jsp", "Child", "width=450, height=400, top=50, left=50" );
+}
+</script>
 </html>

@@ -135,7 +135,8 @@
         <a  style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           마이페이지
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu">
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">주문조회</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">내가쓴글</a>
