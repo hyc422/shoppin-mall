@@ -10,10 +10,8 @@
 	</select>
 	
 	<select id="login" resultType="org.shoppingMall.vo.Member" parameterType="java.util.Map">
-	SELECT * FROM
-		js_member
-		WHERE
-		id=#{id} and password=#{password}
+		SELECT * FROM js_member
+		WHERE id=#{id} and password=#{password}
 	</select>
 	
 	<insert id="register" parameterType="org.shoppingMall.vo.Member" useGeneratedKeys="false">
@@ -25,7 +23,14 @@
 			FROM dual
 		</selectKey>	
 	</insert>
-	
+	<select id="findId" resultType="org.shoppingMall.vo.Member" parameterType="java.util.Map">
+		SELECT * FROM js_member
+		WHERE name=#{name} and email=#{email}
+	</select>
+	<select id="findPwd" resultType="org.shoppingMall.vo.Member" parameterType="java.util.Map">
+		SELECT * FROM js_member
+		WHERE id=#{id} and email=#{email}
+	</select>
 	
 </mapper>
  

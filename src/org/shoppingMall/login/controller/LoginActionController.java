@@ -1,7 +1,6 @@
 package org.shoppingMall.login.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +33,7 @@ public class LoginActionController implements Controller{
 		if(vo != null) {
 			session.setAttribute("user", vo);
 		}else {
-			url="index.jsp";
+			url="login?fail";
 		}
 		
 		response.sendRedirect(url); //메인페이지로 요정 redirect
