@@ -1,6 +1,7 @@
 package org.shoppingMall.dao;
 
 import java.util.Enumeration;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.shoppingMall.vo.FileVO;
@@ -45,12 +46,5 @@ public class FileDAO {
 			mapper.close();
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }
