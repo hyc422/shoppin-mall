@@ -21,6 +21,13 @@ public class ProductListViewContoller implements Controller {
 		
 		request.setAttribute("selectOneList1", dao.selectOneList(a));
 		
+		
+		System.out.println(a);
+		System.out.println("+++++++++++++++++");
+		System.out.println(dao.categoiesList());
+
+		
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productList.jsp");
 		dispatcher.forward(request, response);
 		

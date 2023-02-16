@@ -34,7 +34,6 @@ function change() {
 
 
 
-/*
 //주소 설정해주기
 $("cart_put").click(function(){
 	location.href = 'index.jsp';
@@ -89,14 +88,3 @@ $("#member_payBtn").click(function() {
 	$("#storeForm").attr("action", "/companda/index.jsp?workgroup=order&work=order");
 	$("#storeForm").submit();
 });
-
-*/
-
-
-
-
-
-
-
-
-

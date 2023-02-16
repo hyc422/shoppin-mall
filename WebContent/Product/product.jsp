@@ -15,13 +15,13 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <link rel="stylesheet" href="../css/product.css" />
 <script type="text/javascript" src="../js/product.js"></script>
 <script type="text/javascript" src="../js/productList.js"></script>
 
-
 </head>
-<body onload="init();">
+<body>
 	<%@ include file="../top.jsp"%>
 	<div id="content"
 		style="margin: 0px; padding: 0px; text-align: center;">
@@ -30,21 +30,22 @@
 				<!-- 제품메인이미지 -->
 				<div class="productimg">
 					<img class="mainImg" alt=""
-						src="../images/${vo.fileName }">
+						src="images/snpjAzrrZf1674015860893.jpg">
 				</div>
 				<!-- 제품 기본 정보 -->
 				<div class="productDetail" class="col-md-8">
 					<div class="text" class="card-body">
 						<!-- 제품이름 -->
-						<h1 class="card-title">상품명 : ${vo.productName }</h1>
+						<h1 class="card-title">상품명</h1>
 						<!-- 제품설명 -->
 						<!-- 	<pre class="text">
 							<br>  제조자 :   <br>  제조국  <br>  종류  <br> 배송 방법 : 택배  <br>  택배비 : 3000원  <br>  기타  <br>
 						</pre> -->
 						<br>
 						<div>
-							<p class="card-text">종류 : ${vo.productCategories }</p>
-							<p class="card-text">재고수 : ${vo.productStock }</p>
+							<p class="card-text">제조자 :</p>
+							<p class="card-text">제조국 :</p>
+							<p class="card-text">종류 :</p>
 							<p class="card-text">배송 방법 : 택배</p>
 							<p class="card-text">택배비 : 3000원</p>
 						</div>
@@ -52,7 +53,7 @@
 						<hr>
 
 						<div class="productPrice">
-							<b><span class="productPriceSpan">가격 ₩ <fmt:formatNumber value="${vo.productPrice }" pattern="###,###,###"/>원</span></b>
+							<b><span class="productPriceSpan">가격 원</span></b>
 						</div>
 						<!-- 제품가격 -->
 						<br> <br>
@@ -62,24 +63,27 @@
 					<!--장바구니 수량 담기  -->
 					<div id="cart">
 						<form action="" name="form" method="post" id="storeForm">
-							<input type="hidden" name="p_num" value="${vo.productNum}">
+							<input type="hidden" name="p_num" value="102">
 							<div class="quantity">
-								<span class="btn_position">주문 수량</span> &nbsp;&nbsp;&nbsp; 
-								<input class="count" type="button" value="-" onclick="del();">
-								<input class="count" type="hidden" name="sell_price" value="${vo.productPrice }">
+								<span class="btn_position">주문 수량</span> &nbsp;&nbsp;&nbsp; <input
+									class="count" type="button" value="-" onclick="del();">
+								<input class="count" type="hidden" name="sell_price" value="0">
 								<!-- value 가격 -->
-								<input class="count" type="text" name="amount" value="1" size="3" onchange="change();"> 
-								<input class="count" type="button" value="+" onclick="add();">
+								<input class="count" type="text" name="amount" value="1"
+									size="3" onchange="change();"> <input class="count"
+									type="button" value="+" onclick="add();">
 							</div>
 							<br>
 							<div class="price">
-								<b> 총 금액 :&nbsp;&nbsp;<input style="font-size: 30px; border: none;" type="text" class="price_box" name="sum" size="5" readonly="readonly">원
+								<b> 총 금액 <input type="text" class="price_box" name="sum"
+									size="7" style="border: none;" readonly>원
 								</b>
 							</div>
 							<br>
 						</form>
 					</div>
 					<div class="cart_put">
+						<!-- 비회원/회원 설정 -->
 						<button type="button" id="no_member_cart_put" class="order"
 							onclick="addCart()">장바구니</button>
 						<button type="button" id="no_member_payBtn" class="order"
@@ -98,7 +102,7 @@
 	<div class="sticky">
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item"><a class="nav-link active"
-				data-bs-toggle="tab" href="#home" style="margin-left: 30em;">상세
+				data-bs-toggle="tab" href="#home" style="margin-left: 600px;">상세
 					설명</a></li>
 			<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
 				href="#menu1">리뷰</a></li>
@@ -113,7 +117,7 @@
 			<!-- 상세 이미지 -->
 			<div id="detailImg">
 				<img class="detailImg" alt="prodectdtail"
-					src="../images/${vo.fileNameOriginal }">
+					src="images/sdfg 2023-02-10 150005.png">
 			</div>
 			<!-- 	<div>
 				<button>펼치기</button>

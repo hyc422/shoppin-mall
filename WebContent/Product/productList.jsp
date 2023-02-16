@@ -31,16 +31,24 @@
 			<div class="category">
 				<ul class="nav nav-tabs" role="tablist">
 					<c:forEach items="${Pvo }" var="Pvo">
-						<li class="nav-item"><a class="nav-link active" 
+						<li class="nav-item"><a class="nav-link" 
 							href="?Categories=${Pvo.productCategories}">${Pvo.productCategories }</a></li>
 					</c:forEach>
+					<!-- <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+						href="#menu1">카테고리</a></li>
+					<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+						href="#menu2">카테고리</a></li>
+					<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+						href="#menu3">카테고리</a></li>
+					<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+						href="#menu4">카테고리</a></li> -->
 				</ul>
 			</div>
 			<!-- Tab panes -->
 			<div class="tab-content">
 					<div id="test"
 						class="container tab-pane active">
-						<c:forEach items="${Pvo }" var="Pvo">
+						<c:forEach items="${Pvo }" var="p=Pvo">
 						<a href="${Pvo.productCategories }"></a>
 						</c:forEach>
 						<br> <br>
@@ -48,16 +56,19 @@
 							<c:forEach items="${selectOneList1 }" var="vo">
 								<div class="card">
 									<div class="img">
-										<a href="product?productNum=${vo.productNum }"> <img src="../images/${vo.fileName }"
+										<a href="#"> <img src="../images/${vo.fileName }"
 											width="250">
 										</a>
 									</div>
 									<div class="text">
 										상품명 : ${vo.productName }<input type="hidden" id="p_name"
 											name="p_name" value="${vo.productName }" class="textStyle">
-										<br> <br> 제품가격 :<span
-											class="productPriceSpan"><input type="hidden" id="qty"
-											name="qty" value="1" class="textStyle">₩ <fmt:formatNumber value="${vo.productPrice }" pattern="###,###,###"/>
+										<br> <br> 제품가격 &nbsp;&nbsp; <span
+											class="productPriceSpan"> <input type="hidden"
+											id="amt" name="amt" value="₩${vo.productPrice }"
+											class="textStyle"> <input type="hidden" id="qty"
+											name="qty" value="1" class="textStyle"> ₩
+											${vo.productPrice }
 										</span> <br>
 										<button type="button" onclick="addCart()">장바구니</button>
 									</div>
