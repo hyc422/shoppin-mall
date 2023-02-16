@@ -135,11 +135,17 @@ display: block;
 						 <span>이벤트, 혜택정보 수신동의<strong class="select_disable">(선택)</strong></span>
 					</label><br>
 				</div>
-				 <a style="color: #212529;">아이디/비밀번호 찾기</a>
+				 <a style="color: #212529;" href="javascript:find_member()">아이디/비밀번호 찾기</a>
 				 <a style="color: #212529;" href="../login">로그인</a><br>
 				<button class="btn btn-primary" type="submit">회원가입</button>
 			</div>
 		</form>
 	</div>
 </body>
+<script>
+function find_member(){
+	window.open( "findmem.jsp", "Child", "width=450, height=400, top=50, left=50" );
+	
+}
+</script>
 </html>
