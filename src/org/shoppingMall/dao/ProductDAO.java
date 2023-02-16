@@ -48,7 +48,12 @@ public class ProductDAO {
 		return list;
 	}
 	
-	
+	public ProductFileList selectOne(int vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		ProductFileList PFL = mapper.selectOne("product.selectOne",vo);
+		mapper.close();
+		return PFL;
+	}
 	
 	
 }

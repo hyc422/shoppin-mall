@@ -28,6 +28,14 @@
 			GROUP by PRODUCTCATEGORIES
 	</select>
 	
+	<select id="selectOne" parameterType="int" resultType="org.shoppingMall.vo.ProductFileList">
+		SELECT * FROM TBL_PRODUCT tp
+		JOIN TBL_FILE tf
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM
+		WHERE tp.PRODUCTNUM = #{productNum}
+	</select>
+	
+	
 </mapper>
  
 
