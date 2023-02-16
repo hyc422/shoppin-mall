@@ -14,10 +14,10 @@ import org.shoppingMall.vo.ProductVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class ProductController implements Controller {
+public class ProductAddController implements Controller {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		String saveFolder = "C:\\Users\\user\\Desktop\\project\\111\\shoppingMall\\WebContent\\upload";
 		int fileSize = 1024 * 1024 * 10;
 		
@@ -37,7 +37,7 @@ public class ProductController implements Controller {
 		pDao.productInsert(vo);
 		fDao.insertFile(multi, pDao.getSeq());
 		
-		response.sendRedirect("product");
+		response.sendRedirect("list1111111111111");
 			
 	}
 }

@@ -13,6 +13,25 @@
  		SELECT SEQ_PRODUCT.CURRVAL FROM DUAL
  	</select>
  	
+ 	<select id="nextSeq" resultType="_int">
+ 		SELECT MAX(PRODUCTNUM)+1 FROM TBL_PRODUCT
+ 	</select>
+ 	
+ 	<update id="productAddUpdate" parameterType="org.shoppingMall.vo.ProductVO">
+ 		UPDATE TBL_PRODUCT
+		SET PRODUCTPRICE=#{productPrice}, PRODUCTSTOCK=#{productStock}
+		WHERE PRODUCTNUM=#{productNum}
+ 	</update>
+ 	
+ 	<select id="productSelectOne" parameterType="_int" resultType="org.shoppingMall.vo.ProductVO">
+ 		SELECT * FROM TBL_PRODUCT WHERE PRODUCTNUM = #{productNum}
+ 	</select>
+ 	
+ 	<delete id="productAddDelete" parameterType="_int">
+ 		DELETE FROM TBL_PRODUCT
+		WHERE PRODUCTNUM=#{productNum}
+ 	</delete>
+ 	
  </mapper>
  
  

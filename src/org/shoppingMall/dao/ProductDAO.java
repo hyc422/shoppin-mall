@@ -27,11 +27,29 @@ public class ProductDAO {
 		return mapper.selectOne("product.getSeq");
 	}
 
+	public int nextSeq() {
+		SqlSession mapper = SqlSessionBean.getSession();
+		return mapper.selectOne("product.nextSeq");
+	}
+
+	public ProductVO productSelectOne(int productNum) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		return mapper.selectOne("product.productSelectOne", productNum);
+	}
 	
+	public void productAddUpdate(ProductVO vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		mapper.update("product.productAddUpdate", vo);
+		mapper.commit();
+		mapper.close();
+	}
 	
-	
-	
-	
+	public void productAddDelete(int productNum) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		mapper.delete("product.productAddDelete", productNum);
+		mapper.commit();
+		mapper.close();
+	}
 	
 	
 }

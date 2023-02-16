@@ -16,6 +16,8 @@
     </environment>
   </environments>
   <mappers>
+	<mapper resource="mybatis/product.xml"/>
+	<mapper resource="mybatis/file.xml"/>
   	<!-- SQL xml mapping -->
   </mappers>
 </configuration>

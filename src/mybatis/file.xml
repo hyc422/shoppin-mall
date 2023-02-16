@@ -17,6 +17,9 @@
 	<delete parameterType="_int" id="deleteFiles">
 		DELETE FROM TBL_FILE WHERE PRODUCTNUM = #{productNum} 
 	</delete>
+	
+	
+	
  </mapper>
  
  
