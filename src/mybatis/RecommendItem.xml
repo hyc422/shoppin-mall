@@ -15,8 +15,14 @@ SELECT * FROM RECOMMENDITEM
 
 <delete id="deleteItem" parameterType="String">
 DELETE FROM RECOMMENDITEM 
-WHERE coverfile = #{coverfile}
+WHERE name = #{name}
 </delete>
+
+<update id="updateItem" parameterType="org.shoppingMall.vo.RecommendItemVo" >
+UPDATE RECOMMENDITEM
+SET NAME=#{name}, PRICE=#{price}
+WHERE COVERFILE = #{COVERFILE}
+</update>
  </mapper>
  
  

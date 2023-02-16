@@ -30,12 +30,14 @@ public class RecommendItemDao {
 		return result;
 	}
 	
-	public int delete(RecommendItemVo item) {
+	public int delete(String name) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		int result = mapperSession.delete("RecommendItem.insertItem",item);
+		int result = mapperSession.delete("RecommendItem.deleteItem",name);
 		mapperSession.commit();
 		mapperSession.close();
 		return result;
 	}
+	
+
 	
 }
