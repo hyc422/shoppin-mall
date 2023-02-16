@@ -3,6 +3,9 @@ package org.shoppingMall.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.shoppingMall.index.controller.DeleteRecommendProductController;
+import org.shoppingMall.index.controller.IndexRecommendProductController;
+import org.shoppingMall.index.controller.NewRecommendProductController;
 import org.shoppingMall.login.controller.LoginActionController;
 import org.shoppingMall.login.controller.LoginViewController;
 import org.shoppingMall.login.controller.LogoutController;
@@ -30,6 +33,10 @@ public class RequestControllerMapping
 //		mapping.put(new RequestKeyValue("/Product/product.hrd","POST"), new ProductViewContoller());
 		mapping.put(new RequestKeyValue("/Product/productList.hrd","GET"), new ProductListViewContoller());
 		
+		// index
+		 mapping.put(new RequestKeyValue("/RecommendUpdate","GET"), new IndexRecommendProductController());
+		 mapping.put(new RequestKeyValue("/RecommendUpdate","POST"), new NewRecommendProductController());
+		 mapping.put(new RequestKeyValue("/RecommendDelete","GET"), new DeleteRecommendProductController());
 	}
 	
 	public static Controller getController(RequestKeyValue key)

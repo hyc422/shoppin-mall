@@ -1,42 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="top.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/lib/w3.css">
 <meta charset="UTF-8">
 <title>로그인</title>
 </head>
 <body>
-	<h3 style="text-align:center;">로그인</h3>
+	<h3>로그인</h3>
 	<hr>
-		<div style="position: absolute;
-				   left: 50%;
-				   margin-left: -265px;
-				   width: 800px;
-				   background: white; 
-				   padding: 15px;">
+		<div>
 			<form action="login" method="post">
 			<div>
-					<label for="id">아이디:</label> <input type="text" id="id" 
-						placeholder="아이디를 입력해주세요" name="id" class="form-control" required>
+					<label for="id">아이디:</label> <input id="id"
+						placeholder="아이디를 입력해주세요" name="id" required>
 			</div>
 			<div>
-				<label for="password">패스워드:</label> <input type="password" id="password"
-					placeholder="비밀번호를 입력해주세요" name="password" class="form-control" required>
+				<label for="pwd">패스워드:</label> <input id="password"
+					placeholder="비밀번호를 입력해주세요" name="password">
 			</div>
-			<button type="submit" class="btn btn-primary">로그인</button>
 			</form>
+			<button type="submit">로그인</button>
 			<ul>
-				<li><a href="javascript:find_member()">아이디/비밀번호 찾기</a></li>
-				<li><a href="member/register">회원가입</a></li>
+				<li>아이디찾기</li>
+				<li>비밀번호찾기</li>
+				<li><a href="member/register.jsp">회원가입</a></li>
 			</ul>
 		</div>
 </body>
-<script>
-function find_member(){
-	window.open( "member/findmem.jsp", "Child", "width=450, height=400, top=50, left=50" );
-}
-</script>
 </html>
