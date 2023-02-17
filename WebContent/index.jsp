@@ -82,9 +82,9 @@
 	<main>
 		<div class="w3-content w3-display-container"
 			style="max-width: 100%; margin: 0px;">
-			<img class="mySlides" src="<%=request.getContextPath() %>/images/배너및아이콘/배너1.jpg" style="width: 100%">
-			<img class="mySlides" src="<%=request.getContextPath() %>/images/배너및아이콘/배너2.jpg" style="width: 100%">
-			<img class="mySlides" src="<%=request.getContextPath() %>/images/배너및아이콘/배너3.jpg" style="width: 100%">
+			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너1.jpg" style="width: 100%">
+			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너2.jpg" style="width: 100%">
+			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너3.jpg" style="width: 100%">
 			<div
 				class="w3-center w3-section w3-large w3-text-white w3-display-bottomleft"
 				style="width: 100%">
@@ -112,10 +112,10 @@
 				<p style="margin-left: 190px; display: inline;">
 					<strong style="font-size: 18px; color: #424242;">이번주 술공장 PICK</strong>
 				</p>
-				<img alt="술" src="<%=request.getContextPath() %>/images/배너및아이콘/술.png" style="display: inline;"> <br>
+				<img alt="술" src="<%=request.getContextPath() %>/images/BannerAndIcon/술.png" style="display: inline;"> <br>
 				<p
 					style="margin-left: 200px; display: inline; color: #ff6f00; font-size: 19px;">
-					<strong>이술은 어떠세요?</strong>
+					<strong>오늘밤 이술은 어때요?</strong>
 				</p>
 			</div>
 		</div>
@@ -128,13 +128,14 @@
 				</div>
 				<h3 style="text-align: center;">추천상품</h3>
 		<br>
+		
 		<!-- 추천상품 -->
 		<div class="div_cont">
 		<% for(int i=0;i<item.size();i++) { %>
 			<div
 				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
-					<img alt="" src="<%=request.getContextPath() %>/술/배너및아이콘/<%=item.get(i).getCoverfile() %>"
+					<img alt="" src="images/Alochol/<%=item.get(i).getCoverfile() %>"
 						style="width: 80%; height: 240px;">
 				</div>
 				<hr style="margin: 0px;">
@@ -158,7 +159,7 @@
 			
 			<!-- 중간배너 -->
 		<div style="width: 100%">
-			<img alt="" src="images/배너및아이콘/우리술품폄회.png">
+			<img alt="" src="images/BannerAndIcon/우리술품폄회.png">
 		</div>
 		
 		<br>
@@ -171,7 +172,7 @@
 		<div class="div_new">
 			<div style="border: 1px solid black; display: inline; border-radius: 5px;">
 				<div>
-				<img alt="" src="images/배너및아이콘/" style="width: 100%; height: 350px; display: block; margin: auto;">
+				<img alt="" src="images/BannerAndIcon/" style="width: 100%; height: 350px; display: block; margin: auto;">
 				</div>
 				<hr style="margin: 0px;">
 				<h3 style="text-align: center;">상품이름</h3>
@@ -179,7 +180,7 @@
 			</div>
 			<div style="border: 1px solid black; display: inline; border-radius: 5px;">
 				<div>
-				<img alt="" src="images/배너및아이콘/" style="width: 100%; height: 350px; display: block; margin: auto;">
+				<img alt="" src="images/BannerAndIcon/" style="width: 100%; height: 350px; display: block; margin: auto;">
 				</div>
 				<hr style="margin: 0px;">
 				<h3 style="text-align: center;">상품이름</h3>
@@ -193,10 +194,10 @@
 	<!-- 하단배너1 -->
 	<div class="div_baner">
 		<div style="display: inline;margin-left: 50px;">
-			<a target="_blank" href="https://www.google.co.kr/maps/place/%EA%B0%95%EB%82%A8IT%ED%95%99%EC%9B%90-%EC%BD%94%EB%A6%AC%EC%95%84IT%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8/data=!4m10!1m2!2m1!1za29yZWFpdCDslYTsubTrjbDrr7g!3m6!1s0x357ca3fe10658c31:0xf736701baa764dad!8m2!3d37.4999467!4d127.0354264!15sChRrb3JlYWl0IOyVhOy5tOuNsOuvuJIBG3RlY2huaWNhbF9lZHVjYXRpb25fYWNhZGVteeABAA!16s%2Fg%2F11c5xnpd75?hl=ko"> <img alt="" src="images/배너및아이콘/회사위치.jpg"> </a>
+			<a target="_blank" href="https://www.google.co.kr/maps/place/%EA%B0%95%EB%82%A8IT%ED%95%99%EC%9B%90-%EC%BD%94%EB%A6%AC%EC%95%84IT%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8/data=!4m10!1m2!2m1!1za29yZWFpdCDslYTsubTrjbDrr7g!3m6!1s0x357ca3fe10658c31:0xf736701baa764dad!8m2!3d37.4999467!4d127.0354264!15sChRrb3JlYWl0IOyVhOy5tOuNsOuvuJIBG3RlY2huaWNhbF9lZHVjYXRpb25fYWNhZGVteeABAA!16s%2Fg%2F11c5xnpd75?hl=ko"> <img alt="" src="images/BannerAndIcon/회사위치.jpg"> </a>
 		</div>
 		<div style="display: inline; margin-left: 50px; ">
-			<img alt="" src="images/배너및아이콘/카톡친추.jpg">
+			<img alt="" src="images/BannerAndIcon/카톡친추.jpg">
 		</div>
 	</div>
 	
@@ -217,10 +218,10 @@
 	<!-- 하단배너2 -->
 	<div class="div_baner2">
 		<div style="display:inline; margin-left: 50px; ">
-			<img alt="" src="images/배너및아이콘/리뷰배너.jpg" style="width: 750px; height: 230px; border: 1px solid silver; display: block; float: right;">
+			<img alt="" src="images/BannerAndIcon/리뷰배너.jpg" style="width: 750px; height: 230px; border: 1px solid silver; display: block; float: right;">
 		</div>
 		<div style="display: inline;">
-			<img alt="" src="images/배너및아이콘/회원가입.jpg" style="width: 750px; height: 230px; border: 1px solid silver; display: block; float: left;">
+			<img alt="" src="images/BannerAndIcon/회원가입.jpg" style="width: 750px; height: 230px; border: 1px solid silver; display: block; float: left;">
 		</div>
 	</div>
 

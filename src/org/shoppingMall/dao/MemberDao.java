@@ -52,6 +52,8 @@ public class MemberDao {
 		mapperSession.commit();
 		mapperSession.close();
 		return result;
+	}
+		
 // NYR#3
 	public Member Idfind(Map<String,String> map) {
 		SqlSession mapper = SqlSessionBean.getSession();
