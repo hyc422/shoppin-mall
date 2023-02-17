@@ -1,8 +1,12 @@
 package org.shoppingMall.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
+import org.shoppingMall.vo.ProductFileList;
 import org.shoppingMall.vo.ProductVO;
 
+import lombok.ToString;
 import mybatis.SqlSessionBean;
 
 public class ProductDAO {
@@ -24,7 +28,10 @@ public class ProductDAO {
 	
 	public int getSeq() {
 		SqlSession mapper = SqlSessionBean.getSession();
-		return mapper.selectOne("product.getSeq");
+		int result =  mapper.selectOne("product.getSeq");
+		mapper.close();
+		return result;
+		
 	}
 
 	public int nextSeq() {
@@ -50,6 +57,4 @@ public class ProductDAO {
 		mapper.commit();
 		mapper.close();
 	}
-	
-	
 }

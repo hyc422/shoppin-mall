@@ -52,11 +52,6 @@ a {
 	letter-spacing: 0.01em;
 }
 
-a:hover {
-	color: #00FF00;
-	text-decoration: none;
-	font-size: 13px;
-}
 
 .logo_image {
 	width: 350px;

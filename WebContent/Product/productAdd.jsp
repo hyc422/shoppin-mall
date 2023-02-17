@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productDetail.css" />
 </head>
 <body>
+
 <%@ include file="../top.jsp" %>
 	<div>
 		<h1 style="text-align: center;">상품 등록 페이지</h1>
@@ -77,11 +78,9 @@
 			</div>
 		</form>
 	</div>
-	
 	<form action="productAddUpdate">
 		<input type="button" value="등록">
 	</form>
-	
 	<%@ include file="../footer.jsp" %>
 </body>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>

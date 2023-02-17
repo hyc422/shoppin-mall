@@ -17,7 +17,6 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class ProductAddController implements Controller {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String saveFolder = "C:\\Users\\user\\Desktop\\project\\111\\shoppingMall\\WebContent\\upload";
 		int fileSize = 1024 * 1024 * 10;
 		
@@ -37,7 +36,6 @@ public class ProductAddController implements Controller {
 		pDao.productInsert(vo);
 		fDao.insertFile(multi, pDao.getSeq());
 		
-		response.sendRedirect("list1111111111111");
-			
+		response.sendRedirect("list1111111111111");	
 	}
 }

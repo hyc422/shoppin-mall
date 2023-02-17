@@ -1,5 +1,9 @@
+<%@page import="java.util.List"%>
+<%@page import="org.shoppingMall.vo.RecommendItemVo"%>
+<%@page import="org.shoppingMall.dao.RecommendItemDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="top.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -23,13 +27,44 @@
 
 .div_cont {
 	width: 80%;
-	height: 350px;
+	height: 800px;
 	overflow: hidden;
 	margin: auto;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	column-gap: 20px;
+}
+
+.div_new {
+	width: 80%;
+	height: 500px;
+	overflow: hidden;
+	margin: auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr;
 	column-gap: 20px;
+}
+.div_baner{
+	width: 80%;
+	height: 200px;
+	overflow: hidden;
+	margin: auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+	column-gap: 20px;
+}
+.div_baner2{
+	width: 100%;
+	height: 300px;
+	overflow: hidden;
+	margin: auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+	column-gap: 5px;
 }
 </style>
 
@@ -39,12 +74,17 @@
 <link href="css/index.css" rel="stylesheet">
 </head>
 <body>
+	<% RecommendItemDao dao = RecommendItemDao.getInstance();
+		List<RecommendItemVo> item = dao.list();		
+	%>
+	
+
 	<main>
 		<div class="w3-content w3-display-container"
 			style="max-width: 100%; margin: 0px;">
-			<img class="mySlides" src="<%=request.getContextPath() %>/image/배너1.jpg" style="width: 100%">
-			<img class="mySlides" src="<%=request.getContextPath() %>/image/배너2.jpg" style="width: 100%">
-			<img class="mySlides" src="<%=request.getContextPath() %>/image/배너3.jpg" style="width: 100%">
+			<img class="mySlides" src="<%=request.getContextPath() %>/images/배너및아이콘/배너1.jpg" style="width: 100%">
+			<img class="mySlides" src="<%=request.getContextPath() %>/images/배너및아이콘/배너2.jpg" style="width: 100%">
+			<img class="mySlides" src="<%=request.getContextPath() %>/images/배너및아이콘/배너3.jpg" style="width: 100%">
 			<div
 				class="w3-center w3-section w3-large w3-text-white w3-display-bottomleft"
 				style="width: 100%">
@@ -72,7 +112,7 @@
 				<p style="margin-left: 190px; display: inline;">
 					<strong style="font-size: 18px; color: #424242;">이번주 술공장 PICK</strong>
 				</p>
-				<img alt="술" src="<%=request.getContextPath() %>/image/술.png" style="display: inline;"> <br>
+				<img alt="술" src="<%=request.getContextPath() %>/images/배너및아이콘/술.png" style="display: inline;"> <br>
 				<p
 					style="margin-left: 200px; display: inline; color: #ff6f00; font-size: 19px;">
 					<strong>이술은 어떠세요?</strong>
@@ -80,59 +120,113 @@
 			</div>
 		</div>
 		<br>
-		<br>
-				<div
+		<br>			<!-- 상품 더보기 -->
+				<div		
 					style="float:right; display: inline; margin-right: 20px; width: 60px; height: 25px; background-color: white; border: 1px solid black; text-align: center;">
-					<a href=""
+					<a href=""			
 						style="color: black; text-decoration: none; font-size: 13px;">More</a>
 				</div>
 				<h3 style="text-align: center;">추천상품</h3>
 		<br>
 		<!-- 추천상품 -->
 		<div class="div_cont">
+		<% for(int i=0;i<item.size();i++) { %>
 			<div
 				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
-					<img alt="" src="<%=request.getContextPath() %>/image/시트러스 혼디주 12도 330ml 제주감귤과실주.jpg"
+					<img alt="" src="<%=request.getContextPath() %>/술/배너및아이콘/<%=item.get(i).getCoverfile() %>"
 						style="width: 80%; height: 240px;">
 				</div>
 				<hr style="margin: 0px;">
-				<h5 style="text-align: center;">상품이름</h5>
-				<p style="text-align: center; margin: 0px;">상품가격 : 30000원</p>
+				<h5 style="text-align: center;"><%=item.get(i).getName()%></h5>
+				<p style="text-align: center; margin: 0px; font-size: 13px;">판매가 : <%=item.get(i).getPrice()%>원
+				
+				<!-- 관리자만 삭제 보이게 설정 해야함 -->
+				<a href="RecommendDelete?name=<%=item.get(i).getName() %>" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+				</p>
 			</div>
-			<div
-				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px;  margin-left: 49px; margin-top: 10px;">
+			<% } %>
+			
+			
+		</div>			<!-- 관리자 추천상품 변경 -->
+				<div style="border: 1px solid silver; float: right; display:inline; width: 90px; height:25px; margin-bottom :20px; margin-right: 200px; text-align: center; background-color: #e1e4ed;">
+				<a style= "text-decoration: none; color: black; font-size: 13px;'" href="RecommendUpdate">추천상품 등록</a></div>
+		<br>
+		<br>
+		<br>
+		<br>
+			
+			<!-- 중간배너 -->
+		<div style="width: 100%">
+			<img alt="" src="images/배너및아이콘/우리술품폄회.png">
+		</div>
+		
+		<br>
+		<br>
+		<br>
+		
+			<!-- 신상품 -->
+			<h3 style="text-align: center;">신상품</h3>	
+			<br>
+		<div class="div_new">
+			<div style="border: 1px solid black; display: inline; border-radius: 5px;">
 				<div>
-					<img alt="" src="<%=request.getContextPath() %>/image/시트러스 혼디주 12도 330ml 제주감귤과실주.jpg"
-						style="width: 80%; height: 240px;">
+				<img alt="" src="images/배너및아이콘/" style="width: 100%; height: 350px; display: block; margin: auto;">
 				</div>
 				<hr style="margin: 0px;">
-				<h5 style="text-align: center;">상품이름</h5>
-				<p style="text-align: center; margin: 0px;">상품가격 : 30000원</p>
+				<h3 style="text-align: center;">상품이름</h3>
+				<p style="text-align: center; margin: 0px; font-size: 17px;">판매가 : 원
 			</div>
-			<div
-				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px;  margin-left: 49px; margin-top: 10px;">
+			<div style="border: 1px solid black; display: inline; border-radius: 5px;">
 				<div>
-					<img alt="" src="<%=request.getContextPath() %>/image/시트러스 혼디주 12도 330ml 제주감귤과실주.jpg"
-						style="width: 80%; height: 240px;">
+				<img alt="" src="images/배너및아이콘/" style="width: 100%; height: 350px; display: block; margin: auto;">
 				</div>
 				<hr style="margin: 0px;">
-				<h5 style="text-align: center;">상품이름</h5>
-				<p style="text-align: center; margin: 0px;">상품가격 : 30000원</p>
-			</div>
-			<div
-				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
-				<div>
-					<img alt="" src="<%=request.getContextPath() %>/image/시트러스 혼디주 12도 330ml 제주감귤과실주.jpg"
-						style="width: 80%; height: 240px;">
-				</div>
-				<hr style="margin: 0px;">
-				<h5 style="text-align: center;">상품이름</h5>
-				<p style="text-align: center; margin: 0px;">상품가격 : 30000원</p>
+				<h3 style="text-align: center;">상품이름</h3>
+				<p style="text-align: center; margin: 0px; font-size: 17px;">판매가 : 원
 			</div>
 		</div>
-		<br>
 
+	<br>
+	<br>
+
+	<!-- 하단배너1 -->
+	<div class="div_baner">
+		<div style="display: inline;margin-left: 50px;">
+			<a target="_blank" href="https://www.google.co.kr/maps/place/%EA%B0%95%EB%82%A8IT%ED%95%99%EC%9B%90-%EC%BD%94%EB%A6%AC%EC%95%84IT%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8/data=!4m10!1m2!2m1!1za29yZWFpdCDslYTsubTrjbDrr7g!3m6!1s0x357ca3fe10658c31:0xf736701baa764dad!8m2!3d37.4999467!4d127.0354264!15sChRrb3JlYWl0IOyVhOy5tOuNsOuvuJIBG3RlY2huaWNhbF9lZHVjYXRpb25fYWNhZGVteeABAA!16s%2Fg%2F11c5xnpd75?hl=ko"> <img alt="" src="images/배너및아이콘/회사위치.jpg"> </a>
+		</div>
+		<div style="display: inline; margin-left: 50px; ">
+			<img alt="" src="images/배너및아이콘/카톡친추.jpg">
+		</div>
+	</div>
+	
+	<br>
+	<br>
+	<br>
+	
+	<!--유튜브  -->
+	<div style="width: 70%; margin: auto;">
+	<iframe width="100%" height="700px;" src="https://www.youtube.com/embed/GgOL0eL9Dlg?start=1" title="YouTube video player" 
+	frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	</div>
+	
+	<br>
+	<br>
+	<br>
+	
+	<!-- 하단배너2 -->
+	<div class="div_baner2">
+		<div style="display:inline; margin-left: 50px; ">
+			<img alt="" src="images/배너및아이콘/리뷰배너.jpg" style="width: 750px; height: 230px; border: 1px solid silver; display: block; float: right;">
+		</div>
+		<div style="display: inline;">
+			<img alt="" src="images/배너및아이콘/회원가입.jpg" style="width: 750px; height: 230px; border: 1px solid silver; display: block; float: left;">
+		</div>
+	</div>
+
+<br>
+<br>
+<br>
 
 		<script>
 			/* 양옆 버튼으로 넘기기 */

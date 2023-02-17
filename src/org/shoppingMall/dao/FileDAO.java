@@ -59,10 +59,4 @@ public class FileDAO {
 		mapper.commit();
 		mapper.close();
 	}
-	
-	
-	
-	
-	
-	
 }

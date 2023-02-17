@@ -23,7 +23,5 @@ public class ProductAddViewController implements Controller {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productAdd.jsp");
 		dispatcher.forward(request, response);
-		
 	}
-
 }
