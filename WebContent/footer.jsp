@@ -45,15 +45,15 @@ li > .gotop:hover {
 	<div style="margin-top: 20px;">
 	<h4 style="margin-left: 200px;">고객센터 : 010 - 1111 - 2222</h4>
 	<br>
-	<img alt="술공장로고" src="<%=request.getContextPath() %>/images/배너및아이콘/술공장로고.png" style="float: right;">
+	<img alt="술공장로고" src="<%=request.getContextPath() %>/images/BannerAndIcon/술공장로고.png" style="float: right;">
 	<p>평일(월~금) : 오전 10:00~오후 06:00 | 점심시간 : 오후 12:00~오후 01:00 | 휴무 : 주말(토~일), 법정공휴일</p>
 	<p>농협 : 351-1234-5678-90 | 예금주 : 농업회사법인 술공장(주)</p>
 	<p>법인명(상호) : 농업회사법인조은술세종(주) | 대표자 : 경기호, 이승애 | 주소 : 충청북도 청주시 청원구 사천로18번길 5-2 (사천동) 번지</p>
 	<p>전화 : 02-123-1111 | 팩스 : 043-218-4725 | 사업자번호 : [317-81-07031] | 통신판매신고번호 : 2017-서울특별시-0063 [사업자정보확인] | 개인정보관리책임자 : 홍용치</p>
-	<img class = "firimg" alt="Nice페이먼츠" src="<%=request.getContextPath() %>/images/배너및아이콘/Nice페이먼츠.png" style="display:inline; ">
-	<img alt="롯데택배" src="<%=request.getContextPath() %>/images/배너및아이콘/롯데택배.png" style="display:inline; ">
-	<img alt="안전거래 가맹점" src="<%=request.getContextPath() %>/images/배너및아이콘/안전거래 가맹점.png" style="display:inline; ">
-	<img alt="현금영수증가맹점" src="<%=request.getContextPath() %>/images/배너및아이콘/현금영수증가맹점.png" style="display:inline; ">
+	<img class = "firimg" alt="Nice페이먼츠" src="<%=request.getContextPath() %>/images/BannerAndIcon/Nice페이먼츠.png" style="display:inline; ">
+	<img alt="롯데택배" src="<%=request.getContextPath() %>/images/BannerAndIcon/롯데택배.png" style="display:inline; ">
+	<img alt="안전거래 가맹점" src="<%=request.getContextPath() %>/images/BannerAndIcon/안전거래 가맹점.png" style="display:inline; ">
+	<img alt="현금영수증가맹점" src="<%=request.getContextPath() %>/images/BannerAndIcon/현금영수증가맹점.png" style="display:inline; ">
 	<br>
 	<br>
 	<br>

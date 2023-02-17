@@ -15,6 +15,7 @@ import org.shoppingMall.login.controller.LogoutController;
 import org.shoppingMall.product.controller.ProductListViewContoller;
 import org.shoppingMall.register.controller.RegisterActionController;
 import org.shoppingMall.register.controller.RegisterController;
+import org.shoppingMall.search.controller.SearchController;
 
 public class RequestControllerMapping 
 {
@@ -22,10 +23,13 @@ public class RequestControllerMapping
 	
 	public static void init()
 	{	
-		// index
+		 // index
 		 mapping.put(new RequestKeyValue("/RecommendUpdate","GET"), new IndexRecommendProductController());
 		 mapping.put(new RequestKeyValue("/RecommendUpdate","POST"), new NewRecommendProductController());
 		 mapping.put(new RequestKeyValue("/RecommendDelete","GET"), new DeleteRecommendProductController());
+		 
+		 // search
+		 mapping.put(new RequestKeyValue("/search","GET"), new SearchController());
 
 		// Register
 		mapping.put(new RequestKeyValue("/member/register.hrd","GET"), new RegisterController());
@@ -38,7 +42,7 @@ public class RequestControllerMapping
 		
 		// Product
 		mapping.put(new RequestKeyValue("/Product/productList.hrd","GET"), new ProductListViewContoller());
-    mapping.put(new RequestKeyValue("/Product/productAdd", "GET"), new ProductAddViewController());
+		mapping.put(new RequestKeyValue("/Product/productAdd", "GET"), new ProductAddViewController());
 		mapping.put(new RequestKeyValue("/Product/productAdd", "POST"), new ProductAddController());
 		mapping.put(new RequestKeyValue("/Product/productAddUpdate", "GET"), new ProductAddViewController());
 		mapping.put(new RequestKeyValue("/Product/productAddUpdate", "POST"), new ProductAddController());

@@ -18,11 +18,6 @@ DELETE FROM RECOMMENDITEM
 WHERE name = #{name}
 </delete>
 
-<update id="updateItem" parameterType="org.shoppingMall.vo.RecommendItemVo" >
-UPDATE RECOMMENDITEM
-SET NAME=#{name}, PRICE=#{price}
-WHERE COVERFILE = #{COVERFILE}
-</update>
  </mapper>
  
  
