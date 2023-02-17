@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="search">
+
+<!-- Top에있는 검색기능 -->
+<select id="searchtop" parameterType="String" resultType="org.shoppingMall.vo.SearchVo">
+SELECT CATEGORY, SEARCHNAME, PRICE FROM ACSEARCH
+WHERE SEARCHNAME like '%' || #{SEARCHNAME} || '%'
+ORDER BY SEARCHNAME ASC
+</select>
+
+<!-- 카테고리로 조회 -->
+<select id="searchCategory" parameterType="String" resultType="org.shoppingMall.vo.SearchVo">
+SELECT CATEGORY, SEARCHNAME, PRICE FROM ACSEARCH 
+WHERE CATEGORY = #{CATEGORY}
+ORDER BY SEARCHNAME ASC
+</select>
+
+<!-- 가격구간으로 조회 -->
+<select id="searchPrice" parameterType="int" resultType="org.shoppingMall.vo.SearchVo">
+SELECT CATEGORY, SEARCHNAME, PRICE FROM ACSEARCH
+WHERE price BETWEEN #{price} AND #{price}
+ORDER BY SEARCHNAME ASC
+</select>
+
+<!-- 상품명으로 조회 -->
+<select id="searchName" resultType="org.shoppingMall.vo.SearchVo">
+SELECT CATEGORY, SEARCHNAME, PRICE FROM ACSEARCH
+ORDER BY SEARCHNAME ASC
+</select>
+
+<!-- 낮은가격순 조회 -->
+<select id="searchLowPrice" resultType="org.shoppingMall.vo.SearchVo">
+SELECT CATEGORY, SEARCHNAME, PRICE FROM ACSEARCH
+ORDER BY PRICE ASC
+</select>
+
+<!-- 높은가격순 조회 -->
+<select id="searchHighPrice" resultType="org.shoppingMall.vo.SearchVo">
+SELECT CATEGORY, SEARCHNAME, PRICE FROM ACSEARCH
+ORDER BY PRICE DESC
+</select>
+
+
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
