@@ -4,47 +4,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 등록 페이지</title>
+<title>상품 수정 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productDetail.css" />
 </head>
 <body>
-
 <%@ include file="../top.jsp" %>
 	<div>
-		<h1 style="text-align: center;">상품 등록 페이지</h1>
+		<h1 style="text-align: center;">상품 수정 페이지</h1>
 		<hr>
 	</div>
 	<div style="margin-left: 300px;">
-		<form method="post" action="productAdd" name="productForm" id="productForm" enctype="multipart/form-data">
+		<form method="post" action="productAddUpdate" name="productForm" id="productForm" enctype="multipart/form-data">
 			<div>
 				<label>
-					상품코드  <input type="text" name="productNum" id="productNum" value="${productNum}">
+					상품코드  <input type="text" name="productNum" id="productNum" value="${vo.productNum}" readonly="readonly">
 				</label>
 			</div>
 			<div>
 				<label>
-					상품명  <input type="text" name="productName" id="productName">
+					상품명  <input type="text" name="productName" id="productName" value="${vo.productName}" readonly="readonly">
 				</label>
 			</div>
 			<div>
 				<label>
-					상품가격  <input type="text" name="productPrice" id="productPrice">
+					상품가격  <input type="text" name="productPrice" id="productPrice" placeholder="수정할 가격을 입력해주세요">
 				</label>
 			</div>
 			<div>
 				<label>
-					재고수  <input type="text" name="productStock" id="productStock">
+					재고수  <input type="text" name="productStock" id="productStock" placeholder="수정할 재고수를 입력해주세요">
 				</label>
 			</div>
 			<div>
 				<label>
 					카테고리
-					<select name="productCategories" id="productCategories">
-						<option>선택</option>
-						<option>막걸리형 전통주</option>
-						<option>증류식 소주</option>
-						<option>청주/리큐르주</option>
-						<option>담금주</option>
+					<select name="productCategories" id="productCategories" disabled="disabled">
+						<option value="${vo.productCategories}"/>
 					</select>
 				</label>
 			</div>
@@ -73,65 +68,15 @@
 			</div>
 			</div>
 			<div class="okButton">
-				<input type="button" onclick="ok()" value="등록" class="btn btn-outline-light" id="okButtonOption">
+				<input type="button" value="수정" class="btn btn-outline-light" id="okButtonOption">
 				<input type="button" onclick="history.back()" value="취소" class="btn btn-outline-light" id="okButtonOption">
 			</div>
 		</form>
 	</div>
-	<form action="productAddUpdate">
-		<input type="button" value="등록">
-	</form>
 	<%@ include file="../footer.jsp" %>
 </body>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script>
-	function ok(){
-		if(!$("input#productNum").val()){
-			alert("상품코드를 작성해주세요.");
-			$("input#productNum").focus();
-			return;
-		}
-		if(!$("input#productName").val()){
-			alert("상품명을 작성해주세요.");
-			$("input#productName").focus();
-			return;
-		}
-		if(!$("input#productPrice").val()){
-			alert("상품가격을 작성해주세요.");
-			$("input#productPrice").focus();
-			return;
-		}
-		if(!$("input#productStock").val()){
-			alert("상품재고를 작성해주세요.");
-			$("input#productStock").focus();
-			return;
-		}
-		if(!productCategories.value || productCategories.value=="선택"){
-			alert("카테고리를 선택해주세요.");
-			$("input#productCategories").focus();
-			return;
-		}
-		
-		
-		document.productForm.submit();
-	}
-	
-	/* 제픔 상세정보 사진 */
-	$(".files1").change(function(e){
-		let file = e.target.files[0];
-		let img = $(this).find("img");
-		
-		if(!file.type.match("image.*")){
-			img.attr("src", "${pageContext.request.contextPath}/images/product/no_img.jpg");
-		}else{
-			let reader = new FileReader();
-			reader.onload = function(e){
-				img.attr("src", e.target.result)
-			}
-			reader.readAsDataURL(file);
-		}
-	})
-	
 	/* 제픔 썸네일 */
 	$(".files2").change(function(e){
 		let file = e.target.files[0];

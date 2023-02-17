@@ -47,4 +47,16 @@ public class FileDAO {
 		}
 	}
 	
+	public List<FileVO> getFiles(int productNum){
+		SqlSession mapper = SqlSessionBean.getSession();
+		return mapper.selectList("file.getFiles", productNum); 
+	}
+	
+	public void deleteFiles(int productNum) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		
+		mapper.delete("file.deleteFiles", productNum);
+		mapper.commit();
+		mapper.close();
+	}
 }

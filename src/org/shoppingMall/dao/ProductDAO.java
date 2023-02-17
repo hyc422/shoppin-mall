@@ -34,21 +34,27 @@ public class ProductDAO {
 		
 	}
 
-	public List<ProductFileList> selectOneList(String vo){
+	public int nextSeq() {
 		SqlSession mapper = SqlSessionBean.getSession();
-		List<ProductFileList> list = mapper.selectList("product.selectOneList", vo);
-		mapper.close();
-		return list;
+		return mapper.selectOne("product.nextSeq");
+	}
+
+	public ProductVO productSelectOne(int productNum) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		return mapper.selectOne("product.productSelectOne", productNum);
 	}
 	
-	public List<ProductVO> categoiesList() {
+	public void productAddUpdate(ProductVO vo) {
 		SqlSession mapper = SqlSessionBean.getSession();
-		List<ProductVO> list = mapper.selectList("product.categoiesList");
+		mapper.update("product.productAddUpdate", vo);
+		mapper.commit();
 		mapper.close();
-		return list;
 	}
 	
-	
-	
-	
+	public void productAddDelete(int productNum) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		mapper.delete("product.productAddDelete", productNum);
+		mapper.commit();
+		mapper.close();
+	}
 }
