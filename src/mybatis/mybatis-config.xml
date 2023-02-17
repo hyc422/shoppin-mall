@@ -19,6 +19,7 @@
 	<mapper resource="mybatis/product.xml"/>
 	<mapper resource="mybatis/file.xml"/>
   <mapper resource="mybatis/RecommendItem.xml"/>
+  <mapper resource="mybatis/cart.xml"/>
   	<!-- SQL xml mapping -->
   </mappers>
 </configuration>

@@ -10,22 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.shoppingMall.controller.Controller;
 import org.shoppingMall.dao.ProductDAO;
 
-public class ProductListViewContoller implements Controller {
+public class ProductViewContoller implements Controller {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductDAO dao = ProductDAO.getInstance();
-		String a = request.getParameter("Categories");
-		
-		request.setAttribute("Pvo", dao.categoiesList());
-		
-		request.setAttribute("selectOneList1", dao.selectOneList(a));
-		
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("productList.jsp");
+		request.setAttribute("Pvo", dao.selectOne(Integer.parseInt(request.getParameter("productNum"))));
+		RequestDispatcher dispatcher = request.getRequestDispatcher("product.jsp");
 		dispatcher.forward(request, response);
-		
 	}
 
 }
-

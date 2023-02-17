@@ -29,11 +29,14 @@ public class LoginActionController implements Controller{
 		
 		MemberDao dao = MemberDao.getInstance();
 		Member vo = dao.login(map);
-		
+		String back = (String) session.getAttribute("back"); //CGH추가
+		session.removeAttribute("back");						//CGH추가
 		if(vo != null) {
 			session.setAttribute("user", vo);
+			if(back!=null)url=back;			//CGH추가
 		}else {
-			url="login?fail";
+//			url="login?fail";
+			url = "login?incorrect=y";	//CGH추가
 		}
 		
 		response.sendRedirect(url); //메인페이지로 요정 redirect

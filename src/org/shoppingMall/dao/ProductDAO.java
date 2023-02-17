@@ -57,4 +57,26 @@ public class ProductDAO {
 		mapper.commit();
 		mapper.close();
 	}
+	//CGH
+	public List<ProductFileList> selectOneList(String vo){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<ProductFileList> list = mapper.selectList("product.selectOneList", vo);
+		mapper.close();
+		return list;
+	}
+	//CGH
+	public List<ProductVO> categoiesList() {
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<ProductVO> list = mapper.selectList("product.categoiesList");
+		mapper.close();
+		return list;
+	}
+	//CGH
+	public ProductFileList selectOne(int vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		ProductFileList PFL = mapper.selectOne("product.selectOne",vo);
+		mapper.close();
+		return PFL;
+	}
+	
 }
