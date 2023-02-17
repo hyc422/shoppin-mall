@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ComPanda</title>
+<title>상품 상세 페이지</title>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link
@@ -21,7 +21,7 @@
 <script type="text/javascript" src="../js/productList.js"></script>
 
 </head>
-<body>
+<body onload="init();">
 	<%@ include file="../top.jsp"%>
 	<div id="content"
 		style="margin: 0px; padding: 0px; text-align: center;">
@@ -30,22 +30,17 @@
 				<!-- 제품메인이미지 -->
 				<div class="productimg">
 					<img class="mainImg" alt=""
-						src="images/snpjAzrrZf1674015860893.jpg">
+						src="../images/Product/${Pvo.fileName }">
 				</div>
 				<!-- 제품 기본 정보 -->
 				<div class="productDetail" class="col-md-8">
 					<div class="text" class="card-body">
 						<!-- 제품이름 -->
-						<h1 class="card-title">상품명</h1>
-						<!-- 제품설명 -->
-						<!-- 	<pre class="text">
-							<br>  제조자 :   <br>  제조국  <br>  종류  <br> 배송 방법 : 택배  <br>  택배비 : 3000원  <br>  기타  <br>
-						</pre> -->
+						<h1 class="card-title">${Pvo.productName }</h1>
 						<br>
 						<div>
-							<p class="card-text">제조자 :</p>
-							<p class="card-text">제조국 :</p>
-							<p class="card-text">종류 :</p>
+							<p class="card-text">종류 : ${Pvo.productCategories }</p>
+							<p class="card-text">재고수 : ${Pvo.productStock }</p>
 							<p class="card-text">배송 방법 : 택배</p>
 							<p class="card-text">택배비 : 3000원</p>
 						</div>
@@ -53,7 +48,7 @@
 						<hr>
 
 						<div class="productPrice">
-							<b><span class="productPriceSpan">가격 원</span></b>
+							<b><span class="productPriceSpan">가격 : <fmt:formatNumber value="${Pvo.productPrice }" pattern="###,###,###"/>원</span></b>
 						</div>
 						<!-- 제품가격 -->
 						<br> <br>
@@ -63,32 +58,46 @@
 					<!--장바구니 수량 담기  -->
 					<div id="cart">
 						<form action="" name="form" method="post" id="storeForm">
+						<input type="hidden" name="id" value="${user.id }">
+						<input type="hidden" name="fileName" value="${Pvo.fileName }">
+						<input type="hidden" name="productName" value="${Pvo.productName }">
+						<input type="hidden" name="productCategories" value="${Pvo.productCategories }">
+						<input type="hidden" name="productNum" value="${Pvo.productNum }">
 							<input type="hidden" name="p_num" value="102">
 							<div class="quantity">
-								<span class="btn_position">주문 수량</span> &nbsp;&nbsp;&nbsp; <input
-									class="count" type="button" value="-" onclick="del();">
-								<input class="count" type="hidden" name="sell_price" value="0">
-								<!-- value 가격 -->
-								<input class="count" type="text" name="amount" value="1"
-									size="3" onchange="change();"> <input class="count"
-									type="button" value="+" onclick="add();">
+								<span class="btn_position">주문 수량</span> &nbsp;&nbsp;&nbsp; 
+								<input class="count" type="button" value="-" onclick="del();">
+								<input class="count" type="hidden" name="productPrice" value="${Pvo.productPrice }">
+								<input class="count" type="text" name="amount" value="1" size="3" onchange="change();"> 
+								<input class="count" type="button" value="+" onclick="add();">
 							</div>
 							<br>
 							<div class="price">
-								<b> 총 금액 <input type="text" class="price_box" name="sum"
-									size="7" style="border: none;" readonly>원
+								<b> 총 금액  &nbsp;&nbsp;&nbsp;<input type="text" class="price_box" name="sum"
+									size="7" style="border: none; font-size: 20px;"readonly>원
 								</b>
 							</div>
 							<br>
 						</form>
 					</div>
 					<div class="cart_put">
-						<!-- 비회원/회원 설정 -->
 						<button type="button" id="no_member_cart_put" class="order"
-							onclick="addCart()">장바구니</button>
+							onclick="addToCart()">장바구니</button>
 						<button type="button" id="no_member_payBtn" class="order"
-							onclick="location.href='#''">구매하기</button>
+							onclick="">구매하기</button>
 					</div>
+					<script type="text/javascript">
+					function addToCart() {
+						let yn
+						if('${user.id}'==''){
+							yn=confirm('장바구니에 추가하기 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?')
+							if(yn)location.href='../login.hrd?back=w'
+						}else{
+							document.addForm.submit();
+							location.href = 'cart?page=${paging.currentPage}'
+						}
+					}
+					</script>
 				</div>
 				<br>
 			</div>
@@ -117,7 +126,7 @@
 			<!-- 상세 이미지 -->
 			<div id="detailImg">
 				<img class="detailImg" alt="prodectdtail"
-					src="images/sdfg 2023-02-10 150005.png">
+					src="../images/Product/${Pvo.fileNameOriginal }">
 			</div>
 			<!-- 	<div>
 				<button>펼치기</button>

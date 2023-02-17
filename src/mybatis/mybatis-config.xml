@@ -21,6 +21,6 @@
   <mapper resource="mybatis/RecommendItem.xml"/>
   <mapper resource="mybatis/member.xml"/>
   <mapper resource="mybatis/search.xml"/>
-  	<!-- SQL xml mapping -->
+  <mapper resource="mybatis/cart.xml"/>
   </mappers>
 </configuration>

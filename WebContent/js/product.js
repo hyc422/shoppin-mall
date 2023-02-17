@@ -1,25 +1,25 @@
 
 //구매 수량에 따른 가격 변화
-var sell_price;
+var productPrice;
 var amount;
 function init() {
-	sell_price = document.form.sell_price.value;
+	productPrice = document.form.productPrice.value;
 	amount = document.form.amount.value;
-	document.form.sum.value = sell_price;
+	document.form.sum.value = productPrice;
 	change();
 }
 function add() {
 	hm = document.form.amount;
 	sum = document.form.sum;
 	hm.value++;
-	sum.value = hm.value * sell_price;
+	sum.value = hm.value * productPrice;
 }
 function del() {
 	hm = document.form.amount;
 	sum = document.form.sum;
 	if (hm.value > 1) {
 		hm.value--;
-		sum.value = hm.value * sell_price;
+		sum.value = hm.value * productPrice;
 	}
 }
 function change() {
@@ -28,23 +28,23 @@ function change() {
 	if (hm.value < 1) {
 		hm.value = 1;
 	} else {
-		sum.value = hm.value * sell_price;
+		sum.value = hm.value * productPrice;
 	}
 }
 
 
-
+/*
 //주소 설정해주기
-$("cart_put").click(function(){
+$("cart_put").click(function() {
 	location.href = 'index.jsp';
 });
 
-$("payBtn").click(function(){
+$("payBtn").click(function() {
 	location.href = '';
 });
 
-function cartPut(){
-	location.href="index.jsp"
+function cartPut() {
+	location.href = "index.jsp"
 }
 
 
@@ -88,3 +88,4 @@ $("#member_payBtn").click(function() {
 	$("#storeForm").attr("action", "/companda/index.jsp?workgroup=order&work=order");
 	$("#storeForm").submit();
 });
+*/
