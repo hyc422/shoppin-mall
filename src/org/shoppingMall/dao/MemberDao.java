@@ -66,6 +66,8 @@ public class MemberDao {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		Member vo = mapperSession.selectOne("member.selectpass",password);
 		mapperSession.close();
+		return vo;
+	}
 
 	public Member Idfind(Map<String,String> map) {
 		SqlSession mapper = SqlSessionBean.getSession();
