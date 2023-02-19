@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.shoppingMall.vo.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,9 +23,10 @@ public class SessionFilter implements Filter
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException 
 	{
-		List<String> nosessions = List.of("");
+		List<String> nosessions = List.of("/login.hrd");	//CGH수정
 		// login 시 접근할 수 없는 url
-		List<String> logins = List.of("");
+		
+		List<String> logins = List.of("/cart");				//CGH수정
 		// login 시 접근할 수 있는 url
 		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
@@ -33,7 +35,13 @@ public class SessionFilter implements Filter
 		logger.info(":::::::: 요청 전 SessionFilter: {} ::::::::",httpRequest.getServletPath());
 		
 		HttpSession session = httpRequest.getSession();
-
+		
+		Member user = (Member)session.getAttribute("user");		//CGH추가
+		if(nosessions.contains(httpRequest.getServletPath())&&user !=null	//CGH추가
+				||logins.contains(httpRequest.getServletPath())&&user==null) {
+			httpResponse.sendRedirect(httpRequest.getContextPath());
+			return;
+		}
 		// NewMember user = (NewMember) session.getAttribute("user");
 		// login 시 접근할 수 없는 url입니다. 또는 로그인을 해야 접근할 수 있는 url 입니다.
 		/*

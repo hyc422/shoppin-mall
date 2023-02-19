@@ -8,17 +8,17 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productDetail.css" />
 </head>
 <body>
-<!-- 상풍등록 -->
+
 <%@ include file="../top.jsp" %>
 	<div>
 		<h1 style="text-align: center;">상품 등록 페이지</h1>
 		<hr>
 	</div>
 	<div style="margin-left: 300px;">
-		<form method="post" action="product" name="productForm" id="productForm" enctype="multipart/form-data">
+		<form method="post" action="productAdd" name="productForm" id="productForm" enctype="multipart/form-data">
 			<div>
 				<label>
-					상품코드  <input type="text" name="productNum" id="productNum">
+					상품코드  <input type="text" name="productNum" id="productNum" value="${productNum}">
 				</label>
 			</div>
 			<div>
@@ -50,10 +50,10 @@
 			</div>
 			<div style="display:flex; justify-content:space-around; margin: 10px 0px;">
 			<div class="files1" style="width:40%;">
-				<span id="productManual">제품 설명</span>  
+				<span id="productManual">제품설명</span>  
 				<div>
 					<label for="product_file1" style="display:inline;">
-						<img id="product_file1Img" src="${pageContext.request.contextPath}/images/filePlus.png" width="110px" height="110px" style="display:inline;">
+						<img id="product_file1Img" src="${pageContext.request.contextPath}/images/product/filePlus.png" width="110px" height="110px" style="display:inline;">
 					</label>
 				</div>
 				<input id="product_file1" name="product_file1" type="file">
@@ -64,7 +64,7 @@
 				<span id="productImages">제품 사진</span>  
 				<div>
 					<label for="productImage" style="display:inline;">
-						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/filePlus.png" width="110px" height="110px" style="display:inline;">
+						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/product/filePlus.png" width="110px" height="110px" style="display:inline;">
 					</label>
 				</div>
 				<input id="productImage" name="productImage" type="file">
@@ -78,6 +78,9 @@
 			</div>
 		</form>
 	</div>
+	<form action="productAddUpdate">
+		<input type="button" value="등록">
+	</form>
 	<%@ include file="../footer.jsp" %>
 </body>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
@@ -119,7 +122,7 @@
 		let img = $(this).find("img");
 		
 		if(!file.type.match("image.*")){
-			img.attr("src", "${pageContext.request.contextPath}/images/no_img.jpg");
+			img.attr("src", "${pageContext.request.contextPath}/images/product/no_img.jpg");
 		}else{
 			let reader = new FileReader();
 			reader.onload = function(e){
@@ -135,7 +138,7 @@
 		let img = $(this).find("img");
 		
 		if(!file.type.match("image.*")){
-			img.attr("src", "${pageContext.request.contextPath}/images/no_img.jpg");
+			img.attr("src", "${pageContext.request.contextPath}/images/product/no_img.jpg");
 		}else{
 			let reader = new FileReader();
 			reader.onload = function(e){
@@ -148,7 +151,7 @@
 	/* 이미지 삭제 */
 	function cancelFile(fileTagName){
 		$("input[name='" + fileTagName + "']").val("");
-		$("img#" + fileTagName + "Img").attr("src", "${pageContext.request.contextPath}/images/filePlus.png");
+		$("img#" + fileTagName + "Img").attr("src", "${pageContext.request.contextPath}/images/product/filePlus.png");
 	}
 	
 </script>

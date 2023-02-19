@@ -2,20 +2,95 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="product">
- 	<insert id="productInsert" parameterType="org.shoppingMall.vo.ProductVO">
- 		INSERT INTO TBL_PRODUCT
-		(PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE, PRODUCTSTOCK, PRODUCTCATEGORIES)
-		VALUES(SEQ_PRODUCT.NEXTVAL, #{productName}, #{productPrice}, #{productStock}, #{productCategories})
- 	</insert>
- 	
- 	<select id="getSeq" resultType="_int">
- 		SELECT SEQ_PRODUCT.CURRVAL FROM DUAL
- 	</select>
- 	
- </mapper>
+<mapper namespace="product">
+	<insert id="productInsert"
+		parameterType="org.shoppingMall.vo.ProductVO">
+		INSERT INTO TBL_PRODUCT
+		(PRODUCTNUM, PRODUCTNAME,
+		PRODUCTPRICE, PRODUCTSTOCK,
+		PRODUCTCATEGORIES)
+		VALUES(SEQ_PRODUCT.NEXTVAL, #{productName},
+		#{productPrice},
+		#{productStock}, #{productCategories})
+	</insert>
+
+	<select id="getSeq" resultType="_int">
+		SELECT SEQ_PRODUCT.CURRVAL FROM
+		DUAL
+	</select>
+
+	<select id="nextSeq" resultType="_int">
+		SELECT MAX(PRODUCTNUM)+1 FROM
+		TBL_PRODUCT
+	</select>
+
+	<update id="productAddUpdate"
+		parameterType="org.shoppingMall.vo.ProductVO">
+		UPDATE TBL_PRODUCT
+		SET PRODUCTPRICE=#{productPrice},
+		PRODUCTSTOCK=#{productStock}
+		WHERE PRODUCTNUM=#{productNum}
+	</update>
+
+	<select id="productSelectOne" parameterType="_int"
+		resultType="org.shoppingMall.vo.ProductVO">
+		SELECT * FROM TBL_PRODUCT WHERE PRODUCTNUM = #{productNum}
+	</select>
+
+	<delete id="productAddDelete" parameterType="_int">
+		DELETE FROM
+		TBL_PRODUCT
+		WHERE PRODUCTNUM=#{productNum}
+	</delete>
+	<!-- CGH -->
+	<select id="categoiesList"
+		resultType="org.shoppingMall.vo.ProductVO">
+		SELECT PRODUCTCATEGORIES FROM TBL_PRODUCT
+		GROUP by
+		PRODUCTCATEGORIES
+	</select>
+	<!-- CGH -->
+	<select id="selectOneList" parameterType="String"
+		resultType="org.shoppingMall.vo.ProductFileList">
+		SELECT * FROM TBL_PRODUCT tp
+		JOIN TBL_FILE tf
+		ON
+		tp.PRODUCTNUM = tf.PRODUCTNUM
+		WHERE PRODUCTCATEGORIES = '${value}'
+	</select>
+
+	<!-- CGH -->
+	<select id="selectOne" parameterType="_int"
+		resultType="org.shoppingMall.vo.ProductFileList">
+		SELECT * FROM TBL_PRODUCT tp
+		JOIN TBL_FILE tf
+		ON
+		tp.PRODUCTNUM = tf.PRODUCTNUM
+		WHERE tp.PRODUCTNUM = #{productNum}
+	</select>
+<!-- '${value}'#{productCategories} -->
+	<select id="pagelist"
+		resultType="org.shoppingMall.vo.ProductFileList"
+		parameterType="java.util.Map">
+		SELECT * FROM
+		(SELECT rownum r ,f.* FROM
+		(SELECT * FROM
+		TBL_PRODUCT tp
+		JOIN TBL_FILE tf
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM
+		where
+		productCategories = '${value}'
+		ORDER BY productCategories DESC) f)
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	<select id="count" resultType="int">
+		SELECT count(*)FROM TBL_PRODUCT tp where productCategories = '${value}'
+	</select>
+
+</mapper>
+
  
- 
+
  
  
  
