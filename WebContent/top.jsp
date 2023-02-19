@@ -184,9 +184,9 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=과실주">과실주</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">막걸리</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=막걸리">막걸리</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">청주</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=청주">청주</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -194,9 +194,9 @@
           증류주
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">브랜디</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=브랜디">브랜디</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">소주</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=소주">소주</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=위스키">위스키</a>
         </div>

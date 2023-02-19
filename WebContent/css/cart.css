@@ -13,7 +13,7 @@
 .contents-cart {
     position: relative;
     visibility: hidden;
-    width: 900px;
+    width: 1000px;
     border: 1px solid #e0e0e0;
     margin: 0 auto 70px;
     padding: 40px -1px;
@@ -172,7 +172,7 @@ tr {
     text-align: center;
 }
 .cartTable {
-    width: 898px;
+    width: 998px;
     border-top: 0;
 }
 
