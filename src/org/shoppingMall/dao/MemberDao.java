@@ -52,4 +52,17 @@ public class MemberDao {
 		mapperSession.close();
 		return result;
 	}
+	public int delete(long idx) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.delete("member.delete",idx);
+		mapperSession.commit();
+		mapperSession.close();
+		return result;
+	}
+	public Member seletepass(String password) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		Member vo = mapperSession.selectOne("member.selectpass",password);
+		mapperSession.close();
+		return vo;
+	}
 }

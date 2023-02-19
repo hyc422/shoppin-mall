@@ -70,7 +70,6 @@ h2{
     margin: 40px;
    margin-top: 1px;
    margin-bottom: 10px;
-   width: 300px;
 }
 table{
        width: auto;
@@ -91,7 +90,6 @@ td {
 .Withdrawal{
 	margin-left : 270px;
 	margin-top: 40px;
-	width: 500px;
 }
 
 </style>
@@ -136,7 +134,7 @@ td {
     		
     <main class="usermodify">
     <div >
-    		<h2 style="text-align: left;" style="background-color: #e6f1ff;  width: 150px;">회원정보 수정</h2>
+    		<h2 style="text-align: left;" style="background-color: #e6f1ff ">회원정보 수정</h2>
     	
     	<form action="update" method="post" name="" onsubmit="return check();">
 					<input type="hidden" name="idx" value="${vo.idx }">
@@ -211,7 +209,8 @@ td {
 				<input type="submit" class="form-control" value="수정완료"> -->
 				<input type="submit" class="drawal" value="수정 완료">
 				<input type="submit" class="drawal" value="취소">
-				     회원탈퇴 원하시면 눌러주세요 <input type="submit" class="drawal" value="회원탈퇴"> 
+				     회원탈퇴 원하시면 눌러주세요 <input type="button" class="drawal" value="회원탈퇴"
+				     onclick="location.href = 'deleteForm'"> 
 				</div>
 				
 				

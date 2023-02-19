@@ -33,6 +33,12 @@
 	, PHONE = #{phone}, C_CODE=#{c_code}
 	WHERE idx = #{idx}
   	</update>
+  	<select id="selectpass" resultType="org.shoppingMall.vo.Member" parameterType="String">
+  	SELECT * FROM JS_MEMBER WHERE password=#{password}
+  	</select>
+  	<delete id="delete" parameterType="long">
+  	DELETE FROM js_member WHERE idx = #{idx}
+  	</delete>
 </mapper>
  
  
