@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="org.shoppingMall.vo.SearchVo"%>
+<%@page import="org.shoppingMall.dao.SearchDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -80,7 +83,6 @@
 }
 </style>
 
-<title>술공장</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	
 	<script>	/* 실시간검색 */
@@ -135,7 +137,8 @@
         <a  style="color: white;" class="nav-link dropdown-toggle" href="myPage2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           마이페이지
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu">
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">주문조회</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">내가쓴글</a>
@@ -160,9 +163,13 @@
         </ul>
     </div>
 </div>
-    <form class="form-inline my-2 my-lg-0" action="get">
-      <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search" name = "ssearch">
-     <button type="button" class="btn btn-outline-light">검색</button>
+
+
+
+<!-- 검색 -->
+    <form class="form-inline my-2 my-lg-0" action="search" method="GET">
+      <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search" name = "name">
+     <button type="submit" class="btn btn-outline-light">검색</button>
     </form>
   </div>
   
@@ -178,11 +185,11 @@
           발효주
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">과실주</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=과실주">과실주</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">막걸리</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=막걸리">막걸리</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">청주</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=청주">청주</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -190,11 +197,11 @@
           증류주
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">브랜디</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=브랜디">브랜디</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">소주</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=소주">소주</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">위스키</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=위스키">위스키</a>
         </div>
       </li>
       <li class="nav-item dropdown">
