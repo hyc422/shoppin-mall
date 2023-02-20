@@ -9,6 +9,7 @@ import org.shoppingMall.product.controller.ProductAddController;
 import org.shoppingMall.product.controller.ProductAddDeleteController;
 import org.shoppingMall.product.controller.ProductAddViewController;
 import org.shoppingMall.cart.controller.CartViewController;
+import org.shoppingMall.community.controller.CommunityListController;
 import org.shoppingMall.index.controller.DeleteRecommendProductController;
 import org.shoppingMall.index.controller.IndexRecommendProductController;
 import org.shoppingMall.index.controller.NewRecommendProductController;
@@ -76,6 +77,9 @@ public class RequestControllerMapping
 
 		//cart
 		mapping.put(new RequestKeyValue("/cart", "GET"), new CartViewController());
+		
+		//community
+		mapping.put(new RequestKeyValue("/community/communitylist", "GET"), new CommunityListController());
 	}
 	
 	public static Controller getController(RequestKeyValue key)
