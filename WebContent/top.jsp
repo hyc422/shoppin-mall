@@ -3,6 +3,7 @@
 <%@page import="org.shoppingMall.dao.SearchDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,12 +125,18 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <c:if test="${sessionScope.user == null }">
       <li class="nav-item active">
-        <a class="nav-link" href="#">로그인<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/shoppingMall/login">로그인<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">회원가입<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/shoppingMall/member/register">회원가입<span class="sr-only">(current)</span></a>
       </li>
+      </c:if>
+      <c:if test="${sessionScope.user != null }">
+      <li class="nav-link"><span id="user">${user.name }님</span></li>
+      <li><a class="nav-link" href="logout">로그아웃</a></li>
+      </c:if>
       <li class="nav-item active">
         <a class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
       </li>
