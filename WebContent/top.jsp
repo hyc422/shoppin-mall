@@ -3,6 +3,7 @@
 <%@page import="org.shoppingMall.dao.SearchDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,17 +125,23 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <c:if test="${sessionScope.user == null }">
       <li class="nav-item active">
-        <a class="nav-link" href="#">로그인<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/shoppingMall/login">로그인<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">회원가입<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/shoppingMall/member/register">회원가입<span class="sr-only">(current)</span></a>
       </li>
+      </c:if>
+      <c:if test="${sessionScope.user != null }">
+      <li class="nav-link"><span id="user">${user.name }님</span></li>
+      <li><a class="nav-link" href="logout">로그아웃</a></li>
+      </c:if>
       <li class="nav-item active">
         <a class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
-        <a  style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a  style="color: white;" class="nav-link dropdown-toggle" href="myPage2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           마이페이지
         </a>
         <div class="dropdown-menu">
@@ -142,7 +149,10 @@
           <a class="dropdown-item" href="#">주문조회</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">내가쓴글</a>
+          <a class="dropdown-item"
+           href="${pageContext.request.contextPath }/update?idx=${user.idx }">회원정보수정</a>
         </div>
+        
       </li>
     </ul>
 
@@ -184,9 +194,9 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=과실주">과실주</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">막걸리</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=막걸리">막걸리</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">청주</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=청주">청주</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -194,9 +204,9 @@
           증류주
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">브랜디</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=브랜디">브랜디</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">소주</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=소주">소주</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=위스키">위스키</a>
         </div>

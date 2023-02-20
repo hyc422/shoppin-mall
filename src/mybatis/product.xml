@@ -43,24 +43,48 @@
 		WHERE PRODUCTNUM=#{productNum}
 	</delete>
 	<!-- CGH -->
-	<select id="categoiesList" resultType="org.shoppingMall.vo.ProductVO">
+	<select id="categoiesList"
+		resultType="org.shoppingMall.vo.ProductVO">
 		SELECT PRODUCTCATEGORIES FROM TBL_PRODUCT
-			GROUP by PRODUCTCATEGORIES
+		GROUP by
+		PRODUCTCATEGORIES
 	</select>
-<!-- CGH -->
-	<select id="selectOneList" parameterType="String" resultType="org.shoppingMall.vo.ProductFileList">
+	<!-- CGH -->
+	<select id="selectOneList" parameterType="String"
+		resultType="org.shoppingMall.vo.ProductFileList">
 		SELECT * FROM TBL_PRODUCT tp
 		JOIN TBL_FILE tf
-		ON tp.PRODUCTNUM = tf.PRODUCTNUM
+		ON
+		tp.PRODUCTNUM = tf.PRODUCTNUM
 		WHERE PRODUCTCATEGORIES = '${value}'
 	</select>
 
 	<!-- CGH -->
-	<select id="selectOne" parameterType="_int" resultType="org.shoppingMall.vo.ProductFileList">
+	<select id="selectOne" parameterType="_int"
+		resultType="org.shoppingMall.vo.ProductFileList">
 		SELECT * FROM TBL_PRODUCT tp
 		JOIN TBL_FILE tf
-		ON tp.PRODUCTNUM = tf.PRODUCTNUM
+		ON
+		tp.PRODUCTNUM = tf.PRODUCTNUM
 		WHERE tp.PRODUCTNUM = #{productNum}
+	</select>
+<!-- '${value}' #{productCategories} -->
+	<select id="pagelist"
+		resultType="org.shoppingMall.vo.ProductFileList"
+		parameterType="java.util.Map">
+		SELECT * FROM
+		(SELECT rownum r ,f.* FROM
+		(SELECT * FROM
+		TBL_PRODUCT tp
+		JOIN TBL_FILE tf
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM
+		where
+		productCategories = '${value}'
+		ORDER BY productCategories DESC) f)
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	<select id="count" resultType="int">
+		SELECT count(*)FROM TBL_PRODUCT tp where productCategories = '${value}'
 	</select>
 
 	<insert id="insertPayment" parameterType="org.shoppingMall.vo.PaymentVO">

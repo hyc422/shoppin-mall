@@ -16,9 +16,8 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<link rel="stylesheet" href="../css/product.css" />
-<script type="text/javascript" src="../js/product.js"></script>
-<script type="text/javascript" src="../js/productList.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/product.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/product.js"></script>
 
 </head>
 <body onload="init();">
@@ -30,13 +29,13 @@
 				<!-- 제품메인이미지 -->
 				<div class="productimg">
 					<img class="mainImg" alt=""
-						src="../images/Product/${Pvo.fileName }">
+						src="${pageContext.request.contextPath }/images/Product/${Pvo.fileName }">
 				</div>
 				<!-- 제품 기본 정보 -->
 				<div class="productDetail" class="col-md-8">
 					<div class="text" class="card-body">
 						<!-- 제품이름 -->
-						<h1 class="card-title">${Pvo.productName }</h1>
+						<h3 class="card-title">${Pvo.productName }</h3>
 						<br>
 						<div>
 							<p class="card-text">종류 : ${Pvo.productCategories }</p>
@@ -48,7 +47,9 @@
 						<hr>
 
 						<div class="productPrice">
-							<b><span class="productPriceSpan">가격 : <fmt:formatNumber value="${Pvo.productPrice }" pattern="###,###,###"/>원</span></b>
+							<b><span class="productPriceSpan">가격 : <fmt:formatNumber
+										value="${Pvo.productPrice }" pattern="###,###,###" />원
+							</span></b>
 						</div>
 						<!-- 제품가격 -->
 						<br> <br>
@@ -58,23 +59,25 @@
 					<!--장바구니 수량 담기  -->
 					<div id="cart">
 						<form action="" name="form" method="post" id="storeForm">
-						<input type="hidden" name="id" value="${user.id }">
-						<input type="hidden" name="fileName" value="${Pvo.fileName }">
-						<input type="hidden" name="productName" value="${Pvo.productName }">
-						<input type="hidden" name="productCategories" value="${Pvo.productCategories }">
-						<input type="hidden" name="productNum" value="${Pvo.productNum }">
-							<input type="hidden" name="p_num" value="102">
+							<input type="hidden" name="id" value="${user.id }"> 
+							<input type="hidden" name="fileName" value="${Pvo.fileName }">
+							<input type="hidden" name="productName" value="${Pvo.productName }"> 
+							<input type="hidden" name="productCategories" value="${Pvo.productCategories }">
+							<input type="hidden" name="productNum" value="${Pvo.productNum }">
 							<div class="quantity">
 								<span class="btn_position">주문 수량</span> &nbsp;&nbsp;&nbsp; 
 								<input class="count" type="button" value="-" onclick="del();">
-								<input class="count" type="hidden" name="productPrice" value="${Pvo.productPrice }">
-								<input class="count" type="text" name="amount" value="1" size="3" onchange="change();"> 
+								<input class="count" type="hidden" name="productPrice"
+									value="${Pvo.productPrice }"> 
+								<input class="count" type="text" name="amount" value="1" size="3"
+									onchange="change();"> 
 								<input class="count" type="button" value="+" onclick="add();">
 							</div>
 							<br>
 							<div class="price">
-								<b> 총 금액  &nbsp;&nbsp;&nbsp;<input type="text" class="price_box" name="sum"
-									size="7" style="border: none; font-size: 20px;"readonly>원
+								<b> 총 금액 &nbsp;&nbsp;&nbsp;
+								<input type="text" class="price_box" name="sum" size="7"
+									style="border: none; font-size: 20px;" readonly>원
 								</b>
 							</div>
 							<br>
@@ -85,19 +88,24 @@
 							onclick="addToCart()">장바구니</button>
 						<button type="button" id="no_member_payBtn" class="order"
 							onclick="">구매하기</button>
+						<button type="button" id="no_member_payBtn" class="order"
+							onclick="">수 정</button>
 					</div>
+
 					<script type="text/javascript">
-					function addToCart() {
-						let yn
-						if('${user.id}'==''){
-							yn=confirm('장바구니에 추가하기 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?')
-							if(yn)location.href='../login.hrd?back=w'
-						}else{
-							document.addForm.submit();
-							location.href = 'cart?page=${paging.currentPage}'
+						function addToCart() {
+							let yn
+							if ('${user.id}' == '') {
+								yn = confirm('장바구니에 추가하기 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?')
+								if (yn)
+									location.href = '../login?back=w'
+							} else {
+								document.forms[1].submit();
+								/* location.href = 'product?productNum=${Pvo.productNum }' */
+							}
 						}
-					}
 					</script>
+
 				</div>
 				<br>
 			</div>
@@ -111,7 +119,7 @@
 	<div class="sticky">
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item"><a class="nav-link active"
-				data-bs-toggle="tab" href="#home" style="margin-left: 600px;">상세
+				data-bs-toggle="tab" href="#home" style="margin-left: 400px;">상세
 					설명</a></li>
 			<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
 				href="#menu1">리뷰</a></li>
@@ -225,8 +233,9 @@
 												<button style="height: 65px;" type="submit"
 													class="btn btn-dark">작성</button>
 											</c:if>
-											<c:if test="${sessionScope.user == null }">	
-												<button class="btn btn-dark" type="button" style="height: 65px;" onclick="">로그인</button>
+											<c:if test="${sessionScope.user == null }">
+												<button class="btn btn-dark" type="button"
+													style="height: 65px;" onclick="">로그인</button>
 											</c:if>
 
 										</div>

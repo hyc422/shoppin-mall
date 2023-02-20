@@ -1,13 +1,14 @@
 package org.shoppingMall.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.shoppingMall.vo.PaymentVO;
 import org.shoppingMall.vo.ProductFileList;
 import org.shoppingMall.vo.ProductVO;
 
-import lombok.ToString;
 import mybatis.SqlSessionBean;
 
 public class ProductDAO {
@@ -79,11 +80,25 @@ public class ProductDAO {
 		mapper.close();
 		return PFL;
 	}
-	
+
 	public void insertPayment(PaymentVO vo) {
 		SqlSession mapper = SqlSessionBean.getSession();
 		mapper.insert("product.insertPayment", vo);
 	}
-	
-	
+
+	//CGH
+	public List<ProductFileList> pagelist(Map<String,Object> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<ProductFileList> list = mapper.selectList("product.pagelist",map);
+		mapper.close();
+		return list;
+	}
+	//CGH
+	public int count(String vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.selectOne("product.count",vo);
+		mapper.commit();
+		mapper.close();
+		return result;
+	}
 }

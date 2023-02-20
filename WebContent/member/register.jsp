@@ -36,7 +36,6 @@
 }
 </style>
 <head>
-<link rel="stylesheet" href="/lib/w3.css">
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
@@ -56,10 +55,10 @@
 				<div id='result' onchange="checkID"></div>
 				<div class="col-md-4">
 					<label>비밀번호</label> <input type="password" class="form-control"
-						name="password" placeholder="숫자,영문,특수문자 조합 최소8자" required>
+						name="password" id="password" placeholder="숫자,영문,특수문자 조합 최소8자" required>
 				</div>
 				<div class="col-md-4">
-					<input type="password" class="form-control" name="password"
+					<input type="password" class="form-control" name="password2" id="password2"
 						placeholder="비밀번호 재입력" required>
 				</div>
 				<label style="width: 100px; text-align: center;">이메일</label>
@@ -72,17 +71,17 @@
 						style="width: 100px; display: inline;" required> <select
 						style="display: inline;" class="form-select" required>
 						<option>직접 입력</option>
-						<option>naver.com</option>
-						<option>daum.net</option>
-						<option>gmail.com</option>
+						<option value="naver.com">naver.com</option>
+						<option value="daum.net">daum.net</option>
+						<option value="gmail.com">gmail.com</option>
 					</select>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" name="name"
+					<input type="text" class="form-control" name="name" id="name"
 						placeholder="성함" required>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" name="nickname"
+					<input type="text" class="form-control" name="nickname" id="nickname"
 						placeholder="별명 한글 2~8자" required>
 				</div>
 				<div style="display: flex; align-items: baseline;" class="col-md-4">
@@ -91,28 +90,24 @@
 						<option value="010">010</option>
 						<option value="011">011</option>
 					</select> <span class="input-group-text" id="gbe"
-						style="width: 100px; display: inline;">-</span> <input type="text"
-						name="phone2 " class="form-control"
-						style="width: 100px; display: inline;"> <span
-						class="input-group-text" id="gbe"
-						style="width: 100px; display: inline;">-</span> <input type="text"
-						name="phone3 " class="form-control"
-						style="width: 100px; display: inline;">
+								style="width: 100px; display: inline;">-</span>
+						 <input type="text" name="phone2 " class="form-control"
+								style="width: 100px; display: inline;"> <span
+								class="input-group-text" id="gbe"
+								style="width: 100px; display: inline;">-</span>
+						 <input type="text"	name="phone3 " class="form-control"
+								style="width: 100px; display: inline;">
 				</div>
 				<div class="col-md-4">
 					<label>생년월일</label> <input type="date" name="birth"
 						class="form-date" required>
 				</div>
 				<div class="col-md-4">
-					<label>주소</label> <input type="text" name="address"
-						class="form-control" required>
-				</div>
-				<div class="col-md-4">
 					<label>우편번호</label>
-					<input type="text" id="sample4_postcode" placeholder="우편번호" class="form-control">
+					<input type="text" name="c_code" id="sample4_postcode" placeholder="우편번호" class="form-control">
 					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"class="form-control"><br>
-					<input type="text" id="sample4_roadAddress" placeholder="도로명주소"class="form-control">
-					<input type="text" id="sample4_jibunAddress" placeholder="지번주소"class="form-control">
+					<input type="text" name="address" id="sample4_roadAddress" placeholder="도로명주소"class="form-control">
+					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" style="width:350px"class="form-control">
 					<span id="guide" style="color:#999;display:none"class="form-control"></span>
 					<input type="text" id="sample4_detailAddress" placeholder="상세주소"class="form-control">
 					<input type="text" id="sample4_extraAddress" placeholder="참고항목"class="form-control">
