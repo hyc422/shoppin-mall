@@ -13,7 +13,7 @@ import org.shoppingMall.vo.ProductVO;
 
 
 // 요청 매핑 :	mapping.put(new RequestKeyValue("/community/update","GET"), new UpdateViewController() );
-public class UpdateViewController implements Controller {
+public class ProductAddUpdateViewController implements Controller {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
