@@ -39,7 +39,7 @@ public class MemberDao {
 		mapper.close();
 		return vo;
 	}
-// NYR#3
+
 	public Member selectidx(long idx) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		Member vo = mapperSession.selectOne("member.selectidx",idx);
@@ -53,8 +53,22 @@ public class MemberDao {
 		mapperSession.close();
 		return result;
 	}
-		
-// NYR#3
+
+	public int delete(long idx) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.delete("member.delete",idx);
+		mapperSession.commit();
+		mapperSession.close();
+		return result;
+	}
+  
+	public Member seletepass(String password) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		Member vo = mapperSession.selectOne("member.selectpass",password);
+		mapperSession.close();
+		return vo;
+	}
+
 	public Member Idfind(Map<String,String> map) {
 		SqlSession mapper = SqlSessionBean.getSession();
 		Member vo = mapper.selectOne("member.findId", map);
@@ -66,6 +80,7 @@ public class MemberDao {
 		SqlSession mapper = SqlSessionBean.getSession();
 		Member vo = mapper.selectOne("member.findPwd", map);
 		mapper.close();
+
 		return vo;
 	}
 }
