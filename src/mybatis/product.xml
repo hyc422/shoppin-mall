@@ -68,7 +68,7 @@
 		tp.PRODUCTNUM = tf.PRODUCTNUM
 		WHERE tp.PRODUCTNUM = #{productNum}
 	</select>
-<!-- '${value}'#{productCategories} -->
+<!-- '${value}' #{productCategories} -->
 	<select id="pagelist"
 		resultType="org.shoppingMall.vo.ProductFileList"
 		parameterType="java.util.Map">

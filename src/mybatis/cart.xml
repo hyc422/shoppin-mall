@@ -5,8 +5,12 @@
 <mapper namespace="cart">
 	<insert id="insertCart" parameterType="org.shoppingMall.vo.CartVo">
 		INSERT INTO TBL_CART
-		VALUES(#{ID}, #{PRODUCTNUM}, #{PRODUCTNAME}, #{PRODUCTPRICE}, #{PRODUCTCATEGORIES}, #{FILENAME}, #{amount})
+		VALUES(#{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, #{fileName}, #{amount})
 	</insert>
+	<select id="selectid" parameterType="String"
+		resultType="org.shoppingMall.vo.CartVo">
+		SELECT *FROM TBL_CART tc WHERE id = '${value}'
+	</select>
 </mapper>
 
  
