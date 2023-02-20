@@ -3,6 +3,7 @@ package org.shoppingMall.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.shoppingMall.vo.PaymentVO;
 import org.shoppingMall.vo.ProductFileList;
 import org.shoppingMall.vo.ProductVO;
 
@@ -78,5 +79,11 @@ public class ProductDAO {
 		mapper.close();
 		return PFL;
 	}
+	
+	public void insertPayment(PaymentVO vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		mapper.insert("product.insertPayment", vo);
+	}
+	
 	
 }

@@ -48,7 +48,7 @@
 				<span id="productManual">제품설명</span>  
 				<div>
 					<label for="product_file1" style="display:inline;">
-						<img id="product_file1Img" src="${pageContext.request.contextPath}/images/product/filePlus.png" width="110px" height="110px" style="display:inline;">
+						<img id="product_file1Img" src="${pageContext.request.contextPath}/images/Product/filePlus.png" width="110px" height="110px" style="display:inline;">
 					</label>
 				</div>
 				<input id="product_file1" name="product_file1" type="file">
@@ -59,7 +59,7 @@
 				<span id="productImages">제품 사진</span>  
 				<div>
 					<label for="productImage" style="display:inline;">
-						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/product/filePlus.png" width="110px" height="110px" style="display:inline;">
+						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/filePlus.png" width="110px" height="110px" style="display:inline;">
 					</label>
 				</div>
 				<input id="productImage" name="productImage" type="file">
@@ -83,7 +83,7 @@
 		let img = $(this).find("img");
 		
 		if(!file.type.match("image.*")){
-			img.attr("src", "${pageContext.request.contextPath}/images/product/no_img.jpg");
+			img.attr("src", "${pageContext.request.contextPath}/images/Product/no_img.jpg");
 		}else{
 			let reader = new FileReader();
 			reader.onload = function(e){
@@ -96,7 +96,7 @@
 	/* 이미지 삭제 */
 	function cancelFile(fileTagName){
 		$("input[name='" + fileTagName + "']").val("");
-		$("img#" + fileTagName + "Img").attr("src", "${pageContext.request.contextPath}/images/product/filePlus.png");
+		$("img#" + fileTagName + "Img").attr("src", "${pageContext.request.contextPath}/images/Product/filePlus.png");
 	}
 	
 </script>

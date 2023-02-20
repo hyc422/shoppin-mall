@@ -3,16 +3,20 @@ package org.shoppingMall.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.shoppingMall.product.controller.ProductAddController;
-import org.shoppingMall.product.controller.ProductAddDeleteController;
-import org.shoppingMall.product.controller.ProductAddViewController;
 import org.shoppingMall.index.controller.DeleteRecommendProductController;
 import org.shoppingMall.index.controller.IndexRecommendProductController;
 import org.shoppingMall.index.controller.NewRecommendProductController;
 import org.shoppingMall.login.controller.LoginActionController;
 import org.shoppingMall.login.controller.LoginViewController;
 import org.shoppingMall.login.controller.LogoutController;
+import org.shoppingMall.mypage.controller.UpdateViewController;
+import org.shoppingMall.product.controller.ProductAddPaymentController;
+import org.shoppingMall.product.controller.ProductAddPaymentViewController;
+import org.shoppingMall.product.controller.ProductAddController;
+import org.shoppingMall.product.controller.ProductAddDeleteController;
+import org.shoppingMall.product.controller.ProductAddViewController;
 import org.shoppingMall.product.controller.ProductListViewContoller;
+import org.shoppingMall.product.controller.UpdateController;
 import org.shoppingMall.register.controller.RegisterActionController;
 import org.shoppingMall.register.controller.RegisterController;
 import org.shoppingMall.search.controller.SearchController;
@@ -44,9 +48,13 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/Product/productList.hrd","GET"), new ProductListViewContoller());
 		mapping.put(new RequestKeyValue("/Product/productAdd", "GET"), new ProductAddViewController());
 		mapping.put(new RequestKeyValue("/Product/productAdd", "POST"), new ProductAddController());
-		mapping.put(new RequestKeyValue("/Product/productAddUpdate", "GET"), new ProductAddViewController());
-		mapping.put(new RequestKeyValue("/Product/productAddUpdate", "POST"), new ProductAddController());
+		mapping.put(new RequestKeyValue("/Product/productAddUpdate", "GET"), new UpdateViewController());
+		mapping.put(new RequestKeyValue("/Product/productAddUpdate", "POST"), new UpdateController());
 		mapping.put(new RequestKeyValue("/Product/productAddDelete", "GET"), new ProductAddDeleteController());
+		//Approval
+		mapping.put(new RequestKeyValue("/Product/productAddPayment", "GET"), new ProductAddPaymentViewController());
+		mapping.put(new RequestKeyValue("/Product/productAddPayment", "POST"), new ProductAddPaymentController());
+		mapping.put(new RequestKeyValue("/Product/productAddPayment", "POST"), new ProductAddPaymentController());
 	}
 	
 	public static Controller getController(RequestKeyValue key)
