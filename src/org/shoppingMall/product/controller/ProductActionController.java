@@ -35,13 +35,15 @@ public class ProductActionController implements Controller {
 				.amount(amount)
 				.build()
 				);
+		System.out.println("result ="+result);
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		if(result !=0) {
-			response.sendRedirect("cart");
+			response.sendRedirect(request.getContextPath()+"/cart?id="+id);
 		}else {
 			response.sendRedirect(request.getContextPath());	//메인화면으로 이동
 		}
 	}
+	
 
 }

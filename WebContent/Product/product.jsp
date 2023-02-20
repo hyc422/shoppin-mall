@@ -16,8 +16,8 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<link rel="stylesheet" href="../css/product.css" />
-<script type="text/javascript" src="../js/product.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/product.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/product.js"></script>
 
 </head>
 <body onload="init();">
@@ -29,7 +29,7 @@
 				<!-- 제품메인이미지 -->
 				<div class="productimg">
 					<img class="mainImg" alt=""
-						src="../images/Product/${Pvo.fileName }">
+						src="${pageContext.request.contextPath }/images/Product/${Pvo.fileName }">
 				</div>
 				<!-- 제품 기본 정보 -->
 				<div class="productDetail" class="col-md-8">
@@ -59,13 +59,11 @@
 					<!--장바구니 수량 담기  -->
 					<div id="cart">
 						<form action="" name="form" method="post" id="storeForm">
-							<input type="hidden" name="id" value="${user.id }"> <input
-								type="hidden" name="fileName" value="${Pvo.fileName }">
-							<input type="hidden" name="productName"
-								value="${Pvo.productName }"> <input type="hidden"
-								name="productCategories" value="${Pvo.productCategories }">
+							<input type="hidden" name="id" value="${user.id }"> 
+							<input type="hidden" name="fileName" value="${Pvo.fileName }">
+							<input type="hidden" name="productName" value="${Pvo.productName }"> 
+							<input type="hidden" name="productCategories" value="${Pvo.productCategories }">
 							<input type="hidden" name="productNum" value="${Pvo.productNum }">
-							<input type="hidden" name="p_num" value="102">
 							<div class="quantity">
 								<span class="btn_position">주문 수량</span> &nbsp;&nbsp;&nbsp; 
 								<input class="count" type="button" value="-" onclick="del();">
@@ -100,10 +98,10 @@
 							if ('${user.id}' == '') {
 								yn = confirm('장바구니에 추가하기 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?')
 								if (yn)
-									location.href = '../login.hrd?back=w'
+									location.href = '../login?back=w'
 							} else {
-								document.addForm.submit();
-								location.href = 'product?productNum=${Pvo.productName }'
+								document.forms[1].submit();
+								/* location.href = 'product?productNum=${Pvo.productNum }' */
 							}
 						}
 					</script>
@@ -121,7 +119,7 @@
 	<div class="sticky">
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item"><a class="nav-link active"
-				data-bs-toggle="tab" href="#home" style="margin-left: 500px;">상세
+				data-bs-toggle="tab" href="#home" style="margin-left: 400px;">상세
 					설명</a></li>
 			<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
 				href="#menu1">리뷰</a></li>
