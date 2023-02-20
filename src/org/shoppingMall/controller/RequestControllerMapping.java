@@ -8,6 +8,7 @@ import org.shoppingMall.product.controller.ProductAddController;
 import org.shoppingMall.product.controller.ProductAddDeleteController;
 import org.shoppingMall.product.controller.ProductAddViewController;
 import org.shoppingMall.cart.controller.CartViewController;
+import org.shoppingMall.community.controller.CommunityListController;
 import org.shoppingMall.index.controller.DeleteRecommendProductController;
 import org.shoppingMall.index.controller.IndexRecommendProductController;
 import org.shoppingMall.index.controller.NewRecommendProductController;
@@ -39,9 +40,9 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/member/register.hrd","POST"), new RegisterActionController());
 		
 		// Login
-		mapping.put(new RequestKeyValue("/login.hrd","GET"), new LoginViewController());
-		mapping.put(new RequestKeyValue("/login.hrd","POST"), new LoginActionController());
-		mapping.put(new RequestKeyValue("/logout.hrd","GET"), new LogoutController());
+		mapping.put(new RequestKeyValue("/login","GET"), new LoginViewController());
+		mapping.put(new RequestKeyValue("/login","POST"), new LoginActionController());
+		mapping.put(new RequestKeyValue("/logout","GET"), new LogoutController());
 		
 		// Product
 		mapping.put(new RequestKeyValue("/Product/product","GET"), new ProductViewContoller());
@@ -54,6 +55,9 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/Product/productAddDelete", "GET"), new ProductAddDeleteController());
 		//cart
 		mapping.put(new RequestKeyValue("/cart", "GET"), new CartViewController());
+		
+		//community
+		mapping.put(new RequestKeyValue("/community/communitylist", "GET"), new CommunityListController());
 	}
 	
 	public static Controller getController(RequestKeyValue key)
