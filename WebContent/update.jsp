@@ -136,7 +136,7 @@ td {
     <div >
     		<h2 style="text-align: left;" style="background-color: #e6f1ff ">회원정보 수정</h2>
     	
-    	<form action="update" method="post" name="" onsubmit="return check();">
+    	<form action="update" method="post" >
 					<input type="hidden" name="idx" value="${vo.idx }">
 				<div class="form-group">
 					<table class="userupdate" style="table-layout: fixed; "  >
