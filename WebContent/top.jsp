@@ -141,7 +141,7 @@
         <a class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
-        <a  style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a  style="color: white;" class="nav-link dropdown-toggle" href="myPage2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           마이페이지
         </a>
         <div class="dropdown-menu">
@@ -149,7 +149,10 @@
           <a class="dropdown-item" href="#">주문조회</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">내가쓴글</a>
+          <a class="dropdown-item"
+           href="${pageContext.request.contextPath }/update?idx=${user.idx }">회원정보수정</a>
         </div>
+        
       </li>
     </ul>
 

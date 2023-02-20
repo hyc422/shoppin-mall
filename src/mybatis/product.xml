@@ -87,6 +87,21 @@
 		SELECT count(*)FROM TBL_PRODUCT tp where productCategories = '${value}'
 	</select>
 
+	<insert id="insertPayment" parameterType="org.shoppingMall.vo.PaymentVO">
+		INSERT INTO TBL_CART
+		(ID, PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE, PRODUCTCATEGORIES, FILENAME, AMOUNT, ZIPCODE, ADDRESS, ADDRESSDETAIL, ADDRESSETC)
+		VALUES(#{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, 
+		#{fileName}, #{amount}, #{zipcode}, #{address}, #{addressDetail}, #{addressEtc})
+		
+	</insert>
+
+
+
+
+
+
+
+
 </mapper>
 
  
