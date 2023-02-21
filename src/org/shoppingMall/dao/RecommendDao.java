@@ -3,28 +3,28 @@ package org.shoppingMall.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.shoppingMall.vo.RecommendItemVo;
+import org.shoppingMall.vo.RecommendVo;
 
 import mybatis.SqlSessionBean;
 
 //추천상품
-public class RecommendItemDao {
-	private static final RecommendItemDao dao = new RecommendItemDao();
-	private RecommendItemDao() {};
-	public static RecommendItemDao getInstance() {
+public class RecommendDao {
+	private static final RecommendDao dao = new RecommendDao();
+	private RecommendDao() {};
+	public static RecommendDao getInstance() {
 		return dao;
 	}
 	
-	public List<RecommendItemVo> list() {
+	public List<RecommendVo> list() {
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<RecommendItemVo> list = mapperSession.selectList("RecommendItem.selectlistItem");
+		List<RecommendVo> list = mapperSession.selectList("product.selectAll");
 		mapperSession.close();
 		return list;
 	}
 	
-	public int insert(RecommendItemVo item) {
+	public int insert(RecommendVo item) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		int result = mapperSession.insert("RecommendItem.insertItem",item);
+		int result = mapperSession.insert("product.insertrecommend",item);
 		mapperSession.commit();
 		mapperSession.close();
 		return result;
@@ -32,7 +32,7 @@ public class RecommendItemDao {
 	
 	public int delete(String name) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		int result = mapperSession.delete("RecommendItem.deleteItem",name);
+		int result = mapperSession.delete("product.deleterecommend",name);
 		mapperSession.commit();
 		mapperSession.close();
 		return result;

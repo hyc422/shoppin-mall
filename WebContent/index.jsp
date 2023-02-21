@@ -1,6 +1,8 @@
+<%@page import="org.shoppingMall.vo.RecommendVo"%>
+<%@page import="org.shoppingMall.dao.ProductDAO"%>
+<%@page import="org.shoppingMall.vo.ProductFileList"%>
 <%@page import="java.util.List"%>
-<%@page import="org.shoppingMall.vo.RecommendItemVo"%>
-<%@page import="org.shoppingMall.dao.RecommendItemDao"%>
+<%@page import="org.shoppingMall.dao.RecommendDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -74,9 +76,10 @@
 <link href="css/index.css" rel="stylesheet">
 </head>
 <body>
-	<% RecommendItemDao dao = RecommendItemDao.getInstance();
-		List<RecommendItemVo> item = dao.list();		
-	%>
+<%-- <%
+	ProductDAO dao = ProductDAO.getInstance();
+		List<RecommendVo> vo = dao.selectAll();
+%> --%>
 	
 
 	<main>
@@ -123,7 +126,7 @@
 		<br>			<!-- 상품 더보기 -->
 				<div		
 					style="float:right; display: inline; margin-right: 20px; width: 60px; height: 25px; background-color: white; border: 1px solid black; text-align: center;">
-					<a href=""			
+					<a href="<%=request.getContextPath() %>/search?name="			
 						style="color: black; text-decoration: none; font-size: 13px;">More</a>
 				</div>
 				<h3 style="text-align: center;">추천상품</h3>
@@ -131,22 +134,20 @@
 		
 		<!-- 추천상품 -->
 		<div class="div_cont">
-		<% for(int i=0;i<item.size();i++) { %>
 			<div
 				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
-					<img alt="" src="images/Alochol/<%=item.get(i).getCoverfile() %>"
+					<img alt="" src="images/Product/"
 						style="width: 80%; height: 240px;">
 				</div>
 				<hr style="margin: 0px;">
-				<h5 style="text-align: center;"><%=item.get(i).getName()%></h5>
-				<p style="text-align: center; margin: 0px; font-size: 13px;">판매가 : <%=item.get(i).getPrice()%>원
+				<h5 style="text-align: center;"></h5>
+				<p style="text-align: center; margin: 0px; font-size: 13px;">판매가 : 원
 				
 				<!-- 관리자만 삭제 보이게 설정 해야함 -->
-				<a href="RecommendDelete?name=<%=item.get(i).getName() %>" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+				<a href="RecommendDelete?name=" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
 				</p>
 			</div>
-			<% } %>
 			
 			
 		</div>			<!-- 관리자 추천상품 변경 -->

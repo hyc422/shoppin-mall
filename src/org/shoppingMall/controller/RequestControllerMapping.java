@@ -18,6 +18,8 @@ import org.shoppingMall.product.controller.ProductListViewContoller;
 import org.shoppingMall.product.controller.ProductViewContoller;
 import org.shoppingMall.register.controller.RegisterActionController;
 import org.shoppingMall.register.controller.RegisterController;
+import org.shoppingMall.search.controller.HighPriceSearchController;
+import org.shoppingMall.search.controller.LowPriceSearchController;
 import org.shoppingMall.search.controller.SearchController;
 
 public class RequestControllerMapping 
@@ -33,8 +35,10 @@ public class RequestControllerMapping
 		 
 		 // search
 		 mapping.put(new RequestKeyValue("/search","GET"), new SearchController());
+		 mapping.put(new RequestKeyValue("/high","GET"), new HighPriceSearchController());
+		 mapping.put(new RequestKeyValue("/low","GET"), new LowPriceSearchController());
 
-		// Register
+		 // Register
 		mapping.put(new RequestKeyValue("/member/register.hrd","GET"), new RegisterController());
 		mapping.put(new RequestKeyValue("/member/register.hrd","POST"), new RegisterActionController());
 		
