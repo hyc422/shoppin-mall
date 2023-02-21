@@ -16,9 +16,9 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="../css/product.css" />
-<link rel="stylesheet" href="../css/productList.css" />
-<script type="text/javascript" src="../js/productList.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/product.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/productList.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/productList.js"></script>
 </head>
 <body>
 	<%@ include file="../top.jsp"%>
@@ -32,7 +32,7 @@
 				<ul class="nav nav-tabs" role="tablist">
 					<c:forEach items="${Pvo }" var="Pvo">
 						<li class="nav-item"><a style="width: 180px; text-align: center;" class="nav-link active"
-							href="?Categories=${Pvo.productCategories}">${Pvo.productCategories }</a></li>
+							href="?Categories=${Pvo.productCategories}&page=1">${Pvo.productCategories }</a></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -48,7 +48,7 @@
 							<div class="card">
 								<div class="img">
 									<a href="product?productNum=${vo.productNum }"> <img
-										src="../images/Product/${vo.fileName }" width="250">
+										src="${pageContext.request.contextPath }/images/Product/${vo.fileName }" width="250">
 									</a>
 								</div>
 								<div class="text">
@@ -65,30 +65,6 @@
 								</div>
 							</div>
 						</c:forEach>
-					<%-- <%
-						for (int i = 0; i < 30; i++) {
-						%>
-						<div class="card">
-							<div class="img">
-								<a href="#"> <img src="../images/Product/comingsoon.jpg"
-									width="250">
-								</a>
-							</div>
-							<div class="text">
-								상품명 : <input type="hidden" id="p_name" name="p_name" value=""
-									class="textStyle"> <br> <br> 제품가격
-								&nbsp;&nbsp; <span class="productPriceSpan"> <input
-									type="hidden" id="amt" name="amt" value="" class="textStyle">
-									<input type="hidden" id="qty" name="qty" value="1"
-									class="textStyle"> ₩ <fmt:formatNumber value=""
-										pattern="###,###,###" />원
-								</span> <br>
-								<!-- <button type="button" onclick="addCart()">장바구니</button> -->
-							</div>
-						</div>
-						<%
-						}
-						%> --%>
 
 
 					</div>
@@ -101,25 +77,25 @@
 						<c:out value="${paging.totalCount }" /> --%>
 						<br> 
 						<hr>
-						<a class="pagenum" href="?page=1">&lt;&lt;</a>
+						<a class="pagenum" href="${pageContext.request.contextPath }/Product/productList?Categories=${Pvo.productCategories }&page=1">&lt;&lt;</a>
 						<!--(1) 첫번째 페이지 1번으로 이동 -->
 
 						<!--(2) 이 부분이 제일 복잡합니다. 실행하면서 파악해보세요. -->
-						<a class="pagenum" href="?page=${paging.startPage-1 }"
+						<a class="pagenum" href="${pageContext.request.contextPath }/Product/productList?Categories=${Pvo.productCategories }&page=${paging.startPage-1 }"
 							style='<c:if test="${paging.startPage==1 }">display:none;</c:if>'>&lt;</a>
 
 						<!--(3) 페이지 범위 startPage 부터 endPage 까지 반복 -->
 						<c:forEach var="i" begin="${paging.startPage }"
 							end="${paging.endPage }">
-							<a class="pagenum ieach" href="?page=${i }"><c:out
+							<a class="pagenum ieach" href="${pageContext.request.contextPath }/Product/productList?Categories=${Pvo.productCategories }&page=${i }"><c:out
 									value="${i }" /></a>
 						</c:forEach>
 
 						<!--(4) 이 부분이 제일 복잡합니다. 실행하면서 파악해보세요. -->	
-						<a class="pagenum" href="?page=${paging.endPage+1 }"
+						<a class="pagenum" href="${pageContext.request.contextPath }/Product/productList?Categories=${Pvo.productCategories }&page=${paging.endPage+1 }"
 							style='<c:if test="${paging.endPage==paging.totalPage }">display:none;</c:if>'>&gt;</a>
 
-						<a class="pagenum" href="?page=${paging.totalPage }">&gt;&gt;</a>
+						<a class="pagenum" href="${pageContext.request.contextPath }/Product/productList?Categories=${Pvo.productCategories }&page=${paging.totalPage }">&gt;&gt;</a>
 						<!--(5) 가장 마지막 페이지로 이동 -->
 					</div>
 				</form>

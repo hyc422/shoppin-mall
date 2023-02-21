@@ -27,4 +27,18 @@ public class CartDao {
 		mapper.close();
 		return list;
 	}
+	public int cartUpdate(CartVo vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.update("cart.cartUpdate",vo);
+		mapper.commit();
+		mapper.close();
+		return result;
+	}
+	public int getSeq() {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result =  mapper.selectOne("cart.getSeq");
+		mapper.close();
+		return result;
+		
+	}
 }

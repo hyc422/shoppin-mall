@@ -5,11 +5,22 @@
 <mapper namespace="cart">
 	<insert id="insertCart" parameterType="org.shoppingMall.vo.CartVo">
 		INSERT INTO TBL_CART
-		VALUES(#{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, #{fileName}, #{amount})
+		VALUES(SEQ_CART.nextval,#{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, #{fileName}, #{amount})
 	</insert>
 	<select id="selectid" parameterType="String"
 		resultType="org.shoppingMall.vo.CartVo">
 		SELECT *FROM TBL_CART tc WHERE id = '${value}'
+	</select>
+	<update id="cartUpdate"
+		parameterType="org.shoppingMall.vo.CartVo">
+		UPDATE TBL_CART
+		SET 
+		AMOUNT=#{amount}
+		WHERE CARTNUM=#{cartNum}
+	</update>
+	<select id="getSeq" resultType="_int">
+		SELECT CART.CURRVAL FROM
+		DUAL
 	</select>
 </mapper>
 
