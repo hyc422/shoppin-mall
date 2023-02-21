@@ -1,5 +1,7 @@
 package org.shoppingMall.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.shoppingMall.vo.CartVo;
 
@@ -18,5 +20,25 @@ public class CartDao {
 		mapper.commit();
 		mapper.close();
 		return result;
+	}
+	public List<CartVo>list(String id){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<CartVo>list = mapper.selectList("cart.selectid",id);
+		mapper.close();
+		return list;
+	}
+	public int cartUpdate(CartVo vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.update("cart.cartUpdate",vo);
+		mapper.commit();
+		mapper.close();
+		return result;
+	}
+	public int getSeq() {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result =  mapper.selectOne("cart.getSeq");
+		mapper.close();
+		return result;
+		
 	}
 }

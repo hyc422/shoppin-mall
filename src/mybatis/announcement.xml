@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="announcement">
+ 	<select id="list" resultType="org.shoppingMall.vo.AnnouncementVo">
+ 		SELECT * 
+ 		FROM announcement
+ 	</select>
+
+ 	<select id="pagelist" resultType="org.shoppingMall.vo.AnnouncementVo" parameterType="java.util.Map">
+ 		SELECT * FROM 
+			(SELECT rownum r ,f.* FROM
+								(SELECT * FROM announcement ORDER BY idx DESC) f)
+		WHERE r BETWEEN #{start} AND #{end}
+ 	</select>
+</mapper>

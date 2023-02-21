@@ -17,27 +17,27 @@
 	<div style="margin-left: 300px;">
 		<form method="post" action="productAdd" name="productForm" id="productForm" enctype="multipart/form-data">
 			<div>
-				<label>
+				<label class="label1">
 					상품코드  <input type="text" name="productNum" id="productNum" value="${productNum}">
 				</label>
 			</div>
 			<div>
-				<label>
+				<label class="label1">
 					상품명  <input type="text" name="productName" id="productName">
 				</label>
 			</div>
 			<div>
-				<label>
+				<label class="label1">
 					상품가격  <input type="text" name="productPrice" id="productPrice">
 				</label>
 			</div>
 			<div>
-				<label>
+				<label class="label1">
 					재고수  <input type="text" name="productStock" id="productStock">
 				</label>
 			</div>
 			<div>
-				<label>
+				<label class="label1">
 					카테고리
 					<select name="productCategories" id="productCategories">
 						<option>선택</option>
@@ -53,7 +53,7 @@
 				<span id="productManual">제품설명</span>  
 				<div>
 					<label for="product_file1" style="display:inline;">
-						<img id="product_file1Img" src="${pageContext.request.contextPath}/images/product/filePlus.png" width="110px" height="110px" style="display:inline;">
+						<img id="product_file1Img" src="${pageContext.request.contextPath}/images/Product/filePlus.png" width="110px" height="110px" style="display:inline;">
 					</label>
 				</div>
 				<input id="product_file1" name="product_file1" type="file">
@@ -64,7 +64,7 @@
 				<span id="productImages">제품 사진</span>  
 				<div>
 					<label for="productImage" style="display:inline;">
-						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/product/filePlus.png" width="110px" height="110px" style="display:inline;">
+						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/filePlus.png" width="110px" height="110px" style="display:inline;">
 					</label>
 				</div>
 				<input id="productImage" name="productImage" type="file">
@@ -122,7 +122,7 @@
 		let img = $(this).find("img");
 		
 		if(!file.type.match("image.*")){
-			img.attr("src", "${pageContext.request.contextPath}/images/product/no_img.jpg");
+			img.attr("src", "${pageContext.request.contextPath}/images/Product/no_img.jpg");
 		}else{
 			let reader = new FileReader();
 			reader.onload = function(e){
@@ -138,7 +138,7 @@
 		let img = $(this).find("img");
 		
 		if(!file.type.match("image.*")){
-			img.attr("src", "${pageContext.request.contextPath}/images/product/no_img.jpg");
+			img.attr("src", "${pageContext.request.contextPath}/images/Product/no_img.jpg");
 		}else{
 			let reader = new FileReader();
 			reader.onload = function(e){
@@ -151,7 +151,7 @@
 	/* 이미지 삭제 */
 	function cancelFile(fileTagName){
 		$("input[name='" + fileTagName + "']").val("");
-		$("img#" + fileTagName + "Img").attr("src", "${pageContext.request.contextPath}/images/product/filePlus.png");
+		$("img#" + fileTagName + "Img").attr("src", "${pageContext.request.contextPath}/images/Product/filePlus.png");
 	}
 	
 </script>
