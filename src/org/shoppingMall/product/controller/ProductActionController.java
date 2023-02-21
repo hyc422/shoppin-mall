@@ -26,7 +26,8 @@ public class ProductActionController implements Controller {
 		int amount = Integer.parseInt(request.getParameter("amount"));
 		
 		CartDao dao = CartDao.getInstance();
-		int result = dao.insertCart(CartVo.builder().id(id)
+		int result = dao.insertCart(CartVo.builder()
+				.id(id)
 				.productNum(productNum)
 				.productName(productName)
 				.productPrice(productPrice)
@@ -35,7 +36,6 @@ public class ProductActionController implements Controller {
 				.amount(amount)
 				.build()
 				);
-		System.out.println("result ="+result);
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		if(result !=0) {

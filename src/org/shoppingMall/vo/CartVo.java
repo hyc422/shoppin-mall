@@ -14,6 +14,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class CartVo {
+	private int cartNum;
 	private String id;
 	private int productNum;
 	private String productName;
