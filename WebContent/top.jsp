@@ -175,11 +175,24 @@
 
 <!-- 검색 -->
     <form class="form-inline my-2 my-lg-0" action="search" method="GET">
-      <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search" name = "name">
-     <button type="submit" class="btn btn-outline-light">검색</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search" name = "name" id="searchid">
+     <button type="button" onclick="search()" class="btn btn-outline-light">검색</button>
     </form>
   </div>
   
+  
+  <script type="text/javascript">
+  const frms = document.forms[0]
+  const frm = document.forms[0].name.value
+  function search() {
+	 	 if (frm == "" || frm == null) {
+		alert('검색어를 입력하세요.')
+	 	 document.getElementById("searchid").href="${request.getContextPath}";
+	} else {
+		frms.submit()
+	}
+  }
+  </script>
 </nav>
 
 

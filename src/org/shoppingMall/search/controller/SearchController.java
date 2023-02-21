@@ -20,10 +20,12 @@ public class SearchController implements Controller {
 		SearchDao dao = SearchDao.getInstance();
 		String name = request.getParameter("name");
 		List<SearchVo> vo = dao.searchtop(name);
+		int count  = vo.size();
 		
 		request.setAttribute("vo", vo);
+		request.setAttribute("count", count);
+		request.setAttribute("name", name);
 		
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Search/searchView.jsp");
 		dispatcher.forward(request, response);
 	}

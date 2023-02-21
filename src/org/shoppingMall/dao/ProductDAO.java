@@ -3,11 +3,11 @@ package org.shoppingMall.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.shoppingMall.vo.PaymentVO;
 import org.shoppingMall.vo.ProductFileList;
 import org.shoppingMall.vo.ProductVO;
+import org.shoppingMall.vo.RecommendVo;
 
 import mybatis.SqlSessionBean;
 
@@ -101,4 +101,30 @@ public class ProductDAO {
 		mapper.close();
 		return result;
 	}
+	
+	//동해
+	public List<RecommendVo> selectAll() {
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<RecommendVo> list = mapper.selectList("product.selectAll");
+		mapper.close();
+		return list;		
+	}
+	
+	public int insert(RecommendVo item) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.insert("product.insertrecommend",item);
+		mapperSession.commit();
+		mapperSession.close();
+		return result;	
+	}
+	
+	public int delete(String name) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.delete("product.deleterecommend",name);
+		mapperSession.commit();
+		mapperSession.close();
+		return result;
+	}
+	
+	
 }

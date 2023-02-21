@@ -87,21 +87,29 @@
 		SELECT count(*)FROM TBL_PRODUCT tp where productCategories = '${value}'
 	</select>
 
+
+<!-- 동해 -->
+	<select id="selectAll" resultType="org.shoppingMall.vo.RecommendVo">
+	SELECT * FROM recommend
+	</select>
+	
+<!-- 동해 -->
+	<delete id="deleterecommend" parameterType="String">
+	DELETE FROM recommend 
+	WHERE PRODUCTNAME = #{PRODUCTNAME}
+	</delete>
+	
+<!-- 동해 -->
+	<insert id="insertrecommend" parameterType="org.shoppingMall.vo.RecommendVo">
+	INSERT INTO recommend VALUES (#{FILENAME},#{PRODUCTPRICE},#{PRODUCTNAME})
+	</insert>
+  
 	<insert id="insertPayment" parameterType="org.shoppingMall.vo.PaymentVO">
 		INSERT INTO TBL_CART
 		(ID, PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE, PRODUCTCATEGORIES, FILENAME, AMOUNT, ZIPCODE, ADDRESS, ADDRESSDETAIL, ADDRESSETC)
 		VALUES(#{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, 
 		#{fileName}, #{amount}, #{zipcode}, #{address}, #{addressDetail}, #{addressEtc})
-		
 	</insert>
-
-
-
-
-
-
-
-
 </mapper>
 
  

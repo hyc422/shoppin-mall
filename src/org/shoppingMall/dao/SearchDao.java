@@ -22,38 +22,19 @@ public class SearchDao {
 		return list;
 	}
 	
-	public List<SearchVo> searchCategory() {
+
+	public  List<SearchVo> searchpricehigh(String searchname) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<SearchVo> list = mapperSession.selectList("search.searchCategory");
+		List<SearchVo> list = mapperSession.selectList("search.pricehigh",searchname);
 		mapperSession.close();
 		return list;
 	}
 	
-	public List<SearchVo> searchPrice() {
+	public  List<SearchVo> searchpricelow(String searchname) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<SearchVo> list = mapperSession.selectList("search.searchPrice");
+		List<SearchVo> list = mapperSession.selectList("search.pricelow",searchname);
 		mapperSession.close();
 		return list;
 	}
-	
-	public List<SearchVo> searchName() {
-		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<SearchVo> list = mapperSession.selectList("search.searchName");
-		mapperSession.close();
-		return list;
-	}
-	
-	public List<SearchVo> searchLowPrice() {
-		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<SearchVo> list = mapperSession.selectList("search.searchLowPrice");
-		mapperSession.close();
-		return list;
-	}
-	
-	public List<SearchVo> searchHighPrice() {
-		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<SearchVo> list = mapperSession.selectList("search.searchHighPrice");
-		mapperSession.close();
-		return list;
-	}
+
 }

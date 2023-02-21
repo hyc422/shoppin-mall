@@ -12,8 +12,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class RecommendItemVo {
-	private String name;
-	private int price;
-	private String coverfile;
+public class RecommendVo {
+	private String filename;
+	private int productprice;
+	private String productname;
 }
