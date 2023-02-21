@@ -20,18 +20,11 @@ import org.shoppingMall.mypage.controller.CustomerController;
 import org.shoppingMall.mypage.controller.DeleteViewController;
 import org.shoppingMall.mypage.controller.UpdateActionController;
 import org.shoppingMall.mypage.controller.UpdateViewController;
-import org.shoppingMall.mypage.controller.UpdateViewController;
-import org.shoppingMall.product.controller.ProductAddPaymentController;
-import org.shoppingMall.product.controller.ProductAddPaymentViewController;
-import org.shoppingMall.product.controller.ProductAddController;
-import org.shoppingMall.product.controller.ProductAddDeleteController;
 import org.shoppingMall.product.controller.ProductAddPaymentController;
 import org.shoppingMall.product.controller.ProductAddPaymentViewController;
 import org.shoppingMall.product.controller.ProductAddUpdateController;
 import org.shoppingMall.product.controller.ProductAddUpdateViewController;
-import org.shoppingMall.product.controller.ProductAddViewController;
 import org.shoppingMall.product.controller.ProductListViewContoller;
-import org.shoppingMall.product.controller.UpdateController;
 import org.shoppingMall.product.controller.ProductViewContoller;
 import org.shoppingMall.register.controller.RegisterActionController;
 import org.shoppingMall.register.controller.RegisterController;
@@ -62,11 +55,11 @@ public class RequestControllerMapping
 		
 		//mypage
 		mapping.put(new RequestKeyValue("/update","GET"), new UpdateViewController());
-	  mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
-	  mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());
-	  mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
+		mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
+		mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());
+		mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
     
-    // Product
+		// Product
 		mapping.put(new RequestKeyValue("/Product/product","GET"), new ProductViewContoller());
 		mapping.put(new RequestKeyValue("/Product/product", "POST"), new ProductActionController());
 		mapping.put(new RequestKeyValue("/Product/productList","GET"), new ProductListViewContoller());
