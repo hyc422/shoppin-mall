@@ -44,21 +44,12 @@
                     </div>
                     <div class="split"></div>
                 </div>
-        
         	<c:forEach items="${vo }" var="vo" varStatus="num">
-			  <form name="orderform" id="orderform" method="post" class="orderform" action="">
                 <div class="row data">
                     <div class="subdiv">
                         <div class="check"><input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
                         <div class="img"><a href="${pageContext.request.contextPath }/Product/product?productNum=${vo.productNum}"> 
                         <img src="${pageContext.request.contextPath }/images/Product/${vo.fileName }" width="60"></a></div>
-                        <input type="hidden" name="id" value="${vo.id }">
-                        <input type="hidden" name="productName" value="${vo.productName }">
-                        <input type="hidden" name="fileName" value="${vo.fileName }">
-                        <input type="hidden" name="productNum" value="${vo.productNum }">
-                        <input type="hidden" name="productCategories" value="${vo.productCategories }">
-                        <input type="hidden" name="productPrice" value="${vo.productPrice }">
-                        <input type="hidden" name="cartNum" value="${vo.cartNum }">
                         <div class="pname">
                             <span>
                             <a href="${pageContext.request.contextPath }/Product/product?productNum=${vo.productNum}"><input type="hidden" name="productName" value=" ${vo.productName }"> ${vo.productName }</a>
@@ -70,11 +61,15 @@
                         <input type="hidden" name="p_price${num.index }" id="p_price${num.index }" class="p_price" value="${vo.productPrice }"><fmt:formatNumber
 											value="${vo.productPrice }" pattern="###,###,###" /></div>
                         <div class="num">
+						  <form method="post"action="cart">
+						   <input type="hidden" name="cartNum" value="${vo.cartNum }">
+						   <input type="hidden" name="id" value="${vo.id }">
                             <div class="updown">
                                 <input type="text" id="p_num${num.index }"name="p_num" id="p_num${num.index }" size="1" maxlength="2" class="p_num" value="${vo.amount }" onkeyup="javascript:basket.changePNum(${num.index });">
                                 <span onclick="javascript:basket.changePNum(${num.index });"><button type="submit" class="fas fa-arrow-alt-circle-up up" value="+"></button><i ></i></span>
                                 <span onclick="javascript:basket.changePNum(${num.index });"><button type="submit" class="fas fa-arrow-alt-circle-down down" value="-"></button><i ></i></span>
                             </div>
+       		 			</form>
                         </div>
                         <div class="sum"><fmt:formatNumber value="${vo.productPrice*vo.amount }" pattern="###,###,###" />원</div>
                     </div>
@@ -82,23 +77,31 @@
                         <div class="basketcmd"><button type="submit">저장</button></div>
                     </div>
                     <div class="subdiv">
-                        <div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
+                        <div class="basketcmd">
+                    <form method="post" action="cart/delete">
+                    <input type="hidden" name="cartNum" value="${vo.cartNum }">
+                    <input type="hidden" name="id" value="${vo.id }">
+                        <a href="javascript:void(0)" class="abutton">
+                        <button type="submit" style="background: none; color: white;">삭제</button>
+                        </a>
+                    </form>	
+                        </div>
                     </div>
                 </div>
-        </form>
         	</c:forEach>
         
         
             </div>
-    
+    		 <form method="post" action="cart/deleteAll">
+    		  <input type="hidden" name="id" value="${user.id }">
             <div class="right-align basketrowcmd">
                 <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delCheckedItem();">선택상품삭제</a>
-                <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delAllItem();">장바구니비우기</a>
+                <a href="javascript:void(0)" class="abutton"> <button type="submit" style="background: none; color: white;">전체삭제</button></a>
             </div>
-    
+    		</form>
             <div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: ${sum }개</div>
             <div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: ${totalPrice }원</div>
-    
+    	
             <div id="goorder" class="">
                 <div class="clear"></div>
                 <div class="buttongroup center-align cmd">
