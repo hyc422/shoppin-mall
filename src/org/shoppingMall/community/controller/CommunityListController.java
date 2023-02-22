@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.shoppingMall.controller.Controller;
 import org.shoppingMall.dao.AnnouncementDao;
+import org.shoppingMall.dao.QnaDao;
+import org.shoppingMall.dao.ReviewDao;
 import org.shoppingMall.vo.Paging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +29,6 @@ public class CommunityListController implements Controller
 		logger.info(":::::::: 요청 CommunityListController 처리 시작 : {} ::::::::",request.getServletPath());
 		
 		int currentPage = 1; 
-		AnnouncementDao dao = AnnouncementDao.getInstance();
-		
 		String page=request.getParameter("page"); 
 		if(page != null) currentPage = Integer.parseInt(page); //list.jsp 에 page 파라미터를 찾아보세요. 
 		int pageSize = 5;
@@ -41,15 +41,30 @@ public class CommunityListController implements Controller
 		Map<String,Integer> map = new HashMap<>();
 		map.put("start",paging.getStartNo()); map.put("end",paging.getEndNo());
 		
-		request.setAttribute("list", dao.pagelist(map));
 		request.setAttribute("paging", paging); 
 		request.setAttribute("today", LocalDate.now());
-		 
-		int category = 1;
 		
+		// 게시판 구분
+		int category = 1;
 		String temp = request.getParameter("category");
+		
 		if(temp != null) category = Integer.parseInt(request.getParameter("category"));
-
+		if(category == 1)
+		{
+			AnnouncementDao dao = AnnouncementDao.getInstance();
+			request.setAttribute("list", dao.pagelist(map));
+		}
+		else if(category == 2)
+		{
+			ReviewDao dao = ReviewDao.getInstance();
+			request.setAttribute("list", dao.pagelist(map));
+		}
+		else if(category == 3)
+		{
+			QnaDao dao = QnaDao.getInstance();
+			request.setAttribute("list", dao.pagelist(map));
+		}
+		
 		request.setAttribute("category", category);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("communitylist.jsp");
