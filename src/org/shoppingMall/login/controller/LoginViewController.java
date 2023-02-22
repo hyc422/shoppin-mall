@@ -17,7 +17,7 @@ public class LoginViewController implements Controller{
 		String temp = request.getParameter("back");
 		HttpSession session = request.getSession();
 		if(temp!=null && temp.equals("w")) {
-			session.setAttribute("back", "cart");
+			session.setAttribute("back", request.getHeader("Referer"));
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");

@@ -22,6 +22,14 @@
 		SELECT CART.CURRVAL FROM
 		DUAL
 	</select>
+	<delete id="delete" parameterType="int">
+	DELETE FROM TBL_CART
+	WHERE CARTNUM=#{cartNum}
+	</delete>
+	<delete id="deleteAll" parameterType="string">
+	DELETE FROM TBL_CART
+	WHERE id='${value}'
+	</delete>
 </mapper>
 
  

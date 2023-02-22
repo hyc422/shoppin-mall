@@ -30,8 +30,6 @@ public class CartViewController implements Controller {
 		for(int i=0; i<list.size(); i++) {
 			totalPrice += (list.get(i).getProductPrice()*list.get(i).getAmount());
 		}
-		System.out.println(totalPrice);
-		System.out.println(sum);
 		request.setAttribute("totalPrice", totalPrice);
 		request.setAttribute("sum",sum);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/member/cart.jsp");

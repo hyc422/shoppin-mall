@@ -226,12 +226,6 @@ tr {
     .basketdiv .row > .subdiv:nth-child(3) {
         width: 10%;
     }
-    .basketdiv2 .row > .subdiv:nth-child(1) {
-        width: 60%;
-    }
-    .basketdiv2 .row > .subdiv:nth-child(2) {
-        width: 40%;
-    }
     .basketdiv .row > div > div {
         display: block;
         float: left;
@@ -261,9 +255,6 @@ tr {
     .basketdiv .pname{
         width: 70%;
     }
-    .basketdiv2 .pname {
-        width: 80%;
-    }
     .basketdiv .basketprice {
         width: 33%;
     }
@@ -278,22 +269,6 @@ tr {
     }
     .basketdiv .point {
         width: 50%;
-    }
-    .basketdiv2 .basketprice {
-        width: 25%;
-    }
-
-    .basketdiv2 .num {
-        width: 25%;
-    }
-
-    .basketdiv2 .sum {
-        width: 25%;
-        color: #0000aa;
-    }
-
-    .basketdiv2 .point {
-        width: 25%;
     }
     .basketdiv .basketcmd{
         width: 100%;
@@ -383,10 +358,13 @@ tr {
     font-size: 0.8125em;
 }
 
-.orderform .p_num {
+.p_num {
     text-align: right;
     width: 35px;
     height: 40px;
     font-size: 20px;
     
+}
+.orderform{
+	
 }

@@ -8,31 +8,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.shoppingMall.controller.Controller;
 import org.shoppingMall.dao.CartDao;
-import org.shoppingMall.vo.CartVo;
 
-import lombok.Builder;
-
-public class CartActoinController implements Controller {
+public class CartDeleteAllController implements Controller {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
-		String id = request.getParameter("id");
-		int amount = Integer.parseInt(request.getParameter("p_num"));
-		int cartNum = Integer.parseInt(request.getParameter("cartNum"));
 		CartDao dao = CartDao.getInstance();
-		int result = dao.cartUpdate(CartVo.builder()
-				.amount(amount)
-				.cartNum(cartNum)
-				.build()
-				);
+		String id = request.getParameter("id");
+		
+		int result = dao.deleteAll(id);
+		
 		if(result !=0) {
 			response.sendRedirect(request.getContextPath()+"/cart?id="+id);
 		}
 		
-		
+
 	}
 
 }

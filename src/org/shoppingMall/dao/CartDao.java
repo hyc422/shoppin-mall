@@ -1,6 +1,7 @@
 package org.shoppingMall.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.shoppingMall.vo.CartVo;
@@ -41,4 +42,20 @@ public class CartDao {
 		return result;
 		
 	}
+	
+	public int delete(int vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.delete("cart.delete",vo);
+		mapper.commit();
+		mapper.close();
+		return result;
+	}
+	public int deleteAll(String id) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.delete("cart.deleteAll",id);
+		mapper.commit();
+		mapper.close();
+		return result;
+	}
+	
 }
