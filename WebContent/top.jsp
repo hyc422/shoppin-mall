@@ -3,7 +3,6 @@
 <%@page import="org.shoppingMall.dao.SearchDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,23 +124,17 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-    <c:if test="${sessionScope.user == null }">
       <li class="nav-item active">
-        <a class="nav-link" href="/shoppingMall/login">로그인<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">로그인<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/shoppingMall/member/register">회원가입<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">회원가입<span class="sr-only">(current)</span></a>
       </li>
-      </c:if>
-      <c:if test="${sessionScope.user != null }">
-      <li class="nav-link"><span id="user">${user.name }님</span></li>
-      <li><a class="nav-link" href="logout">로그아웃</a></li>
-      </c:if>
       <li class="nav-item active">
         <a class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
-        <a  style="color: white;" class="nav-link dropdown-toggle" href="myPage2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a  style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           마이페이지
         </a>
         <div class="dropdown-menu">
@@ -149,10 +142,7 @@
           <a class="dropdown-item" href="#">주문조회</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">내가쓴글</a>
-          <a class="dropdown-item"
-           href="${pageContext.request.contextPath }/update?idx=${user.idx }">회원정보수정</a>
         </div>
-        
       </li>
     </ul>
 
@@ -174,7 +164,7 @@
 
 
 <!-- 검색 -->
-    <form class="form-inline my-2 my-lg-0" action="search" method="GET">
+    <form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath() %>/search" method="GET">
       <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search" name = "name" id="searchid">
      <button type="button" onclick="search()" class="btn btn-outline-light">검색</button>
     </form>
@@ -185,8 +175,9 @@
   const frms = document.forms[0]
   const frm = document.forms[0].name.value
   function search() {
-	 	 if (frm == "" || frm == null) {
+	 	 if (frm == "") {
 		alert('검색어를 입력하세요.')
+		alert(frm + '왜안나오는데')
 	 	 document.getElementById("searchid").href="${request.getContextPath}";
 	} else {
 		frms.submit()
