@@ -3,6 +3,7 @@ package org.shoppingMall.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.shoppingMall.vo.ProductVO;
 import org.shoppingMall.vo.SearchVo;
 
 import mybatis.SqlSessionBean;
@@ -35,6 +36,13 @@ public class SearchDao {
 		List<SearchVo> list = mapperSession.selectList("search.pricelow",searchname);
 		mapperSession.close();
 		return list;
+	}
+	
+	public List<ProductVO> searchtop2(String searchname) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<ProductVO> list = mapperSession.selectList("product.selectproduct",searchname);
+		mapperSession.close();
+		return list;	
 	}
 
 }

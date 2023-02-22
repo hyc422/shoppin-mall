@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.shoppingMall.controller.Controller;
-import org.shoppingMall.dao.RecommendDao;
+import org.shoppingMall.dao.ProductDAO;
 
 public class DeleteRecommendProductController implements Controller {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RecommendDao dao = RecommendDao.getInstance();
+		ProductDAO dao = ProductDAO.getInstance();
 		String name = request.getParameter("productname");
 		int result = dao.delete(name);
 	

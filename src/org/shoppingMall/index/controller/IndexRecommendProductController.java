@@ -13,6 +13,7 @@ public class IndexRecommendProductController implements Controller {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("RecommendProductView.jsp");
 		dispatcher.forward(request, response);
 	}
