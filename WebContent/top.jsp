@@ -230,15 +230,15 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a style="color: #424242;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a style="color: #424242;" class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/community/communitylist?category=1" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           커뮤니티
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">공지사항</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/community/communitylist?category=1">공지사항</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">상품후기</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/community/communitylist?category=2">상품후기</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">QnA</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/community/communitylist?category=3">QnA</a>
         </div>
       </li>
 

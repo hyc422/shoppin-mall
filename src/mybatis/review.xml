@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+ 	<select id="list" resultType="org.shoppingMall.vo.ReviewVo">
+ 		SELECT * 
+ 		FROM review
+ 	</select>
+
+ 	<select id="pagelist" resultType="org.shoppingMall.vo.ReviewVo" parameterType="java.util.Map">
+ 		SELECT * FROM 
+			(SELECT rownum r ,f.* FROM
+								(SELECT * FROM review ORDER BY idx DESC) f)
+		WHERE r BETWEEN #{start} AND #{end}
+ 	</select>
+</mapper>

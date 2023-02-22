@@ -20,8 +20,8 @@
 			<div style="width:700px;margin: auto;padding: 10px;text-align: center;">
 				<ul class="nav">
 					<li><a href="communitylist?category=1">공지사항</a></li>
-					<li><a href="communitylist?category=2">상품 후기</a></li>
-					<li><a href="communitylist?category=3">상품 QnA</a></li>
+					<li><a href="communitylist?category=2">상품후기</a></li>
+					<li><a href="communitylist?category=3">QnA</a></li>
 				</ul>
 			</div>
 			
@@ -48,7 +48,7 @@
 										<c:out value="${vo.idx}"/>
 									</li>
 									<li>
-										<a href="read?idx=${vo.idx}&page=${paging.currentPage}" class="title">
+										<a href="read?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
 											<c:out value="${vo.title}"/>
 										</a>
 								 	</li>
@@ -97,17 +97,16 @@
 									<li>	
 										<a href="${pageContext.request.contextPath}/product?productNum=${vo.productNum}">
 											<img src="../images/community/${vo.fileName}" border="0">
-											<span>${vo.productName}</span>
 										</a>
 									</li>
 									<li>
-										<a href="read?idx=${vo.idx}&page=${paging.currentPage}" class="title">
+										<a href="read?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
 											<c:out value="${vo.title}"/>
 										</a>
 								 		..<span style="color:orange;font-size: 80%;">(<c:out value="${vo.commentCount}"/>)
 								 		</span></li>
 									<li>
-										<c:out value="${vo.nickname}"/>
+										<c:out value="${vo.nickName}"/>
 									</li>
 									<li>
 										<c:out value="${vo.readCount}"/>
@@ -170,11 +169,10 @@
 									<li>	
 										<a href="${pageContext.request.contextPath}/product?productNum=${vo.productNum}">
 											<img src="../images/community/${vo.fileName}" border="0">
-											<span>${vo.productName}</span>
 										</a>
 									</li>
 									<li>
-										<a href="read?idx=${vo.idx}&page=${paging.currentPage}" class="title">
+										<a href="read?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
 											<c:out value="${vo.title}"/>
 										</a>
 										<c:if test="${vo.password != null}">
@@ -183,7 +181,7 @@
 								 		..<span style="color:orange;font-size: 80%;">(<c:out value="${vo.commentCount }"/>)
 								 		</span></li>
 									<li>+
-										<c:out value="${vo.nickname}"/>
+										<c:out value="${vo.nickName}"/>
 									</li>
 									<li>
 										<c:out value="${vo.readCount}"/>
