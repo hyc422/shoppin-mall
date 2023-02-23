@@ -20,6 +20,12 @@ import org.shoppingMall.index.controller.NewRecommendProductController;
 import org.shoppingMall.login.controller.LoginActionController;
 import org.shoppingMall.login.controller.LoginViewController;
 import org.shoppingMall.login.controller.LogoutController;
+import org.shoppingMall.mypage.controller.CustomerController;
+import org.shoppingMall.mypage.controller.DeleteViewController;
+import org.shoppingMall.mypage.controller.PaylistActionController;
+import org.shoppingMall.mypage.controller.PaylistViewController;
+import org.shoppingMall.mypage.controller.UpdateActionController;
+import org.shoppingMall.mypage.controller.UpdateViewController;
 import org.shoppingMall.member.controller.Find_idController;
 import org.shoppingMall.member.controller.IDViewController;
 import org.shoppingMall.mypage.controller.CustomerController;
@@ -68,8 +74,16 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
 		mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());
 		mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
+    	
+		//mypage
+		mapping.put(new RequestKeyValue("/update","GET"), new UpdateViewController());
+	  mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
+	  mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());
+	  mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
+	  mapping.put(new RequestKeyValue("/paylist","GET"), new PaylistViewController());
+	  mapping.put(new RequestKeyValue("/paylist","POST"), new PaylistActionController());
     
-		// Product
+    // Product
 		mapping.put(new RequestKeyValue("/Product/product","GET"), new ProductViewContoller());
 		mapping.put(new RequestKeyValue("/Product/product", "POST"), new ProductActionController());
 		mapping.put(new RequestKeyValue("/Product/productList","GET"), new ProductListViewContoller());
@@ -90,6 +104,7 @@ public class RequestControllerMapping
 		//community
 		mapping.put(new RequestKeyValue("/community/communitylist", "GET"), new CommunityListController());
 		mapping.put(new RequestKeyValue("/community/communityread", "GET"), new CommunityReadController());
+
 	}
 	
 	public static Controller getController(RequestKeyValue key)
