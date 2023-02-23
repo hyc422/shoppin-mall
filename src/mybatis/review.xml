@@ -14,4 +14,20 @@
 								(SELECT * FROM review ORDER BY idx DESC) f)
 		WHERE r BETWEEN #{start} AND #{end}
  	</select>
+ 	
+ 	<select id="selectByIdx" parameterType="long" resultType="org.shoppingMall.vo.ReviewVo">
+		SELECT * FROM review WHERE idx=#{idx}
+	</select>
+	
+	<update id="setReadCount" parameterType="long">
+		UPDATE review 
+		SET READCOUNT = READCOUNT + 1
+		WHERE idx=#{idx}
+	</update>
+	
+	<!-- comments -->
+	<select id="comments" parameterType="long" resultType="org.shoppingMall.vo.ReviewCommentsVo">
+		SELECT * FROM reviewcomments
+		WHERE MREF=#{mref}
+	</select>
 </mapper>

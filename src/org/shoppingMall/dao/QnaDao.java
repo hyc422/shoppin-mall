@@ -25,4 +25,25 @@ public class QnaDao
 		
 		return list;
 	}	// method end
+	
+	public QnaVo selectByIdx(long idx)
+	{
+		SqlSession mapper = SqlSessionBean.getSession();
+		QnaVo vo = mapper.selectOne("qna.selectByIdx", idx);
+		
+		mapper.close();
+		
+		return vo;
+	}	// method end
+	
+	public int setReadCount(long idx)
+	{
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.update("qna.setReadCount", idx);
+		
+		mapper.commit();
+		mapper.close();
+		
+		return result;
+	}	// method end
 }	// Class end

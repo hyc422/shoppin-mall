@@ -25,4 +25,25 @@ public class ReviewDao
 		
 		return list;
 	}	// method end
+	
+	public ReviewVo selectByIdx(long idx)
+	{
+		SqlSession mapper = SqlSessionBean.getSession();
+		ReviewVo vo = mapper.selectOne("review.selectByIdx", idx);
+		
+		mapper.close();
+		
+		return vo;
+	}	// method end
+	
+	public int setReadCount(long idx)
+	{
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.update("review.setReadCount", idx);
+		
+		mapper.commit();
+		mapper.close();
+		
+		return result;
+	}	// method end
 }	// Class end

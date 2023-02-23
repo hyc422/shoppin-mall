@@ -3,12 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>우리 북카페</title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/read.css?v=3">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/communityread.css?v=3">
+	</head>
+	<%@include file="../top.jsp"%>
 	<body>
 		<main id="read">
 		
@@ -48,7 +51,7 @@
 					</ul>
 					
 					<div style="text-align: center;margin-bottom: 10px;">
-						<c:if test="${user.nickName==vo.nickName}">
+						<c:if test="${user.id == admin}">
 							<a class="button" href="javascript:execute(1)">수정</a>
 							<a class="button" href="javascript:execute(2)">삭제</a>
 						</c:if>
@@ -84,7 +87,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/product?productNum=${vo.productNum}">
+							<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
 								<img src="../images/community/${vo.fileName}" border="0">
 								<span>${vo.productName}</span>
 							</a>
@@ -190,7 +193,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/product?productNum=${vo.productNum}">
+							<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
 								<img src="../images/community/${vo.fileName}" border="0">
 								<span>${vo.productName}</span>
 							</a>
@@ -230,16 +233,16 @@
 							</li>
 							<li>
 								<ul style="display: flex;">
-									<li>
-										<textarea rows="5" cols="80" name="content" 
-										style="resize:none;margin-right:20px;" 
-										placeholder="로그인 후에 댓글을 작성하세요." class="input"></textarea>
-									</li>				
+									<c:if test="${user.id == admin}">
+										<li>
+											<textarea rows="5" cols="80" name="content" 
+											style="resize:none;margin-right:20px;" 
+											class="input"></textarea>
+										</li>				
 										<li style="align-self: center;margin-bottom: 20px;">
-											<c:if test="${sessionScope.user == admin}">
-												<button type="button" onclick="executeCmt('1',0)">저장</button>
-											</c:if>	
-									</li>
+											<button type="button" onclick="executeCmt('1',0)">저장</button>
+										</li>
+									</c:if>	
 								</ul>
 							</li>
 							<li>
@@ -252,10 +255,10 @@
 							<c:forEach var="cmt" items="${cmtlist}">
 								<li>
 									<ul class="crow">
-										<li><c:out value="${cmt.writer}" /></li>				
+										<li><c:out value="${cmt.nickName}" /></li>				
 										<li><c:out value="${cmt.ip}" /></li>				
 										<li><c:out value="${cmt.createdAt}" /></li>	
-									<c:if test="${user.id==cmt.nickName}"> 	
+									<c:if test="${user.id == admin}"> 	
 										<li><a href="javascript:executeCmt('2','${cmt.idx}')">삭제</a></li>				
 									</c:if>	
 									</ul>
@@ -310,4 +313,5 @@
 		}
 	</script>
 	</body>
+	<%@include file="../footer.jsp"%>
 </html>

@@ -25,4 +25,24 @@ public class AnnouncementDao
 		
 		return list;
 	}	// method end
+	
+	public AnnouncementVo selectByIdx(long idx)
+	{
+		SqlSession mapper = SqlSessionBean.getSession();
+		AnnouncementVo vo = mapper.selectOne("announcement.selectByIdx", idx);
+		
+		mapper.close();
+		
+		return vo;
+	}	// method end
+	public int setReadCount(long idx)
+	{
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.update("announcement.setReadCount", idx);
+		
+		mapper.commit();
+		mapper.close();
+		
+		return result;
+	}	// method end
 }	// Class end
