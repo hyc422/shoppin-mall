@@ -16,6 +16,7 @@
 	src="${pageContext.request.contextPath }/js/product.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/cart.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<%@ include file="../top.jsp"%>
@@ -37,17 +38,16 @@
                         <div class="sum">합계</div>
                     </div>
                     <div class="subdiv">
-                        <div class="basketcmd">저장</div>
-                    </div>
-                    <div class="subdiv">
                         <div class="basketcmd">삭제</div>
                     </div>
                     <div class="split"></div>
                 </div>
         	<c:forEach items="${vo }" var="vo" varStatus="num">
+        	<!-- onclick="javascript:basket.checkItem();" -->
                 <div class="row data">
                     <div class="subdiv">
-                        <div class="check"><input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
+                        <div class="check">
+                        <input type="checkbox" data-cartNum="${vo.cartNum}" class="buy" name="buy" value="${vo.cartNum}" >&nbsp;</div>
                         <div class="img"><a href="${pageContext.request.contextPath }/Product/product?productNum=${vo.productNum}"> 
                         <img src="${pageContext.request.contextPath }/images/Product/${vo.fileName }" width="60"></a></div>
                         <div class="pname">
@@ -74,31 +74,33 @@
                         <div class="sum"><fmt:formatNumber value="${vo.productPrice*vo.amount }" pattern="###,###,###" />원</div>
                     </div>
                     <div class="subdiv">
-                        <div class="basketcmd"><button type="submit">저장</button></div>
-                    </div>
-                    <div class="subdiv">
                         <div class="basketcmd">
                     <form method="post" action="cart/delete">
                     <input type="hidden" name="cartNum" value="${vo.cartNum }">
                     <input type="hidden" name="id" value="${vo.id }">
                         <a href="javascript:void(0)" class="abutton">
-                        <button type="submit" style="background: none; color: white;">삭제</button>
+                        <button type="submit" style="background: none; color: white; border: none;">삭제</button>
                         </a>
                     </form>	
                         </div>
                     </div>
                 </div>
         	</c:forEach>
-        
-        
+        <!-- onclick="deleteValue()" -->
             </div>
+            <div class="right-align basketrowcmd">
+            <form method="post" action="cart/selectDelete">
+    		  <input type="hidden" name="id" value="${user.id }">
+    		  <input type="hidden" name="cartNum1" id="cartNum1" value="">
+                <a class="abutton"><button onclick="deleteValue()" id="selectDelete" type="button" style="padding-top:20px; background: none; color: white;border: none;">선택상품삭제</button></a>
+            </form>
+            
     		 <form method="post" action="cart/deleteAll">
     		  <input type="hidden" name="id" value="${user.id }">
-            <div class="right-align basketrowcmd">
-                <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delCheckedItem();">선택상품삭제</a>
-                <a href="javascript:void(0)" class="abutton"> <button type="submit" style="background: none; color: white;">전체삭제</button></a>
-            </div>
+                <a class="abutton"> <button type="submit" style="padding-top:20px; background: none; color: white;border: none;">전체삭제</button></a>
     		</form>
+    		
+            </div>
             <div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: ${sum }개</div>
             <div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: ${totalPrice }원</div>
     	
