@@ -20,6 +20,8 @@ import org.shoppingMall.index.controller.NewRecommendProductController;
 import org.shoppingMall.login.controller.LoginActionController;
 import org.shoppingMall.login.controller.LoginViewController;
 import org.shoppingMall.login.controller.LogoutController;
+import org.shoppingMall.member.controller.Find_idController;
+import org.shoppingMall.member.controller.IDViewController;
 import org.shoppingMall.mypage.controller.CustomerController;
 import org.shoppingMall.mypage.controller.DeleteViewController;
 import org.shoppingMall.mypage.controller.UpdateActionController;
@@ -52,16 +54,16 @@ public class RequestControllerMapping
 		 mapping.put(new RequestKeyValue("/high","GET"), new HighPriceSearchController());
 		 mapping.put(new RequestKeyValue("/low","GET"), new LowPriceSearchController());
 
-		 // Register
-		mapping.put(new RequestKeyValue("/member/register.hrd","GET"), new RegisterController());
-		mapping.put(new RequestKeyValue("/member/register.hrd","POST"), new RegisterActionController());
-		
+		// Register
+		mapping.put(new RequestKeyValue("/member/register","GET"), new RegisterController());
+		mapping.put(new RequestKeyValue("/member/register","POST"), new RegisterActionController());
+
 		// Login
 		mapping.put(new RequestKeyValue("/login","GET"), new LoginViewController());
 		mapping.put(new RequestKeyValue("/login","POST"), new LoginActionController());
 		mapping.put(new RequestKeyValue("/logout","GET"), new LogoutController());
-		
-		//mypage
+		mapping.put(new RequestKeyValue("/member/findmem","GET"), new IDViewController());
+		mapping.put(new RequestKeyValue("/member/findmem","POST"), new Find_idController());
 		mapping.put(new RequestKeyValue("/update","GET"), new UpdateViewController());
 		mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
 		mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());

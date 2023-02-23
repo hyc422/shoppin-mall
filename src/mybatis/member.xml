@@ -3,12 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="member">
-	<select id ="selectAll">
-		SELECT *
-		FROM
-			js_member
-	</select>
-  
 	<select id="login" resultType="org.shoppingMall.vo.Member" parameterType="java.util.Map">
 		SELECT * FROM js_member
 		WHERE id=#{id} and password=#{password}
@@ -43,15 +37,14 @@
   	<delete id="delete" parameterType="long">
   	DELETE FROM js_member WHERE idx = #{idx}
   	</delete>
-
-	<select id="findId" resultType="org.shoppingMall.vo.Member" parameterType="java.util.Map">
-		SELECT * FROM js_member
-		WHERE name=#{name} and email=#{email}
+  	
+  	<select id="findid" parameterType="java.util.Map" resultType="org.shoppingMall.vo.Member">
+  	SELECT * FROM js_member where name=#{name} and email=#{email}
+  	</select>
+  	<select id="findpwd" parameterType="java.util.Map" resultType="org.shoppingMall.vo.Member">
+  	SELECT * FROM js_member where id=#{id} and email=#{email}
+  	</select>
+	<select id="checkID" parameterType="String" resultType="int">
+	SELECT count(id) FROM js_member WHERE id=#{id};
 	</select>
-  
-	<select id="findPwd" resultType="org.shoppingMall.vo.Member" parameterType="java.util.Map">
-		SELECT * FROM js_member
-		WHERE id=#{id} and email=#{email}
-	</select>
-
 </mapper>

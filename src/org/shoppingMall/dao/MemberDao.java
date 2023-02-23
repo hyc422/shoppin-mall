@@ -69,11 +69,24 @@ public class MemberDao {
 		return vo;
 	}
 	
-	public List<Member> find_id(String name) {
+	public int idcheck(String id) {
 		SqlSession mapper = SqlSessionBean.getSession();
-		List<Member> result = mapper.selectList("member.find_id");
+		int result = mapper.selectOne("member.checkID",id);
 		mapper.close();
 		return result;
+	}
+	
+	public Member findid(Map<String,String> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		Member vo = mapper.selectOne("member.findid",map);
+		mapper.close();
+		return vo;
+	}
+	public Member findpwd(Map<String,String> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		Member vo = mapper.selectOne("member.findpwd",map);
+		mapper.close();
+		return vo;
 	}
 
 }
