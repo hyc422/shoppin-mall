@@ -81,10 +81,16 @@ public class ProductDAO {
 		return PFL;
 	}
 
-	public void insertPayment(PaymentVO vo) {
+	public int insertPayment(PaymentVO vo) {
 		SqlSession mapper = SqlSessionBean.getSession();
-		mapper.insert("product.insertPayment", vo);
-	}	
+		
+		int result = mapper.insert("product.insertPayment", vo);
+		mapper.commit();
+		mapper.close();
+		
+		return result;
+	}
+
 
 	//CGH
 	public List<ProductFileList> pagelist(Map<String,Object> map) {

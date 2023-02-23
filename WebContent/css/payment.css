@@ -35,3 +35,5 @@
 #big1 input{
 	margin-left: 45px;
 }
+
+input:focus {outline:none;}

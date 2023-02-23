@@ -87,11 +87,10 @@
 						<button type="button" id="no_member_cart_put" class="order"
 							onclick="Cart()">장바구니</button>
 						<button type="button" id="no_member_payBtn" class="order"
-							onclick="">구매하기</button>
-							<c:if test="${sessionScope.user != null }">
+							onclick="productAddPayment()">구매하기</button>
 						<button type="button" id="no_member_payBtn" class="order"
-							onclick="">수 정</button>
-							</c:if>
+							onclick="productUpdate()">수 정</button>
+
 					</div>
 
 					<script type="text/javascript">
@@ -106,6 +105,14 @@
 								/* yn = confirm('장바구니로 이동 하시겠습니까?')
 								location.href = '${pageContext.request.contextPath }/cart?id=${user.id}' */
 							}
+						}
+						
+						function productAddPayment() {
+							location.href = './productAddPayment'
+						}
+
+						function productUpdate() {
+							location.href = './productAddUpdate'
 						}
 					</script>
 

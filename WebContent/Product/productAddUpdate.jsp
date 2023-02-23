@@ -38,9 +38,7 @@
 			<div>
 				<label>
 					카테고리
-					<select name="productCategories" id="productCategories" disabled="disabled">
-						<option value="${vo.productCategories}"/>
-					</select>
+					<input type="text" name="productCategories" id="productCategories" value="${vo.productCategories}" readonly="readonly">
 				</label>
 			</div>
 			<div style="display:flex; justify-content:space-around; margin: 10px 0px;">
@@ -59,7 +57,14 @@
 				<span id="productImages">제품 사진</span>  
 				<div>
 					<label for="productImage" style="display:inline;">
-						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/filePlus.png" width="110px" height="110px" style="display:inline;">
+					<c:choose>
+						<c:when test="${fileName == null}">
+							<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/filePlus.png" width="110px" height="110px" style="display:inline;">
+						</c:when>
+						<c:otherwise>
+							<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/${fileName}" width="110px" height="110px" style="display:inline;">
+						</c:otherwise>
+					</c:choose>
 					</label>
 				</div>
 				<input id="productImage" name="productImage" type="file">
@@ -68,7 +73,7 @@
 			</div>
 			</div>
 			<div class="okButton">
-				<input type="button" value="수정" class="btn btn-outline-light" id="okButtonOption">
+				<input type="button" onclick="ok()" value="수정" class="btn btn-outline-light" id="okButtonOption">
 				<input type="button" onclick="history.back()" value="취소" class="btn btn-outline-light" id="okButtonOption">
 			</div>
 		</form>
@@ -77,6 +82,28 @@
 </body>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script>
+function ok(){
+	
+	if(!$("input#productPrice").val()){
+		alert("상품가격을 작성해주세요.");
+		$("input#productPrice").focus();
+		return;
+	}
+	if(!$("input#productStock").val()){
+		alert("상품재고를 작성해주세요.");
+		$("input#productStock").focus();
+		return;
+	}
+	
+    if (confirm("수정 하시겠습니까?")) {
+        alert("수정이 완료되었습니다.");
+		document.productForm.submit();
+    } else {
+        alert("취소되었습니다.");
+        return;
+    }
+}
+
 	/* 제픔 썸네일 */
 	$(".files2").change(function(e){
 		let file = e.target.files[0];

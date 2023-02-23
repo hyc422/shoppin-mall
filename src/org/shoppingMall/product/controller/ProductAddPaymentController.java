@@ -38,8 +38,9 @@ public class ProductAddPaymentController implements Controller {
 		ProductDAO dao = ProductDAO.getInstance();
 		
 		dao.insertPayment(vo);
+		
 		request.setAttribute("vo", vo);
-		request.setAttribute("totalPrice", productPrice*amount);
+		request.setAttribute("totalPrice", productPrice*amount+3000);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productAddPaymentSuccess.jsp");
 		dispatcher.forward(request, response);

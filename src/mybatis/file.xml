@@ -13,8 +13,15 @@
 	<select parameterType="_int" id="getFiles"
 		resultType="org.shoppingMall.vo.FileVO">
 		SELECT FILENAME, PRODUCTNUM, FILENAMEORIGINAL FROM TBL_FILE
-		WHERE BOARDNUM = #{productNum}
+		WHERE PRODUCTNUM = #{productNum}
 	</select>
+	
+	<select parameterType="_int" id="getFiles1"
+		resultType="string">
+		SELECT FILENAME FROM TBL_FILE
+		WHERE PRODUCTNUM = #{productNum}
+	</select>
+	
 
 	<delete parameterType="_int" id="deleteFiles">
 		DELETE FROM TBL_FILE WHERE

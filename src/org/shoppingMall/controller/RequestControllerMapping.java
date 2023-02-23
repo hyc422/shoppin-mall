@@ -77,7 +77,6 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/Product/productAddDelete", "GET"), new ProductAddDeleteController());
 		mapping.put(new RequestKeyValue("/Product/productAddPayment", "GET"), new ProductAddPaymentViewController());
 		mapping.put(new RequestKeyValue("/Product/productAddPayment", "POST"), new ProductAddPaymentController());
-		mapping.put(new RequestKeyValue("/Product/productAddPayment", "POST"), new ProductAddPaymentController());
 
 		//cart
 		mapping.put(new RequestKeyValue("/cart", "GET"), new CartViewController());
