@@ -91,6 +91,7 @@ public class ProductDAO {
 		return result;
 	}
 
+
 	//CGH
 	public List<ProductFileList> pagelist(Map<String,Object> map) {
 		SqlSession mapper = SqlSessionBean.getSession();
@@ -108,13 +109,16 @@ public class ProductDAO {
 	}
 	
 	//동해
-	public List<RecommendVo> selectAll() {
+	//추천상품 조회
+	public List<RecommendVo> selectrecommend() {
 		SqlSession mapper = SqlSessionBean.getSession();
-		List<RecommendVo> list = mapper.selectList("product.selectAll");
+		List<RecommendVo> list = mapper.selectList("product.selectrecommend");
 		mapper.close();
 		return list;		
 	}
 	
+	//동해
+	//추천상품 등록
 	public int insert(RecommendVo item) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		int result = mapperSession.insert("product.insertrecommend",item);
@@ -123,6 +127,8 @@ public class ProductDAO {
 		return result;	
 	}
 	
+	//동해
+	//추천상품 삭제
 	public int delete(String name) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		int result = mapperSession.delete("product.deleterecommend",name);
@@ -131,5 +137,65 @@ public class ProductDAO {
 		return result;
 	}
 	
+
+	//동해
+	//검색물품 조회
+	public List<ProductFileList> searchtop(String searchname) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<ProductFileList> list = mapperSession.selectList("product.selectproduct",searchname);
+		mapperSession.close();
+		return list;
+	}
 	
+	//동해
+	//높은가격순 조회
+	public List<ProductFileList> searchHighPrice(String searchname) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<ProductFileList> list = mapperSession.selectList("product.selecthighprice",searchname);
+		mapperSession.close();
+		return list;
+	}
+	
+	//동해
+	//낮은가격순 조회
+	public List<ProductFileList> searchLowPrice(String searchname) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<ProductFileList> list = mapperSession.selectList("product.selectlowprice",searchname);
+		mapperSession.close();
+		return list;
+	}
+	
+	
+	//동해
+	//검색 페이징
+	public int searchCount() {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.selectOne("product.searchCount");
+		mapperSession.close();
+		return result;		
+	}
+	
+	//동해
+	//페이지 리스트
+	public List<ProductFileList> searchpagelist(Map<String, Object> map) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<ProductFileList> list = mapperSession.selectList("product.searchpagelistname",map);
+		mapperSession.close();
+		return list;
+	}
+	
+	public List<ProductFileList> searchHighPricepagelist(Map<String, Object> map) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<ProductFileList> list = mapperSession.selectList("product.searchpagelisthighprice",map);
+		mapperSession.close();
+		return list;
+	}
+	
+	public List<ProductFileList> searchLowPricepagelist(Map<String, Object> map) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<ProductFileList> list = mapperSession.selectList("product.searchpagelistlowprice",map);
+		mapperSession.close();
+		return list;
+	}
+
 }

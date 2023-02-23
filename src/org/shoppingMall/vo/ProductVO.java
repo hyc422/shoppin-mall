@@ -1,5 +1,8 @@
 package org.shoppingMall.vo;
 
+import lombok.ToString;
+
+@ToString
 public class ProductVO {
 	private int productNum;
 	private String productName;

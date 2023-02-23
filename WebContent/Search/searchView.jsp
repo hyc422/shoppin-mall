@@ -49,75 +49,86 @@ div>a:hover {
 
 		<h3>상품검색</h3>
 		<br>
-		<form action="detail" method="GET">
-		<div
-			style="width: 80%; height: 200px; border: 3px solid silver; border-radius: 5px; margin: auto;">
-			<table style="margin-top: 20px; margin-left: 530px;">
-				<tr>
-					<th>검색조건</th>
-					<td><select name="selectAl">
-							<option value="category">카테고리</option>
-							<option value="name">이름</option>
-					</select> <input type="text" name="textAl" placeholder="검색어입력" style="font-size: 13px; width: 170px;"></td>
-				</tr>
-				<tr>
-					<th>판매가격대</th>
-					<td><input name="minprice" type="text" style="font-size: 13px; width: 115px;"> ~ 
-						<input name="maxprice" type="text" style="font-size: 13px; width: 115px;"></td>
-				</tr>
-				<tr>
-					<th>검색정렬기준</th>
-					<td><select style="padding-left: 10px; width: 250px;">
-							<option>상품명순</option>
-							<option>낮은가격순</option>
-							<option>높은가격순</option>
-							<option>인기순</option>
-					</select></td>
-				</tr>
-			</table>
-			<div style="margin-left: 700px; padding-top: 10px;">
-				<button type="submit" style="border: none; background-color: black; color: white;">검색</button>
-			</div>
-		</div>
-		</form>
-		<br>
+		
 		<div style="border: 1px solid silver; width: 80%; margin: auto; border-radius: 5px;"><p style="display:inline; margin-left: 40px; font-size: 15px; margin-top:14px; font-size: 14px;">
 		<strong>${name }</strong> 로 <strong>${count }</strong> 개 검색되었습니다.</p>
 			<div style="float: right;">
-					<a href="<%=request.getContextPath() %>/search?name=${name}">상품명</a>
-					<a href="<%=request.getContextPath() %>/high?name=${name}">높은가격순</a>
-					<a href="<%=request.getContextPath() %>/low?name=${name}">낮은가격순</a>
+					<a id="productname" href="<%=request.getContextPath() %>/search?name=${name}">상품명</a>
+					<a id="productpricehigh" href="<%=request.getContextPath() %>/high?name=${name}">높은가격순</a>
+					<a id="productpricelow" href="<%=request.getContextPath() %>/low?name=${name}">낮은가격순</a>
 			</div>
 		</div>
+		
+<!-- 왜 바로 돌아올까요? -->
+<script type="text/javascript">
+	$("#productname").click(function(){
+		 document.getElementById("productname").style.fontWeight = "900";
+	})
+	
+	$("#productpricehigh").bind('click',function(){
+		document.getElementById("productpricehigh").style.fontWeight = "900";
+	})
+</script>
 
 		<br>
 		<!-- grid -->
 		<div class="div_search">
-		<c:forEach items="${vo }" var="vo">
+		<c:forEach items="${list }" var="vo">
 			<div
 				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
-					<img alt="" src="images/Alochol/"
+					<img alt="" src="<%=request.getContextPath() %>/images/Product/${vo.fileName }"
 						style="width: 80%; height: 240px;margin-left: 45px;">
 				</div>
 				<hr style="margin: 0px;">
-				<h5 style="text-align: center;">
-				${vo.searchname }
-				</h5>
-				<p style="text-align: center; margin: 0px; font-size: 13px;">판매가 : ${vo.price }원</p>
+				<h6 style="text-align: center;">
+				${vo.productName }
+				</h6>
+				<p style="text-align: center; margin: 0px; font-size: 13px;">판매가 : ${vo.productPrice }원</p>
 			</div>
 		</c:forEach>
 		</div>
 		<br>
-			<div style="border: 1px solid black; width: auto; float: left; margin-left: 730px;">
-				<a href="">처음으로</a>
-				<a href="">이전페이지</a>
+		
+		<!-- 페이징 -->
+			<div style="width:700px;margin: auto;padding: 10px;text-align: center;">
+	<br>
+	<hr>
+	<a class="pagenum" href="?name=${name }&page=1">&lt;&lt;</a>   <!--(1) 첫번째 페이지 1번으로 이동 -->
+	
+	<!--(2)  실행하면서 파악해보세요. --> <!-- 요청은 ListController가 받음.page파라미터 변경됨. -->
+	<a class="pagenum" href="?name=${name }&page=${paging.startPage-1 }"      
+			style='<c:if test="${paging.startPage==1 }">display:none;</c:if>' >&lt;</a>
+	
+	<!--(3) 페이지 범위 startPage 부터 endPage 까지 반복 -->
+	<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }">
+		<a class="pagenum ieach" href="?name=${name }&page=${i }"><c:out value="${i }"/></a>
+	</c:forEach>
+	
+	<!--(4)  실행하면서 파악해보세요. -->
+	<a class="pagenum" href="?name=${name }&page=${paging.endPage+1 }"
+			style='<c:if test="${paging.endPage==paging.totalPage }">display:none;</c:if>'	>&gt;</a>
 			
-				<a href="">다음페이지</a>
-				<a href="">끝으로</a>
-			</div>
-		<br><br>
+	<a class="pagenum" href="?name=${name }&page=${paging.totalPage }">&gt;&gt;</a>  <!--(5) 가장 마지막 페이지로 이동 -->
+</div>
+<br><br>
+
+
 	</main>
+	
+	<script type="text/javascript">
+	const pnums = document.querySelectorAll('.ieach');
+	pnums.forEach(function(item){
+		console.log(item);
+		/* item 번호가 현재 페이지 이면 글꼴 스타일을 다르게함. */
+		if(item.innerHTML=='${paging.currentPage}') {    
+			item.style.color = 'black';
+			item.style.fontWeight = 'bold';
+		}else{
+			item.style.color = '#37966f';
+		}
+	});
+</script>
 </body>
 <%@include file="../footer.jsp"%>
 </html>

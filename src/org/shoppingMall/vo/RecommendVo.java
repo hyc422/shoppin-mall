@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class RecommendVo {
-	private String filename;
-	private int productprice;
-	private String productname;
+	private String FILENAME;
+	private int PRODUCTPRICE;
+	private String PRODUCTNAME;
 }

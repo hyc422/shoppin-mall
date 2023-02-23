@@ -80,6 +80,7 @@
 #list ul.row2 > li
 {
 	padding: 3px 0px;
+	vertical-align: middle;
 }
 
 #list ul.row2 > li:nth-child(1)
@@ -124,6 +125,7 @@
 	text-align: center;
 	display: flex;
 	flex-direction: row;     /* 기본값 */
+	vertical-align: middle;
 }
 
 #list ul.row3 > li

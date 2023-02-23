@@ -20,29 +20,14 @@ public class CartActoinController implements Controller {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		String id = request.getParameter("id");
-//		int productNum = Integer.parseInt(request.getParameter("productNum"));
-//		String productName = request.getParameter("productName");
-//		int productPrice = Integer.parseInt(request.getParameter("productPrice"));
-//		String productCategories = request.getParameter("productCategories");
-//		String fileName = request.getParameter("fileName");
 		int amount = Integer.parseInt(request.getParameter("p_num"));
 		int cartNum = Integer.parseInt(request.getParameter("cartNum"));
 		CartDao dao = CartDao.getInstance();
 		int result = dao.cartUpdate(CartVo.builder()
-//				.id(id)
-//				.productNum(productNum)
-//				.productName(productName)
-//				.productPrice(productPrice)
-//				.productCategories(productCategories)
-//				.fileName(fileName)
 				.amount(amount)
 				.cartNum(cartNum)
 				.build()
 				);
-		System.out.println(amount);
-		System.out.println(cartNum);
-		System.out.println(id);
-		System.out.println(result);
 		if(result !=0) {
 			response.sendRedirect(request.getContextPath()+"/cart?id="+id);
 		}

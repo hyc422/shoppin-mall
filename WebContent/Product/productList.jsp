@@ -47,7 +47,7 @@
 						<c:forEach items="${selectOneList1 }" var="vo">
 							<div class="card">
 								<div class="img">
-									<a href="product?productNum=${vo.productNum }"> <img
+									<a href="product?productNum=${vo.productNum }&page=${paging.currentPage}"> <img
 										src="${pageContext.request.contextPath }/images/Product/${vo.fileName }" width="250">
 									</a>
 								</div>
@@ -61,7 +61,6 @@
 										class="textStyle"> ₩ <fmt:formatNumber
 											value="${vo.productPrice }" pattern="###,###,###" />원
 									</span> <br>
-									<!-- <button type="button" onclick="addCart()">장바구니</button> -->
 								</div>
 							</div>
 						</c:forEach>
@@ -70,35 +69,23 @@
 					</div>
 					<hr>
 
-				<form action='<c:url value="/Product/productList"/>'>
 					<div
 						style="width: 700px; margin: auto; padding: 10px; text-align: center;">
-						<%--  전체 글 개수 :
-						<c:out value="${paging.totalCount }" /> --%>
 						<br> 
 						<hr>
-						<a class="pagenum" href="${pageContext.request.contextPath }/Product/productList?Categories=${Pvo.productCategories }&page=1">&lt;&lt;</a>
-						<!--(1) 첫번째 페이지 1번으로 이동 -->
-
-						<!--(2) 이 부분이 제일 복잡합니다. 실행하면서 파악해보세요. -->
-						<a class="pagenum" href="${pageContext.request.contextPath }/Product/productList?Categories=${Pvo.productCategories }&page=${paging.startPage-1 }"
+						<a class="pagenum" href="?Categories=${a }&page=1">&lt;&lt;</a>
+						<a class="pagenum" href="?Categories=${a }&page=${paging.startPage-1 }"
 							style='<c:if test="${paging.startPage==1 }">display:none;</c:if>'>&lt;</a>
-
-						<!--(3) 페이지 범위 startPage 부터 endPage 까지 반복 -->
 						<c:forEach var="i" begin="${paging.startPage }"
 							end="${paging.endPage }">
-							<a class="pagenum ieach" href="${pageContext.request.contextPath }/Product/productList?Categories=${Pvo.productCategories }&page=${i }"><c:out
+							<a class="pagenum ieach" href="?Categories=${a }&page=${i }"><c:out
 									value="${i }" /></a>
 						</c:forEach>
-
-						<!--(4) 이 부분이 제일 복잡합니다. 실행하면서 파악해보세요. -->	
-						<a class="pagenum" href="${pageContext.request.contextPath }/Product/productList?Categories=${Pvo.productCategories }&page=${paging.endPage+1 }"
+						<a class="pagenum" href="?Categories=${a }&page=${paging.endPage+1 }"
 							style='<c:if test="${paging.endPage==paging.totalPage }">display:none;</c:if>'>&gt;</a>
 
-						<a class="pagenum" href="${pageContext.request.contextPath }/Product/productList?Categories=${Pvo.productCategories }&page=${paging.totalPage }">&gt;&gt;</a>
-						<!--(5) 가장 마지막 페이지로 이동 -->
+						<a class="pagenum" href="?Categories=${a }&page=${paging.totalPage }">&gt;&gt;</a>
 					</div>
-				</form>
 		<script type="text/javascript">
 			const pnums = document.querySelectorAll('.ieach');
 			pnums.forEach(function(item) {

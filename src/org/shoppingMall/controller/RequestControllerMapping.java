@@ -10,6 +10,8 @@ import org.shoppingMall.product.controller.ProductAddDeleteController;
 import org.shoppingMall.product.controller.ProductAddViewController;
 import org.shoppingMall.cart.controller.CartActoinController;
 import org.shoppingMall.cart.controller.CartViewController;
+import org.shoppingMall.cart.controller.CartDeleteAllController;
+import org.shoppingMall.cart.controller.CartDeleteController;
 import org.shoppingMall.community.controller.CommunityListController;
 import org.shoppingMall.index.controller.DeleteRecommendProductController;
 import org.shoppingMall.index.controller.IndexRecommendProductController;
@@ -79,6 +81,8 @@ public class RequestControllerMapping
 		//cart
 		mapping.put(new RequestKeyValue("/cart", "GET"), new CartViewController());
 		mapping.put(new RequestKeyValue("/cart", "POST"), new CartActoinController());
+		mapping.put(new RequestKeyValue("/cart/delete", "POST"), new CartDeleteController());
+		mapping.put(new RequestKeyValue("/cart/deleteAll", "POST"), new CartDeleteAllController());
 		
 		//community
 		mapping.put(new RequestKeyValue("/community/communitylist", "GET"), new CommunityListController());

@@ -53,6 +53,7 @@ CREATE TABLE QNA
 
 CREATE SEQUENCE QNA_IDX_SEQ;
 
+-- ANNOUNCEMENT TABLE 예시
 INSERT INTO ANNOUNCEMENT (idx,nickname,title,content)
 VALUES (ANNOUNCEMENT_idx_seq.nextval, '김모모','공지사항1','오늘 모임 변경안내입니다.');
 INSERT INTO ANNOUNCEMENT (idx,nickname,title,content)
@@ -63,3 +64,22 @@ INSERT INTO ANNOUNCEMENT (idx,nickname,title,content)
 VALUES (ANNOUNCEMENT_idx_seq.nextval, '김모모','공지사항4.','오늘 모임 변경안내입니다.');
 INSERT INTO ANNOUNCEMENT (idx,nickname,title,content)
 VALUES (ANNOUNCEMENT_idx_seq.nextval, '김모모','공지사항5.','오늘 모임 변경안내입니다.');
+
+-- REVIEW TABLE 예시
+INSERT INTO REVIEW (idx,productnum,productname,filename, nickname,title,content,point)
+VALUES (REVIEW_idx_seq.nextval, 1,'단감명작','gam.png','NYR','단감명작 후기','담가버리고 싶은맛',4);
+INSERT INTO REVIEW (idx,productnum,productname,filename, nickname,title,content,point)
+VALUES (REVIEW_idx_seq.nextval, 13,'애플리즈 금과명주세트 40도 750ml','애플리즈 금과명주세트 40도 750ml49.png','LDH','애플리즈 ','너무 독해요',2);
+INSERT INTO REVIEW (idx,productnum,productname,filename, nickname,title,content,point)
+VALUES (REVIEW_idx_seq.nextval, 19,'궁중술 왕주 700ml 40도 민속주왕주','궁중술 왕주 700ml 40도 민속주왕주35.png','CGH','왕주 후기','이게 왕이 먹던 술인가',5);
+INSERT INTO REVIEW (idx,productnum,productname,filename, nickname,title,content,point)
+VALUES (REVIEW_idx_seq.nextval, 8,'연꽃 담은 술 8도 850ml','연꽃 담은 술 8도 850ml12.png','CJW','연꽃술','연꽃향이 나요',3);
+INSERT INTO REVIEW (idx,productnum,productname,filename, nickname,title,content,point)
+VALUES (REVIEW_idx_seq.nextval, 16,'양반안동소주 23년산 로얄안동소주 45도 800ml','양반안동소주 23년산 로얄안동소주 45도 800ml145.png','KSH','안동소주','소주는 안동소주',4);
+INSERT INTO REVIEW (idx,productnum,productname,filename, nickname,title,content,point)
+VALUES (REVIEW_idx_seq.nextval, 21,'엄청주 360ml','엄청주 360ml10.png','HYC','엄청주 후기','구아악',1);
+
+
+-- QNA TABLE 예시
+INSERT INTO QNA (idx,productnum,productname,filename, nickname,title,content,point)
+VALUES (QNA_idx_seq.nextval, 21,'엄청주 360ml','엄청주 360ml10.png','HYC','엄청주 후기','구아악',1);

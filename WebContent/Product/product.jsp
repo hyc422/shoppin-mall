@@ -85,15 +85,16 @@
 					</div>
 					<div class="cart_put">
 						<button type="button" id="no_member_cart_put" class="order"
-							onclick="addToCart()">장바구니</button>
+							onclick="Cart()">장바구니</button>
 						<button type="button" id="no_member_payBtn" class="order"
 							onclick="productAddPayment()">구매하기</button>
 						<button type="button" id="no_member_payBtn" class="order"
 							onclick="productUpdate()">수 정</button>
+
 					</div>
 
 					<script type="text/javascript">
-						function addToCart() {
+						function Cart() {
 							let yn
 							if ('${user.id}' == '') {
 								yn = confirm('장바구니에 추가하기 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?')
@@ -101,7 +102,8 @@
 									location.href = '../login?back=w'
 							} else {
 								document.forms[1].submit();
-								/* location.href = 'product?productNum=${Pvo.productNum }' */
+								/* yn = confirm('장바구니로 이동 하시겠습니까?')
+								location.href = '${pageContext.request.contextPath }/cart?id=${user.id}' */
 							}
 						}
 						
