@@ -29,7 +29,7 @@
 	<p style="position: fixed; bottom: 28px; right: 20px;">추천상품은 최대 8개 까지 가능합니다.</p>
 	
 <main style="height: 700px;">
-	<!-- Product 테이블의 Recommend Item y면 보이고, n이면 안보이게설정 -->
+	
 	<form action="" method="POST" enctype="multipart/form-data">
 	<br>
 		<div style="width: 100%; height: 30px; background-color:#e1e4ed; font-size: 19px; color: #ff6f00;"><strong style=" margin-left: 800px;">상품등록</strong></div>
