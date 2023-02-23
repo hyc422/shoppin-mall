@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
-<%@include file="../top.jsp"%>   
+ 
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,6 +10,7 @@
 		<title>COMMUNITY</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/communitylist.css?v=3">
 	</head>
+	<%@include file="../top.jsp"%>
 	<body>
 		<main id="list">
 			
@@ -48,7 +49,7 @@
 										<c:out value="${vo.idx}"/>
 									</li>
 									<li>
-										<a href="read?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
+										<a href="communityread?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
 											<c:out value="${vo.title}"/>
 										</a>
 								 	</li>
@@ -100,7 +101,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="read?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
+										<a href="communityread?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
 											<c:out value="${vo.title}"/>
 										</a>
 								 		..<span style="color:orange;font-size: 80%;">(<c:out value="${vo.commentCount}"/>)
@@ -114,11 +115,11 @@
 									<li>
 										<fmt:formatDate value="${vo.createdAt}" pattern="yyyy-MM-dd" var="createdAt"/>
 										<c:if test='${createdAt == today}'>
-										<fmt:formatDate value="${vo.createdAt}" type="time"/>
-									</c:if>
+											<fmt:formatDate value="${vo.createdAt}" type="time"/>
+										</c:if>
 										<c:if test='${createdAt != today}'>
-										<fmt:formatDate value="${vo.createdAt}" pattern="yyyy-MM-dd"/>
-									</c:if>
+											<fmt:formatDate value="${vo.createdAt}" pattern="yyyy-MM-dd"/>
+										</c:if>
 									</li>
 									<li>
 										<c:if test="${vo.point == 0}">
@@ -172,7 +173,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="read?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
+										<a href="communityread?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
 											<c:out value="${vo.title}"/>
 										</a>
 										<c:if test="${vo.password != null}">
@@ -216,7 +217,7 @@
 							if(yn) location.href='${pageContext.request.contextPath}/login?back=w'
 						}
 						else
-						location.href='write?page=${paging.currentPage}'	
+						location.href='communitywrite?category=${category}&page=${paging.currentPage}'	
 					}
 				</script>
 				

@@ -27,7 +27,7 @@ public class CommentsController implements Controller {
 		String page = request.getParameter("page");         // 현재페이지 번호 전달 - 순서9)
 		// 댓글 작성 추가
 		if(f.equals("1")) {
-			CommunityComments vo =CommunityComments.builder()
+			ReviewCommentsVo vo =ReviewCommentsVo.builder()
 									.mref(mref)
 									.writer(request.getParameter("writer"))
 									.content(request.getParameter("content"))
