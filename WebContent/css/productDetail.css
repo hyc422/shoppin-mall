@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-label{
+.label1{
 	font-size: 20px;
 	margin: 10px 0;
 }
@@ -14,7 +14,7 @@ label{
 }
 
 #productName, #productStock{
-	margin-left: 70px;
+	margin-left: 66px;
 	width: 400px;
 }
 

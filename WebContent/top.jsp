@@ -3,7 +3,6 @@
 <%@page import="org.shoppingMall.dao.SearchDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,7 +124,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-    <c:if test="${sessionScope.user == null }">
       <li class="nav-item active">
         <a class="nav-link" href="${pageContext.request.contextPath}/login">로그인<span class="sr-only">(current)</span></a>
       </li>
@@ -138,7 +136,7 @@
       <li><a class="nav-link" href="${pageContext.request.contextPath}logout">로그아웃</a></li>
       </c:if>
       <li class="nav-item active">
-        <a class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
+        <a onclick="Cart2()" class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
         <a  style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -152,6 +150,20 @@
         </div>
       </li>
     </ul>
+
+	<script type="text/javascript">
+		function Cart2() {
+			let yn
+			if ('${user.id}' == '') {
+				yn = confirm('장바구니에 추가하기 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?')
+				if (yn)
+					location.href = '${pageContext.request.contextPath }/login?back=w'
+			} else {
+				location.href = 'cart?id=${user.id}'
+			}
+		}
+	</script>
+
 
 
 <!-- 실시간 주류 -->
@@ -171,12 +183,26 @@
 
 
 <!-- 검색 -->
-    <form class="form-inline my-2 my-lg-0" action="search" method="GET">
-      <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search" name = "name">
-     <button type="submit" class="btn btn-outline-light">검색</button>
+    <form name="formname" id="formid" class="form-inline my-2 my-lg-0" action="javascript:search()" method="GET" >
+      <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search" name = "name" id="searchid">
+     <button type="button" onclick="search()" class="btn btn-outline-light">검색</button>
     </form>
   </div>
   
+  
+  <script type="text/javascript">
+  function search() {
+	  const frm = document.forms[0];
+	  const value = frm.name.value;
+	  if(value == ""){
+		  alert('검색어를 입력해주세요.')
+	  } else if(value !== "") {
+		  frm.submit();
+ 		  location.href="/shoppingMall/search?name="+value;
+	  }
+  }
+  
+  </script>
 </nav>
 
 
@@ -189,11 +215,11 @@
           발효주
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=과실주">과실주</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=과실주&page=1">과실주</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=막걸리">막걸리</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=막걸리&page=1">막걸리</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=청주">청주</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=청주&page=1">청주</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -201,23 +227,23 @@
           증류주
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=브랜디">브랜디</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=브랜디&page=1">브랜디</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=소주">소주</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=소주&page=1">소주</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=위스키">위스키</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/Product/productList?Categories=위스키&page=1">위스키</a>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a style="color: #424242;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a style="color: #424242;" class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/community/communitylist?category=1" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           커뮤니티
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">공지사항</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/community/communitylist?category=1">공지사항</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">상품후기</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/community/communitylist?category=2">상품후기</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">QnA</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/community/communitylist?category=3">QnA</a>
         </div>
       </li>
 

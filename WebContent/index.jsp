@@ -1,6 +1,6 @@
+<%@page import="org.shoppingMall.vo.RecommendVo"%>
+<%@page import="org.shoppingMall.dao.ProductDAO"%>
 <%@page import="java.util.List"%>
-<%@page import="org.shoppingMall.vo.RecommendItemVo"%>
-<%@page import="org.shoppingMall.dao.RecommendItemDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -74,9 +74,10 @@
 <link href="css/index.css" rel="stylesheet">
 </head>
 <body>
-	<% RecommendItemDao dao = RecommendItemDao.getInstance();
-		List<RecommendItemVo> item = dao.list();		
-	%>
+<%
+		ProductDAO dao = ProductDAO.getInstance();
+		List<RecommendVo> vo = dao.selectrecommend();
+%>
 	
 
 	<main>
@@ -123,7 +124,7 @@
 		<br>			<!-- 상품 더보기 -->
 				<div		
 					style="float:right; display: inline; margin-right: 20px; width: 60px; height: 25px; background-color: white; border: 1px solid black; text-align: center;">
-					<a href=""			
+					<a href="<%=request.getContextPath() %>/search?name="			
 						style="color: black; text-decoration: none; font-size: 13px;">More</a>
 				</div>
 				<h3 style="text-align: center;">추천상품</h3>
@@ -131,27 +132,43 @@
 		
 		<!-- 추천상품 -->
 		<div class="div_cont">
-		<% for(int i=0;i<item.size();i++) { %>
+		<%
+			for(int i=0; i<vo.size();i++) {
+		%>
 			<div
 				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
-					<img alt="" src="images/Alochol/<%=item.get(i).getCoverfile() %>"
-						style="width: 80%; height: 240px;">
+					<img alt="" src="images/Product/<%=vo.get(i).getFILENAME() %>"
+						style="width: 80%; height: 240px; margin-left: 40px;">
 				</div>
 				<hr style="margin: 0px;">
-				<h5 style="text-align: center;"><%=item.get(i).getName()%></h5>
-				<p style="text-align: center; margin: 0px; font-size: 13px;">판매가 : <%=item.get(i).getPrice()%>원
 				
-				<!-- 관리자만 삭제 보이게 설정 해야함 -->
-				<a href="RecommendDelete?name=<%=item.get(i).getName() %>" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+				<!-- 관리자용 -->
+				<c:if test="${session != null }">
+				<h5 style="text-align: center; margin: 0px;"><%=vo.get(i).getPRODUCTNAME() %></h5>
+				</c:if>
+				
+				<!-- 손님용 -->
+				<c:if test="${session == null }">
+				<h5 style="text-align: center;"><%=vo.get(i).getPRODUCTNAME() %></h5>
+				</c:if>
+				
+				<p style="text-align: center; margin: 0px; font-size: 13px;">판매가 : <%=vo.get(i).getPRODUCTPRICE() %>원
+				<br>
+				
+				<!-- 관리자용 -->
+				<c:if test="${session != null }">
+				<a href="RecommendDelete?productname=<%=vo.get(i).getPRODUCTNAME() %>" onclick="return confirm('추천상품을 해제하시겠습니까?');">추천상품 해제</a>
+				</c:if>
 				</p>
 			</div>
-			<% } %>
+		<% } %>	
 			
-			
-		</div>			<!-- 관리자 추천상품 변경 -->
+		</div>			<!-- 관리자용 -->
+		<c:if test="${session != null }">
 				<div style="border: 1px solid silver; float: right; display:inline; width: 90px; height:25px; margin-bottom :20px; margin-right: 200px; text-align: center; background-color: #e1e4ed;">
 				<a style= "text-decoration: none; color: black; font-size: 13px;'" href="RecommendUpdate">추천상품 등록</a></div>
+		</c:if>
 		<br>
 		<br>
 		<br>
@@ -166,30 +183,6 @@
 		<br>
 		<br>
 		
-			<!-- 신상품 -->
-			<h3 style="text-align: center;">신상품</h3>	
-			<br>
-		<div class="div_new">
-			<div style="border: 1px solid black; display: inline; border-radius: 5px;">
-				<div>
-				<img alt="" src="images/BannerAndIcon/" style="width: 100%; height: 350px; display: block; margin: auto;">
-				</div>
-				<hr style="margin: 0px;">
-				<h3 style="text-align: center;">상품이름</h3>
-				<p style="text-align: center; margin: 0px; font-size: 17px;">판매가 : 원
-			</div>
-			<div style="border: 1px solid black; display: inline; border-radius: 5px;">
-				<div>
-				<img alt="" src="images/BannerAndIcon/" style="width: 100%; height: 350px; display: block; margin: auto;">
-				</div>
-				<hr style="margin: 0px;">
-				<h3 style="text-align: center;">상품이름</h3>
-				<p style="text-align: center; margin: 0px; font-size: 17px;">판매가 : 원
-			</div>
-		</div>
-
-	<br>
-	<br>
 
 	<!-- 하단배너1 -->
 	<div class="div_baner">

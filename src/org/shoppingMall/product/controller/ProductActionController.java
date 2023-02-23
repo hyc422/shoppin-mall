@@ -26,7 +26,8 @@ public class ProductActionController implements Controller {
 		int amount = Integer.parseInt(request.getParameter("amount"));
 		
 		CartDao dao = CartDao.getInstance();
-		int result = dao.insertCart(CartVo.builder().id(id)
+		int result = dao.insertCart(CartVo.builder()
+				.id(id)
 				.productNum(productNum)
 				.productName(productName)
 				.productPrice(productPrice)
@@ -38,10 +39,11 @@ public class ProductActionController implements Controller {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		if(result !=0) {
-			response.sendRedirect("cart");
+			response.sendRedirect(request.getContextPath()+"/cart?id="+id);
 		}else {
 			response.sendRedirect(request.getContextPath());	//메인화면으로 이동
 		}
 	}
+	
 
 }

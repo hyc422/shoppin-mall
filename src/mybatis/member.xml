@@ -48,5 +48,3 @@
 	SELECT count(id) FROM js_member WHERE id=#{id};
 	</select>
 </mapper>
- 
- 

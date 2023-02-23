@@ -18,7 +18,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 // 요청 매핑 :	mapping.put(new RequestKeyValue("/community/update","POST"), new UpdateController() );  
-public class UpdateController implements Controller {
+public class ProductAddUpdateController implements Controller {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,6 +42,7 @@ public class UpdateController implements Controller {
 			if(f.exists()) {
 				f.delete();
 			}
+		}
 		
 		//DB에서 삭제  후 새로 넣어주기
 		fDao.deleteFiles(productNum);
@@ -55,9 +56,8 @@ public class UpdateController implements Controller {
 		
 		pDao.productAddUpdate(vo);
 		
-		response.sendRedirect("list111111111");
+		response.sendRedirect("productList");
 		
-		}
 	}
 
 }

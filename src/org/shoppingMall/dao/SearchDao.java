@@ -3,6 +3,7 @@ package org.shoppingMall.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.shoppingMall.vo.ProductVO;
 import org.shoppingMall.vo.SearchVo;
 
 import mybatis.SqlSessionBean;
@@ -22,38 +23,26 @@ public class SearchDao {
 		return list;
 	}
 	
-	public List<SearchVo> searchCategory() {
+
+	public  List<SearchVo> searchpricehigh(String searchname) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<SearchVo> list = mapperSession.selectList("search.searchCategory");
+		List<SearchVo> list = mapperSession.selectList("search.pricehigh",searchname);
 		mapperSession.close();
 		return list;
 	}
 	
-	public List<SearchVo> searchPrice() {
+	public  List<SearchVo> searchpricelow(String searchname) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<SearchVo> list = mapperSession.selectList("search.searchPrice");
+		List<SearchVo> list = mapperSession.selectList("search.pricelow",searchname);
 		mapperSession.close();
 		return list;
 	}
 	
-	public List<SearchVo> searchName() {
+	public List<ProductVO> searchtop2(String searchname) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<SearchVo> list = mapperSession.selectList("search.searchName");
+		List<ProductVO> list = mapperSession.selectList("product.selectproduct",searchname);
 		mapperSession.close();
-		return list;
+		return list;	
 	}
-	
-	public List<SearchVo> searchLowPrice() {
-		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<SearchVo> list = mapperSession.selectList("search.searchLowPrice");
-		mapperSession.close();
-		return list;
-	}
-	
-	public List<SearchVo> searchHighPrice() {
-		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<SearchVo> list = mapperSession.selectList("search.searchHighPrice");
-		mapperSession.close();
-		return list;
-	}
+
 }

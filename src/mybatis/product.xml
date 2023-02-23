@@ -68,7 +68,7 @@
 		tp.PRODUCTNUM = tf.PRODUCTNUM
 		WHERE tp.PRODUCTNUM = #{productNum}
 	</select>
-<!-- '${value}'#{productCategories} -->
+	<!-- '${value}' #{productCategories} -->
 	<select id="pagelist"
 		resultType="org.shoppingMall.vo.ProductFileList"
 		parameterType="java.util.Map">
@@ -84,9 +84,95 @@
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	<select id="count" resultType="int">
-		SELECT count(*)FROM TBL_PRODUCT tp where productCategories = '${value}'
+		SELECT count(*)FROM TBL_PRODUCT tp
+		where productCategories = '${value}'
 	</select>
 
+
+	<!-- 동해 -->
+	<select id="selectrecommend" resultType="org.shoppingMall.vo.RecommendVo">
+		SELECT * FROM recommend
+		order by PRODUCTNAME
+	 </select>
+
+	<!-- 동해 -->
+	<delete parameterType="String" id="deleterecommend">
+		DELETE FROM recommend
+		WHERE PRODUCTNAME = #{PRODUCTNAME}
+	</delete>
+
+	<!-- 동해 -->
+	<insert parameterType="org.shoppingMall.vo.RecommendVo" id="insertrecommend">
+		INSERT INTO RECOMMEND (FILENAME, PRODUCTPRICE, PRODUCTNAME)VALUES(#{FILENAME},#{PRODUCTPRICE},#{PRODUCTNAME})
+	</insert>
+
+
+	<!-- 동해 -->
+	<select parameterType="String" id="selectproduct" resultType="org.shoppingMall.vo.ProductVO"> 
+		SELECT * FROM TBL_PRODUCT tp 
+		JOIN TBL_FILE tf 
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM 
+		WHERE productname like '%' || #{productcategories} || '%' or productcategories = #{productcategories} 
+		ORDER BY productname ASC
+	</select>
+
+	<select parameterType="String" id="selectlowprice" resultType="org.shoppingMall.vo.ProductVO">
+		SELECT * FROM TBL_PRODUCT tp
+		JOIN TBL_FILE tf 
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM 
+		WHERE productname like '%' || #{productcategories} || '%' or productcategories = #{productcategories} 
+		ORDER BY productprice ASC
+	</select>
+
+	<select parameterType="String" id="selecthighprice" resultType="org.shoppingMall.vo.ProductVO">
+		SELECT * FROM TBL_PRODUCT tp
+		JOIN TBL_FILE tf 
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM 
+		WHERE productname like '%' || #{productcategories} || '%' or productcategories = #{productcategories} 
+		ORDER BY productprice DESC
+	</select>
+	
+	<select id="searchCount" resultType="int">
+	SELECT count(*) FROM TBL_PRODUCT tp 
+		JOIN TBL_FILE tf 
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM
+	</select>
+	
+	<select id="searchpagelistname" resultType="org.shoppingMall.vo.ProductFileList" parameterType="java.util.Map">
+	SELECT * FROM 
+	(SELECT rownum r ,f.* FROM
+	(SELECT * FROM 
+	TBL_PRODUCT tp
+	JOIN TBL_FILE tf
+	ON tp.PRODUCTNUM = tf.PRODUCTNUM
+	WHERE productname LIKE '%' || #{productcategories} || '%' or productcategories = #{productcategories}
+	ORDER BY PRODUCTNAME DESC) f)
+	WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="searchpagelisthighprice" resultType="org.shoppingMall.vo.ProductFileList" parameterType="java.util.Map">
+	SELECT * FROM 
+	(SELECT rownum r ,f.* FROM
+	(SELECT * FROM 
+	TBL_PRODUCT tp
+	JOIN TBL_FILE tf
+	ON tp.PRODUCTNUM = tf.PRODUCTNUM
+	WHERE productname LIKE '%' || #{productcategories} || '%' or productcategories = #{productcategories}
+	ORDER BY productprice DESC) f)
+	WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="searchpagelistlowprice" resultType="org.shoppingMall.vo.ProductFileList" parameterType="java.util.Map">
+	SELECT * FROM 
+	(SELECT rownum r ,f.* FROM
+	(SELECT * FROM 
+	TBL_PRODUCT tp
+	JOIN TBL_FILE tf
+	ON tp.PRODUCTNUM = tf.PRODUCTNUM
+	WHERE productname LIKE '%' || #{productcategories} || '%' or productcategories = #{productcategories}
+	ORDER BY productprice ASC) f)
+	WHERE r BETWEEN #{start} AND #{end}
+	</select>
 </mapper>
 
  
