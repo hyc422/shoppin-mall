@@ -178,7 +178,7 @@
 
 
 <!-- 검색 -->
-    <form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath() %>/search" method="GET">
+    <form name="formname" id="formid" class="form-inline my-2 my-lg-0" action="javascript:search()" method="GET" >
       <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search" name = "name" id="searchid">
      <button type="button" onclick="search()" class="btn btn-outline-light">검색</button>
     </form>
@@ -186,17 +186,17 @@
   
   
   <script type="text/javascript">
-  const frms = document.forms[0]
-  const frm = document.forms[0].name.value
   function search() {
-	 	 if (frm == "") {
-		alert('검색어를 입력하세요.')
-		alert(frm + '왜안나오는데')
-	 	 document.getElementById("searchid").href="${request.getContextPath}";
-	} else {
-		frms.submit()
-	}
+	  const frm = document.forms[0];
+	  const value = frm.name.value;
+	  if(value == ""){
+		  alert('검색어를 입력해주세요.')
+	  } else if(value !== "") {
+		  frm.submit();
+ 		  location.href="/shoppingMall/search?name="+value;
+	  }
   }
+  
   </script>
 </nav>
 

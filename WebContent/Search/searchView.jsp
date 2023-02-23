@@ -51,24 +51,13 @@ div>a:hover {
 		<br>
 		
 		<div style="border: 1px solid silver; width: 80%; margin: auto; border-radius: 5px;"><p style="display:inline; margin-left: 40px; font-size: 15px; margin-top:14px; font-size: 14px;">
-		<strong>${name }</strong> 로 <strong>${count }</strong> 개 검색되었습니다.</p>
+		<strong>${name }</strong>로 <strong>${count }</strong>건 검색되었습니다.</p>
 			<div style="float: right;">
 					<a id="productname" href="<%=request.getContextPath() %>/search?name=${name}">상품명</a>
 					<a id="productpricehigh" href="<%=request.getContextPath() %>/high?name=${name}">높은가격순</a>
 					<a id="productpricelow" href="<%=request.getContextPath() %>/low?name=${name}">낮은가격순</a>
 			</div>
 		</div>
-		
-<!-- 왜 바로 돌아올까요? -->
-<script type="text/javascript">
-	$("#productname").click(function(){
-		 document.getElementById("productname").style.fontWeight = "900";
-	})
-	
-	$("#productpricehigh").bind('click',function(){
-		document.getElementById("productpricehigh").style.fontWeight = "900";
-	})
-</script>
 
 		<br>
 		<!-- grid -->
@@ -78,7 +67,7 @@ div>a:hover {
 				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
 					<img alt="" src="<%=request.getContextPath() %>/images/Product/${vo.fileName }"
-						style="width: 80%; height: 240px;margin-left: 45px;">
+						style="width: 80%; height: 240px;margin-left: 20px;">
 				</div>
 				<hr style="margin: 0px;">
 				<h6 style="text-align: center;">
