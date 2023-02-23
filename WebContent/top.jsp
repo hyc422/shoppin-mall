@@ -127,15 +127,15 @@
     <ul class="navbar-nav mr-auto">
     <c:if test="${sessionScope.user == null }">
       <li class="nav-item active">
-        <a class="nav-link" href="/shoppingMall/login">로그인<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/login">로그인<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/shoppingMall/member/register">회원가입<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/member/register">회원가입<span class="sr-only">(current)</span></a>
       </li>
       </c:if>
       <c:if test="${sessionScope.user != null }">
       <li class="nav-link"><span id="user">${user.name }님</span></li>
-      <li><a class="nav-link" href="logout">로그아웃</a></li>
+      <li><a class="nav-link" href="${pageContext.request.contextPath}logout">로그아웃</a></li>
       </c:if>
       <li class="nav-item active">
         <a class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>

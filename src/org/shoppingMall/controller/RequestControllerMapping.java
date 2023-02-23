@@ -14,6 +14,8 @@ import org.shoppingMall.index.controller.NewRecommendProductController;
 import org.shoppingMall.login.controller.LoginActionController;
 import org.shoppingMall.login.controller.LoginViewController;
 import org.shoppingMall.login.controller.LogoutController;
+import org.shoppingMall.member.controller.Find_idController;
+import org.shoppingMall.member.controller.IDViewController;
 import org.shoppingMall.product.controller.ProductListViewContoller;
 import org.shoppingMall.product.controller.ProductViewContoller;
 import org.shoppingMall.register.controller.RegisterActionController;
@@ -35,14 +37,17 @@ public class RequestControllerMapping
 		 mapping.put(new RequestKeyValue("/search","GET"), new SearchController());
 
 		// Register
-		mapping.put(new RequestKeyValue("/member/register.hrd","GET"), new RegisterController());
-		mapping.put(new RequestKeyValue("/member/register.hrd","POST"), new RegisterActionController());
+		mapping.put(new RequestKeyValue("/member/register","GET"), new RegisterController());
+		mapping.put(new RequestKeyValue("/member/register","POST"), new RegisterActionController());
 		
 		// Login
-		mapping.put(new RequestKeyValue("/login.hrd","GET"), new LoginViewController());
-		mapping.put(new RequestKeyValue("/login.hrd","POST"), new LoginActionController());
-		mapping.put(new RequestKeyValue("/logout.hrd","GET"), new LogoutController());
+		mapping.put(new RequestKeyValue("/login","GET"), new LoginViewController());
+		mapping.put(new RequestKeyValue("/login","POST"), new LoginActionController());
+		mapping.put(new RequestKeyValue("/logout","GET"), new LogoutController());
 		
+		mapping.put(new RequestKeyValue("/member/findmem","GET"), new IDViewController());
+		mapping.put(new RequestKeyValue("/member/findmem","POST"), new Find_idController());
+
 		// Product
 		mapping.put(new RequestKeyValue("/Product/product","GET"), new ProductViewContoller());
 		mapping.put(new RequestKeyValue("/Product/product", "POST"), new ProductActionController());
