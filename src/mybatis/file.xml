@@ -2,20 +2,30 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="file">
- 	<insert parameterType="org.shoppingMall.vo.FileVO" id="insertFile">
- 		INSERT INTO TBL_FILE
- 		(FILENAME, PRODUCTNUM, FILENAMEORIGINAL)
- 		VALUES(#{fileName}, #{productNum}, #{fileNameOriginal}) 
- 	</insert>
+<mapper namespace="file">
+	<insert parameterType="org.shoppingMall.vo.FileVO"
+		id="insertFile">
+		INSERT INTO TBL_FILE
+		(FILENAME, PRODUCTNUM, FILENAMEORIGINAL)
+		VALUES(#{fileName}, #{productNum}, #{fileNameOriginal})
+	</insert>
 
-	<select parameterType="_int" id="getFiles" resultType="org.shoppingMall.vo.FileVO">
+	<select parameterType="_int" id="getFiles"
+		resultType="org.shoppingMall.vo.FileVO">
 		SELECT FILENAME, PRODUCTNUM, FILENAMEORIGINAL FROM TBL_FILE
-		WHERE BOARDNUM = #{productNum} 
+		WHERE PRODUCTNUM = #{productNum}
 	</select>
+	
+	<select parameterType="_int" id="getFiles1"
+		resultType="string">
+		SELECT FILENAME FROM TBL_FILE
+		WHERE PRODUCTNUM = #{productNum}
+	</select>
+	
 
 	<delete parameterType="_int" id="deleteFiles">
-		DELETE FROM TBL_FILE WHERE PRODUCTNUM = #{productNum} 
+		DELETE FROM TBL_FILE WHERE
+		PRODUCTNUM = #{productNum}
 	</delete>
  </mapper>
  

@@ -3,42 +3,48 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="member">
-	<select id ="selectAll">
-		SELECT *
-		FROM
-			js_member
-	</select>
-	
 	<select id="login" resultType="org.shoppingMall.vo.Member" parameterType="java.util.Map">
-	SELECT * FROM
-		js_member
-		WHERE
-		id=#{id} and password=#{password}
+		SELECT * FROM js_member
+		WHERE id=#{id} and password=#{password}
 	</select>
-	
+  
 	<insert id="register" parameterType="org.shoppingMall.vo.Member" useGeneratedKeys="false">
 	INSERT INTO js_member 
 	VALUES 
 	(member_idx_seq.nextval,#{id},#{password},#{name},#{nickname},#{email},#{phone},#{c_code},#{address},#{birth})
-	<selectKey keyProperty="idx" resultType="long" order="AFTER">
+	
+  <selectKey keyProperty="idx" resultType="long" order="AFTER">
 			SELECT member_idx_seq.currval 
 			FROM dual
-		</selectKey>	
+	</selectKey>
+  
 	</insert>
 	<select id="selectidx" resultType="org.shoppingMall.vo.Member" parameterType="long">
   	SELECT * FROM JS_MEMBER WHERE idx=#{idx}
   	</select>
+    
   	<update id="update" parameterType="org.shoppingMall.vo.Member">
   		UPDATE js_member SET password = #{password}, NAME = #{name}, NICKNAME = #{nickname}, EMAIL =#{email}
 	, PHONE = #{phone}, C_CODE=#{c_code}
 	WHERE idx = #{idx}
   	</update>
+    
+
   	<select id="selectpass" resultType="org.shoppingMall.vo.Member" parameterType="String">
   	SELECT * FROM JS_MEMBER WHERE password=#{password}
   	</select>
+    
   	<delete id="delete" parameterType="long">
   	DELETE FROM js_member WHERE idx = #{idx}
   	</delete>
+  	
+  	<select id="findid" parameterType="java.util.Map" resultType="org.shoppingMall.vo.Member">
+  	SELECT * FROM js_member where name=#{name} and email=#{email}
+  	</select>
+  	<select id="findpwd" parameterType="java.util.Map" resultType="org.shoppingMall.vo.Member">
+  	SELECT * FROM js_member where id=#{id} and email=#{email}
+  	</select>
+	<select id="checkID" parameterType="String" resultType="int">
+	SELECT count(id) FROM js_member WHERE id=#{id};
+	</select>
 </mapper>
- 
- 

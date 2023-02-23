@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+	<insert id="insertCart" parameterType="org.shoppingMall.vo.CartVo">
+		INSERT INTO TBL_CART
+		VALUES(SEQ_CART.nextval,#{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, #{fileName}, #{amount})
+	</insert>
+	<select id="selectid" parameterType="String"
+		resultType="org.shoppingMall.vo.CartVo">
+		SELECT *FROM TBL_CART tc WHERE id = '${value}'
+	</select>
+	<update id="cartUpdate"
+		parameterType="org.shoppingMall.vo.CartVo">
+		UPDATE TBL_CART
+		SET 
+		AMOUNT=#{amount}
+		WHERE CARTNUM=#{cartNum}
+	</update>
+	<select id="getSeq" resultType="_int">
+		SELECT CART.CURRVAL FROM
+		DUAL
+	</select>
+	<delete id="delete" parameterType="int">
+	DELETE FROM TBL_CART
+	WHERE CARTNUM=#{cartNum}
+	</delete>
+	<delete id="deleteAll" parameterType="string">
+	DELETE FROM TBL_CART
+	WHERE id='${value}'
+	</delete>
+</mapper>
+
+ 
+
+ 
+ 
+ 
+ 
