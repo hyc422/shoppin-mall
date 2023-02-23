@@ -21,22 +21,22 @@
 		<div style="width: 700px; margin: auto; margin-bottom: 100px;" id="big1">
 			<p>
 				<label>
-					우편번호 <input type="text" name="zipcode" class="postcodify_postcode5" value="${vo.zipcode }" readonly="readonly" />
+					우편번호 <input type="text" name="zipcode" class="postcodify_postcode5" value="${vo.zipcode }" disabled="disabled" style="border-style: none; background-color: white;"/>
 				</label>
 			</p>
 			<p>
 				<label>
-					도로명주소 <input type="text" name="address" class="postcodify_address" value="${vo.address }" readonly="readonly" style="margin-left: 27px; width: 550px;"/><br />
+					도로명주소 <input type="text" name="address" class="postcodify_address" value="${vo.address }" disabled="disabled" style="border-style: none; background-color: white; margin-left: 27px; width: 550px;"/><br />
 				</label>
 			</p>
 			<p>
 				<label>
-					상세주소 <input type="text" name="addressDetail" class="postcodify_details" value="${vo.addressDetail }" readonly="readonly" style="width: 550px;"/><br />
+					상세주소 <input type="text" name="addressDetail" class="postcodify_details" value="${vo.addressDetail }" disabled="disabled" style="width: 550px; border-style: none; background-color: white;"/><br />
 				</label>
 			</p>
 			<p>
 				<label>
-					참고항목 <input type="text" name="addressEtc" class="postcodify_extra_info" value="${vo.addressEtc }" readonly="readonly" style="width: 550px;"/><br />
+					참고항목 <input type="text" name="addressEtc" class="postcodify_extra_info" value="${vo.addressEtc }" disabled="disabled" style="width: 550px; border-style: none; background-color: white;"/><br />
 				</label>
 			</p>
 		</div>
@@ -66,7 +66,7 @@
 				개수 <input type="text" name="amount" id="amount" value="${vo.amount}" disabled="disabled">
 			</div>
 			<div>
-				배송비 <span id="deliveryFee" name="deliveryFee" style="float: right;"></span>
+				배송비 <span id="deliveryFee" name="deliveryFee" style="float: right;">3000</span>
 			</div>
 			<div style="font-size: 40px; margin-top: 30px;">
 				총 결제 금액<input type="text" name="totalPrice" id="totalPrice" value="${totalPrice}" disabled="disabled" style="font-size: 40px;">

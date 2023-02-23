@@ -52,6 +52,11 @@ public class FileDAO {
 		return mapper.selectList("file.getFiles", productNum); 
 	}
 	
+	public String getFiles1(int productNum){
+		SqlSession mapper = SqlSessionBean.getSession();
+		return mapper.selectOne("file.getFiles1", productNum); 
+	}
+	
 	public void deleteFiles(int productNum) {
 		SqlSession mapper = SqlSessionBean.getSession();
 		

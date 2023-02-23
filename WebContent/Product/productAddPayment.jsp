@@ -21,7 +21,7 @@
 		<div style="width: 700px; margin: auto; margin-bottom: 100px;" id="big1">
 			<p>
 				<label>
-					우편번호 <input type="text" name="zipcode" class="postcodify_postcode5" value="" />
+					우편번호 <input type="text" id="zipcode" name="zipcode" class="postcodify_postcode5" value="" />
 				</label>
 				<button type="button" id="postcodify_search_button">검색</button><br />
 			</p>
@@ -49,28 +49,29 @@
 		
 		<div id="big2" style="width: 700px; margin: auto; margin-bottom: 40px;">
 			<div>
+				<input type="hidden" name="fileName" id="fileName" value="${fileName}" readonly="readonly">
 				<img id="fileName" name="fileName" src="${pageContext.request.contextPath}/images/Product/${fileName}" width="300px" height="300px" style="display:inline;">
 			</div>
 			<div>
-				상품코드 <input type="text" name="productNum" id="productNum" value="${productNum}" disabled="disabled">
+				상품코드 <input type="text" name="productNum" id="productNum" value="${productNum}" readonly="readonly">
 			</div>
 			<div>
-				상품명 <input type="text" name="productName" id="productName" value="${productName}" disabled="disabled">
+				상품명 <input type="text" name="productName" id="productName" value="${productName}" readonly="readonly">
 			</div>
 			<div>
-				상품가격 <input type="text" name="productPrice" id="productPrice" value="${productPrice}" disabled="disabled">
+				상품가격 <input type="text" name="productPrice" id="productPrice" value="${productPrice}" readonly="readonly">
 			</div>
 			<div>
-				카테고리 <input type="text" name="productCategories" id="productCategories" value="${productCategories}" disabled="disabled">
+				카테고리 <input type="text" name="productCategories" id="productCategories" value="${productCategories}" readonly="readonly">
 			</div>
 			<div>
-				개수 <input type="text" name="amount" id="amount" value="${amount}" disabled="disabled">
+				개수 <input type="text" name="amount" id="amount" value="${amount}" readonly="readonly">
 			</div>
 			<div>
-				배송비 <span id="deliveryFee" name="deliveryFee" style="float: right;"></span>
+				배송비 <span id="deliveryFee" name="deliveryFee" style="float: right;">3000</span>
 			</div>
 			<div style="font-size: 40px; margin-top: 30px;">
-				총 결제 금액<input type="text" name="totalPrice" id="totalPrice" value="${productPrice * amount}" disabled="disabled" style="font-size: 40px;">
+				총 결제 금액<input type="text" name="totalPrice" id="totalPrice" value="${productPrice * amount + 3000}" readonly="readonly" style="font-size: 40px;">
 			</div>
 		</div>
 		<hr>
@@ -89,6 +90,12 @@
 
 <script>
 	function ok(){
+		if(!$("input#zipcode").val()){
+			alert("배송지를 작성해주세요.");
+			$("input#zipcode").focus();
+			return;
+		}
+		
         if (confirm("구매 하시겠습니까?")) {
             alert("구매가 완료되었습니다.");
 			document.productForm.submit();
@@ -98,13 +105,6 @@
         }
 	}
 	
-	let form = document.getElementById('productForm');
-	
-	if(form.totalPrice.value >= 100000000){
-		document.getElementById('deliveryFee').innerHTML = '무료'
-	} else {
-		document.getElementById('deliveryFee').innerHTML = '3,000'
-	}
 	
 	</script>
 </html>

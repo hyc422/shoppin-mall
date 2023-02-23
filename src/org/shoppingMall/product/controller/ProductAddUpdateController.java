@@ -42,6 +42,7 @@ public class ProductAddUpdateController implements Controller {
 			if(f.exists()) {
 				f.delete();
 			}
+		}
 		
 		//DB에서 삭제  후 새로 넣어주기
 		fDao.deleteFiles(productNum);
@@ -55,9 +56,8 @@ public class ProductAddUpdateController implements Controller {
 		
 		pDao.productAddUpdate(vo);
 		
-		response.sendRedirect("list111111111");
+		response.sendRedirect("productList");
 		
-		}
 	}
 
 }

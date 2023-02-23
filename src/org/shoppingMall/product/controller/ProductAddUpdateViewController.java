@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.shoppingMall.controller.Controller;
+import org.shoppingMall.dao.FileDAO;
 import org.shoppingMall.dao.ProductDAO;
 import org.shoppingMall.vo.ProductVO;
 
@@ -21,11 +22,13 @@ public class ProductAddUpdateViewController implements Controller {
 		response.setCharacterEncoding("UTF-8");
 		
 		int productNum = Integer.parseInt(request.getParameter("productNum"));			
-			
-		ProductDAO dao = ProductDAO.getInstance();
-		ProductVO vo = dao.productSelectOne(productNum);
+		
+		ProductDAO pDao = ProductDAO.getInstance();
+		FileDAO fDao = FileDAO.getInstance();
+		ProductVO vo = pDao.productSelectOne(productNum);
 		
 		request.setAttribute("vo", vo);
+		request.setAttribute("fileName", fDao.getFiles1(productNum));
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productAddUpdate.jsp");
 		dispatcher.forward(request, response);

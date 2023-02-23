@@ -87,9 +87,9 @@
 						<button type="button" id="no_member_cart_put" class="order"
 							onclick="addToCart()">장바구니</button>
 						<button type="button" id="no_member_payBtn" class="order"
-							onclick="">구매하기</button>
+							onclick="productAddPayment()">구매하기</button>
 						<button type="button" id="no_member_payBtn" class="order"
-							onclick="">수 정</button>
+							onclick="productUpdate()">수 정</button>
 					</div>
 
 					<script type="text/javascript">
@@ -103,6 +103,14 @@
 								document.forms[1].submit();
 								/* location.href = 'product?productNum=${Pvo.productNum }' */
 							}
+						}
+						
+						function productAddPayment() {
+							location.href = './productAddPayment'
+						}
+
+						function productUpdate() {
+							location.href = './productAddUpdate'
 						}
 					</script>
 
