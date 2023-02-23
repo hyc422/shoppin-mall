@@ -68,7 +68,7 @@ CREATE TABLE REVIEWCOMMENTS
 
 CREATE SEQUENCE REVIEWCOMMENTS_IDX_SEQ;
 
--- REVIEW COMMENTS TABLE
+-- QNA COMMENTS TABLE
 CREATE TABLE QNACOMMENTS
 (
 	IDX NUMBER(10) NOT NULL,				-- 기본키
@@ -108,7 +108,26 @@ VALUES (REVIEW_idx_seq.nextval, 16,'양반안동소주 23년산 로얄안동소�
 INSERT INTO REVIEW (idx,productnum,productname,filename, nickname,title,content,point)
 VALUES (REVIEW_idx_seq.nextval, 21,'엄청주 360ml','엄청주 360ml10.png','HYC','엄청주 후기','구아악',1);
 
+-- REVIEW COMMENTS TABLE 예시
+INSERT INTO REVIEWCOMMENTS (idx, mref, nickName, content)
+VALUES (REVIEWCOMMENTS_idx_seq.nextval,4,'LDH','연꽃향이 무슨향이죠?');
+INSERT INTO REVIEWCOMMENTS (idx, mref, nickName, content)
+VALUES (REVIEWCOMMENTS_idx_seq.nextval,1,'NYR','정말 맛있어요');
+INSERT INTO REVIEWCOMMENTS (idx, mref, nickName, content)
+VALUES (REVIEWCOMMENTS_idx_seq.nextval,6,'KSH','무슨 뜻?');
 
 -- QNA TABLE 예시
-INSERT INTO QNA (idx,productnum,productname,filename, nickname,title,content,point)
-VALUES (QNA_idx_seq.nextval, 21,'엄청주 360ml','엄청주 360ml10.png','HYC','엄청주 후기','구아악',1);
+INSERT INTO QNA (idx,productnum,productname,filename, nickname,title,password,content)
+VALUES (QNA_idx_seq.nextval,21,'엄청주 360ml','엄청주 360ml10.png','HYC','엄청주 문의',1111,'구아악');
+INSERT INTO QNA (idx,productnum,productname,filename, nickname,title,password,content)
+VALUES (QNA_idx_seq.nextval,21,'엄청주 360ml','엄청주 360ml10.png','CGH','궁중술 문의', null,'배송 얼마나 걸리나요?');
+INSERT INTO QNA (idx,productnum,productname,filename, nickname,title,password,content)
+VALUES (QNA_idx_seq.nextval,null,null,null,'LDH','애플리즈', 1234,'대량 구매시 할인 가능?');
+
+-- QNA COMMENTS TABLE 예시
+INSERT INTO QNACOMMENTS (idx, mref, nickName, content)
+VALUES (QNACOMMENTS_idx_seq.nextval,1,'admin','문의 내용을 제대로 입력해주세요');
+INSERT INTO QNACOMMENTS (idx, mref, nickName, content)
+VALUES (QNACOMMENTS_idx_seq.nextval,2,'admin','오래 걸려요');
+INSERT INTO QNACOMMENTS (idx, mref, nickName, content)
+VALUES (QNACOMMENTS_idx_seq.nextval,3,'admin','불가능');
