@@ -36,5 +36,5 @@ public class PaylistViewController implements Controller {
 			//List<PaymentVO> list = dao.selectId(request.getParameter("id"));
 		
 	}
-
+//
 }

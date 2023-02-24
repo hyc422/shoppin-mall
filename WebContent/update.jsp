@@ -16,6 +16,7 @@ body {
     font-size:0.9em;
     
 }
+
 main{
 height: 700px;}
 .title{

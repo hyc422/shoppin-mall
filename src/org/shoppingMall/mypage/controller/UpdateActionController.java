@@ -29,7 +29,7 @@ public class UpdateActionController implements Controller {
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
-			response.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");//
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			

@@ -36,7 +36,7 @@ public class ProductDAO {
 		mapper.close();
 		return result;
 		
-	}
+	}//
 
 	public int nextSeq() {
 		SqlSession mapper = SqlSessionBean.getSession();

@@ -35,6 +35,6 @@ public class CustomerController implements Controller {
 		}
 		out.print(url);
 		out.print("</script>");
-	}
+	}//
 
 }
