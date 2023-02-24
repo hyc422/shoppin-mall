@@ -44,5 +44,4 @@ public class SearchDao {
 		mapperSession.close();
 		return list;	
 	}
-
 }

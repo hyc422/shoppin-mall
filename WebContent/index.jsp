@@ -79,8 +79,8 @@
 		List<RecommendVo> vo = dao.selectrecommend();
 %>
 	
-
 	<main>
+	<!-- 상단배너 -->
 		<div class="w3-content w3-display-container"
 			style="max-width: 100%; margin: 0px;">
 			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너1.jpg" style="width: 100%">
@@ -127,6 +127,7 @@
 					<a href="<%=request.getContextPath() %>/search?name="			
 						style="color: black; text-decoration: none; font-size: 13px;">More</a>
 				</div>
+				<a href= "<%=request.getContextPath() %>/bestsearch">인기검색어 바꾸기(위치바꿀예정/테스트중)</a>
 				<h3 style="text-align: center;">추천상품</h3>
 		<br>
 		
@@ -139,7 +140,7 @@
 				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
 					<img alt="" src="images/Product/<%=vo.get(i).getFILENAME() %>"
-						style="width: 80%; height: 240px; margin-left: 40px;">
+						style="width: 80%; height: 240px; margin-left: 25px;">
 				</div>
 				<hr style="margin: 0px;">
 				
@@ -214,7 +215,9 @@
 			<img alt="" src="images/BannerAndIcon/리뷰배너.jpg" style="width: 750px; height: 230px; border: 1px solid silver; display: block; float: right;">
 		</div>
 		<div style="display: inline;">
+		<a href = "${pageContext.request.contextPath}/member/register">
 			<img alt="" src="images/BannerAndIcon/회원가입.jpg" style="width: 750px; height: 230px; border: 1px solid silver; display: block; float: left;">
+		</a>
 		</div>
 	</div>
 
