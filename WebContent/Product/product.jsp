@@ -59,16 +59,16 @@
 					<!--장바구니 수량 담기  -->
 					<div id="cart">
 						<form action="" name="form" method="post" id="storeForm">
-							<input type="hidden" name="id" value="${user.id }"> 
-							<input type="hidden" name="fileName" value="${Pvo.fileName }">
-							<input type="hidden" name="productName" value="${Pvo.productName }"> 
-							<input type="hidden" name="productCategories" value="${Pvo.productCategories }">
-							<input type="hidden" name="productNum" value="${Pvo.productNum }">
+							<input type="hidden" name="id" value="dmdka"> 
+							<input type="hidden" name="fileName" value="ex01.png">
+							<input type="hidden" name="productName" value="dmdka"> 
+							<input type="hidden" name="productCategories" value="dmdka">
+							<input type="hidden" name="productNum" value="1">
 							<div class="quantity">
 								<span class="btn_position">주문 수량</span> &nbsp;&nbsp;&nbsp; 
 								<input class="count" type="button" value="-" onclick="del();">
 								<input class="count" type="hidden" name="productPrice"
-									value="${Pvo.productPrice }"> 
+									value="11111"> 
 								<input class="count" type="text" name="amount" value="1" size="3"
 									onchange="change();"> 
 								<input class="count" type="button" value="+" onclick="add();">
@@ -85,16 +85,15 @@
 					</div>
 					<div class="cart_put">
 						<button type="button" id="no_member_cart_put" class="order"
-							onclick="Cart()">장바구니</button>
+							onclick="addToCart()">장바구니</button>
 						<button type="button" id="no_member_payBtn" class="order"
 							onclick="productAddPayment()">구매하기</button>
 						<button type="button" id="no_member_payBtn" class="order"
 							onclick="productUpdate()">수 정</button>
-
 					</div>
 
 					<script type="text/javascript">
-						function Cart() {
+						function addToCart() {
 							let yn
 							if ('${user.id}' == '') {
 								yn = confirm('장바구니에 추가하기 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?')
@@ -102,17 +101,20 @@
 									location.href = '../login?back=w'
 							} else {
 								document.forms[1].submit();
-								/* yn = confirm('장바구니로 이동 하시겠습니까?')
-								location.href = '${pageContext.request.contextPath }/cart?id=${user.id}' */
+								/* location.href = 'product?productNum=${Pvo.productNum }' */
 							}
 						}
 						
 						function productAddPayment() {
-							location.href = './productAddPayment'
+							document.forms[1].action = 'productAddPayment'
+							document.forms[1].method = 'GET'
+							document.forms[1].submit();
 						}
 
 						function productUpdate() {
-							location.href = './productAddUpdate'
+							document.forms[1].action = 'productAddUpdate'
+							document.forms[1].method = 'GET'
+							document.forms[1].submit();
 						}
 					</script>
 
