@@ -6,33 +6,35 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.shoppingMall.controller.Controller;
 import org.shoppingMall.dao.MemberDao;
-import org.shoppingMall.vo.Member;
-
 
 public class CustomerController implements Controller {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MemberDao dao = MemberDao.getInstance();
-		long idx = Long.parseLong(request.getParameter("pw3"));
 		
-		String password = request.getParameter("pw2");
-		Member vo = dao.selectidx(24);
-		System.out.println(password);
-		System.out.println(vo);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+
+		System.out.println(idx);
+
+		MemberDao dao = MemberDao.getInstance();
+
+		String url = "location.href='./'";
+
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
-		
-			if(password.equals(vo.getPassword())) {
-				dao.delete(24);
-				response.sendRedirect(request.getContextPath());
-			}
-		
-	
-	}
+		PrintWriter out = response.getWriter();
+
+		out.print("<script>");
+		if (dao.delete(idx) == 1) {
+			out.print("alert('회원 탈퇴 성공');");
+		} else {
+			out.print("alert('회원 탈퇴 실패');");
+		}
+		out.print(url);
+		out.print("</script>");
+	}//
 
 }

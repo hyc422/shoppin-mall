@@ -8,6 +8,9 @@ import org.shoppingMall.product.controller.ProductActionController;
 import org.shoppingMall.product.controller.ProductAddController;
 import org.shoppingMall.product.controller.ProductAddDeleteController;
 import org.shoppingMall.product.controller.ProductAddViewController;
+import org.shoppingMall.Recommend.controller.DeleteRecommendProductController;
+import org.shoppingMall.Recommend.controller.IndexRecommendProductController;
+import org.shoppingMall.Recommend.controller.NewRecommendProductController;
 import org.shoppingMall.cart.controller.CartActoinController;
 import org.shoppingMall.cart.controller.CartViewController;
 import org.shoppingMall.cart.controller.CartDeleteAllController;
@@ -43,8 +46,10 @@ import org.shoppingMall.product.controller.ProductListViewContoller;
 import org.shoppingMall.product.controller.ProductViewContoller;
 import org.shoppingMall.register.controller.RegisterActionController;
 import org.shoppingMall.register.controller.RegisterController;
+import org.shoppingMall.search.controller.BestSearchController;
 import org.shoppingMall.search.controller.HighPriceSearchController;
 import org.shoppingMall.search.controller.LowPriceSearchController;
+import org.shoppingMall.search.controller.NewBestSearchController;
 import org.shoppingMall.search.controller.SearchController;
 
 public class RequestControllerMapping 
@@ -62,6 +67,8 @@ public class RequestControllerMapping
 		 mapping.put(new RequestKeyValue("/search","GET"), new SearchController());
 		 mapping.put(new RequestKeyValue("/high","GET"), new HighPriceSearchController());
 		 mapping.put(new RequestKeyValue("/low","GET"), new LowPriceSearchController());
+		 mapping.put(new RequestKeyValue("/bestsearch","GET"), new BestSearchController());
+		 mapping.put(new RequestKeyValue("/bestsearch","POST"), new NewBestSearchController());
 
 		// Register
 		mapping.put(new RequestKeyValue("/member/register","GET"), new RegisterController());

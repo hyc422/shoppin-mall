@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.shoppingMall.vo.PaymentVO;
 import org.shoppingMall.vo.ProductFileList;
 import org.shoppingMall.vo.ProductVO;
+import org.shoppingMall.vo.QnaVo;
 import org.shoppingMall.vo.RecommendVo;
+import org.shoppingMall.vo.ReviewVo;
 
 import mybatis.SqlSessionBean;
 
@@ -34,7 +36,7 @@ public class ProductDAO {
 		mapper.close();
 		return result;
 		
-	}
+	}//
 
 	public int nextSeq() {
 		SqlSession mapper = SqlSessionBean.getSession();
@@ -107,7 +109,38 @@ public class ProductDAO {
 		mapper.close();
 		return result;
 	}
-	
+	//CGH
+	public List<ReviewVo> RevPagelist(Map<String,Integer> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<ReviewVo> list = mapper.selectList("product.revPagelist",map);
+		mapper.close();
+		return list;
+	}
+	//CGH
+	public List<QnaVo> QnaPagelist(Map<String,Integer> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<QnaVo> list = mapper.selectList("product.qnaPagelist",map);
+		mapper.close();
+		return list;
+	}
+	//CGH
+	public int RevCount(int vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.selectOne("product.RevCount",vo);
+		mapper.commit();
+		mapper.close();
+		return result;
+	}
+	//CGH
+	public int QnaCount(int vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.selectOne("product.QnaCount",vo);
+		mapper.commit();
+		mapper.close();
+		return result;
+	}
+		
+		
 	//동해
 	//추천상품 조회
 	public List<RecommendVo> selectrecommend() {
@@ -139,7 +172,7 @@ public class ProductDAO {
 	
 
 	//동해
-	//검색물품 조회
+	//TOP검색
 	public List<ProductFileList> searchtop(String searchname) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		List<ProductFileList> list = mapperSession.selectList("product.selectproduct",searchname);
@@ -148,35 +181,7 @@ public class ProductDAO {
 	}
 	
 	//동해
-	//높은가격순 조회
-	public List<ProductFileList> searchHighPrice(String searchname) {
-		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<ProductFileList> list = mapperSession.selectList("product.selecthighprice",searchname);
-		mapperSession.close();
-		return list;
-	}
-	
-	//동해
-	//낮은가격순 조회
-	public List<ProductFileList> searchLowPrice(String searchname) {
-		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<ProductFileList> list = mapperSession.selectList("product.selectlowprice",searchname);
-		mapperSession.close();
-		return list;
-	}
-	
-	
-	//동해
-	//검색 페이징
-	public int searchCount() {
-		SqlSession mapperSession = SqlSessionBean.getSession();
-		int result = mapperSession.selectOne("product.searchCount");
-		mapperSession.close();
-		return result;		
-	}
-	
-	//동해
-	//페이지 리스트
+	//상품명 조회
 	public List<ProductFileList> searchpagelist(Map<String, Object> map) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		List<ProductFileList> list = mapperSession.selectList("product.searchpagelistname",map);
@@ -184,6 +189,8 @@ public class ProductDAO {
 		return list;
 	}
 	
+	//동해
+	//높은가격순 조회
 	public List<ProductFileList> searchHighPricepagelist(Map<String, Object> map) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		List<ProductFileList> list = mapperSession.selectList("product.searchpagelisthighprice",map);
@@ -191,10 +198,19 @@ public class ProductDAO {
 		return list;
 	}
 	
+	//동해
+	//낮은가격순 조회
 	public List<ProductFileList> searchLowPricepagelist(Map<String, Object> map) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		List<ProductFileList> list = mapperSession.selectList("product.searchpagelistlowprice",map);
 		mapperSession.close();
+		return list;
+	}
+	//유리
+	public List<PaymentVO> selectId(String id){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<PaymentVO>list = mapper.selectList("product.selectId",id);
+		mapper.close();
 		return list;
 	}
 

@@ -15,6 +15,8 @@ public class RecommendDao {
 		return dao;
 	}
 	
+	//동해
+	//추천상품 조회
 	public List<RecommendVo> list() {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		List<RecommendVo> list = mapperSession.selectList("product.selectAll");
@@ -22,6 +24,8 @@ public class RecommendDao {
 		return list;
 	}
 	
+	//동해
+	//추천상품 등록
 	public int insert(RecommendVo item) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		int result = mapperSession.insert("product.insertrecommend",item);
@@ -30,6 +34,8 @@ public class RecommendDao {
 		return result;
 	}
 	
+	//동해
+	//추천상품 삭제
 	public int delete(String name) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		int result = mapperSession.delete("product.deleterecommend",name);

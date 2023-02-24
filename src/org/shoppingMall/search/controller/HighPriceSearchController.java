@@ -14,7 +14,6 @@ import org.shoppingMall.controller.Controller;
 import org.shoppingMall.dao.ProductDAO;
 import org.shoppingMall.vo.Paging;
 import org.shoppingMall.vo.ProductFileList;
-import org.shoppingMall.vo.ProductVO;
 
 public class HighPriceSearchController implements Controller {
 
@@ -24,7 +23,7 @@ public class HighPriceSearchController implements Controller {
 		
 		//검색내용
 		String name = request.getParameter("name");
-		List<ProductFileList> vo = dao.searchHighPrice(name);
+		List<ProductFileList> vo = dao.searchtop(name);
 		int count  = vo.size();
 
 		//페이징
