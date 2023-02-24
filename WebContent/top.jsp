@@ -133,7 +133,7 @@
       </li>
       <c:if test="${sessionScope.user != null }">
       <li class="nav-link"><span id="user">${user.name }님</span></li>
-      <li><a class="nav-link" href="${pageContext.request.contextPath}logout">로그아웃</a></li>
+      <li><a class="nav-link" href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
       </c:if>
       <li class="nav-item active">
         <a onclick="Cart2()" class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
@@ -143,6 +143,9 @@
           마이페이지
         </a>
         <div class="dropdown-menu">
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">마이페이지</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">주문조회</a>
           <div class="dropdown-divider"></div>
@@ -171,11 +174,11 @@
     <div class="title">인기 주류 TOP5 </div>
     <div class="wrap">
         <ul>
-            <li class="current"><a href="#"> 1등 : 맥주</a></li>
-            <li class="next"><a href="#"> 2등 : 소주</a></li>
-            <li><a href="#"> 3등 : 양주</a></li>
-            <li><a href="#"> 4등 : 와인</a></li>
-            <li class="prev"><a href="#"> 5등 : 막걸리</a></li>
+            <li class="current"><a href="<%=request.getContextPath()%>/Product/product?productNum=1&page=1"> 단감명작</a></li>
+            <li class="next"><a href="<%=request.getContextPath()%>/Product/product?productNum=8&page=1"> 연꽃 담은 술</a></li>
+            <li><a href="<%=request.getContextPath()%>/Product/product?productNum=20&page=2"> 양촌양조 양촌 우렁이쌀 청주</a></li>
+            <li><a href="<%=request.getContextPath()%>/Product/product?productNum=12&page=1"> 오미나라 전통주 고운달 도자기숙성 52도 500ml</a></li>
+            <li class="prev"><a href="<%=request.getContextPath()%>/Product/product?productNum=10&page=3"> 이화백주</a></li>
         </ul>
     </div>
 </div>
