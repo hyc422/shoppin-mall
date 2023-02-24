@@ -30,11 +30,10 @@ public class CommunityListController implements Controller
 		
 		int currentPage = 1; 
 		String page=request.getParameter("page"); 
-		if(page != null) currentPage = Integer.parseInt(page); //list.jsp 에 page 파라미터를 찾아보세요. 
+		if(page != null) currentPage = Integer.parseInt(page);
 		int pageSize = 5;
 		int totalCount = 1;
 		
-		//위의 값들을 이용해서 Paging 객체를 생성하면서 다른 필드값을 계산합니다. 
 		Paging paging = new Paging(currentPage, totalCount, pageSize);
 		logger.info(":::::::: ListController paging : {} ::::::::",paging);
 		

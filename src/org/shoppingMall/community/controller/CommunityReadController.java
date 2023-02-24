@@ -22,7 +22,6 @@ import org.shoppingMall.vo.ReviewVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// 요청 매핑 : mapping.put(new RequestKeyValue("/community/read", "GET"), new ReadController() );
 public class CommunityReadController implements Controller 
 {
 	private static final Logger logger = LoggerFactory.getLogger(CommunityReadController.class);
@@ -95,11 +94,8 @@ public class CommunityReadController implements Controller
 				logger.debug("::::::: vo-{}:::::::",vo);
 				request.setAttribute("vo", vo);
 				
-				//idx 메인글의 댓글리스트를 애트리뷰트에 저장하기 해보세요.
 				List<QnaCommentsVo> cmtlist = qcdao.comments(idx);
 				request.setAttribute("cmtlist", cmtlist);
-				
-				//현재페이지를 list.jsp에서 받아서 read.jsp로 전달합니다.
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("communityread.jsp");
 				dispatcher.forward(request, response);

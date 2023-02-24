@@ -54,7 +54,7 @@
 										</a>
 								 	</li>
 									<li>
-										<c:out value="${vo.nickName}"/>
+										<c:out value="${vo.nickname}"/>
 									</li>
 									<li>
 										<c:out value="${vo.readCount}"/>
@@ -72,6 +72,11 @@
 							</li>
 					 	</c:forEach>
 					</ul>
+					<c:if test="${user.admin == 'y'}">
+						<div style="float:right;margin:40px;">
+							<a href="javascript:write()" class="button">글쓰기</a>
+						</div>
+					</c:if>
 				</c:if>
 				
 				<!-- community : review -->
@@ -107,7 +112,7 @@
 								 		..<span style="color:orange;font-size: 80%;">(<c:out value="${vo.commentCount}"/>)
 								 		</span></li>
 									<li>
-										<c:out value="${vo.nickName}"/>
+										<c:out value="${vo.nickname}"/>
 									</li>
 									<li>
 										<c:out value="${vo.readCount}"/>
@@ -145,6 +150,11 @@
 							</li>
 					 	</c:forEach>
 					</ul>
+					<c:if test="${user.id != null}">
+						<div style="float:right;margin:40px;">
+							<a href="javascript:write()" class="button">글쓰기</a>
+						</div>
+					</c:if>
 				</c:if>
 				
 				<!-- community : QnA -->
@@ -167,10 +177,16 @@
 									<li>
 										<c:out value="${vo.idx}"/>
 									</li>
-									<li>	
-										<a href="${pageContext.request.contextPath}/product?productNum=${vo.productNum}">
-											<img src="../images/community/${vo.fileName}" border="0">
-										</a>
+									<li>
+										<c:if test="${vo.fileName == null}">
+											<label>없음</label>
+											<%-- <img src="../images/community/${vo.fileName}" border="0"> --%>
+										</c:if>
+										<c:if test="${vo.fileName != null}">
+											<a href="${pageContext.request.contextPath}/product?productNum=${vo.productNum}">
+												<img src="../images/community/${vo.fileName}" border="0">
+											</a>
+										</c:if>	
 									</li>
 									<li>
 										<a href="communityread?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
@@ -179,10 +195,10 @@
 										<c:if test="${vo.password != null}">
 											<img src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_lock.gif">
 										</c:if>
-								 		..<span style="color:orange;font-size: 80%;">(<c:out value="${vo.commentCount }"/>)
+								 		..<span style="color:orange;font-size: 80%;">(<c:out value="${vo.commentCount}"/>)
 								 		</span></li>
-									<li>+
-										<c:out value="${vo.nickName}"/>
+									<li>
+										<c:out value="${vo.nickname}"/>
 									</li>
 									<li>
 										<c:out value="${vo.readCount}"/>
@@ -200,11 +216,13 @@
 							</li>
 					 	</c:forEach>
 					</ul>
+					<c:if test="${user.id != null}">
+						<div style="float:right;margin:40px;">
+							<a href="javascript:write()" class="button">글쓰기</a>
+						</div>
+					</c:if>
 				</c:if>
-				
-				<div style="float:right;margin:40px;">
-					<a href="javascript:write()" class="button">글쓰기</a>
-				</div>
+
 			</div>
 				
 				<script type="text/javascript">
@@ -233,7 +251,7 @@
 					</c:forEach>
 					
 					<a class="pagenum" href="communitylist?category=${category}&page=${paging.endPage+1 }"
-							style='<c:if test="${paging.endPage==paging.totalPage }">display:none;</c:if>'	>&gt;</a>
+							style='<c:if test="${paging.endPage==paging.totalPage }">display:none;</c:if>'>&gt;</a>
 							
 					<a class="pagenum" href="communitylist?category=${category}&page=${paging.totalPage }">&gt;&gt;</a>
 				</div>

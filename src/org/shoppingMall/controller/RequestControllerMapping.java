@@ -13,8 +13,14 @@ import org.shoppingMall.cart.controller.CartViewController;
 import org.shoppingMall.cart.controller.CartDeleteAllController;
 import org.shoppingMall.cart.controller.CartDeleteController;
 import org.shoppingMall.cart.controller.CartSelectDeleteAllController;
+import org.shoppingMall.community.controller.CommunityCommentsController;
+import org.shoppingMall.community.controller.CommunityDeleteController;
 import org.shoppingMall.community.controller.CommunityListController;
 import org.shoppingMall.community.controller.CommunityReadController;
+import org.shoppingMall.community.controller.CommunityUpdateActionController;
+import org.shoppingMall.community.controller.CommunityUpdateViewController;
+import org.shoppingMall.community.controller.CommunityWriteActionController;
+import org.shoppingMall.community.controller.CommunityWriteViewController;
 import org.shoppingMall.index.controller.DeleteRecommendProductController;
 import org.shoppingMall.index.controller.IndexRecommendProductController;
 import org.shoppingMall.index.controller.NewRecommendProductController;
@@ -29,10 +35,6 @@ import org.shoppingMall.mypage.controller.UpdateActionController;
 import org.shoppingMall.mypage.controller.UpdateViewController;
 import org.shoppingMall.member.controller.Find_idController;
 import org.shoppingMall.member.controller.IDViewController;
-import org.shoppingMall.mypage.controller.CustomerController;
-import org.shoppingMall.mypage.controller.DeleteViewController;
-import org.shoppingMall.mypage.controller.UpdateActionController;
-import org.shoppingMall.mypage.controller.UpdateViewController;
 import org.shoppingMall.product.controller.ProductAddPaymentController;
 import org.shoppingMall.product.controller.ProductAddPaymentViewController;
 import org.shoppingMall.product.controller.ProductAddUpdateController;
@@ -78,13 +80,13 @@ public class RequestControllerMapping
     	
 		//mypage
 		mapping.put(new RequestKeyValue("/update","GET"), new UpdateViewController());
-	  mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
-	  mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());
-	  mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
-	  mapping.put(new RequestKeyValue("/paylist","GET"), new PaylistViewController());
-	  mapping.put(new RequestKeyValue("/paylist","POST"), new PaylistActionController());
+		mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
+		mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());
+		mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
+		mapping.put(new RequestKeyValue("/paylist","GET"), new PaylistViewController());
+		mapping.put(new RequestKeyValue("/paylist","POST"), new PaylistActionController());
     
-    // Product
+	  	// Product
 		mapping.put(new RequestKeyValue("/Product/product","GET"), new ProductViewContoller());
 		mapping.put(new RequestKeyValue("/Product/product", "POST"), new ProductActionController());
 		mapping.put(new RequestKeyValue("/Product/productList","GET"), new ProductListViewContoller());
@@ -106,8 +108,13 @@ public class RequestControllerMapping
 		//community
 		mapping.put(new RequestKeyValue("/community/communitylist", "GET"), new CommunityListController());
 		mapping.put(new RequestKeyValue("/community/communityread", "GET"), new CommunityReadController());
-
-	}
+		mapping.put(new RequestKeyValue("/community/communitycomments", "POST"), new CommunityCommentsController());
+		mapping.put(new RequestKeyValue("/community/communitywrite", "GET"), new CommunityWriteViewController());
+		mapping.put(new RequestKeyValue("/community/communitywrite", "POST"), new CommunityWriteActionController());
+		mapping.put(new RequestKeyValue("/community/communityupdate", "GET"), new CommunityUpdateViewController());
+		mapping.put(new RequestKeyValue("/community/communityupdate", "POST"), new CommunityUpdateActionController());
+		mapping.put(new RequestKeyValue("/community/communitydelete", "POST"), new CommunityDeleteController());
+	}	// method end
 	
 	public static Controller getController(RequestKeyValue key)
 	{return mapping.get(key);}

@@ -23,4 +23,37 @@ public class QnaCommentsDao
 		
 		return commentList;
 	}	// method end
+	
+	public int insert(QnaCommentsVo vo) 
+	{
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int idx = mapperSession.insert("qna.commentsinsert",vo);
+		
+		mapperSession.commit();
+		mapperSession.close();
+		
+		return idx;
+	}	// method end
+	
+	public int delete(int idx) 
+	{
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.delete("qna.commentsdelete",idx);
+		
+		mapperSession.commit();
+		mapperSession.close();
+		
+		return result;
+	}	// method end
+	
+	public int setCommentCount(long idx) 
+	{
+		SqlSession session = SqlSessionBean.getSession();
+		int result = session.update("qna.setCommentCount", idx);
+		
+		session.commit();
+		session.close();
+		
+		return result;
+	}	// method end
 }	// Class end
