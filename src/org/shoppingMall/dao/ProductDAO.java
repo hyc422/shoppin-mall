@@ -36,7 +36,7 @@ public class ProductDAO {
 		mapper.close();
 		return result;
 		
-	}
+	}//
 
 	public int nextSeq() {
 		SqlSession mapper = SqlSessionBean.getSession();
@@ -204,6 +204,13 @@ public class ProductDAO {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		List<ProductFileList> list = mapperSession.selectList("product.searchpagelistlowprice",map);
 		mapperSession.close();
+		return list;
+	}
+	//유리
+	public List<PaymentVO> selectId(String id){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<PaymentVO>list = mapper.selectList("product.selectId",id);
+		mapper.close();
 		return list;
 	}
 

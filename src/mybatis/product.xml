@@ -215,6 +215,10 @@
 	<insert id="insertbest" parameterType="org.shoppingMall.vo.BestItemVo">
 		INSERT INTO BESTSEARCH values (#{productName},#{productPrice},#{fileName})
 	</insert>
+	
+	<select id="selectId" resultType="org.shoppingMall.vo.PaymentVO" parameterType="String">
+	SELECT *FROM TBL_CART tc WHERE id='${value}'
+	</select>
 </mapper>
 
  

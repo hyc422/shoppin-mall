@@ -38,7 +38,10 @@ ul#navi, ul#navi ul {
 li.group {
     margin-bottom: 4px;
 }
-li.group div.title {
+div.tit {
+color: white;
+}
+li.group div.tit {
     height: 35px;
     line-height: 35px;
     background-color: #323232;
@@ -93,6 +96,9 @@ td {
 	margin-left : 270px;
 	margin-top: 40px;
 }
+.shopping{
+    margin-left: 1000px;
+}
 
 
 </style>
@@ -106,26 +112,27 @@ td {
 </head>
 <body>
 
+	<div style="width: 200px; float: left;">
 	<h3>마이페이지</h3>
-	
 	
     <ul id="navi">
         <li class="group">
-            <div class="title">My 쇼핑</div>
+            <div class="tit">My 쇼핑</div>
             <ul class="sub">
-                <li><a href="#">구매 내역/리뷰 작성</a></li>
-                <li><a href="#">장바구니</a></li>
+                <li><a href="${pageContext.request.contextPath }/paylist?idx=${user.idx}">구매 내역/리뷰 작성</a></li>
             </ul>
         </li>
         <li class="group">
-            <div class="title">MY 정보</div>
+            <div class="tit">MY 정보</div>
             <ul class="sub">
-                <li><a href="#">개인정보확인 수정</a></li>                
+                <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
             </ul>
         </li>
            
     </ul>
+    </div>
     <main>
+    
 	<div id="wrap">
 		<section id="contents-cart" class="contents-cart async-content"
 			style="visibility: visible;">
@@ -142,15 +149,19 @@ td {
                         <div class="num">수량</div>
                         <div class="sum">합계</div>
                     </div>
+                    <div class="sibdiv">
+                    	<div class="adress">주소</div>
+                    </div>
                     <div class="subdiv">
                         <div class="basketcmd">리뷰</div>
                     </div>
                     <div class="split"></div>
                 </div>
+                
         	<c:forEach items="${vo }" var="vo" varStatus="num">
+        	  
                 <div class="row data">
                     <div class="subdiv">
-                        <div class="check"><input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
                         <div class="img"><a href="${vo.productNum}"> 
                         <img src="${vo.fileName }" width="60"></a></div>
                         <div class="pname">
@@ -165,40 +176,49 @@ td {
 											value="${vo.productPrice }" pattern="###,###,###" /></div>
                         <div class="num">
 						  <form method="post"action="paylist">
-						   <input type="hidden" name="cartNum" value="${vo.cartNum }">
+						  <input type="hidden" name="user" value="${user.id }">
 						   <input type="hidden" name="id" value="${vo.id }">
+						   <input type="hidden" name="zipcode" value="${vo.zipcode }">
+						   <input type="hidden" name="zipcode" value="${vo.address }">
+                      <input type="hidden" name="addressDetail" value="${vo.addressDetail }">
+                        <input type="hidden" name="addressEtc" value="${vo.addressEtc }">
+                         <input type="hidden" name="addressEtc" value="${vo.productCategories }">
                             <div class="updown">
-                                <input type="text" id="p_num${num.index }"name="p_num" id="p_num${num.index }" size="1" maxlength="2" class="p_num" value="${vo.amount }" onkeyup="javascript:basket.changePNum(${num.index });">
-                                <span onclick="javascript:basket.changePNum(${num.index });"><button type="submit" class="fas fa-arrow-alt-circle-up up" value="+"></button><i ></i></span>
-                                <span onclick="javascript:basket.changePNum(${num.index });"><button type="submit" class="fas fa-arrow-alt-circle-down down" value="-"></button><i ></i></span>
+                                <input type="text" id="p_num${num.index }"name="p_num" id="p_num${num.index }" class="p_num" value="${vo.amount }" onkeyup="javascript:basket.changePNum(${num.index });" readonly="readonly">
+                               <%--  <span onclick="javascript:basket.changePNum(${num.index });"><i ></i></span> --%>
+                               <%--  <span onclick="javascript:basket.changePNum(${num.index });"><i ></i></span> --%>
                             </div>
        		 			</form>
                         </div>
                         <div class="sum"><fmt:formatNumber value="${vo.productPrice*vo.amount }" pattern="###,###,###" />원</div>
                     </div>
                     <div class="subdiv">
-                        <div class="basketcmd"><button type="submit">리뷰</button></div>
+                        <div class="basketcmd"><button type="submit" style="background: #323232;  border: 1px dashed #323232; border-radius: 10px; color:white; padding: 1px 4px; text-align: center; ">리뷰</button></div>
                     </div>
                     <div class="subdiv">
                         <div class="basketcmd">
-                    <form method="post" action="cart/delete">
+                <%--     <form method="post" action="cart/delete">
                     <input type="hidden" name="cartNum" value="${vo.cartNum }">
                     <input type="hidden" name="id" value="${vo.id }">
+                    <input type="hidden" name="zipcode" value="${vo.zipcode }">
+                    <input type="hidden" name="zipcode" value="${vo.address }">
+                      <input type="hidden" name="addressDetail" value="${vo.addressDetail }">
+                        <input type="hidden" name="addressEtc" value="${vo.addressEtc }"> --%>
+                  
                        <!--  <a href="javascript:void(0)" class="abutton">
                         <button type="submit" style="background: none; color: white;">후기</button>
                         </a> -->
-                    </form>	
+                   
                         </div>
                     </div>
-                </div>
+                </div><!--  -->
         	</c:forEach>
-        
+        	
         
             </div>
-    		</form>
-            <div class="bigtext right-align sumcount" id="sum_p_num" >상품갯수: ${sum }개</div>
-            <div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: ${totalPrice }원</div>
-    	
+         
+          <a href="Product/productList"><input type="button" name="shopping" value="쇼핑하러가기" style="margin-left:1000px;">
+    	</a>
             <div id="goorder" class="">
                 <div class="clear"></div>
                 <div class="buttongroup center-align cmd">
