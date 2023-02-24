@@ -83,9 +83,9 @@
 	<main>
 		<div class="w3-content w3-display-container"
 			style="max-width: 100%; margin: 0px;">
-			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너1.jpg" style="width: 100%">
-			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너2.jpg" style="width: 100%">
-			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너3.jpg" style="width: 100%">
+			<a href="${pageContext.request.contextPath }/Product/product?productNum=40"><img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너1.jpg" style="width: 100%"></a>
+			<a href="${pageContext.request.contextPath }/Product/product?productNum=43"><img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너2.jpg" style="width: 100%"></a>
+			<a href="${pageContext.request.contextPath }"><img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너3.jpg" style="width: 100%"></a>
 			<div
 				class="w3-center w3-section w3-large w3-text-white w3-display-bottomleft"
 				style="width: 100%">
@@ -176,7 +176,7 @@
 			
 			<!-- 중간배너 -->
 		<div style="width: 100%">
-			<img alt="" src="images/BannerAndIcon/우리술품폄회.png">
+			<a href="${pageContext.request.contextPath }/Product/product?productNum=42"><img alt="" src="images/BannerAndIcon/우리술품폄회.png"></a>
 		</div>
 		
 		<br>
