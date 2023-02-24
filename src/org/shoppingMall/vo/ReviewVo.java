@@ -19,7 +19,7 @@ public class ReviewVo
 	private int productNum;
 	private String productName;
 	private String fileName;
-	private String nickName;
+	private String nickname;
 	private String title;
 	private String content;
 	private int readCount;
