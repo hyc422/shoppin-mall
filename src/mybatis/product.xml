@@ -163,8 +163,13 @@
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	
-
-
+	<insert id="insertPayment" parameterType="org.shoppingMall.vo.ProductVO">
+		INSERT INTO TBL_CART
+		(ID, PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE, PRODUCTCATEGORIES, FILENAME, AMOUNT, ZIPCODE, ADDRESS, ADDRESSDETAIL, ADDRESSETC)
+		VALUES(#{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, 
+		#{fileName}, #{amount}, #{zipcode}, #{address}, #{addressDetail}, #{addressEtc})
+	</insert>
+  
 	<!-- 실시간검색어 등록 -->
 	
 	<!-- 실시간검색어 등록할 모든 상품 조회 -->
