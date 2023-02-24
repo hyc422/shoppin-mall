@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.shoppingMall.vo.PaymentVO;
 import org.shoppingMall.vo.ProductFileList;
 import org.shoppingMall.vo.ProductVO;
+import org.shoppingMall.vo.QnaVo;
 import org.shoppingMall.vo.RecommendVo;
+import org.shoppingMall.vo.ReviewVo;
 
 import mybatis.SqlSessionBean;
 
@@ -107,8 +109,38 @@ public class ProductDAO {
 		mapper.close();
 		return result;
 	}
-	
-	
+	//CGH
+	public List<ReviewVo> RevPagelist(Map<String,Integer> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<ReviewVo> list = mapper.selectList("product.revPagelist",map);
+		mapper.close();
+		return list;
+	}
+	//CGH
+	public List<QnaVo> QnaPagelist(Map<String,Integer> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<QnaVo> list = mapper.selectList("product.qnaPagelist",map);
+		mapper.close();
+		return list;
+	}
+	//CGH
+	public int RevCount(int vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.selectOne("product.RevCount",vo);
+		mapper.commit();
+		mapper.close();
+		return result;
+	}
+	//CGH
+	public int QnaCount(int vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.selectOne("product.QnaCount",vo);
+		mapper.commit();
+		mapper.close();
+		return result;
+	}
+		
+		
 	//동해
 	//추천상품 조회
 	public List<RecommendVo> selectrecommend() {

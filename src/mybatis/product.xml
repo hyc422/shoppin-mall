@@ -80,7 +80,7 @@
 		ON tp.PRODUCTNUM = tf.PRODUCTNUM
 		where
 		productCategories = '${value}'
-		ORDER BY productCategories DESC) f)
+		ORDER BY tp.PRODUCTNUM DESC) f)
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	<select id="count" resultType="int">
@@ -88,6 +88,36 @@
 		where productCategories = '${value}'
 	</select>
 
+	<select id="selectByNum" parameterType="int" resultType="org.shoppingMall.vo.ReviewVo">
+		SELECT * FROM review WHERE productNum=#{productNum}
+	</select>
+	<select id="selectByIdx" parameterType="int" resultType="org.shoppingMall.vo.QnaVo">
+		SELECT * FROM qna WHERE productNum=#{productNum}
+	</select>
+	<select id="revPagelist"
+		resultType="org.shoppingMall.vo.ReviewVo"
+		parameterType="java.util.Map">
+		SELECT * FROM
+		(SELECT rownum r ,f.* FROM
+		(SELECT * FROM review WHERE productNum=#{productNum} ORDER BY idx  DESC) f)
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	<select id="qnaPagelist"
+		resultType="org.shoppingMall.vo.QnaVo"
+		parameterType="java.util.Map">
+		SELECT * FROM
+		(SELECT rownum r ,f.* FROM
+		(SELECT * FROM qna WHERE productNum=#{productNum} ORDER BY idx  DESC) f)
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+		<select id="RevCount" resultType="int">
+		SELECT count(*)FROM review
+		where productNum=#{productNum}
+	</select>
+	<select id="QnaCount" resultType="int">
+		SELECT count(*)FROM qna
+		where productNum=#{productNum}
+	</select>
 
 	<!-- 동해 -->
 	<!-- 추천상품 조회 -->

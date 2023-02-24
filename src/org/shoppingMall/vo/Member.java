@@ -25,4 +25,5 @@ public class Member {
 	private String phone;
 	private String c_code;
 	private String birth;
+	private String admin;
 }

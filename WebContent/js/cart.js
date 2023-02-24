@@ -97,7 +97,6 @@ function deleteValue(){
 		cartNums +=cartNum+',';
 	}
 	document.querySelector('form[action="cart/selectDelete"]').cartNum1.value=cartNums;
-	console.log(document.querySelector('form[action="cart/selectDelete"]').cartNum1.value)
 	document.querySelector('form[action="cart/selectDelete"]').submit();
 }
 
