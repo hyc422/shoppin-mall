@@ -1,4 +1,4 @@
-package org.shoppingMall.index.controller;
+package org.shoppingMall.Recommend.controller;
 
 import java.io.IOException;
 

@@ -33,7 +33,6 @@ public class SearchController implements Controller {
 		String page = request.getParameter("page");
 		if(page != null) currentPage = Integer.parseInt(page);
 		int pageSize = 8;
-		int totalCount = dao.searchCount();
 		Paging paging = new Paging(currentPage, count, pageSize);
 		logger.info(":::::::: ListController paging : {} ::::::::",paging);
 		Map<String, Object> map = new HashMap<>();
