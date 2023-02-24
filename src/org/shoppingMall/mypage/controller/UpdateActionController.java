@@ -19,7 +19,7 @@ public class UpdateActionController implements Controller {
 		Member vo = new Member(Integer.parseInt(request.getParameter("idx")),request.getParameter("id"),
 				request.getParameter("password"),request.getParameter("name"),request.getParameter("nickname")
 				,request.getParameter("email"),request.getParameter("address"),request.getParameter("phone2")
-				,request.getParameter("c_code"),request.getParameter("birth"));
+				,request.getParameter("c_code"),request.getParameter("birth"), request.getParameter("admin"));
 		
 		MemberDao dao = MemberDao.getInstance();
 		int result=0;

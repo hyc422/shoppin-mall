@@ -206,5 +206,12 @@ public class ProductDAO {
 		mapperSession.close();
 		return list;
 	}
+	//유리
+	public List<PaymentVO> selectId(String id){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<PaymentVO>list = mapper.selectList("product.selectId",id);
+		mapper.close();
+		return list;
+	}
 
 }

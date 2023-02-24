@@ -112,112 +112,116 @@ td {
             
             <ul class="sub">
             <li class="title">MY 쇼핑</li>
-                <li><a href="myPage2.jsp">구매 내역/리뷰 작성</a></li>
-                <li><a href="#">장바구니</a></li>
-                <li><a href="#">취소/반품/교환/환불내역</a></li>
+                <li><a href="${pageContext.request.contextPath }/paylist?id=${user.id}">구매 내역/리뷰 작성</a></li>
             </ul>
         </li>
         <li class="group">
             <ul class="sub">
             <li class="title">MY 정보<li>
-                <li><a href="#">개인정보확인 수정</a></li>                
-                <li><a href="#">결제수단</a></li>                
-                <li><a href="#">배송지관리</a></li>                
+                <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인 수정</a></li>                
             </ul>
         </li>
-        
-           
     </ul>
-	
 	      </div>
 
     		
     <main class="usermodify">
-    <div >
-    		<h2 style="text-align: left;" style="background-color: #e6f1ff ">회원정보 수정</h2>
-    	
-    	<form action="update" method="post" >
+    <div>
+    	<h2 style="text-align: left;" style="background-color: #e6f1ff ">회원정보 수정</h2>
+    		<form action="update" method="post" >
 					<input type="hidden" name="idx" value="${vo.idx }">
 				<div class="form-group">
 					<table class="userupdate" style="table-layout: fixed; "  >
+					
 						<tr>
 							<td class="ID2" style=" width: 150px; text-align:right; background-color: #a8a8a8 ">회원 ID</td>
-							<td>
-							<input type="text" name="ID" value="${vo.id }"  readonly>
-							</td>
+							<td><input type="text" name="ID" value="${vo.id }"  readonly></td>
 						</tr>
+						
 						<tr>
 							<td class="pass" style=" width: 200px;text-align:right;  background-color: #a8a8a8 ">패스워드</td>
-							<td>
-							<input type="text" name="password" value="${vo.password }">
-							</td>
+							<td><input type="text" name="password" value="${vo.password }"></td>
 						</tr>
+						
 						<tr>
 							<td class="mail" style="width: 200px; text-align:right; background-color: #a8a8a8 ">이메일</td>
-							
-							<td>
+						<td>
 							<select>
-				<option>naver.com</option>
-				<option>daum.net</option>
-				<option>gmail.com</option>
-				<option>직접 입력</option>
-			</select>
-			<input type="text" name="email" value="${vo.email }">
-							</td>
+								<option>naver.com</option>
+								<option>daum.net</option>
+								<option>gmail.com</option>
+								<option>직접 입력</option>
+							</select>
+							<input type="text" name="email" value="${vo.email }">
+						</td>
 						</tr>
+						
 						<tr>
 							<td class="name1" style="width: 200px; text-align:right; background-color: #a8a8a8;" >이름</td>
-							<td>
-							<input type="text" name="name" value="${vo.name }">
-							</td>
+							<td><input type="text" name="name" value="${vo.name }"></td>
 						</tr>
-								<tr>			
+						
+						<tr>		
 							<td class="nick" style="width: 200px; text-align:right; background-color: #a8a8a8; ">별명</td>
-							<td>
-							<input type="text" name="nickname" value="${vo.nickname }" >
-							</td>
+							<td><input type="text" name="nickname" value="${vo.nickname }" ></td>
 						</tr>
 	
 						<tr>
 							<td class="tell" style="width: 200px;text-align:right;  background-color: #a8a8a8; ">연락처</td>
-							<td><input type="text" name="phone2" value="${vo.phone }"> </td>
+							<td><input type="text" name="phone2" value="${vo.phone }"></td>
+						</tr>
+						
 						<tr>
 							<td class="dress" style="width: 200px; text-align:right; background-color: #a8a8a8; ">주소</td>
-							<td>
-							<input type="text" name="address" value="${vo.address }" >
-							</td>
+							<td><input type="text" name="address" value="${vo.address }" ></td>
 						</tr>
 	
 						<tr>
 							<td class="code" style="width: 200px; text-align:right; background-color: #a8a8a8; ">우편번호</td>
-							<td>
-							<input type="text" name="c_code" value="${vo.c_code }">
-							</td>
+							<td><input type="text" name="c_code" value="${vo.c_code }"></td>
 						</tr>
 	
 						<tr>
 							<td class="day" style="width: 200px; text-align:right;  background-color: #a8a8a8; ">생년월일</td>
-							<td>
-							<input type="date" name="birth" value="${vo.birth }" readonly>
-							</td>
+							<td><input type="date" name="birth" value="${vo.birth }" readonly></td>
 						</tr>
 					</table>
-					</div>
-		<div class="Withdrawal">
-		
-		<!-- <input type="submit" class="form-control" value="취소">
-				<input type="submit" class="form-control" value="수정완료"> -->
-				<input type="submit" class="drawal" value="수정 완료">
-				<input type="submit" class="drawal" value="취소">
-				     회원탈퇴 원하시면 눌러주세요 <input type="button" class="drawal" value="회원탈퇴"
-				     onclick="location.href = 'deleteForm'"> 
 				</div>
 				
 				
 				
-			
+		<div class="Withdrawal">
+		<!-- <input type="submit" class="form-control" value="취소">
+				<input type="submit" class="form-control" value="수정완료"> -->
+				<input type="submit" class="drawal" value="수정">
+				<input type="reset" class="drawal" value="다시입력">
+				<input type="button" class="drawal" value="회원탈퇴" onclick="del()">
+		</div>
+		
+	<script type="text/javascript">
+	function del() {
+		 const frm = document.forms[2];
+		 const value = frm.name;
+		if(confirm("회원탈퇴를 하시겠습니까?")) {
+		frm.submit();
+		} else {
+			alert('취소하셨습니다.')
+		}
+	}
+	</script>
+		
 			</form>
 		</div>
+		
+			<!-- 회원탈퇴용 -->
+			<form action="deleteForm" method="POST" name="deform">
+				<input type="hidden" value="${vo.idx }" name="idx">
+			</form>
+			
+		
+		
+		
+		
 		<div class="col-lg-4"></div>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
