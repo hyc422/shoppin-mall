@@ -20,7 +20,7 @@ body {
 }
 main{
 height: 700px;}
-.title{
+.tit{
 	background-color: #373737;
 	color:#ffffff;
 	font-size: 18px;
@@ -126,6 +126,8 @@ td {
             <div class="tit">MY 정보</div>
             <ul class="sub">
                 <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
+            	<li><a href="${pageContext.request.contextPath }/rivew?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
+            	<li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>
             </ul>
         </li>
            
@@ -162,11 +164,11 @@ td {
         	  
                 <div class="row data">
                     <div class="subdiv">
-                        <div class="img"><a href="${vo.productNum}"> 
-                        <img src="${vo.fileName }" width="60"></a></div>
+                        <div class="img"><a href="${pageContext.request.contextPath }/Product/product?productNum=${vo.productNum}"> 
+                        <img src="${pageContext.request.contextPath }/images/Product/${vo.fileName }" width="60"></a></div>
                         <div class="pname">
                             <span>
-                            <a href="${vo.productNum}"><input type="hidden" name="productName" value=" ${vo.productName }"> ${vo.productName }</a>
+                            <a href="${pageContext.request.contextPath }/Product/product?productNum=${vo.productNum}"><input type="hidden" name="productName" value=" ${vo.productName }"> ${vo.productName }</a>
                             </span>
                         </div>
                     </div>

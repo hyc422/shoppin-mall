@@ -30,4 +30,6 @@
 		SELECT * FROM reviewcomments
 		WHERE MREF=#{mref}
 	</select>
+	<select resultType="org.shoppingMall.vo.ReviewVo" id="selectnickname" parameterType="String">
+	SELECT *FROM review WHERE nickname = '${value}' </select>
 </mapper>

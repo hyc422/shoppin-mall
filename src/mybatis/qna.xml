@@ -30,4 +30,6 @@
 		SELECT * FROM qnacomments
 		WHERE MREF=#{mref}
 	</select>
+	<select resultType="org.shoppingMall.vo.QnaVo" id="selectqnalist" parameterType="String">
+	SELECT *FROM QnA WHERE nickname = '${value}' </select>
 </mapper>

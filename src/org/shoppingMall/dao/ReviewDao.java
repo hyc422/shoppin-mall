@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.shoppingMall.vo.QnaVo;
 import org.shoppingMall.vo.ReviewVo;
 
 import mybatis.SqlSessionBean;
@@ -45,5 +46,14 @@ public class ReviewDao
 		mapper.close();
 		
 		return result;
-	}	// method end
+	}// method end
+	
+	public List<ReviewVo> selectnickname(String nickname){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<ReviewVo> list = mapper.selectList("review.selectnickname",nickname);
+		mapper.close();
+		return list;
+	}
+
+
 }	// Class end
