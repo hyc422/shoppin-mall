@@ -19,15 +19,15 @@ public class ProductViewContoller implements Controller {
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductDAO dao = ProductDAO.getInstance();
 		int a = Integer.parseInt(request.getParameter("productNum"));
-		int b = Integer.parseInt(request.getParameter("page"));
+	//	int b = Integer.parseInt(request.getParameter("page"));
 		int currentPage = 1;	
 		String page=request.getParameter("page");
 		if(page != null) currentPage = Integer.parseInt(page);
-		int pageSize=1;		//pageSize 를 15 또는 10으로 변경해서 실행해 봅시다.
-		request.setAttribute("b", b);
+		int pageSize=5;		//pageSize 를 15 또는 10으로 변경해서 실행해 봅시다.
+	//	request.setAttribute("b", b);
 		request.setAttribute("a", a);
 		//상품 정보
-		request.setAttribute("Pvo", dao.selectOne(Integer.parseInt(request.getParameter("productNum"))));
+		request.setAttribute("Pvo", dao.selectOne(a));
 		
 		
 		//리뷰 페이징
