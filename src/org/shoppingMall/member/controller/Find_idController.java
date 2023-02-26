@@ -22,6 +22,7 @@ public class Find_idController implements Controller {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String id = request.getParameter("id");
+		String url = "findmem?incorrect=y";
 		MemberDao dao = MemberDao.getInstance();
 		
 		if (id == null) {
@@ -34,7 +35,7 @@ public class Find_idController implements Controller {
 				session.setAttribute("mem", vo);
 				response.sendRedirect("findmem");
 			} else {
-				response.sendRedirect(request.getContextPath());
+				response.sendRedirect(url);
 			}
 		} 
 		if(id != null){
@@ -47,7 +48,7 @@ public class Find_idController implements Controller {
 				session.setAttribute("pwd", vo);
 				response.sendRedirect("findmem");
 			}else {
-				response.sendRedirect(request.getContextPath());
+				response.sendRedirect(url);
 			}
 		}
 

@@ -34,6 +34,8 @@ public void handle(HttpServletRequest request, HttpServletResponse response) thr
 	
 	String c_code = request.getParameter("c_code");
 	String address = request.getParameter("address");
+	String realaddr = request.getParameter("realaddr");
+	String home = address + "(" + realaddr + ")";
 	String birth = request.getParameter("birth");
 	
 	MemberDao dao = MemberDao.getInstance();
@@ -45,7 +47,7 @@ public void handle(HttpServletRequest request, HttpServletResponse response) thr
 				.email(email)
 				.phone(phone)
 				.c_code(c_code)
-				.address(address)
+				.address(home)
 				.birth(birth)
 				.build();
 	response.setCharacterEncoding("UTF-8");

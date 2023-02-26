@@ -71,7 +71,7 @@ public class MemberDao {
 	
 	public int idcheck(String id) {
 		SqlSession mapper = SqlSessionBean.getSession();
-		int result = mapper.selectOne("member.checkID",id);
+		int result = mapper.selectOne("member.idcheck",id);
 		mapper.close();
 		return result;
 	}

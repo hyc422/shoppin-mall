@@ -44,7 +44,7 @@
   	<select id="findpwd" parameterType="java.util.Map" resultType="org.shoppingMall.vo.Member">
   	SELECT * FROM js_member where id=#{id} and email=#{email}
   	</select>
-	<select id="checkID" parameterType="String" resultType="int">
+	<select id="idcheck" parameterType="String" resultType="int">
 	SELECT count(id) FROM js_member WHERE id=#{id}
 	</select>
 </mapper>

@@ -118,7 +118,6 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/community/communitydelete", "POST"), new CommunityDeleteController());
 		mapping.put(new RequestKeyValue("/community/communitycheck", "GET"), new CommunityCheckViewController());
 		mapping.put(new RequestKeyValue("/community/communitycheck", "POST"), new CommunityCheckActionController());
-		
 	}	// method end
 	
 	public static Controller getController(RequestKeyValue key)

@@ -125,7 +125,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <c:if test="${sessionScope.user == null }">
+    <c:if test="${sessionScope.user == null }">
       <li class="nav-item active">
         <a class="nav-link" href="${pageContext.request.contextPath}/login">로그인<span class="sr-only">(current)</span></a>
       </li>
