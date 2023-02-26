@@ -35,6 +35,7 @@ public class AnnouncementDao
 		
 		return vo;
 	}	// method end
+	
 	public int setReadCount(long idx)
 	{
 		SqlSession mapper = SqlSessionBean.getSession();
@@ -42,6 +43,39 @@ public class AnnouncementDao
 		
 		mapper.commit();
 		mapper.close();
+		
+		return result;
+	}	// method end
+	
+	public long insert(AnnouncementVo vo) 
+	{
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		mapperSession.insert("announcement.insert",vo);
+		
+		mapperSession.commit();
+		mapperSession.close();
+		
+		return vo.getIdx();
+	}	// method end
+	
+	public int update(AnnouncementVo vo) 
+	{
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.update("announcement.update",vo);
+		
+		mapperSession.commit();
+		mapperSession.close();
+		
+		return result;
+	}	// method end
+	
+	public int delete(long idx) 
+	{
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.delete("announcement.delete",idx);
+		
+		mapperSession.commit();
+		mapperSession.close();
 		
 		return result;
 	}	// method end

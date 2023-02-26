@@ -16,14 +16,14 @@ import lombok.ToString;
 public class QnaVo 
 {
 	private long idx;
-	private int productNum;
+	private String productNum;
 	private String productName;
 	private String fileName;
-	private String nickName;
+	private String nickname;
 	private String title;
-	private int password;
+	private String password;
 	private String content;
-	private int readCount;
+	private String readCount;
 	private Timestamp createdAt;
 	private String ip;
 	private String commentCount;

@@ -16,7 +16,7 @@ import lombok.ToString;
 public class AnnouncementVo 
 {
 	private long idx;
-	private String nickName;
+	private String nickname;
 	private String title;
 	private String content;
 	private int readCount;

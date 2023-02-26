@@ -47,13 +47,47 @@ public class ReviewDao
 		
 		return result;
 	}// method end
-	
-	public List<ReviewVo> selectnickname(String nickname){
+  
+	public List<ReviewVo> selectnickname(String nickname)
+  {
 		SqlSession mapper = SqlSessionBean.getSession();
 		List<ReviewVo> list = mapper.selectList("review.selectnickname",nickname);
 		mapper.close();
 		return list;
-	}
+	} // method end
 
-
+	}	// method end
+	
+	public long insert(ReviewVo vo) 
+	{
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		mapperSession.insert("review.insert",vo);
+		
+		mapperSession.commit();
+		mapperSession.close();
+		
+		return vo.getIdx();
+	}	// method end
+	
+	public int update(ReviewVo vo) 
+	{
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.update("review.update",vo);
+		
+		mapperSession.commit();
+		mapperSession.close();
+		
+		return result;
+	}	// method end
+	
+	public int delete(long idx) 
+	{
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.delete("review.delete",idx);
+		
+		mapperSession.commit();
+		mapperSession.close();
+		
+		return result;
+	}	// method end
 }	// Class end

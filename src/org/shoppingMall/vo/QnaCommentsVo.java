@@ -17,7 +17,7 @@ public class QnaCommentsVo
 {
 	private long idx;
 	private long mref;
-	private String nickName;
+	private String nickname;
 	private String content;
 	private Timestamp createdAt;
 	private String ip;
