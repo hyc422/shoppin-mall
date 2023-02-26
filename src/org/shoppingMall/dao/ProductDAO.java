@@ -105,7 +105,6 @@ public class ProductDAO {
 	public int count(String vo) {
 		SqlSession mapper = SqlSessionBean.getSession();
 		int result = mapper.selectOne("product.count",vo);
-		mapper.commit();
 		mapper.close();
 		return result;
 	}
@@ -127,7 +126,6 @@ public class ProductDAO {
 	public int RevCount(int vo) {
 		SqlSession mapper = SqlSessionBean.getSession();
 		int result = mapper.selectOne("product.RevCount",vo);
-		mapper.commit();
 		mapper.close();
 		return result;
 	}
@@ -135,12 +133,25 @@ public class ProductDAO {
 	public int QnaCount(int vo) {
 		SqlSession mapper = SqlSessionBean.getSession();
 		int result = mapper.selectOne("product.QnaCount",vo);
-		mapper.commit();
 		mapper.close();
 		return result;
 	}
-		
-		
+	//CGH
+	public List<ReviewVo> selectRev(int vo){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<ReviewVo> list = mapper.selectList("product.selectRev", vo);
+		mapper.close();
+		return list;
+	}	
+	//CGH
+	public List<QnaVo> selectQna(int vo){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<QnaVo> list = mapper.selectList("product.selectQna", vo);
+		mapper.close();
+		return list;
+	}	
+	
+	
 	//동해
 	//추천상품 조회
 	public List<RecommendVo> selectrecommend() {
