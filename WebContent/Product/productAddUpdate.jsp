@@ -14,7 +14,7 @@
 		<hr>
 	</div>
 	<div style="margin-left: 300px;">
-		<form method="post" action="productAddUpdate" name="productForm" id="productForm" enctype="multipart/form-data">
+		<form method="post" action="productAddUpdate" name="productForm" id="productForm">
 			<div>
 				<label>
 					상품코드  <input type="text" name="productNum" id="productNum" value="${vo.productNum}" readonly="readonly">
@@ -46,7 +46,7 @@
 				<span id="productManual">제품설명</span>  
 				<div>
 					<label for="product_file1" style="display:inline;">
-						<img id="product_file1Img" src="${pageContext.request.contextPath}/images/Product/filePlus.png" width="110px" height="110px" style="display:inline;">
+						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/${fileName}" width="110px" height="110px" style="display:inline;">
 					</label>
 				</div>
 				<input id="product_file1" name="product_file1" type="file">
@@ -57,14 +57,7 @@
 				<span id="productImages">제품 사진</span>  
 				<div>
 					<label for="productImage" style="display:inline;">
-					<c:choose>
-						<c:when test="${fileName == null}">
-							<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/filePlus.png" width="110px" height="110px" style="display:inline;">
-						</c:when>
-						<c:otherwise>
-							<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/${fileName}" width="110px" height="110px" style="display:inline;">
-						</c:otherwise>
-					</c:choose>
+						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/${fileNameOriginal}" width="110px" height="110px" style="display:inline;">
 					</label>
 				</div>
 				<input id="productImage" name="productImage" type="file">
@@ -103,6 +96,22 @@ function ok(){
         return;
     }
 }
+
+	/* 제픔 상세정보 사진 */
+	$(".files1").change(function(e){
+		let file = e.target.files[0];
+		let img = $(this).find("img");
+		
+		if(!file.type.match("image.*")){
+			img.attr("src", "${pageContext.request.contextPath}/images/Product/no_img.jpg");
+		}else{
+			let reader = new FileReader();
+			reader.onload = function(e){
+				img.attr("src", e.target.result)
+			}
+			reader.readAsDataURL(file);
+		}
+	})
 
 	/* 제픔 썸네일 */
 	$(".files2").change(function(e){

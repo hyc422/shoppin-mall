@@ -21,22 +21,22 @@
 		<div style="width: 700px; margin: auto; margin-bottom: 100px;" id="big1">
 			<p>
 				<label>
-					우편번호 <input type="text" name="zipcode" class="postcodify_postcode5" value="${vo.zipcode }" disabled="disabled" style="border-style: none; background-color: white;"/>
+					우편번호 <input type="text" name="zipcode" class="postcodify_postcode5" value="${zipcode }" disabled="disabled" style="border-style: none; background-color: white;"/>
 				</label>
 			</p>
 			<p>
 				<label>
-					도로명주소 <input type="text" name="address" class="postcodify_address" value="${vo.address }" disabled="disabled" style="border-style: none; background-color: white; margin-left: 27px; width: 550px;"/><br />
+					도로명주소 <input type="text" name="address" class="postcodify_address" value="${address }" disabled="disabled" style="border-style: none; background-color: white; margin-left: 27px; width: 550px;"/><br />
 				</label>
 			</p>
 			<p>
 				<label>
-					상세주소 <input type="text" name="addressDetail" class="postcodify_details" value="${vo.addressDetail }" disabled="disabled" style="width: 550px; border-style: none; background-color: white;"/><br />
+					상세주소 <input type="text" name="addressDetail" class="postcodify_details" value="${addressDetail }" disabled="disabled" style="width: 550px; border-style: none; background-color: white;"/><br />
 				</label>
 			</p>
 			<p>
 				<label>
-					참고항목 <input type="text" name="addressEtc" class="postcodify_extra_info" value="${vo.addressEtc }" disabled="disabled" style="width: 550px; border-style: none; background-color: white;"/><br />
+					참고항목 <input type="text" name="addressEtc" class="postcodify_extra_info" value="${addressEtc }" disabled="disabled" style="width: 550px; border-style: none; background-color: white;"/><br />
 				</label>
 			</p>
 		</div>
@@ -47,24 +47,26 @@
 		</div>
 		
 		<div id="big2" style="width: 700px; margin: auto; margin-bottom: 40px;">
-			<div>
-				<img id="fileName" name="fileName" src="${pageContext.request.contextPath}/images/Product/${vo.fileName}" width="300px" height="300px" style="display:inline;" >
-			</div>
-			<div>
-				상품코드 <input type="text" name="productNum" id="productNum" value="${vo.productNum}" disabled="disabled">
-			</div>
-			<div>
-				상품명 <input type="text" name="productName" id="productName" value="${vo.productName}" disabled="disabled">
-			</div>
-			<div>
-				상품가격 <input type="text" name="productPrice" id="productPrice" value="${vo.productPrice}" disabled="disabled">
-			</div>
-			<div>
-				카테고리 <input type="text" name="productCategories" id="productCategories" value="${vo.productCategories}" disabled="disabled">
-			</div>
-			<div>
-				개수 <input type="text" name="amount" id="amount" value="${vo.amount}" disabled="disabled">
-			</div>
+			<c:forEach items="${vo }" var="vo">
+				<div>
+					<img id="fileName" name="fileName" src="${pageContext.request.contextPath}/images/Product/${vo.fileName}" width="300px" height="300px" style="display:inline;" >
+				</div>
+				<div>
+					상품코드 <input type="text" name="productNum" id="productNum" value="${vo.productNum}" disabled="disabled">
+				</div>
+				<div>
+					상품명 <input type="text" name="productName" id="productName" value="${vo.productName}" disabled="disabled">
+				</div>
+				<div>
+					상품가격 <input type="text" name="productPrice" id="productPrice" value="${vo.productPrice}" disabled="disabled">
+				</div>
+				<div>
+					카테고리 <input type="text" name="productCategories" id="productCategories" value="${vo.productCategories}" disabled="disabled">
+				</div>
+				<div>
+					개수 <input type="text" name="amount" id="amount" value="${vo.amount}" disabled="disabled">
+				</div>
+			</c:forEach>
 			<div>
 				배송비 <span id="deliveryFee" name="deliveryFee" style="float: right;">3000</span>
 			</div>

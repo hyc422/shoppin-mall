@@ -24,11 +24,11 @@ public class ProductAddUpdateViewController implements Controller {
 		int productNum = Integer.parseInt(request.getParameter("productNum"));			
 		
 		ProductDAO pDao = ProductDAO.getInstance();
-		FileDAO fDao = FileDAO.getInstance();
 		ProductVO vo = pDao.productSelectOne(productNum);
 		
 		request.setAttribute("vo", vo);
-		request.setAttribute("fileName", fDao.getFiles1(productNum));
+		request.setAttribute("fileName", request.getParameter("product_file1"));
+		request.setAttribute("fileNameOriginal", request.getParameter("productImage"));
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productAddUpdate.jsp");
 		dispatcher.forward(request, response);

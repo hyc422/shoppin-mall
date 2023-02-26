@@ -24,7 +24,8 @@ public class ProductAddPaymentViewController implements Controller {
 		String id = (String)request.getSession().getAttribute("id");
 		
 		if(request.getParameter("productNum") != "") {	//바로 결제
-			CartVo vo = new CartVo();
+			CartVo vo1 = new CartVo();
+			List<CartVo> vo = new ArrayList<>();
 			
 			int productNum = Integer.parseInt(request.getParameter("productNum"));
 			String productName = request.getParameter("productName");
@@ -33,13 +34,15 @@ public class ProductAddPaymentViewController implements Controller {
 			int productPrice = Integer.parseInt(request.getParameter("productPrice"));
 			int amount = Integer.parseInt(request.getParameter("amount"));
 			
-			vo.setId(id);
-			vo.setProductNum(productNum);
-			vo.setProductName(productName);
-			vo.setProductCategories(productCategories);
-			vo.setFileName(fileName);
-			vo.setProductPrice(productPrice);
-			vo.setAmount(amount);
+			vo1.setId(id);
+			vo1.setProductNum(productNum);
+			vo1.setProductName(productName);
+			vo1.setProductCategories(productCategories);
+			vo1.setFileName(fileName);
+			vo1.setProductPrice(productPrice);
+			vo1.setAmount(amount);
+			
+			vo.add(vo1);
 			
 			/*request.setAttribute("productNum", productNum);
 			request.setAttribute("productName", productName);
@@ -57,6 +60,15 @@ public class ProductAddPaymentViewController implements Controller {
 			
 			request.setAttribute("vo", vo);
 		}
+		
+		List<CartVo>list = cDao.list(id);
+		
+		int totalPrice = 0;
+		for(int i=0; i<list.size(); i++) {
+			totalPrice += (list.get(i).getProductPrice()*list.get(i).getAmount());
+		}
+		
+		request.setAttribute("totalPrice", totalPrice);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productAddPayment.jsp");
 		dispatcher.forward(request, response);
