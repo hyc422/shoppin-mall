@@ -125,12 +125,14 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <c:if test="${sessionScope.user == null }">
       <li class="nav-item active">
         <a class="nav-link" href="${pageContext.request.contextPath}/login">로그인<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="${pageContext.request.contextPath}/member/register">회원가입<span class="sr-only">(current)</span></a>
       </li>
+      </c:if>
       <c:if test="${sessionScope.user != null }">
       <li class="nav-link"><span id="user">${user.name }님</span></li>
       <li><a class="nav-link" href="${pageContext.request.contextPath}/logout">로그아웃</a></li>

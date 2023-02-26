@@ -16,8 +16,6 @@ import org.shoppingMall.cart.controller.CartViewController;
 import org.shoppingMall.cart.controller.CartDeleteAllController;
 import org.shoppingMall.cart.controller.CartDeleteController;
 import org.shoppingMall.cart.controller.CartSelectDeleteAllController;
-import org.shoppingMall.community.controller.CommunityListController;
-import org.shoppingMall.community.controller.CommunityReadController;
 import org.shoppingMall.login.controller.LoginActionController;
 import org.shoppingMall.login.controller.LoginViewController;
 import org.shoppingMall.login.controller.LogoutController;
@@ -108,8 +106,6 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/cart/selectDelete", "POST"), new CartSelectDeleteAllController());
 		
 		//community
-		mapping.put(new RequestKeyValue("/community/communitylist", "GET"), new CommunityListController());
-		mapping.put(new RequestKeyValue("/community/communityread", "GET"), new CommunityReadController());
 
 	}
 	

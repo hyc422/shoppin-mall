@@ -1,3 +1,4 @@
+<%@page import="org.shoppingMall.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -48,10 +49,12 @@
 			<div
 				style="position: absolute; left: 50%; margin-left: -265px; width: 800px; background: white; padding: 15px;">
 				<div class="col-md-4">
-					<label style="float: left; text-align: center;">아이디</label> <input
+					<label style="float: left; text-align: center;">아이디</label> 
+					<input
 						type="text" class="form-control" name="id" id="id"
 						placeholder="영문,숫자 5~11글자" required>
-					<input type="button" onclick="checkid()" class="btn btn-primary" value="중복검사">
+						<div id="msg"></div>
+						 <input type="button" id="btnIdCheck" class="btn btn-primary" value="중복검사">
 				</div>
 				<div class="col-md-4">
 					<label>비밀번호</label> <input type="password" class="form-control"
@@ -67,8 +70,8 @@
 					<input type="text" name="email" class="form-control"
 						placeholder="이메일 입력" style="width: 100px; display: inline;"
 						required> <span class="input-group-text" id="gbe"
-						style="width: 100px; display: inline;">@</span> 
-						<input type="text" name="email2" class="form-control"
+						style="width: 100px; display: inline;">@</span> <input type="text"
+						name="email2" class="form-control"
 						style="width: 100px; display: inline;" value="" disabled>
 					<select name="email1" style="display: inline;" class="form-select"
 						onchange="email_change()" required>
@@ -93,8 +96,8 @@
 						<option value="010">010</option>
 						<option value="011">011</option>
 					</select> <span class="input-group-text" id="gbe"
-						style="width: 100px; display: inline;">-</span>
-						 <input type="text" name="phone2" class="form-control"
+						style="width: 100px; display: inline;">-</span> <input type="text"
+						name="phone2" class="form-control"
 						style="width: 100px; display: inline;"> <span
 						class="input-group-text" id="gbe"
 						style="width: 100px; display: inline;">-</span> <input type="text"
@@ -117,8 +120,9 @@
 						class="form-control" readOnly> <span id="guide"
 						style="color: #999; display: none" class="form-control"></span> <input
 						type="text" id="sample4_detailAddress" placeholder="상세주소"
-						class="form-control"> <input type="text"
-						id="sample4_extraAddress" placeholder="참고항목" class="form-control">
+						class="form-control" name="realaddr" required> <input
+						type="text" id="sample4_extraAddress" placeholder="참고항목"
+						class="form-control">
 				</div>
 				<div>
 					<label for="agree_all"> <input type="checkbox"
@@ -139,20 +143,18 @@
 				<a type="button" style="color: #212529;"
 					href="javascript:find_member()">아이디/비밀번호 찾기</a> <a
 					style="color: #212529;" href="../login">로그인</a><br>
-				<button class="btn btn-primary" type="button" name="rkdlq"onclick="sendit()">회원가입</button>
+				<button class="btn btn-primary" type="button" name="rkdlq"
+					onclick="sendit()">회원가입</button>
 			</div>
 		</form>
 	</div>
 </body>
 <script type="text/javascript" src="agreeCHK.js"></script>
+<script type="text/javascript" src="regist.js"></script>
 <script type="text/javascript">
 function find_member(){
    window.open( "findmem.jsp", "Child", "width=450, height=400, top=50, left=50" );
 }
-function checkid(){
-   window.open( "idcheck.jsp", "Child", "width=450, height=400, top=50, left=50" );
-}
-
 function sendit(){
 	   var join = document.join;
 	   var pwdchk = /^(?=.[a-zA-Z])(?=.*[!@#$%^&*-])(?=.*[0-9]).{8,25}$/;
@@ -198,12 +200,15 @@ function sendit(){
 	   }else{
 		   alert('검사 실패')
 	   }
-	   
 	}
-
-   
 </script>
-
+<script type="text/javascript">
+	function idcheck(){
+		var join = document.join;
+		join.action='idCheckPro';
+		join.submit();
+	}
+</script>
 <script type="text/javascript">
    function email_change(){
       if(document.join.email1.options[document.join.email1.selectedIndex].value == '0'){
@@ -228,6 +233,7 @@ function sendit(){
 
           document.join.email2.value = document.join.email1.options[document.join.email1.selectedIndex].value;
 
+          document.join.email2.focus();
          }
    }
 </script>

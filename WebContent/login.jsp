@@ -10,6 +10,7 @@
 <body>
 	<h3 style="text-align: center;">로그인</h3>
 	<hr>
+	<label id="incorrect">계정 정보가 일치하지 않습니다.</label>
 	<div style="margin-left:720px; width: 800px; background: white; padding: 15px;">
 		<form action="login" method="post">
 				<div class="col-md-4" style="display: grid;">
@@ -79,6 +80,11 @@
 		}
 	}
 </script>
+  <script type="text/javascript">
+  	console.log('${param.incorrect}')
+  	if('${param.incorrect}'==='y')
+  		document.getElementById('incorrect').style.display='inline-block'
+  </script>
 <script>
 	function find_member() {
 		window.open("member/findmem.jsp", "Child",
