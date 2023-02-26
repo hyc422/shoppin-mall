@@ -101,14 +101,10 @@
 								<c:if test="${productNum == null}">
 									<label>없음</label>
 									<%-- <img src="../images/community/${fileName}" border="0"> --%>
-								</c:if>
-								<c:if test="${productNum != null}">
-									<img src="../images/community/${fileName}" border="0">
-								</c:if>
-								<c:if test="${productNum == null}">
 									<span>없음</span>
 								</c:if>
 								<c:if test="${productNum != null}">
+									<img src="../images/community/${fileName}" border="0">
 									<span>${productName}</span>
 								</c:if>
 							</td>				

@@ -112,4 +112,14 @@ public class QnaDao
 		
 		return result;
 	}	// method end
+	
+	public int count() 
+	{
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.selectOne("qna.count");
+		
+		mapperSession.close();
+		
+		return result;
+	}	// method end
 }	// Class end

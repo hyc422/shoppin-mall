@@ -16,6 +16,8 @@ import org.shoppingMall.cart.controller.CartViewController;
 import org.shoppingMall.cart.controller.CartDeleteAllController;
 import org.shoppingMall.cart.controller.CartDeleteController;
 import org.shoppingMall.cart.controller.CartSelectDeleteAllController;
+import org.shoppingMall.community.controller.CommunityCheckActionController;
+import org.shoppingMall.community.controller.CommunityCheckViewController;
 import org.shoppingMall.community.controller.CommunityCommentsController;
 import org.shoppingMall.community.controller.CommunityDeleteController;
 import org.shoppingMall.community.controller.CommunityListController;
@@ -24,9 +26,6 @@ import org.shoppingMall.community.controller.CommunityUpdateActionController;
 import org.shoppingMall.community.controller.CommunityUpdateViewController;
 import org.shoppingMall.community.controller.CommunityWriteActionController;
 import org.shoppingMall.community.controller.CommunityWriteViewController;
-import org.shoppingMall.index.controller.DeleteRecommendProductController;
-import org.shoppingMall.index.controller.IndexRecommendProductController;
-import org.shoppingMall.index.controller.NewRecommendProductController;
 import org.shoppingMall.login.controller.LoginActionController;
 import org.shoppingMall.login.controller.LoginViewController;
 import org.shoppingMall.login.controller.LogoutController;
@@ -121,6 +120,9 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/community/communityupdate", "GET"), new CommunityUpdateViewController());
 		mapping.put(new RequestKeyValue("/community/communityupdate", "POST"), new CommunityUpdateActionController());
 		mapping.put(new RequestKeyValue("/community/communitydelete", "POST"), new CommunityDeleteController());
+		mapping.put(new RequestKeyValue("/community/communitycheck", "GET"), new CommunityCheckViewController());
+		mapping.put(new RequestKeyValue("/community/communitycheck", "POST"), new CommunityCheckActionController());
+		
 	}	// method end
 	
 	public static Controller getController(RequestKeyValue key)

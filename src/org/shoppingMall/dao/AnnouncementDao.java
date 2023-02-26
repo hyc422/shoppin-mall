@@ -79,4 +79,14 @@ public class AnnouncementDao
 		
 		return result;
 	}	// method end
+	
+	public int count() 
+	{
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.selectOne("announcement.count");
+		
+		mapperSession.close();
+		
+		return result;
+	}	// method end
 }	// Class end
