@@ -48,30 +48,32 @@
 		</div>
 		
 		<div id="big2" style="width: 700px; margin: auto; margin-bottom: 40px;">
-			<div>
-				<input type="hidden" name="fileName" id="fileName" value="${fileName}" readonly="readonly">
-				<img id="fileName" name="fileName" src="${pageContext.request.contextPath}/images/Product/${fileName}" width="300px" height="300px" style="display:inline;">
-			</div>
-			<div>
-				상품코드 <input type="text" name="productNum" id="productNum" value="${productNum}" readonly="readonly">
-			</div>
-			<div>
-				상품명 <input type="text" name="productName" id="productName" value="${productName}" readonly="readonly">
-			</div>
-			<div>
-				상품가격 <input type="text" name="productPrice" id="productPrice" value="${productPrice}" readonly="readonly">
-			</div>
-			<div>
-				카테고리 <input type="text" name="productCategories" id="productCategories" value="${productCategories}" readonly="readonly">
-			</div>
-			<div>
-				개수 <input type="text" name="amount" id="amount" value="${amount}" readonly="readonly">
-			</div>
+			<c:forEach items="${vo }" var="vo">
+				<div>
+					<input type="hidden" name="fileName" id="fileName" value="${vo.fileName}" readonly="readonly">
+					<img id="fileName" name="fileName" src="${pageContext.request.contextPath}/images/Product/${vo.fileName}" width="300px" height="300px" style="display:inline;">
+				</div>
+				<div>
+					상품코드 <input type="text" name="productNum" id="productNum" value="${vo.productNum}" readonly="readonly">
+				</div>
+				<div>
+					상품명 <input type="text" name="productName" id="productName" value="${vo.productName}" readonly="readonly">
+				</div>
+				<div>
+					상품가격 <input type="text" name="productPrice" id="productPrice" value="${vo.productPrice}" readonly="readonly">
+				</div>
+				<div>
+					카테고리 <input type="text" name="productCategories" id="productCategories" value="${vo.productCategories}" readonly="readonly">
+				</div>
+				<div>
+					개수 <input type="text" name="amount" id="amount" value="${vo.amount}" readonly="readonly">
+				</div>
+			</c:forEach>
 			<div>
 				배송비 <span id="deliveryFee" name="deliveryFee" style="float: right;">3000</span>
 			</div>
 			<div style="font-size: 40px; margin-top: 30px;">
-				총 결제 금액<input type="text" name="totalPrice" id="totalPrice" value="${productPrice * amount + 3000}" readonly="readonly" style="font-size: 40px;">
+				총 결제 금액<input type="text" name="totalPrice" id="totalPrice" value="${vo.productPrice * vo.amount + 3000}" readonly="readonly" style="font-size: 40px;">
 			</div>
 		</div>
 		<hr>

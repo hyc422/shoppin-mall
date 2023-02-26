@@ -25,6 +25,7 @@ public class ProductAddPaymentController implements Controller {
 		String productCategories = request.getParameter("productCategories");		//카테고리
 		String fileName = request.getParameter("fileName");							//이미지
 		int amount = Integer.parseInt(request.getParameter("amount"));				//상품 개수
+		int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));		//합계 금액
 		
 		String zipcode = request.getParameter("zipcode");							//우편번호
 		String address = request.getParameter("address");							//도로명주소
@@ -40,7 +41,7 @@ public class ProductAddPaymentController implements Controller {
 		dao.insertPayment(vo);
 		
 		request.setAttribute("vo", vo);
-		request.setAttribute("totalPrice", productPrice*amount+3000);
+		request.setAttribute("totalPrice", totalPrice);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productAddPaymentSuccess.jsp");
 		dispatcher.forward(request, response);

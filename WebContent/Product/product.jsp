@@ -59,16 +59,16 @@
 					<!--장바구니 수량 담기  -->
 					<div id="cart">
 						<form action="" name="form" method="post" id="storeForm">
-							<input type="hidden" name="id" value="dmdka"> 
-							<input type="hidden" name="fileName" value="ex01.png">
-							<input type="hidden" name="productName" value="dmdka"> 
-							<input type="hidden" name="productCategories" value="dmdka">
-							<input type="hidden" name="productNum" value="1">
+							<input type="hidden" name="id" value="${user.id }"> 
+							<input type="hidden" name="fileName" value="${Pvo.fileName }">
+							<input type="hidden" name="productName" value="${Pvo.productName }"> 
+							<input type="hidden" name="productCategories" value="${Pvo.productCategories }">
+							<input type="hidden" name="productNum" value="${Pvo.productNum }">
 							<div class="quantity">
 								<span class="btn_position">주문 수량</span> &nbsp;&nbsp;&nbsp; 
 								<input class="count" type="button" value="-" onclick="del();">
 								<input class="count" type="hidden" name="productPrice"
-									value="11111"> 
+									value="${Pvo.productPrice }"> 
 								<input class="count" type="text" name="amount" value="1" size="3"
 									onchange="change();"> 
 								<input class="count" type="button" value="+" onclick="add();">
