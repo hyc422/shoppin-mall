@@ -49,6 +49,10 @@
 		SELECT * FROM reviewcomments
 		WHERE MREF=#{mref}
 	</select>
+
+	<select resultType="org.shoppingMall.vo.ReviewVo" id="selectnickname" parameterType="String">
+	  SELECT *FROM review WHERE nickname = '${value}' 
+  </select>
 	
 	<insert id="commentsinsert" parameterType="org.shoppingMall.vo.ReviewCommentsVo">
  		INSERT INTO reviewcomments (idx,mref,nickname,content) 

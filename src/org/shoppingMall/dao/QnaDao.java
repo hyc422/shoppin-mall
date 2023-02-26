@@ -46,6 +46,14 @@ public class QnaDao
 		
 		return result;
 	}	// method end
+  
+	public List<QnaVo> selectqnalist(String nickname)
+  {
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<QnaVo> list = mapper.selectList("qna.selectqnalist",nickname);
+		mapper.close();
+		return list;
+	} // method end
 	
 	public long insert1(QnaVo vo) 
 	{

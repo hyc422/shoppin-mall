@@ -18,8 +18,9 @@ body {
 }
 
 main{
-height: 700px;}
-.title{
+height: 700px;
+}
+.tit{
 	background-color: #373737;
 	color:#ffffff;
 	font-size: 18px;
@@ -112,14 +113,17 @@ td {
 		
             
             <ul class="sub">
-            <li class="title">MY 쇼핑</li>
+            <li class="tit">MY 쇼핑</li>
                 <li><a href="${pageContext.request.contextPath }/paylist?id=${user.id}">구매 내역/리뷰 작성</a></li>
             </ul>
         </li>
         <li class="group">
             <ul class="sub">
-            <li class="title">MY 정보<li>
-                <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인 수정</a></li>                
+            <li class="tit">MY 정보<li>
+                <<li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
+            	    <li><a href="${pageContext.request.contextPath }/rivew?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
+            	<li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>               
+            	
             </ul>
         </li>
     </ul>
@@ -136,7 +140,7 @@ td {
 					
 						<tr>
 							<td class="ID2" style=" width: 150px; text-align:right; background-color: #a8a8a8 ">회원 ID</td>
-							<td><input type="text" name="ID" value="${vo.id }"  readonly></td>
+							<td><input type="text" name="ID" value="${user.id }"  readonly></td>
 						</tr>
 						
 						<tr>
