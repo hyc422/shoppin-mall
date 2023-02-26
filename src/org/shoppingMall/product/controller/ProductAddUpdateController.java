@@ -26,12 +26,12 @@ public class ProductAddUpdateController implements Controller {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		String saveFolder = "C:\\Users\\user\\Desktop\\project\\111\\shoppingMall\\WebContent\\upload";
+		/*String saveFolder = "C:\\Users\\user\\Desktop\\project\\111\\shoppingMall\\WebContent\\upload";
 		int fileSize = 1024 * 1024 * 10;
 		ProductVO vo = new ProductVO();
 		ProductDAO pDao = ProductDAO.getInstance();
 		FileDAO fDao = FileDAO.getInstance();
-
+		
 		MultipartRequest multi = null;
 		multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 		
@@ -54,7 +54,27 @@ public class ProductAddUpdateController implements Controller {
 		vo.setProductStock(Integer.parseInt(multi.getParameter("productStock")));
 		vo.setProductCategories(multi.getParameter("productCategories"));
 		
-		pDao.productAddUpdate(vo);
+		pDao.productAddUpdate(vo);*/
+		
+		ProductVO pVo = new ProductVO();
+		FileVO fVo = new FileVO();
+		ProductDAO pDao = ProductDAO.getInstance();
+		FileDAO fDao = FileDAO.getInstance();
+		
+		int productNum = Integer.parseInt(request.getParameter("productNum"));
+		
+		pVo.setProductNum(productNum);
+		pVo.setProductName(request.getParameter("productName"));
+		pVo.setProductPrice(Integer.parseInt(request.getParameter("productPrice")));
+		pVo.setProductStock(Integer.parseInt(request.getParameter("productStock")));
+		pVo.setProductCategories(request.getParameter("productCategories"));
+		
+		fVo.setProductNum(productNum);
+		fVo.setFileName(request.getParameter("product_file1"));
+		fVo.setFileNameOriginal(request.getParameter("productImage"));
+		
+		pDao.productAddUpdate(pVo);
+		fDao.updateFiles(fVo);
 		
 		response.sendRedirect("productList");
 		

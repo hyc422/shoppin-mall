@@ -73,7 +73,7 @@
 				배송비 <span id="deliveryFee" name="deliveryFee" style="float: right;">3000</span>
 			</div>
 			<div style="font-size: 40px; margin-top: 30px;">
-				총 결제 금액<input type="text" name="totalPrice" id="totalPrice" value="${vo.productPrice * vo.amount + 3000}" readonly="readonly" style="font-size: 40px;">
+				총 결제 금액<input type="text" name="totalPrice" id="totalPrice" value="${totalPrice + 3000}" readonly="readonly" style="font-size: 40px;">
 			</div>
 		</div>
 		<hr>

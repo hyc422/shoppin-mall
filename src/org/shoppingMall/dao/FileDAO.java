@@ -1,6 +1,7 @@
 package org.shoppingMall.dao;
 
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -69,6 +70,14 @@ public class FileDAO {
 		SqlSession mapper = SqlSessionBean.getSession();
 		
 		mapper.delete("file.deleteFiles", productNum);
+		mapper.commit();
+		mapper.close();
+	}
+	
+	public void updateFiles(FileVO vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		
+		mapper.update("file.updateFiles", vo);
 		mapper.commit();
 		mapper.close();
 	}
