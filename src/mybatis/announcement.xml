@@ -43,4 +43,8 @@
  		DELETE FROM announcement 
  		WHERE idx=#{idx}
  	</delete>
+ 	
+ 	<select id="count" resultType="int">
+ 		SELECT count(*) FROM announcement
+ 	</select>
 </mapper>

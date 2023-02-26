@@ -44,6 +44,10 @@
  		WHERE idx=#{idx}
  	</delete>
  	
+ 	<select id="count" resultType="int">
+ 		SELECT count(*) FROM review
+ 	</select>
+ 	
 	<!-- comments -->
 	<select id="comments" parameterType="long" resultType="org.shoppingMall.vo.ReviewCommentsVo">
 		SELECT * FROM reviewcomments
@@ -56,7 +60,7 @@
 	
 	<insert id="commentsinsert" parameterType="org.shoppingMall.vo.ReviewCommentsVo">
  		INSERT INTO reviewcomments (idx,mref,nickname,content) 
-		VALUES (comment_idx_seq.nextval,#{mref},#{nickname},#{content})
+		VALUES (reviewcomments_idx_seq.nextval,#{mref},#{nickname},#{content})
  	</insert>  
  	
  	<delete id="commentsdelete" parameterType="int">

@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>우리 북카페</title>
+		<title>COMMUNITY</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/communityread.css?v=3">
 	</head>
 	<%@include file="../top.jsp"%>
@@ -296,21 +296,23 @@
 	
 		function executeCmt(fval,cidx)
 		{	
-			document.forms[0].f = fval
+			console.log(fval)
+			document.forms[1].f.value = fval
+			console.log(document.forms[1].f)
 			
-			if(fval === 2) 
+			if(fval === '2') 
 			{
-				document.forms[0].idx = cidx
+				document.forms[1].idx.value = cidx
 				const yn = confirm('댓글 삭제하시겠습니까?')
-				if(yn) document.forms[0].submit()	
+				if(yn) document.forms[1].submit()	
 			}
-			else if(fval === 1)
-				document.forms[0].submit()			
+			else if(fval === '1')
+				document.forms[1].submit()			
 		}
 		
 		function reset_content() 
 		{
-			document.forms[0].content = ''
+			document.forms[1].content.value = ''
 		}
 	</script>
 	</body>
