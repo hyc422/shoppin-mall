@@ -149,6 +149,7 @@
           <a class="dropdown-item" href="#">주문조회</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">내가쓴글</a>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item"
            href="${pageContext.request.contextPath }/update?idx=${user.idx }">회원정보수정</a>
         </div>
@@ -179,11 +180,11 @@
     <div class="title">인기 주류 TOP5 </div>
     <div class="wrap">
         <ul>
-            <li class="current"><a href="#"> 1등 : 맥주</a></li>
-            <li class="next"><a href="#"> 2등 : 소주</a></li>
-            <li><a href="#"> 3등 : 양주</a></li>
-            <li><a href="#"> 4등 : 와인</a></li>
-            <li class="prev"><a href="#"> 5등 : 막걸리</a></li>
+            <li class="current"><a href="/shoppingMall/Product/product?productNum=2&page=1">Golden Peach</a></li>
+            <li class="next"><a href="/shoppingMall/Product/product?productNum=8&page=1">연꽃 담은 술 8도 850ml</a></li>
+            <li><a href="/shoppingMall/Product/product?productNum=10&page=2">이화백주 940ml</a></li>
+            <li><a href="/shoppingMall/Product/product?productNum=12&page=2">오미나라 전통주 고운달 도자기숙성 52도 500ml</a></li>
+            <li class="prev"><a href="/shoppingMall/Product/product?productNum=40">이도</a></li>
         </ul>
     </div>
 </div>

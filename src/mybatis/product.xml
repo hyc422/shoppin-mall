@@ -202,23 +202,8 @@
 		VALUES(#{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, 
 		#{fileName}, #{amount}, #{zipcode}, #{address}, #{addressDetail}, #{addressEtc})
 	</insert>
-  
-	<!-- 실시간검색어 등록 -->
-	
-	<!-- 실시간검색어 등록할 모든 상품 조회 -->
-	<select id="selectAll" resultType="org.shoppingMall.vo.ProductFileList">
-		SELECT PRODUCTNAME ,PRODUCTPRICE ,FilENAME 
-		FROM TBL_PRODUCT tp 
-		JOIN TBL_FILE tf 
-		ON tp.PRODUCTNUM = tf.PRODUCTNUM
-		ORDER BY PRODUCTNAME asc
-	</select>
-	
-	<!-- 실시간검색어에 올라갈 상품 등록 -->
-	<insert id="insertbest" parameterType="org.shoppingMall.vo.BestItemVo">
-		INSERT INTO BESTSEARCH values (#{productName},#{productPrice},#{fileName})
-	</insert>
-	
+
+
 	<select id="selectId" resultType="org.shoppingMall.vo.PaymentVO" parameterType="String">
 	SELECT *FROM TBL_CART tc WHERE id='${value}'
 	</select>
