@@ -39,9 +39,6 @@
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div id="test" class="container tab-pane active">
-					<c:forEach items="${Pvo }" var="Pvo">
-						<a href="${Pvo.productCategories }"></a>
-					</c:forEach>
 						<br> <br>
 					<div class="item-list">
 						<c:forEach items="${selectOneList1 }" var="vo">
@@ -89,7 +86,6 @@
 		<script type="text/javascript">
 			const pnums = document.querySelectorAll('.ieach');
 			pnums.forEach(function(item) {
-				console.log(item);
 				/* item 번호가 현재 페이지 이면 글꼴 스타일을 다르게함. */
 				if (item.innerHTML == '${paging.currentPage}') {
 					item.style.color = 'black';

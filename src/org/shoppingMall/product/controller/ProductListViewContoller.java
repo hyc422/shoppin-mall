@@ -26,7 +26,7 @@ public class ProductListViewContoller implements Controller {
 		int currentPage = 1;	
 		String page=request.getParameter("page");
 		if(page != null) currentPage = Integer.parseInt(page);
-		int pageSize=1;		//pageSize 를 15 또는 10으로 변경해서 실행해 봅시다.
+		int pageSize=2;		//pageSize 를 15 또는 10으로 변경해서 실행해 봅시다.
 		int totalCount = dao.count(a);
 		Paging paging = new Paging(currentPage, totalCount, pageSize);
 		Map<String,Object> map = new HashMap<>();

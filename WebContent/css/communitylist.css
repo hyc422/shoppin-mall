@@ -167,10 +167,10 @@
 
 #list .pagenum 
 {
-    border: 1px solid#37966f;
-    color: #37966f;
+    border: 1px solid gray;
+    color: gray;
     padding: 3px 5px;
-    text-decoration: none;  /*  밑줄제거  */
+    text-decoration: none;
     cursor: pointer;
     display: inline-block;
 	text-align:center;
@@ -180,7 +180,7 @@
 
 #list .pagenum:hover
 {
-	  background-color:#37966f;
+	  background-color: black;
 	  color:white;
 	  font-weight: bold;
 } 
@@ -193,7 +193,7 @@
 
 #list a.button 
 {
-    background-color: #37966f;
+    background-color: gray;
     color:white;
     padding: 7px 25px;
     text-decoration: none;

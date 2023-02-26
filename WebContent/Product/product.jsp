@@ -57,8 +57,8 @@
 					</div>
 					<br>
 					<!--장바구니 수량 담기  -->
-					<div id="cart">
 						<form action="" name="form" method="post" id="storeForm">
+					<div id="cart">
 							<input type="hidden" name="id" value="${user.id }"> 
 							<input type="hidden" name="fileName" value="${Pvo.fileName }">
 							<input type="hidden" name="productName" value="${Pvo.productName }"> 
@@ -81,19 +81,22 @@
 								</b>
 							</div>
 							<br>
-						</form>
 					</div>
 					<div class="cart_put">
 						<button type="button" id="no_member_cart_put" class="order"
-							onclick="addToCart()">장바구니</button>
+							onclick="Cart()">장바구니</button>
 						<button type="button" id="no_member_payBtn" class="order"
 							onclick="productAddPayment()">구매하기</button>
+							
+							<c:if test="${user.admin =='y' }">
 						<button type="button" id="no_member_payBtn" class="order"
 							onclick="productUpdate()">수 정</button>
+							</c:if>
 					</div>
+						</form>
 
 					<script type="text/javascript">
-						function addToCart() {
+						function Cart() {
 							let yn
 							if ('${user.id}' == '') {
 								yn = confirm('장바구니에 추가하기 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?')
@@ -101,21 +104,23 @@
 									location.href = '../login?back=w'
 							} else {
 								document.forms[1].submit();
-								/* location.href = 'product?productNum=${Pvo.productNum }' */
+								/* yn = confirm('장바구니로 이동 하시겠습니까?')
+								location.href = '${pageContext.request.contextPath }/cart?id=${user.id}' */
 							}
 						}
 						
-						function productAddPayment() {
-							document.forms[1].action = 'productAddPayment'
-							document.forms[1].method = 'GET'
-							document.forms[1].submit();
-						}
+						 function productAddPayment() {
+		                     document.forms[1].action = 'productAddPayment'
+		                     document.forms[1].method = 'GET'
+		                     document.forms[1].submit();
+		                  }
 
-						function productUpdate() {
-							document.forms[1].action = 'productAddUpdate'
-							document.forms[1].method = 'GET'
-							document.forms[1].submit();
-						}
+		                  function productUpdate() {
+		                     document.forms[1].action = 'productAddUpdate'
+		                     document.forms[1].method = 'GET'
+		                     document.forms[1].submit();
+		                  }
+
 					</script>
 
 				</div>
@@ -146,7 +151,7 @@
 			<!-- 상세 이미지 -->
 			<div id="detailImg">
 				<img class="detailImg" alt="prodectdtail"
-					src="../images/Product/${Pvo.fileNameOriginal }">
+					src="${pageContext.request.contextPath }/images/Product/${Pvo.fileNameOriginal }">
 			</div>
 			<!-- 	<div>
 				<button>펼치기</button>
@@ -163,7 +168,7 @@
 							<thead>
 								<tr>
 									<th colspan="4"
-										style="text-align: center; border-bottom: 1px solid #e7e7e7">Review(3)</th>
+										style="text-align: center; border-bottom: 1px solid #e7e7e7">Review(${RevPaging.totalCount })</th>
 								</tr>
 								<tr>
 									<th scope="col" class="th-num">번호</th>
@@ -173,28 +178,40 @@
 								</tr>
 							</thead>
 							<tbody>
-								<%
-								for (int i = 0; i < 5; i++) {
-								%>
+								<c:forEach items="${Rev }" var="Rev">
 								<tr>
-									<td>번호</td>
-									<td>아이디(작성자)</td>
-									<td>내용</td>
-									<td style="text-align: center;">작성일</td>
+									<td><a href="${pageContext.request.contextPath }/community/communityread?idx=${Rev.idx}&category=2">${Rev.idx }</a></td>
+									<td><a href="${pageContext.request.contextPath }/community/communityread?idx=${Rev.idx}&category=2">${Rev.content }</a></td>
+									<td><a href="${pageContext.request.contextPath }/community/communityread?idx=${Rev.idx}&category=2">${Rev.nickname }</a></td>
+									<td style="text-align: center; ">${Rev.createdAt }</td>
 								</tr>
-								<%
-								}
-								%>
+								</c:forEach>
 							</tbody>
 						</table>
+						<%-- <div style="width: 700px; margin: auto; padding: 10px; text-align: center;">
+						<br> 
+						<hr>
+						<a class="pagenum" href="?productNum=${a }&ReVpage=1">&lt;&lt;</a>
+						<a class="pagenum" href="?productNum=${a }&ReVpage=${RevPaging.startPage-1 }"
+							style='<c:if test="${RevPaging.startPage==1 }">display:none;</c:if>'>&lt;</a>
+						<c:forEach var="i" begin="${RevPaging.startPage }"
+							end="${RevPaging.endPage }">
+							<a class="pagenum ieach" href="?productNum=${a }&ReVpage=${i }"><c:out
+									value="${i }" /></a>
+						</c:forEach>
+						<a class="pagenum" href="?productNum=${a }&ReVpage=${RevPaging.endPage+1 }"
+							style='<c:if test="${RevPaging.endPage==RevPaging.totalPage }">display:none;</c:if>'>&gt;</a>
+						<a class="pagenum" href="?productNum=${a }&ReVpage=${RevPaging.totalPage }">&gt;&gt;</a>
+						</div> --%>
 
 						<br> <br>
-						<div style="text-align: center;">[ &lt; ] 페이지 [ &gt; ]</div>
 					</div>
 				</div>
 			</div>
 
 		</div>
+		
+		
 		<div id="menu2" class="container tab-pane fade">
 			<br> <br>
 			<div id="review">
@@ -206,63 +223,138 @@
 							<thead>
 								<tr>
 									<th colspan="4"
-										style="text-align: center; border-bottom: 1px solid #e7e7e7">QnA</th>
+										style="text-align: center; border-bottom: 1px solid #e7e7e7">QnA(${QnaPaging.totalCount })</th>
 								</tr>
 								<tr>
-									<th scope="col" class="th-num">QnA</th>
-									<th scope="col" class="th-title">내용</th>
+									<th scope="col" class="th-num">번호</th>
+									<th scope="col" class="th-title">제목</th>
 									<th scope="col" class="th-title">작성자</th>
 									<th scope="col" class="th-date">등록일</th>
 								</tr>
 							</thead>
 							<tbody>
-								<%
-								for (int i = 0; i < 5; i++) {
-								%>
+								<c:forEach items="${Qna }" var="Qna">
 								<tr>
-									<td>번호</td>
-									<td>아이디(작성자)</td>
-									<td>내용</td>
-									<td style="text-align: center;">작성일</td>
+									<td><a href="${pageContext.request.contextPath }/community/communityread?idx=${QnA.idx}&category=3">${Qna.idx }</a></td>
+									<td><a href="${pageContext.request.contextPath }/community/communityread?idx=${QnA.idx}&category=3">${Qna.title }</a></td>
+									<td><a href="${pageContext.request.contextPath }/community/communityread?idx=${QnA.idx}&category=3">${Qna.nickname }</a></td>
+									<td style="text-align: center;">${Qna.createdAt }</td>
 								</tr>
-								<%
-								}
-								%>
+								</c:forEach>
 							</tbody>
 						</table>
 						<!-- board seach area -->
 						<div id="board-search">
 							<div class="container">
 								<div class="search-window">
-									<form action="" method="post" id="boardForm">
+									<form action="community/communitywrite" method="post" id="boardForm">
+									<c:if test="${sessionScope.user != null }">
+											<div style="margin: auto; padding: 10px; float: center; text-align: center;">
+											제목입력 : <input name="title" class="input">
+											비밀번호 : <input name="password" class="input">
+											</div>
+									</c:if>
 										<div class="search-wrap">
-											<input type="hidden" name="p_num" value="102"> <input
-												type="hidden" name="p_name" value="ECTO BTK-11"> <label
-												for="search" class="blind">QnA 작성</label>
-											<textarea style="width: 450px; height: 65px;" name="rContent"
-												id="board_content" placeholder="내용을 입력해주세요."></textarea>
+										<input type="hidden" name="category" value="3">
+										<input type="hidden" name="nickname" value="${user.nickname}">
+										<input type="hidden" name="fileName" value="${Pvo.fileName }">
+										<input type="hidden" name="productName" value="${Pvo.productName }"> 
+										<input type="hidden" name="productnum" value="${Pvo.productNum }">
+											<label for="search" class="blind">QnA 작성</label>
 											<c:if test="${sessionScope.user != null }">
-												<button style="height: 65px;" type="submit"
+											<textarea style="width: 450px; height: 65px;" name="content"
+												id="board_content" placeholder="내용을 입력해주세요."></textarea>
+												<button style="height: 65px;" type="button" onclick="Qna()"
 													class="btn btn-dark">작성</button>
 											</c:if>
 											<c:if test="${sessionScope.user == null }">
-												<button class="btn btn-dark" type="button"
-													style="height: 65px;" onclick="">로그인</button>
+											<button style="height: 65px;" type="button" onclick="login()"
+													class="btn btn-dark">로그인</button>
 											</c:if>
-
 										</div>
 									</form>
 								</div>
 							</div>
 						</div>
-						<div style="text-align: center;">[ &lt; ] 페이지 [ &gt; ]</div>
+						<script type="text/javascript">
+						function Qna() {
+							console.log(document.forms[2].title.value)
+							console.log(document.forms[2].password.value)
+							console.log(document.forms[2].category.value)
+							console.log(document.forms[2].nickname.value)
+							console.log(document.forms[2].productName.value)
+							console.log(document.forms[2].productnum.value)
+							console.log(document.forms[2].content.value)
+							const df = document.forms[2]
+							const title = df.title
+							const password = df.password
+							const content = df.content
+							let run = true
+							if (title.value == '') {
+								alert('제목을 입력해주세요.')
+								address.focus()
+								run = false
+							}
+							if (password.value == '') {
+								alert('비밀번호를 입력해주세요.')
+								address.focus()
+								run = false
+							}
+							if (content.value == '') {
+								alert('내용을 입력해주세요.')
+								address.focus()
+								run = false
+							}
+							if (run) {
+								df.action = 'community/communitywrite'
+				                df.method = 'POST'
+								df.submit()
+							}
+							
+						}
+						function login() {
+							if ('${user.id}' == '') {
+								yn = confirm('QnA 작성을 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?')
+								if (yn)
+									location.href = '../login?back=w'
+							}
+						}
+						</script>
+					<%-- 	<div
+						style="width: 700px; margin: auto; padding: 10px; text-align: center;">
+						<br> 
+						<hr>
+						<a class="pagenum" href="?productNum=${a }&QnApage=1">&lt;&lt;</a>
+						<a class="pagenum" href="?productNum=${a }&QnApage=${QnaPaging.startPage-1 }"
+							style='<c:if test="${QnaPaging.startPage==1 }">display:none;</c:if>'>&lt;</a>
+						<c:forEach var="i" begin="${QnaPaging.startPage }"
+							end="${QnaPaging.endPage }">
+							<a class="pagenum ieach" href="?productNum=${a }&QnApage=${i }"><c:out
+									value="${i }" /></a>
+						</c:forEach>
+						<a class="pagenum" href="?productNum=${a }&QnApage=${QnaPaging.endPage+1 }"
+							style='<c:if test="${QnaPaging.endPage==QnaPaging.totalPage }">display:none;</c:if>'>&gt;</a>
+
+						<a class="pagenum" href="?productNum=${a }&QnApage=${QnaPaging.totalPage }">&gt;&gt;</a>
+					</div> --%>
 					</div>
 				</div>
 			</div>
 
 		</div>
 	</div>
-
+	<script type="text/javascript">
+			const pnums = document.querySelectorAll('.ieach');
+			pnums.forEach(function(item) {
+				/* item 번호가 현재 페이지 이면 글꼴 스타일을 다르게함. */
+				if (item.innerHTML == '${paging.currentPage}') {
+					item.style.color = 'black';
+					item.style.fontWeight = 'bold';
+				} else {
+					item.style.color = '#37966f';
+				}
+			});
+		</script>
 	<br>
 	<br>
 	<br>

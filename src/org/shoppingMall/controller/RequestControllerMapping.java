@@ -16,8 +16,16 @@ import org.shoppingMall.cart.controller.CartViewController;
 import org.shoppingMall.cart.controller.CartDeleteAllController;
 import org.shoppingMall.cart.controller.CartDeleteController;
 import org.shoppingMall.cart.controller.CartSelectDeleteAllController;
+import org.shoppingMall.community.controller.CommunityCheckActionController;
+import org.shoppingMall.community.controller.CommunityCheckViewController;
+import org.shoppingMall.community.controller.CommunityCommentsController;
+import org.shoppingMall.community.controller.CommunityDeleteController;
 import org.shoppingMall.community.controller.CommunityListController;
 import org.shoppingMall.community.controller.CommunityReadController;
+import org.shoppingMall.community.controller.CommunityUpdateActionController;
+import org.shoppingMall.community.controller.CommunityUpdateViewController;
+import org.shoppingMall.community.controller.CommunityWriteActionController;
+import org.shoppingMall.community.controller.CommunityWriteViewController;
 import org.shoppingMall.login.controller.LoginActionController;
 import org.shoppingMall.login.controller.LoginViewController;
 import org.shoppingMall.login.controller.LogoutController;
@@ -29,10 +37,6 @@ import org.shoppingMall.mypage.controller.UpdateActionController;
 import org.shoppingMall.mypage.controller.UpdateViewController;
 import org.shoppingMall.member.controller.Find_idController;
 import org.shoppingMall.member.controller.IDViewController;
-import org.shoppingMall.mypage.controller.CustomerController;
-import org.shoppingMall.mypage.controller.DeleteViewController;
-import org.shoppingMall.mypage.controller.UpdateActionController;
-import org.shoppingMall.mypage.controller.UpdateViewController;
 import org.shoppingMall.product.controller.ProductAddPaymentController;
 import org.shoppingMall.product.controller.ProductAddPaymentViewController;
 import org.shoppingMall.product.controller.ProductAddUpdateController;
@@ -41,8 +45,10 @@ import org.shoppingMall.product.controller.ProductListViewContoller;
 import org.shoppingMall.product.controller.ProductViewContoller;
 import org.shoppingMall.register.controller.RegisterActionController;
 import org.shoppingMall.register.controller.RegisterController;
+import org.shoppingMall.search.controller.BestSearchController;
 import org.shoppingMall.search.controller.HighPriceSearchController;
 import org.shoppingMall.search.controller.LowPriceSearchController;
+import org.shoppingMall.search.controller.NewBestSearchController;
 import org.shoppingMall.search.controller.SearchController;
 
 public class RequestControllerMapping 
@@ -60,6 +66,8 @@ public class RequestControllerMapping
 		 mapping.put(new RequestKeyValue("/search","GET"), new SearchController());
 		 mapping.put(new RequestKeyValue("/high","GET"), new HighPriceSearchController());
 		 mapping.put(new RequestKeyValue("/low","GET"), new LowPriceSearchController());
+		 mapping.put(new RequestKeyValue("/bestsearch","GET"), new BestSearchController());
+		 mapping.put(new RequestKeyValue("/bestsearch","POST"), new NewBestSearchController());
 
 		// Register
 		mapping.put(new RequestKeyValue("/member/register","GET"), new RegisterController());
@@ -78,13 +86,13 @@ public class RequestControllerMapping
     	
 		//mypage
 		mapping.put(new RequestKeyValue("/update","GET"), new UpdateViewController());
-	  mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
-	  mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());
-	  mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
-	  mapping.put(new RequestKeyValue("/paylist","GET"), new PaylistViewController());
-	  mapping.put(new RequestKeyValue("/paylist","POST"), new PaylistActionController());
+		mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
+		mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());
+		mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
+		mapping.put(new RequestKeyValue("/paylist","GET"), new PaylistViewController());
+		mapping.put(new RequestKeyValue("/paylist","POST"), new PaylistActionController());
     
-    // Product
+	  	// Product
 		mapping.put(new RequestKeyValue("/Product/product","GET"), new ProductViewContoller());
 		mapping.put(new RequestKeyValue("/Product/product", "POST"), new ProductActionController());
 		mapping.put(new RequestKeyValue("/Product/productList","GET"), new ProductListViewContoller());
@@ -106,8 +114,16 @@ public class RequestControllerMapping
 		//community
 		mapping.put(new RequestKeyValue("/community/communitylist", "GET"), new CommunityListController());
 		mapping.put(new RequestKeyValue("/community/communityread", "GET"), new CommunityReadController());
-
-	}
+		mapping.put(new RequestKeyValue("/community/communitycomments", "POST"), new CommunityCommentsController());
+		mapping.put(new RequestKeyValue("/community/communitywrite", "GET"), new CommunityWriteViewController());
+		mapping.put(new RequestKeyValue("/community/communitywrite", "POST"), new CommunityWriteActionController());
+		mapping.put(new RequestKeyValue("/community/communityupdate", "GET"), new CommunityUpdateViewController());
+		mapping.put(new RequestKeyValue("/community/communityupdate", "POST"), new CommunityUpdateActionController());
+		mapping.put(new RequestKeyValue("/community/communitydelete", "POST"), new CommunityDeleteController());
+		mapping.put(new RequestKeyValue("/community/communitycheck", "GET"), new CommunityCheckViewController());
+		mapping.put(new RequestKeyValue("/community/communitycheck", "POST"), new CommunityCheckActionController());
+		
+	}	// method end
 	
 	public static Controller getController(RequestKeyValue key)
 	{return mapping.get(key);}

@@ -125,21 +125,23 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <c:if test="${sessionScope.user == null }">
       <li class="nav-item active">
         <a class="nav-link" href="${pageContext.request.contextPath}/login">로그인<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="${pageContext.request.contextPath}/member/register">회원가입<span class="sr-only">(current)</span></a>
       </li>
+      </c:if>
       <c:if test="${sessionScope.user != null }">
       <li class="nav-link"><span id="user">${user.name }님</span></li>
-      <li><a class="nav-link" href="${pageContext.request.contextPath}logout">로그아웃</a></li>
+      <li><a class="nav-link" href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
       </c:if>
       <li class="nav-item active">
         <a onclick="Cart2()" class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
-        <a  style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a  style="color: white;" class="nav-link dropdown-toggle" href="myPage2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           마이페이지
         </a>
         <div class="dropdown-menu">
@@ -147,8 +149,14 @@
           <a class="dropdown-item" href="#">주문조회</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">내가쓴글</a>
+          <a class="dropdown-item"
+           href="${pageContext.request.contextPath }/update?idx=${user.idx }">회원정보수정</a>
         </div>
       </li>
+	<c:if test="${user.admin =='y' }">
+	<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/Product/productAdd">상품등록</a></li>
+	</c:if>
+      
     </ul>
 
 	<script type="text/javascript">
@@ -159,7 +167,7 @@
 				if (yn)
 					location.href = '${pageContext.request.contextPath }/login?back=w'
 			} else {
-				location.href = 'cart?id=${user.id}'
+				location.href = '${pageContext.request.contextPath }/cart?id=${user.id}'
 			}
 		}
 	</script>
@@ -208,7 +216,7 @@
 
 
 <!-- nav -->
-<div class="sticky-top">
+<div class="sticky-top" style="width: 400px; margin: auto;">
 <ul class="nav justify-content-center">
       <li class="nav-item dropdown">
         <a style="color: #424242;" class="nav-link dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -28,13 +28,33 @@ public class CommunityListController implements Controller
 	{
 		logger.info(":::::::: 요청 CommunityListController 처리 시작 : {} ::::::::",request.getServletPath());
 		
-		int currentPage = 1; 
-		String page=request.getParameter("page"); 
-		if(page != null) currentPage = Integer.parseInt(page); //list.jsp 에 page 파라미터를 찾아보세요. 
-		int pageSize = 5;
-		int totalCount = 1;
+		// 게시판 구분
+		int category = 1;
+		String temp = request.getParameter("category");
+		if(temp != null) category = Integer.parseInt(request.getParameter("category"));
+		int currentPage = 1;
 		
-		//위의 값들을 이용해서 Paging 객체를 생성하면서 다른 필드값을 계산합니다. 
+		String page = request.getParameter("page");
+		if(page != null) currentPage = Integer.parseInt(page);
+		int pageSize = 5;
+		int totalCount = 0;
+		
+		if(category == 1)
+		{
+			AnnouncementDao dao = AnnouncementDao.getInstance();
+			totalCount = dao.count();
+		}
+		else if(category == 2)
+		{
+			ReviewDao dao = ReviewDao.getInstance();
+			totalCount = dao.count();
+		}
+		else if(category == 3)
+		{
+			QnaDao dao = QnaDao.getInstance();
+			totalCount = dao.count();
+		}
+			
 		Paging paging = new Paging(currentPage, totalCount, pageSize);
 		logger.info(":::::::: ListController paging : {} ::::::::",paging);
 		
@@ -44,11 +64,7 @@ public class CommunityListController implements Controller
 		request.setAttribute("paging", paging); 
 		request.setAttribute("today", LocalDate.now());
 		
-		// 게시판 구분
-		int category = 1;
-		String temp = request.getParameter("category");
 		
-		if(temp != null) category = Integer.parseInt(request.getParameter("category"));
 		if(category == 1)
 		{
 			AnnouncementDao dao = AnnouncementDao.getInstance();
