@@ -21,6 +21,7 @@
 				<input type="hidden" name="idx" value="${idx}">
 				<input type="hidden" name="category" value="${category}">
 				<input type="hidden" name="page" value="${page}">
+				<input type="hidden" name="listpassword" value="${vo.password}">
 				<div style="width: 80%; margin: auto; max-width: 760px;">
 					<ul id="table">
 						<li>
@@ -41,24 +42,24 @@
 							</ul>
 						</li>
 						<li>
-							<c:if test="${vo.productNum == null}">
-								<label>없음</label>
-								<%-- <img src="../images/community/${vo.fileName}" border="0"> --%>
-								<span>없음</span>
-							</c:if>
 							<c:if test="${vo.productNum != null}">
-								<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
-									<img src="../images/community/${vo.fileName}" border="0">
-									<span>${vo.productName}</span>
-								</a>
+								<ul class="row">
+									<li class="box" style="height:110px; line-height: 100px">상품 정보</li>
+									<li>
+										<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
+											<img src="../images/community/${vo.fileName}" border="0">
+											<span>${vo.productName}</span>
+										</a>
+									</li>
+								</ul>
 							</c:if>
 						</li>
 						<li id="content">
 							<ul>
 								<li>내용</li>			
-								<li>
-									<input type="text" name="password" size="50" placeholder="숫자 4자리">
-									<button type="submit">확인</button>
+								<li style="padding: 125px; padding-left: 280px">
+									<input type="password" name="password" size="12" placeholder="숫자 4자리 입력" style="padding:7px">
+									<button type="button" onclick="check()">확인</button>
 								</li>				
 							</ul>
 						</li>
@@ -69,6 +70,30 @@
 				</div>
 			</form>
 		</main>
+	
+	<script type="text/javascript">
+		function check()
+		{		
+			let password = document.forms[1].password.value
+			
+			if(password != '')
+			{
+				if(password.length == 4 && !(isNaN(Number(password))))
+					document.forms[1].submit()
+				else
+				{
+					alert('password는 숫자 4개입니다.')
+					return false;
+				}
+			}
+			else
+			{
+				alert('password를 입력하세요!')
+				password.focus()
+				return false
+			}
+		}
+	</script>
 	</body>
 	<%@include file="../footer.jsp"%>
 </html>

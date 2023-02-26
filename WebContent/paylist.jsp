@@ -20,7 +20,7 @@ body {
 }
 main{
 height: 700px;}
-.title{
+.tit{
 	background-color: #373737;
 	color:#ffffff;
 	font-size: 18px;
@@ -62,7 +62,6 @@ body {
 .usermodify {
     position: relative;
 }
-
 input, textarea, select, button {
     font-family: sans-serif;
     font-size: 100%;
@@ -91,7 +90,6 @@ td {
   tr > td:first-child {
 	color: #000000;
 }
-
 .Withdrawal{
 	margin-left : 270px;
 	margin-top: 40px;
@@ -99,8 +97,6 @@ td {
 .shopping{
     margin-left: 1000px;
 }
-
-
 </style>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <link rel="stylesheet"
@@ -126,6 +122,8 @@ td {
             <div class="tit">MY 정보</div>
             <ul class="sub">
                 <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
+            	<li><a href="${pageContext.request.contextPath }/rivew?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
+            	<li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>
             </ul>
         </li>
            
@@ -158,15 +156,22 @@ td {
                     <div class="split"></div>
                 </div>
                 
+            <!-- HYC 추가 -->    
+            <input type="hidden" name="pNum" value="0">
+            <input type="hidden" name="pName" value="0">
+            <input type="hidden" name="fName" value="0">
+            <!-- HYC 추가 -->    
+                
         	<c:forEach items="${vo }" var="vo" varStatus="num">
+        	
         	  
                 <div class="row data">
                     <div class="subdiv">
-                        <div class="img"><a href="${vo.productNum}"> 
-                        <img src="${vo.fileName }" width="60"></a></div>
+                        <div class="img"><a href="${pageContext.request.contextPath }/Product/product?productNum=${vo.productNum}"> 
+                        <img src="${pageContext.request.contextPath }/images/Product/${vo.fileName }" width="60"></a></div>
                         <div class="pname">
                             <span>
-                            <a href="${vo.productNum}"><input type="hidden" name="productName" value=" ${vo.productName }"> ${vo.productName }</a>
+                            <a href="${pageContext.request.contextPath }/Product/product?productNum=${vo.productNum}"><input type="hidden" name="productName" value=" ${vo.productName }"> ${vo.productName }</a>
                             </span>
                         </div>
                     </div>
@@ -206,12 +211,19 @@ td {
                         <input type="hidden" name="addressEtc" value="${vo.addressEtc }"> --%>
                   
                        <!--  <a href="javascript:void(0)" class="abutton">
-                        <button type="submit" style="background: none; color: white;">후기</button>
                         </a> -->
                    
                         </div>
                     </div>
                 </div><!--  -->
+        		<!-- HYC 추가 -->
+                <form action="communitywrite" method="POST" name="${vo.productNum}">
+	                <input type="hidden" name="productNum" value="${vo.productNum}">
+	                <input type="hidden" name="productName" value="${vo.productName}">
+	                <input type="hidden" name="fileName" value="${vo.fileName}">
+	                <button type="button" onclick="write(${vo.productNum})" style="background: none; color: white;">후기</button>
+                </form>	
+                <!-- HYC 추가 -->
         	</c:forEach>
         	
         
@@ -228,6 +240,17 @@ td {
 		</section>
 	</div>
 </main>
+<script type="text/javascript">		/* HYC 추가 */
+	function write(${vo.productNum})
+	{		
+		document.forms[1].pNum.value = document.${vo.productNum}.productNum.value
+		document.forms[1].pName.value = document.${vo.productNum}.productName.value
+		document.forms[1].fName.value = document.${vo.productNum}.fileName.value
+		
+		const yn = confirm('상품 후기 작성하시겠습니까?')
+		if(yn) document.forms[1].submit()
+	}
+</script>
 
 	<%@ include file="../footer.jsp"%>
 </body>

@@ -19,7 +19,7 @@
 			<c:if test="${category == 1}">
 				<h3>COMMUNITY - ANNOUNCEMENT</h3>
 				<hr style="color:white;">
-				<div style="width: 80%; margin: auto;max-width: 760px;">
+				<div style="width: 80%; margin: auto;max-width: 790px;">
 					<ul id="table">
 						<li>
 							<ul class="row">
@@ -87,10 +87,15 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
-								<img src="../images/community/${vo.fileName}" border="0">
-								<span>${vo.productName}</span>
-							</a>
+							<ul class="row">
+								<li class="box" style="height:110px; line-height: 100px">상품 정보</li>
+								<li>
+									<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
+										<img src="../images/community/${vo.fileName}" border="0">
+										<span>${vo.productName}</span>
+									</a>
+								</li>
+							</ul>
 						</li>
 						<li id="content">
 							<ul>
@@ -101,7 +106,7 @@
 							</ul>
 						</li>
 					</ul>
-					<div style="text-align: center;margin-bottom: 10px;">
+					<div style="text-align: center; margin-bottom: 10px;">
 						<c:if test="${user.nickname == vo.nickname }">
 							<a class="button" href="javascript:execute(1)">수정</a>
 							<a class="button" href="javascript:execute(2)">삭제</a>
@@ -192,16 +197,16 @@
 							</ul>
 						</li>
 						<li>
-							<c:if test="${vo.productNum == null}">
-								<label>없음</label>
-								<%-- <img src="../images/community/${vo.fileName}" border="0"> --%>
-								<span>없음</span>
-							</c:if>
 							<c:if test="${vo.productNum != null}">
-								<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
-									<img src="../images/community/${vo.fileName}" border="0">
-									<span>${vo.productName}</span>
-								</a>
+								<ul class="row">
+									<li class="box" style="height:110px; line-height: 100px">상품 정보</li>
+									<li>
+										<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
+											<img src="../images/community/${vo.fileName}" border="0">
+											<span>${vo.productName}</span>
+										</a>
+									</li>
+								</ul>
 							</c:if>
 						</li>
 						<li id="content">

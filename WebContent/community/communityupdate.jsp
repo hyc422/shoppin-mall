@@ -92,8 +92,10 @@
 						</tr>
 						<tr>
 							<th><label>상품</label></th>
-							<td><img src="../images/community/${vo.fileName}" border="0"></td>				
-							<td><label>${vo.productName}</label></td>
+							<td>
+								<img src="../images/community/${vo.fileName}" border="0">
+								<span>${vo.productName}</span>
+							</td>				
 						</tr>
 						<tr>
 							<th>작성 날짜</th>
@@ -118,7 +120,7 @@
 			
 			<!-- community : qna -->
 			<c:if test="${category == 3}">
-				<h3>상품 후기</h3>
+				<h3>QnA</h3>
 				<hr style="color:white;">
 				<form action="communityupdate" method="POST" name="update">
 					<input type="hidden" name="idx" value="${vo.idx}">
@@ -145,27 +147,17 @@
 								<input type="text" name="nickname" size="50" value="${vo.nickname}" disabled="disabled">
 							</td>
 						</tr>
-						<tr>
-							<th><label>상품</label></th>
-							<td>
-								<c:if test="${vo.fileName == null}">
-									<label>없음</label>
-									<%-- <img src="../images/community/${vo.fileName}" border="0"> --%>
-								</c:if>
-								<c:if test="${vo.fileName != null}">
-									<img src="../images/community/${vo.fileName}" border="0">
-								</c:if>
-							</td>				
-							<td>
-								<c:if test="${vo.productName == null}">
-									<label>없음</label>
-									<%-- <img src="../images/community/${vo.fileName}" border="0"> --%>
-								</c:if>
-								<c:if test="${vo.productName != null}">
-									<label>${vo.productName}</label>
-								</c:if>
-							</td>
-						</tr>
+						<c:if test="${vo.productNum != null}">
+							<tr>
+								<th><label>상품</label></th>
+								<td>
+									<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
+										<img src="../images/community/${vo.fileName}" border="0">
+										<span>${vo.productName}</span>
+									</a>
+								</td>				
+							</tr>
+						</c:if>
 						<tr>
 							<th>작성 날짜</th>
 							<td><c:out value="${vo.createdAt}"/></td>
