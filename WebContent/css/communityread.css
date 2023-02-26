@@ -33,6 +33,7 @@ h3, p
 #read ul.row 
 {
 	display: flex;
+	margin: auto;
 }
 
 #read ul.row > li
@@ -47,7 +48,7 @@ h3, p
 #read ul.row > li:nth-child(1)
 {
 	flex-basis:15%;
-	background-color: #37966f;
+	background-color: gray;
 	color:white;
 	border-radius: 3px;
 	font-size: 0.8em;
@@ -63,7 +64,7 @@ h3, p
 #read ul.row > li:nth-child(3)
 {
 	flex-basis:15%;
-	background-color: #37966f;
+	background-color: gray;
 	color:white;
 	border-radius: 3px;
 	font-size: 0.8em;
@@ -84,9 +85,9 @@ h3, p
 {
 	padding: 3px;
 	border-radius: 3px;
-	border: 1px solid #37966f;
+	border: 1px solid gray;
 	text-align: center;
-	font-size: 0.7em;
+	font-size: 0.8em;
 	margin: 7px 0px;
 }
 
@@ -100,7 +101,7 @@ h3, p
 {
     color:#356859;
     padding: 7px 25px;
-    text-decoration: none;  /*  밑줄제거  */
+    text-decoration: none;
     cursor: pointer;
     display: inline-block;
 	text-align:center;

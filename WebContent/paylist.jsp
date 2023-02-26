@@ -62,7 +62,6 @@ body {
 .usermodify {
     position: relative;
 }
-
 input, textarea, select, button {
     font-family: sans-serif;
     font-size: 100%;
@@ -91,7 +90,6 @@ td {
   tr > td:first-child {
 	color: #000000;
 }
-
 .Withdrawal{
 	margin-left : 270px;
 	margin-top: 40px;
@@ -99,8 +97,6 @@ td {
 .shopping{
     margin-left: 1000px;
 }
-
-
 </style>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <link rel="stylesheet"
@@ -160,7 +156,14 @@ td {
                     <div class="split"></div>
                 </div>
                 
+            <!-- HYC 추가 -->    
+            <input type="hidden" name="pNum" value="0">
+            <input type="hidden" name="pName" value="0">
+            <input type="hidden" name="fName" value="0">
+            <!-- HYC 추가 -->    
+                
         	<c:forEach items="${vo }" var="vo" varStatus="num">
+        	
         	  
                 <div class="row data">
                     <div class="subdiv">
@@ -208,12 +211,19 @@ td {
                         <input type="hidden" name="addressEtc" value="${vo.addressEtc }"> --%>
                   
                        <!--  <a href="javascript:void(0)" class="abutton">
-                        <button type="submit" style="background: none; color: white;">후기</button>
                         </a> -->
                    
                         </div>
                     </div>
                 </div><!--  -->
+        		<!-- HYC 추가 -->
+                <form action="communitywrite" method="POST" name="${vo.productNum}">
+	                <input type="hidden" name="productNum" value="${vo.productNum}">
+	                <input type="hidden" name="productName" value="${vo.productName}">
+	                <input type="hidden" name="fileName" value="${vo.fileName}">
+	                <button type="button" onclick="write(${vo.productNum})" style="background: none; color: white;">후기</button>
+                </form>	
+                <!-- HYC 추가 -->
         	</c:forEach>
         	
         
@@ -230,6 +240,17 @@ td {
 		</section>
 	</div>
 </main>
+<script type="text/javascript">		/* HYC 추가 */
+	function write(${vo.productNum})
+	{		
+		document.forms[1].pNum.value = document.${vo.productNum}.productNum.value
+		document.forms[1].pName.value = document.${vo.productNum}.productName.value
+		document.forms[1].fName.value = document.${vo.productNum}.fileName.value
+		
+		const yn = confirm('상품 후기 작성하시겠습니까?')
+		if(yn) document.forms[1].submit()
+	}
+</script>
 
 	<%@ include file="../footer.jsp"%>
 </body>

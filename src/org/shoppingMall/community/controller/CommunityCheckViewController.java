@@ -24,10 +24,12 @@ public class CommunityCheckViewController implements Controller
 		String idx = request.getParameter("idx");
 		String category = request.getParameter("category");
 		String page = request.getParameter("page");
+		String password= request.getParameter("vo.password");
 		
 		request.setAttribute("idx", idx);
 		request.setAttribute("category", category);
 		request.setAttribute("page", page);
+		request.setAttribute("listpassword", password);
 		
 		try 
 		{

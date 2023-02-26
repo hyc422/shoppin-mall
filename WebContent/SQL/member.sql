@@ -12,6 +12,7 @@ CREATE TABLE js_member
    address varchar2(100)NOT NULL,    --회원 주소
    birth varchar2(20)NOT NULL,		 --회원 생일
    admin varchar2(1) DEFAULT 'n'	 --관리자 여부
+   PRIMARY KEY(IDX)
 );
 
 CREATE SEQUENCE member_idx_seq;
