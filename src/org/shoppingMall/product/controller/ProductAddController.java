@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.shoppingMall.controller.Controller;
 import org.shoppingMall.dao.FileDAO;
 import org.shoppingMall.dao.ProductDAO;
+import org.shoppingMall.vo.FileVO;
 import org.shoppingMall.vo.ProductVO;
 
 import com.oreilly.servlet.MultipartRequest;
@@ -17,7 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class ProductAddController implements Controller {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String saveFolder = "C:\\Users\\user\\Desktop\\project\\111\\shoppingMall\\WebContent\\upload";
+		/*String saveFolder = "C:\\Users\\user\\Desktop\\project\\111\\shoppingMall\\WebContent\\upload";
 		int fileSize = 1024 * 1024 * 10;
 		
 		MultipartRequest multi = null;
@@ -36,6 +37,34 @@ public class ProductAddController implements Controller {
 		pDao.productInsert(vo);
 		fDao.insertFile(multi, pDao.getSeq());
 		
-		response.sendRedirect("list1111111111111");	
+		response.sendRedirect("productList");*/	
+
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		ProductVO pVo = new ProductVO();
+		FileVO fVo = new FileVO();
+		ProductDAO pDao = ProductDAO.getInstance();
+		FileDAO fDao = FileDAO.getInstance();
+		
+		System.out.println(request.getParameter("product_file1"));
+		System.out.println(request.getParameter("productImage"));
+		System.out.println(pDao.getSeq());
+		
+		pVo.setProductName(request.getParameter("productName"));
+		pVo.setProductPrice(Integer.parseInt(request.getParameter("productPrice")));
+		pVo.setProductStock(Integer.parseInt(request.getParameter("productStock")));
+		pVo.setProductCategories(request.getParameter("productCategories"));
+		
+		fVo.setFileName(request.getParameter("product_file1"));
+		fVo.setFileNameOriginal(request.getParameter("productImage"));
+		fVo.setProductNum(pDao.getSeq());
+		
+		pDao.productInsert(pVo);
+		fDao.insertFile(fVo);
+		
+		response.sendRedirect("productList");
+		
 	}
+	
 }

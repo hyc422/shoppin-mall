@@ -22,7 +22,7 @@ public class CartDao {
 		mapper.close();
 		return result;
 	}
-	public List<CartVo>list(String id){
+	public List<CartVo> list(String id){
 		SqlSession mapper = SqlSessionBean.getSession();
 		List<CartVo>list = mapper.selectList("cart.selectid",id);
 		mapper.close();

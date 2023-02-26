@@ -15,8 +15,10 @@
 	</insert>
 
 	<select id="getSeq" resultType="_int">
-		SELECT SEQ_PRODUCT.CURRVAL FROM
-		DUAL
+		<!-- SELECT SEQ_PRODUCT.CURRVAL FROM
+		DUAL -->
+		SELECT MAX(PRODUCTNUM) FROM
+		TBL_PRODUCT
 	</select>
 
 	<select id="nextSeq" resultType="_int">
@@ -195,7 +197,7 @@
 	</select>
 	
 	<insert id="insertPayment" parameterType="org.shoppingMall.vo.ProductVO">
-		INSERT INTO TBL_CART
+		INSERT INTO TBL_PAYMENT
 		(ID, PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE, PRODUCTCATEGORIES, FILENAME, AMOUNT, ZIPCODE, ADDRESS, ADDRESSDETAIL, ADDRESSETC)
 		VALUES(#{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, 
 		#{fileName}, #{amount}, #{zipcode}, #{address}, #{addressDetail}, #{addressEtc})
