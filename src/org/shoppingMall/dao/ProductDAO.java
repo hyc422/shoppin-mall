@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.shoppingMall.vo.PaymentVO;
 import org.shoppingMall.vo.ProductFileList;
 import org.shoppingMall.vo.ProductVO;
+import org.shoppingMall.vo.QnaVo;
 import org.shoppingMall.vo.RecommendVo;
+import org.shoppingMall.vo.ReviewVo;
 
 import mybatis.SqlSessionBean;
 
@@ -34,7 +36,7 @@ public class ProductDAO {
 		mapper.close();
 		return result;
 		
-	}
+	}//
 
 	public int nextSeq() {
 		SqlSession mapper = SqlSessionBean.getSession();
@@ -103,10 +105,51 @@ public class ProductDAO {
 	public int count(String vo) {
 		SqlSession mapper = SqlSessionBean.getSession();
 		int result = mapper.selectOne("product.count",vo);
-		mapper.commit();
 		mapper.close();
 		return result;
 	}
+	//CGH
+	public List<ReviewVo> RevPagelist(Map<String,Integer> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<ReviewVo> list = mapper.selectList("product.revPagelist",map);
+		mapper.close();
+		return list;
+	}
+	//CGH
+	public List<QnaVo> QnaPagelist(Map<String,Integer> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<QnaVo> list = mapper.selectList("product.qnaPagelist",map);
+		mapper.close();
+		return list;
+	}
+	//CGH
+	public int RevCount(int vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.selectOne("product.RevCount",vo);
+		mapper.close();
+		return result;
+	}
+	//CGH
+	public int QnaCount(int vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.selectOne("product.QnaCount",vo);
+		mapper.close();
+		return result;
+	}
+	//CGH
+	public List<ReviewVo> selectRev(int vo){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<ReviewVo> list = mapper.selectList("product.selectRev", vo);
+		mapper.close();
+		return list;
+	}	
+	//CGH
+	public List<QnaVo> selectQna(int vo){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<QnaVo> list = mapper.selectList("product.selectQna", vo);
+		mapper.close();
+		return list;
+	}	
 	
 	
 	//동해
@@ -172,6 +215,13 @@ public class ProductDAO {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		List<ProductFileList> list = mapperSession.selectList("product.searchpagelistlowprice",map);
 		mapperSession.close();
+		return list;
+	}
+	//유리
+	public List<PaymentVO> selectId(String id){
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<PaymentVO>list = mapper.selectList("product.selectId",id);
+		mapper.close();
 		return list;
 	}
 

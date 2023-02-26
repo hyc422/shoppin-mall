@@ -141,19 +141,23 @@
         <a onclick="Cart2()" class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
-        <a  style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a  style="color: white;" class="nav-link dropdown-toggle" href="myPage2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           마이페이지
         </a>
         <div class="dropdown-menu">
           <div class="dropdown-divider"></div>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">마이페이지</a>
-          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">주문조회</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">내가쓴글</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item"
+           href="${pageContext.request.contextPath }/update?idx=${user.idx }">회원정보수정</a>
         </div>
       </li>
+	<c:if test="${user.admin =='y' }">
+	<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/Product/productAdd">상품등록</a></li>
+	</c:if>
+      
     </ul>
 
 	<script type="text/javascript">
@@ -164,7 +168,7 @@
 				if (yn)
 					location.href = '${pageContext.request.contextPath }/login?back=w'
 			} else {
-				location.href = 'cart?id=${user.id}'
+				location.href = '${pageContext.request.contextPath }/cart?id=${user.id}'
 			}
 		}
 	</script>
@@ -176,11 +180,11 @@
     <div class="title">인기 주류 TOP5 </div>
     <div class="wrap">
         <ul>
-            <li class="current"><a href="<%=request.getContextPath()%>/Product/product?productNum=1&page=1"> 단감명작</a></li>
-            <li class="next"><a href="<%=request.getContextPath()%>/Product/product?productNum=8&page=1"> 연꽃 담은 술</a></li>
-            <li><a href="<%=request.getContextPath()%>/Product/product?productNum=20&page=2"> 양촌양조 양촌 우렁이쌀 청주</a></li>
-            <li><a href="<%=request.getContextPath()%>/Product/product?productNum=12&page=1"> 오미나라 전통주 고운달 도자기숙성 52도 500ml</a></li>
-            <li class="prev"><a href="<%=request.getContextPath()%>/Product/product?productNum=10&page=3"> 이화백주</a></li>
+            <li class="current"><a href="/shoppingMall/Product/product?productNum=2&page=1">Golden Peach</a></li>
+            <li class="next"><a href="/shoppingMall/Product/product?productNum=8&page=1">연꽃 담은 술 8도 850ml</a></li>
+            <li><a href="/shoppingMall/Product/product?productNum=10&page=2">이화백주 940ml</a></li>
+            <li><a href="/shoppingMall/Product/product?productNum=12&page=2">오미나라 전통주 고운달 도자기숙성 52도 500ml</a></li>
+            <li class="prev"><a href="/shoppingMall/Product/product?productNum=40">이도</a></li>
         </ul>
     </div>
 </div>
@@ -213,7 +217,7 @@
 
 
 <!-- nav -->
-<div class="sticky-top">
+<div class="sticky-top" style="width: 400px; margin: auto;">
 <ul class="nav justify-content-center">
       <li class="nav-item dropdown">
         <a style="color: #424242;" class="nav-link dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

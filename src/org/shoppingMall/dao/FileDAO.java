@@ -17,7 +17,15 @@ public class FileDAO {
 		return dao;
 	}
 	
-	public void insertFile(MultipartRequest multi, int productNum) {
+	public void insertFile(FileVO vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		
+		mapper.insert("file.insertFile", vo);
+		mapper.commit();
+		mapper.close();
+	}
+	
+	/*public void insertFile(MultipartRequest multi, int productNum) {
 		SqlSession mapper = SqlSessionBean.getSession();
 		
 		FileVO vo = new FileVO();
@@ -45,7 +53,7 @@ public class FileDAO {
 			mapper.commit();
 			mapper.close();
 		}
-	}
+	}*/
 	
 	public List<FileVO> getFiles(int productNum){
 		SqlSession mapper = SqlSessionBean.getSession();

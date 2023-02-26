@@ -83,9 +83,9 @@
 	<!-- 상단배너 -->
 		<div class="w3-content w3-display-container"
 			style="max-width: 100%; margin: 0px;">
-			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너1.jpg" style="width: 100%">
-			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너2.jpg" style="width: 100%">
-			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너3.jpg" style="width: 100%">
+			<a href="${pageContext.request.contextPath }/Product/product?productNum=40"><img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너1.jpg" style="width: 100%"></a>
+			<a href="${pageContext.request.contextPath }/Product/product?productNum=43"><img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너2.jpg" style="width: 100%"></a>
+			<a href="${pageContext.request.contextPath }"><img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너3.jpg" style="width: 100%"></a>
 			<div
 				class="w3-center w3-section w3-large w3-text-white w3-display-bottomleft"
 				style="width: 100%">
@@ -127,7 +127,6 @@
 					<a href="<%=request.getContextPath() %>/search?name="			
 						style="color: black; text-decoration: none; font-size: 13px;">More</a>
 				</div>
-				<a href= "<%=request.getContextPath() %>/bestsearch">인기검색어 바꾸기(위치바꿀예정/테스트중)</a>
 				<h3 style="text-align: center;">추천상품</h3>
 		<br>
 		
@@ -145,31 +144,31 @@
 				<hr style="margin: 0px;">
 				
 				<!-- 관리자용 상품이름보이기 -->
-				<%-- <c:if test="${session != null }"> --%>
+				<c:if test="${user.admin=='y' }">
 				<h5 style="text-align: center; margin: 0px;"><%=vo.get(i).getPRODUCTNAME() %></h5>
-				<%-- </c:if> --%>
+				</c:if>
 				
-<%-- 				<!-- 손님용 상품이름보이기 -->
-				<c:if test="${session == null }">
+				<!-- 손님용 상품이름보이기 -->
+				<c:if test="${user.admin !='y' }">
 				<h5 style="text-align: center;"><%=vo.get(i).getPRODUCTNAME() %></h5>
-				</c:if> --%>
+				</c:if>
 				
 				<p style="text-align: center; margin: 0px; font-size: 13px;">판매가 : <%=vo.get(i).getPRODUCTPRICE() %>원
 				<br>
 				
 				<!-- 관리자용 -->
-				<%-- <c:if test="${session != null }"> --%>
+				<c:if test="${user.admin=='y' }">
 				<a href="RecommendDelete?productname=<%=vo.get(i).getPRODUCTNAME() %>" onclick="return confirm('추천상품을 해제하시겠습니까?');">추천상품 해제</a>
-				<%-- </c:if> --%>
+				</c:if>
 				</p>
 			</div>
 		<% } %>	
 			
 		</div>			<!-- 관리자용 -->
-		<%-- <c:if test="${session != null }"> --%>
+		<c:if test="${user.admin=='y' }">
 				<div style="border: 1px solid silver; float: right; display:inline; width: 90px; height:25px; margin-bottom :20px; margin-right: 200px; text-align: center; background-color: #e1e4ed;">
 				<a style= "text-decoration: none; color: black; font-size: 13px;'" href="RecommendUpdate">추천상품 등록</a></div>
-		<%-- </c:if> --%>
+		</c:if>
 		<br>
 		<br>
 		<br>
@@ -177,7 +176,7 @@
 			
 			<!-- 중간배너 -->
 		<div style="width: 100%">
-			<img alt="" src="images/BannerAndIcon/우리술품폄회.png">
+			<a href="${pageContext.request.contextPath }/Product/product?productNum=42"><img alt="" src="images/BannerAndIcon/우리술품폄회.png"></a>
 		</div>
 		
 		<br>

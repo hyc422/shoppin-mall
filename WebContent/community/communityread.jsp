@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>우리 북카페</title>
+		<title>COMMUNITY</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/communityread.css?v=3">
 	</head>
 	<%@include file="../top.jsp"%>
@@ -33,7 +33,7 @@
 							<ul class="row">
 								<li>작성자</li>
 								<li>
-									<c:out value="${vo.nickName}"/>
+									<c:out value="${vo.nickname}"/>
 									<span style="font-size: 70%; padding-left: 30px;">(<c:out value="${vo.ip}"/>)</span>
 								</li>
 								<li>작성날짜</li>
@@ -51,7 +51,7 @@
 					</ul>
 					
 					<div style="text-align: center;margin-bottom: 10px;">
-						<c:if test="${user.id == admin}">
+						<c:if test="${user.admin == 'y'}">
 							<a class="button" href="javascript:execute(1)">수정</a>
 							<a class="button" href="javascript:execute(2)">삭제</a>
 						</c:if>
@@ -80,7 +80,7 @@
 						<li>
 							<ul class="row">
 								<li>작성자</li>
-								<li><c:out value="${vo.nickName}"/>
+								<li><c:out value="${vo.nickname}"/>
 								<span style="font-size: 70%; padding-left: 30px;">(<c:out value="${vo.ip}"/>)</span></li>
 								<li>작성날짜</li>
 								<li><fmt:formatDate value="${vo.createdAt}" type="both"/></li>
@@ -102,9 +102,8 @@
 						</li>
 					</ul>
 					<div style="text-align: center;margin-bottom: 10px;">
-						<c:if test="${user.nickName==vo.nickName }">
+						<c:if test="${user.nickname == vo.nickname }">
 							<a class="button" href="javascript:execute(1)">수정</a>
-							<!--  예시 : 글 비밀번호 입력하여 삭제. -->
 							<a class="button" href="javascript:execute(2)">삭제</a>
 						</c:if>
 							<a class="button" href="communitylist?category=${category}&page=${page}">목록</a>
@@ -112,10 +111,10 @@
 			
 				<hr>
 		
-					<form action="comments" method="post">
+					<form action="communitycomments" method="post">
 					
 					<input type="hidden" name="mref" value="${vo.idx}">
-					<input type="hidden" name="idx" value="0" >
+					<input type="hidden" name="idx" value="0">
 					<input type="hidden" name="f" value="0">
 					<input type="hidden" name="page" value="${page}">
 					<input type="hidden" name="category" value="${category}">
@@ -123,7 +122,7 @@
 							<li>
 								<ul class="row">
 									<li>작성자</li>		
-									<li><input name="writer" class="input" value="${user.nickName}" readonly></li>	
+									<li><input name="nickname" class="input" value="${user.nickname}" readonly></li>	
 								</ul>
 							</li>
 							<li>
@@ -134,10 +133,10 @@
 										placeholder="로그인 후에 댓글을 작성하세요." class="input"></textarea>
 									</li>				
 										<li style="align-self: center;margin-bottom: 20px;">
-											<c:if test="${sessionScope.user != null}">
+											<c:if test="${user.id != null}">
 												<button type="button" onclick="executeCmt('1',0)">저장</button>
 											</c:if>	
-											<c:if test="${sessionScope.user == null }">
+											<c:if test="${user.id == null }">
 												<button type="button" onclick="location.href='../login'">로그인</button>
 											</c:if>
 									</li>
@@ -152,10 +151,10 @@
 							<c:forEach var="cmt" items="${cmtlist}">
 								<li>
 									<ul class="crow">
-										<li><c:out value="${cmt.nickName}" /></li>				
+										<li><c:out value="${cmt.nickname}" /></li>				
 										<li><c:out value="${cmt.ip}" /></li>				
 										<li><c:out value="${cmt.createdAt}" /></li>	
-									<c:if test="${user.nickName==cmt.nickName}"> 	
+									<c:if test="${user.nickname == cmt.nickname}"> 	
 										<li><a href="javascript:executeCmt('2','${cmt.idx}')">삭제</a></li>				
 									</c:if>	
 									</ul>
@@ -186,17 +185,24 @@
 						<li>
 							<ul class="row">
 								<li>작성자</li>
-								<li><c:out value="${vo.nickName}"/>
+								<li><c:out value="${vo.nickname}"/>
 								<span style="font-size: 70%; padding-left: 30px;">(<c:out value="${vo.ip}"/>)</span></li>
 								<li>작성날짜</li>
 								<li><fmt:formatDate value="${vo.createdAt}" type="both"/></li>
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
-								<img src="../images/community/${vo.fileName}" border="0">
-								<span>${vo.productName}</span>
-							</a>
+							<c:if test="${vo.productNum == null}">
+								<label>없음</label>
+								<%-- <img src="../images/community/${vo.fileName}" border="0"> --%>
+								<span>없음</span>
+							</c:if>
+							<c:if test="${vo.productNum != null}">
+								<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
+									<img src="../images/community/${vo.fileName}" border="0">
+									<span>${vo.productName}</span>
+								</a>
+							</c:if>
 						</li>
 						<li id="content">
 							<ul>
@@ -208,17 +214,15 @@
 						</li>
 					</ul>
 					<div style="text-align: center;margin-bottom: 10px;">
-						<c:if test="${user.nickName==vo.nickName}">
+						<c:if test="${user.nickname == vo.nickname}">
 							<a class="button" href="javascript:execute(1)">수정</a>
-							<!--  예시 : 글 비밀번호 입력하여 삭제. -->
 							<a class="button" href="javascript:execute(2)">삭제</a>
 						</c:if>
 							<a class="button" href="communitylist?category=${category}&page=${page}">목록</a>
 					</div>
 					<hr>
 		
-					<form action="comments" method="post">
-					<!-- 필요한 파라미터.화면에는 표시안함. -->
+					<form action="communitycomments" method="post">
 					<input type="hidden" name="mref" value="${vo.idx}">
 					<input type="hidden" name="idx" value="0" >
 					<input type="hidden" name="f" value="0">
@@ -228,17 +232,17 @@
 							<li>
 								<ul class="row">
 									<li>작성자</li>	
-									<li><input name="writer" class="input" value="${user.nickName}" readonly></li>	
+									<li><input name="nickname" class="input" value="${user.nickname}" readonly></li>	
 								</ul>
 							</li>
 							<li>
 								<ul style="display: flex;">
-									<c:if test="${user.id == admin}">
-										<li>
-											<textarea rows="5" cols="80" name="content" 
-											style="resize:none;margin-right:20px;" 
-											class="input"></textarea>
-										</li>				
+									<li>
+										<textarea rows="5" cols="80" name="content" 
+										style="resize:none;margin-right:20px;" 
+										placeholder="관리자만 작성 가능합니다." class="input"></textarea>
+									</li>				
+									<c:if test="${user.admin == 'y'}">
 										<li style="align-self: center;margin-bottom: 20px;">
 											<button type="button" onclick="executeCmt('1',0)">저장</button>
 										</li>
@@ -251,14 +255,13 @@
 								<hr>
 							</li>
 							
-							<!-- 댓글 목록 -->
 							<c:forEach var="cmt" items="${cmtlist}">
 								<li>
 									<ul class="crow">
-										<li><c:out value="${cmt.nickName}" /></li>				
+										<li><c:out value="${cmt.nickname}" /></li>				
 										<li><c:out value="${cmt.ip}" /></li>				
 										<li><c:out value="${cmt.createdAt}" /></li>	
-									<c:if test="${user.id == admin}"> 	
+									<c:if test="${user.admin == 'y'}"> 	
 										<li><a href="javascript:executeCmt('2','${cmt.idx}')">삭제</a></li>				
 									</c:if>	
 									</ul>
@@ -277,14 +280,14 @@
 		{
 			let url
 			let message
-			if(f===1)
+			if(f === 1)
 				message='글 수정하시겠습니까?'
-			else if(f===2)
+			else if(f === 2)
 				message='글 삭제하시겠습니까?'
 			const yn = confirm(message)
 			if(yn) 
 			{
-				url = (f===1)? 'update?idx='+${vo.idx} :(f===2)? 'delete?idx='+${vo.idx}:'#';
+				url = (f === 1)? 'communityupdate?idx='+${vo.idx} :(f===2)? 'communitydelete?idx='+${vo.idx}:'#';
 				location.href=url+'&category='+${category}+'&page='+${page};
 			}
 			else
@@ -294,22 +297,22 @@
 		function executeCmt(fval,cidx)
 		{	
 			console.log(fval)
-			document.forms[0].f.value=fval
+			document.forms[1].f.value = fval
+			console.log(document.forms[1].f)
 			
-			if(fval==='2') 
+			if(fval === '2') 
 			{
-				document.forms[0].idx.value=cidx
+				document.forms[1].idx.value = cidx
 				const yn = confirm('댓글 삭제하시겠습니까?')
-				if(yn)	document.forms[0].submit()	
+				if(yn) document.forms[1].submit()	
 			}
-			
-			else if(fval==='1')
-				document.forms[0].submit()			
+			else if(fval === '1')
+				document.forms[1].submit()			
 		}
 		
 		function reset_content() 
 		{
-			document.forms[0].content.value=''
+			document.forms[1].content.value = ''
 		}
 	</script>
 	</body>

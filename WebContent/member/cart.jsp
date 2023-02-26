@@ -107,7 +107,7 @@
             <div id="goorder" class="">
                 <div class="clear"></div>
                 <div class="buttongroup center-align cmd">
-                    <a href="javascript:void(0);">선택한 상품 주문</a>
+                    <a href="javascript:void(0);" onclick="productAddPayment()">선택한 상품 주문</a>
                 </div>
             </div>
 
@@ -117,4 +117,9 @@
 
 	<%@ include file="../footer.jsp"%>
 </body>
+<script type="text/javascript">
+	function productAddPayment() {
+			location.href = '../Product/productAddPayment'
+	}
+</script>
 </html>

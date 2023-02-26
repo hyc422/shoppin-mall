@@ -9,7 +9,7 @@
 	</select>
   
 	<insert id="register" parameterType="org.shoppingMall.vo.Member" useGeneratedKeys="false">
-	INSERT INTO js_member 
+	INSERT INTO js_member (idx, id, password, name, nickname, email, phone, c_code, address, birth)
 	VALUES 
 	(member_idx_seq.nextval,#{id},#{password},#{name},#{nickname},#{email},#{phone},#{c_code},#{address},#{birth})
 	

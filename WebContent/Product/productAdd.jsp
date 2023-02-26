@@ -15,7 +15,7 @@
 		<hr>
 	</div>
 	<div style="margin-left: 300px;">
-		<form method="post" action="productAdd" name="productForm" id="productForm" enctype="multipart/form-data">
+		<form method="post" action="productAdd" name="productForm" id="productForm" >
 			<div>
 				<label class="label1">
 					상품코드  <input type="text" name="productNum" id="productNum" value="${productNum}">

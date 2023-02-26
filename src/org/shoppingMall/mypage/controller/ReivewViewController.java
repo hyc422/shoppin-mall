@@ -1,4 +1,4 @@
-package org.shoppingMall.search.controller;
+package org.shoppingMall.mypage.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,23 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.shoppingMall.controller.Controller;
-import org.shoppingMall.dao.BestItemDao;
-import org.shoppingMall.vo.ProductFileList;
+import org.shoppingMall.dao.ReviewDao;
+import org.shoppingMall.vo.ReviewVo;
 
-public class BestSearchController implements Controller {
+public class ReivewViewController implements Controller {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nickname = request.getParameter("nickname");
+		ReviewDao dao = ReviewDao.getInstance();
+		List<ReviewVo> list = dao.selectnickname(nickname);
 		
-		BestItemDao dao = BestItemDao.getInstance();
+		request.setAttribute("vo", list);
 		
-		List<ProductFileList> list =  dao.selectAll();
-		
-		
-		request.setAttribute("list", list);
-		
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Search/bestSearch.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("rivewlist.jsp");
 		dispatcher.forward(request, response);
 	}
 

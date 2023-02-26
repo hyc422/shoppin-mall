@@ -18,10 +18,8 @@ public class CartSelectDeleteAllController implements Controller {
 		String id = request.getParameter("id");
 		CartDao dao = CartDao.getInstance();
 		String cartNums = request.getParameter("cartNum1");
-		System.out.println(cartNums);
 		String[] num = cartNums.split(",");
 		int[] cartNumArr = new int[num.length];
-		
         for (int i = 0; i < num.length; i++) {
         		cartNumArr[i] = Integer.parseInt(num[i]);
         }
@@ -31,7 +29,6 @@ public class CartSelectDeleteAllController implements Controller {
         for(int i=0; i<size; i++) {
         	result = dao.delete(cartNumArr[i]);
         }
-        System.out.println(result);
         if(result !=0) {
 			response.sendRedirect(request.getContextPath()+"/cart?id="+id);
 		}

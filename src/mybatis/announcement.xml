@@ -24,4 +24,27 @@
 		SET READCOUNT = READCOUNT + 1
 		WHERE idx=#{idx}
 	</update>
+	
+	<insert id="insert" parameterType="org.shoppingMall.vo.AnnouncementVo" useGeneratedKeys="false" >
+ 		INSERT INTO announcement (idx,nickname,title,content,ip) 
+		VALUES (announcement_idx_seq.nextval,#{nickname},#{title},#{content},#{ip})
+		<selectKey keyProperty="idx" resultType="long" order="AFTER">
+			SELECT announcement_idx_seq.currval FROM dual
+		</selectKey>	
+ 	</insert>
+ 	
+ 	<update id="update" parameterType="org.shoppingMall.vo.AnnouncementVo">
+	 	UPDATE announcement
+		SET title=#{title}, content=#{content} ,ip=#{ip}
+		WHERE idx=#{idx}
+ 	</update>
+ 	
+ 	<delete id="delete" parameterType="long">
+ 		DELETE FROM announcement 
+ 		WHERE idx=#{idx}
+ 	</delete>
+ 	
+ 	<select id="count" resultType="int">
+ 		SELECT count(*) FROM announcement
+ 	</select>
 </mapper>

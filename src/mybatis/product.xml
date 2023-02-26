@@ -15,8 +15,10 @@
 	</insert>
 
 	<select id="getSeq" resultType="_int">
-		SELECT SEQ_PRODUCT.CURRVAL FROM
-		DUAL
+		<!-- SELECT SEQ_PRODUCT.CURRVAL FROM
+		DUAL -->
+		SELECT MAX(PRODUCTNUM) FROM
+		TBL_PRODUCT
 	</select>
 
 	<select id="nextSeq" resultType="_int">
@@ -57,6 +59,7 @@
 		ON
 		tp.PRODUCTNUM = tf.PRODUCTNUM
 		WHERE PRODUCTCATEGORIES = '${value}'
+		ORDER BY PRODUCTNAME ASC
 	</select>
 
 	<!-- CGH -->
@@ -80,7 +83,7 @@
 		ON tp.PRODUCTNUM = tf.PRODUCTNUM
 		where
 		productCategories = '${value}'
-		ORDER BY productCategories DESC) f)
+		ORDER BY tp.PRODUCTNAME ASC) f)
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	<select id="count" resultType="int">
@@ -88,6 +91,36 @@
 		where productCategories = '${value}'
 	</select>
 
+	<select id="selectRev" parameterType="int" resultType="org.shoppingMall.vo.ReviewVo">
+		SELECT * FROM review WHERE productNum=#{productNum}
+	</select>
+	<select id="selectQna" parameterType="int" resultType="org.shoppingMall.vo.QnaVo">
+		SELECT * FROM qna WHERE productNum=#{productNum}
+	</select>
+	<select id="revPagelist"
+		resultType="org.shoppingMall.vo.ReviewVo"
+		parameterType="java.util.Map">
+		SELECT * FROM
+		(SELECT rownum r ,f.* FROM
+		(SELECT * FROM review WHERE productNum=#{productNum} ORDER BY idx  DESC) f)
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	<select id="qnaPagelist"
+		resultType="org.shoppingMall.vo.QnaVo"
+		parameterType="java.util.Map">
+		SELECT * FROM
+		(SELECT rownum r ,f.* FROM
+		(SELECT * FROM qna WHERE productNum=#{productNum} ORDER BY idx  DESC) f)
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+		<select id="RevCount" resultType="int">
+		SELECT count(*)FROM review
+		where productNum=#{productNum}
+	</select>
+	<select id="QnaCount" resultType="int">
+		SELECT count(*)FROM qna
+		where productNum=#{productNum}
+	</select>
 
 	<!-- 동해 -->
 	<!-- 추천상품 조회 -->
@@ -164,27 +197,16 @@
 	</select>
 	
 	<insert id="insertPayment" parameterType="org.shoppingMall.vo.ProductVO">
-		INSERT INTO TBL_CART
+		INSERT INTO TBL_PAYMENT
 		(ID, PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE, PRODUCTCATEGORIES, FILENAME, AMOUNT, ZIPCODE, ADDRESS, ADDRESSDETAIL, ADDRESSETC)
 		VALUES(#{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, 
 		#{fileName}, #{amount}, #{zipcode}, #{address}, #{addressDetail}, #{addressEtc})
 	</insert>
-  
-	<!-- 실시간검색어 등록 -->
-	
-	<!-- 실시간검색어 등록할 모든 상품 조회 -->
-	<select id="selectAll" resultType="org.shoppingMall.vo.ProductFileList">
-		SELECT PRODUCTNAME ,PRODUCTPRICE ,FilENAME 
-		FROM TBL_PRODUCT tp 
-		JOIN TBL_FILE tf 
-		ON tp.PRODUCTNUM = tf.PRODUCTNUM
-		ORDER BY PRODUCTNAME asc
+
+
+	<select id="selectId" resultType="org.shoppingMall.vo.PaymentVO" parameterType="String">
+	SELECT *FROM TBL_CART tc WHERE id='${value}'
 	</select>
-	
-	<!-- 실시간검색어에 올라갈 상품 등록 -->
-	<insert id="insertbest" parameterType="org.shoppingMall.vo.BestItemVo">
-		INSERT INTO BESTSEARCH values (#{productName},#{productPrice},#{fileName})
-	</insert>
 </mapper>
 
  
