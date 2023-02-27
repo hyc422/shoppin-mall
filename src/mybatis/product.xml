@@ -139,7 +139,9 @@
 	<!-- 동해 -->
 	<!-- 추천상품 등록 -->
 	<insert parameterType="org.shoppingMall.vo.RecommendVo" id="insertrecommend">
-		INSERT INTO RECOMMEND (FILENAME, PRODUCTPRICE, PRODUCTNAME,PRODUCTNUM)VALUES(#{FILENAME},#{PRODUCTPRICE},#{PRODUCTNAME},#{PRODUCTNUM})
+		INSERT INTO RECOMMEND
+		(FILENAME, PRODUCTPRICE, PRODUCTNAME, PRODUCTNUM)
+		VALUES(#{FILENAME},#{PRODUCTPRICE},#{PRODUCTNAME},#{PRODUCTNUM})
 	</insert>
 
 
@@ -206,6 +208,35 @@
 
 	<select id="selectId" resultType="org.shoppingMall.vo.PaymentVO" parameterType="String">
 	SELECT *FROM TBL_PAYMENT WHERE id='${value}'
+	</select>
+	
+	<!-- 동해 -->
+	<!-- 모든상품 가져오기 -->
+	<select id="selectAll" resultType="org.shoppingMall.vo.ProductFileList">
+		SELECT * FROM TBL_PRODUCT tp 
+		JOIN TBL_FILE tf 
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM
+	</select>
+	
+	<!-- 동해 -->
+	<!-- 상품이름으로 가져오기 -->
+	<select id="selectName" resultType="org.shoppingMall.vo.ProductFileList">
+		SELECT * FROM TBL_PRODUCT tp 
+		JOIN TBL_FILE tf 
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM 
+		WHERE PRODUCTNAME = #{PRODUCTNAME}
+	</select>
+	
+	<!-- 동해 -->
+	<!-- 별점 높은 아이템 5개 -->
+	<select id="selectBest5" resultType="org.shoppingMall.vo.Best5Vo">
+		SELECT a.* FROM
+		(SELECT r.PRODUCTNUM, tp.PRODUCTNAME, r.point FROM
+		TBL_PRODUCT tp
+		JOIN REVIEW r 
+		ON r.PRODUCTNUM = tp.PRODUCTNUM
+		ORDER BY point DESC) a
+		WHERE rownum BETWEEN 1 and 5
 	</select>
 </mapper>
 

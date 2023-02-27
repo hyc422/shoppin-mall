@@ -3,6 +3,7 @@ package org.shoppingMall.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.shoppingMall.vo.ProductFileList;
 import org.shoppingMall.vo.RecommendVo;
 
 import mybatis.SqlSessionBean;
@@ -44,6 +45,22 @@ public class RecommendDao {
 		return result;
 	}
 	
-
+	//동해
+	//모든상품 가져오기
+	public List<ProductFileList> selectAll() {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<ProductFileList> result = mapperSession.selectList("product.selectAll");
+		mapperSession.close();
+		return result;
+	}
+	
+	//동해
+	//이름으로 조회
+	public List<ProductFileList> selectName(String name) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<ProductFileList> result = mapperSession.selectList("product.selectName");
+		mapperSession.close();
+		return result;
+	}
 	
 }
