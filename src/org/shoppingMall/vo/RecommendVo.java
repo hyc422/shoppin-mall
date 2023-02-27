@@ -16,4 +16,5 @@ public class RecommendVo {
 	private String FILENAME;
 	private int PRODUCTPRICE;
 	private String PRODUCTNAME;
+	private int PRODUCTNUM;
 }

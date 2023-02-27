@@ -47,8 +47,8 @@ public class NewRecommendProductController implements Controller {
 		String url = null;
 		
 		out.print("<script>");
-		if (size < 8) {
-			vo = new RecommendVo(cover, price, name);
+		if (size < 8) {//Num 수정해야함
+			vo = new RecommendVo(cover, price, name,1);
 			out.print("alert('추천상품으로 등록되었습니다.');");
 			if (dao.insert(vo) == 1) {url = "location.href='RecommendUpdate'";}
 			
