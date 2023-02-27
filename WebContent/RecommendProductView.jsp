@@ -30,20 +30,38 @@
 	
 <main style="height: 700px;">
 	
-	<form action="" method="POST" enctype="multipart/form-data">
+<div style="width: 100%; height: 30px; background-color:#e1e4ed; font-size: 19px; color: #ff6f00;"><strong style=" margin-left: 800px;">상품등록</strong></div>
 	<br>
-		<div style="width: 100%; height: 30px; background-color:#e1e4ed; font-size: 19px; color: #ff6f00;"><strong style=" margin-left: 800px;">상품등록</strong></div>
-		<br>
-		<div style="font-size: 13px; width: 200px; margin: auto;">
-			<input type="file" name="filename" accept="image/*"> <br>
-			상품이름 <input style="width: 120px; margin-top: 10px; margin-bottom: 10px;" type="text" name = "productname"> <br>
-			상품가격 <input style="width: 120px; margin-bottom: 10px;" type="text" name="productprice"> <br>
-			<button type="submit" style="float: right; border: none; background-color: #e1e4ed; border:1px solid silver; margin-bottom: 10px; margin-right: 25px;">등록</button>
-		</div>
+	
+	<form action="" method="POST">
+	<table style="margin: auto;">
+		<tr>
+			<td>
+				<select name="productname">
+					<c:forEach items="${list }" var="list">
+							<option value="${list.productName }">${list.productName }</option>
+					</c:forEach>
+				</select>
+			<button type="submit" style="float: right; border: none; background-color: #e1e4ed; border:1px solid silver; margin-left: 10px;">등록</button>
+			</td>
+		</tr>
+	</table>
 	</form>
-	
-	
-
+	<br>
+	<div style="width: 100%; height: 30px; background-color:#e1e4ed; font-size: 19px; color: #ff6f00;"><strong style=" margin-left: 800px;">현재 추천상품</strong></div>
+	<br>
+	<table style="width: 300px; margin: auto;">
+		<tr>
+		<c:forEach items="${list2 }" var="list2">
+			<td><img src ="images/Product/${list2.FILENAME }" style="width: 100px; height: 100px;"></td>
+		</c:forEach>
+		</tr>
+		<tr>
+		<c:forEach items="${list2 }" var="list2">
+			<td>${list2.PRODUCTNAME }</td>
+		</c:forEach>
+		</tr>
+	</table>
 </main>
 
 </body>

@@ -1,3 +1,5 @@
+<%@page import="org.shoppingMall.vo.Best5Vo"%>
+<%@page import="org.shoppingMall.dao.Best5Dao"%>
 <%@page import="java.util.List"%>
 <%@page import="org.shoppingMall.vo.SearchVo"%>
 <%@page import="org.shoppingMall.dao.SearchDao"%>
@@ -115,6 +117,11 @@
 	
 </head>
 <body>
+	
+	<%
+		Best5Dao dao2 = Best5Dao.getInstance();
+		List<Best5Vo> list = dao2.Best5();
+	%>
 
 <!-- header -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -140,9 +147,13 @@
       <li class="nav-item active">
         <a onclick="Cart2()" class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
       </li>
+      <c:if test="${user.admin=='n' }">
       <li class="nav-item dropdown">
         <a  style="color: white;" class="nav-link dropdown-toggle" href="myPage2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           마이페이지
+        </a>
+      		<a  style="color: white;" class="nav-link dropdown-toggle" href="myPage2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
         </a>
         <div class="dropdown-menu">
           <div class="dropdown-divider"></div>
@@ -156,8 +167,9 @@
            href="#" onclick="update()">회원정보수정</a>
         </div>
       </li>
+      </c:if>
 	<c:if test="${user.admin =='y' }">
-	<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/Product/productAdd">상품등록</a></li>
+	<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/admin">관리자페이지</a></li>
 	</c:if>
       
     </ul>
@@ -221,12 +233,12 @@
 <div class="rollingbanner ">
     <div class="title">인기 주류 TOP5 </div>
     <div class="wrap">
-        <ul>
-            <li class="current"><a href="/shoppingMall/Product/product?productNum=2">Golden Peach</a></li>
-            <li class="next"><a href="/shoppingMall/Product/product?productNum=24">연꽃 담은 술 8도 850ml</a></li>
-            <li><a href="/shoppingMall/Product/product?productNum=26">이화백주 940ml</a></li>
-            <li><a href="/shoppingMall/Product/product?productNum=28">오미나라 전통주 고운달 도자기숙성 52도 500ml</a></li>
-            <li class="prev"><a href="/shoppingMall/Product/product?productNum=40">이도</a></li>
+         <ul>
+            <li class="current"><a href="/shoppingMall/Product/product?productNum=<%=list.get(0).getProductnum()%>"><%=list.get(0).getProductname() %></a></li>
+            <li class="next"><a href="/shoppingMall/Product/product?productNum=<%=list.get(1).getProductnum()%>"><%=list.get(1).getProductname() %></a></li>
+            <li><a href="/shoppingMall/Product/product?productNum=<%=list.get(2).getProductnum()%>"><%=list.get(2).getProductname() %></a></li>
+            <li><a href="/shoppingMall/Product/product?productNum=<%=list.get(3).getProductnum()%>"><%=list.get(3).getProductname() %></a></li>
+            <li class="prev"><a href="/shoppingMall/Product/product?productNum=<%=list.get(4).getProductnum()%>"><%=list.get(4).getProductname() %></a></li>
         </ul>
     </div>
 </div>

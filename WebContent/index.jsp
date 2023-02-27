@@ -136,7 +136,7 @@
 			for(int i=0; i<vo.size();i++) {
 		%>
 			<div
-				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
+				style="border: 1px solid black; border-radius: 30px; width: 80%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
 					<a href="Product/product?productNum=<%=vo.get(i).getPRODUCTNUM() %>">
 					<img alt="" src="images/Product/<%=vo.get(i).getFILENAME() %>"
@@ -146,12 +146,12 @@
 				
 				<!-- 관리자용 상품이름보이기 -->
 				<c:if test="${user.admin=='y' }">
-				<h5 style="text-align: center; margin: 0px;"><%=vo.get(i).getPRODUCTNAME() %></h5>
+				<h6 style="text-align: center; margin: 0px;"><%=vo.get(i).getPRODUCTNAME() %></h6>
 				</c:if>
 				
 				<!-- 손님용 상품이름보이기 -->
 				<c:if test="${user.admin !='y' }">
-				<h5 style="text-align: center;"><%=vo.get(i).getPRODUCTNAME() %></h5>
+				<h6 style="text-align: center;"><%=vo.get(i).getPRODUCTNAME() %></h6>
 				</c:if>
 				
 				<p style="text-align: center; margin: 0px; font-size: 13px;">판매가 : <%=vo.get(i).getPRODUCTPRICE() %>원
@@ -165,11 +165,8 @@
 			</div>
 		<% } %>	
 			
-		</div>			<!-- 관리자용 -->
-		<c:if test="${user.admin=='y' }">
-				<div style="border: 1px solid silver; float: right; display:inline; width: 90px; height:25px; margin-bottom :20px; margin-right: 200px; text-align: center; background-color: #e1e4ed;">
-				<a style= "text-decoration: none; color: black; font-size: 13px;'" href="RecommendUpdate">추천상품 등록</a></div>
-		</c:if>
+		</div>
+		
 		<br>
 		<br>
 		<br>
@@ -212,7 +209,9 @@
 	<!-- 하단배너2 -->
 	<div class="div_baner2">
 		<div style="display:inline; margin-left: 50px; ">
+			<a href="/shoppingMall/community/communitylist?category=2">
 			<img alt="" src="images/BannerAndIcon/리뷰배너.jpg" style="width: 750px; height: 230px; border: 1px solid silver; display: block; float: right;">
+			</a>
 		</div>
 		<div style="display: inline;">
 		<a href = "${pageContext.request.contextPath}/member/register">
