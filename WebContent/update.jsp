@@ -110,8 +110,6 @@ td {
     <ul id="navi">
         <li class="group">
 		<h3>마이페이지</h3>
-		
-            
             <ul class="sub">
             <li class="tit">MY 쇼핑</li>
                 <li><a href="${pageContext.request.contextPath }/paylist?id=${user.id}">구매 내역/리뷰 작성</a></li>
@@ -120,8 +118,8 @@ td {
         <li class="group">
             <ul class="sub">
             <li class="tit">MY 정보<li>
-                <<li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
-            	    <li><a href="${pageContext.request.contextPath }/rivew?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
+                <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
+            	    <li><a href="${pageContext.request.contextPath }/rivewlist?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
             	<li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>               
             	
             </ul>
@@ -140,7 +138,7 @@ td {
 					
 						<tr>
 							<td class="ID2" style=" width: 150px; text-align:right; background-color: #a8a8a8 ">회원 ID</td>
-							<td><input type="text" name="ID" value="${user.id }"  readonly></td>
+							<td><input type="text" name="ID" value="${user.id }"  readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; "></td>
 						</tr>
 						
 						<tr>
@@ -188,7 +186,7 @@ td {
 	
 						<tr>
 							<td class="day" style="width: 200px; text-align:right;  background-color: #a8a8a8; ">생년월일</td>
-							<td><input type="date" name="birth" value="${vo.birth }" readonly></td>
+							<td><input type="date" name="birth" value="${vo.birth }" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; "></td>
 						</tr>
 					</table>
 				</div>
