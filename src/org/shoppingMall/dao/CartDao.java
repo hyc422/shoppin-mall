@@ -57,5 +57,16 @@ public class CartDao {
 		mapper.close();
 		return result;
 	}
-	
+	public CartVo selectNum(int num) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		CartVo vo = mapper.selectOne("cart.selectNum",num);
+		mapper.close();
+		return vo;
+	}
+	public void selectDelete(Map<String, Object>map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		mapper.selectOne("cart.SelectDelete",map);
+		mapper.commit();
+		mapper.close();
+	}
 }

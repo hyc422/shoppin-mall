@@ -66,7 +66,9 @@
 				<div>
 					개수 <input type="text" name="amount" id="amount" value="${vo.amount}" disabled="disabled">
 				</div>
+				<hr>
 			</c:forEach>
+			
 			<div>
 				배송비 <span id="deliveryFee" name="deliveryFee" style="float: right;">3000</span>
 			</div>

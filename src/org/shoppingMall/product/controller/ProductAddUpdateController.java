@@ -76,7 +76,7 @@ public class ProductAddUpdateController implements Controller {
 		pDao.productAddUpdate(pVo);
 		fDao.updateFiles(fVo);
 		
-		response.sendRedirect("productList");
+		response.sendRedirect(request.getContextPath()+"/Product/product?productNum="+Integer.parseInt(request.getParameter("productNum")));
 		
 	}
 

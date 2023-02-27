@@ -43,18 +43,18 @@
 			</div>
 			<div style="display:flex; justify-content:space-around; margin: 10px 0px;">
 			<div class="files1" style="width:40%;">
-				<span id="productManual">제품설명</span>  
+				<span id="productManual">제품 사진</span>  
 				<div>
 					<label for="product_file1" style="display:inline;">
 						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/${fileName}" width="110px" height="110px" style="display:inline;">
 					</label>
 				</div>
-				<input id="product_file1" name="product_file1" type="file">
+				<input id="product_file1" name="product_file1" type="file" >
 				<br>
 				<input type="button" onclick="cancelFile('product_file1')" value="이미지 삭제">
 			</div>
 			<div class="files2" style="width:40%;">
-				<span id="productImages">제품 사진</span>  
+				<span id="productImages">제품 설명</span>  
 				<div>
 					<label for="productImage" style="display:inline;">
 						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/${fileNameOriginal}" width="110px" height="110px" style="display:inline;">

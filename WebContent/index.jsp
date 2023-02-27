@@ -132,7 +132,7 @@
 		
 		<!-- 추천상품 -->
 		<div class="div_cont">
-		<%
+		<% 
 			for(int i=0; i<vo.size();i++) {
 		%>
 			<div

@@ -26,7 +26,7 @@ public class NewRecommendProductController implements Controller {
 		// 학원
 //		String path = "D:\\I_Class_1020\\workspace\\shoppingMall\\WebContent\\images\\Product";
 		// 집
-		String path = "D:\\LDH_JAVA\\workspace\\shoppingMall\\WebContent\\images\\Product";
+		String path = "D:\\iclass_1020\\upload";
 
 		int maxSize = 10 * 1024 * 1024;
 

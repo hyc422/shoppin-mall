@@ -49,7 +49,6 @@ public class ProductAddController implements Controller {
 		
 		System.out.println(request.getParameter("product_file1"));
 		System.out.println(request.getParameter("productImage"));
-		System.out.println(pDao.getSeq());
 		
 		pVo.setProductName(request.getParameter("productName"));
 		pVo.setProductPrice(Integer.parseInt(request.getParameter("productPrice")));
@@ -58,12 +57,12 @@ public class ProductAddController implements Controller {
 		
 		fVo.setFileName(request.getParameter("product_file1"));
 		fVo.setFileNameOriginal(request.getParameter("productImage"));
-		fVo.setProductNum(pDao.getSeq());
+		fVo.setProductNum(Integer.parseInt(request.getParameter("productNum")));
 		
 		pDao.productInsert(pVo);
 		fDao.insertFile(fVo);
 		
-		response.sendRedirect("productList");
+		response.sendRedirect(request.getContextPath()+"/Product/product?productNum="+Integer.parseInt(request.getParameter("productNum")));
 		
 	}
 	

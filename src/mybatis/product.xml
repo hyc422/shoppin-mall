@@ -205,7 +205,7 @@
 
 
 	<select id="selectId" resultType="org.shoppingMall.vo.PaymentVO" parameterType="String">
-	SELECT *FROM TBL_CART tc WHERE id='${value}'
+	SELECT *FROM TBL_PAYMENT WHERE id='${value}'
 	</select>
 </mapper>
 
