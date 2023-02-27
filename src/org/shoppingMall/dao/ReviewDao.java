@@ -49,15 +49,13 @@ public class ReviewDao
 	}// method end
   
 	public List<ReviewVo> selectnickname(String nickname)
-  {
+  	{
 		SqlSession mapper = SqlSessionBean.getSession();
 		List<ReviewVo> list = mapper.selectList("review.selectnickname",nickname);
 		mapper.close();
 		return list;
 	} // method end
 
-	}	// method end
-	
 	public long insert(ReviewVo vo) 
 	{
 		SqlSession mapperSession = SqlSessionBean.getSession();
