@@ -13,6 +13,7 @@
 	<%@ include file="../top.jsp" %>
 	
 	<form action="productAddPayment" method="post" name="productForm" id="productForm" class="label1">
+	<input type="hidden" value="${user.id}" name="id">
 		<div>
 			<h3 style="text-align: center;">배송지 입력</h3>
 			<hr>

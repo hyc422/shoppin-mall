@@ -41,16 +41,18 @@
 					카테고리
 					<select name="productCategories" id="productCategories">
 						<option>선택</option>
-						<option>막걸리형 전통주</option>
-						<option>증류식 소주</option>
-						<option>청주/리큐르주</option>
-						<option>담금주</option>
+						<option>과실주</option>
+						<option>막걸리</option>
+						<option>브랜디</option>
+						<option>위스키</option>
+						<option>소주</option>
+						<option>청주</option>
 					</select>
 				</label>
 			</div>
 			<div style="display:flex; justify-content:space-around; margin: 10px 0px;">
 			<div class="files1" style="width:40%;">
-				<span id="productManual">제품설명</span>  
+				<span id="productManual">제품 사진</span>  
 				<div>
 					<label for="product_file1" style="display:inline;">
 						<img id="product_file1Img" src="${pageContext.request.contextPath}/images/Product/filePlus.png" width="110px" height="110px" style="display:inline;">
@@ -61,7 +63,7 @@
 				<input type="button" onclick="cancelFile('product_file1')" value="이미지 삭제">
 			</div>
 			<div class="files2" style="width:40%;">
-				<span id="productImages">제품 사진</span>  
+				<span id="productImages">제품 설명</span>  
 				<div>
 					<label for="productImage" style="display:inline;">
 						<img id="productImageImg" name="productImageImg" src="${pageContext.request.contextPath}/images/Product/filePlus.png" width="110px" height="110px" style="display:inline;">
@@ -78,9 +80,6 @@
 			</div>
 		</form>
 	</div>
-	<form action="productAddUpdate">
-		<input type="button" value="등록">
-	</form>
 	<%@ include file="../footer.jsp" %>
 </body>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>

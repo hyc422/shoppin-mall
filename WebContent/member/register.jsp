@@ -51,23 +51,23 @@
 				<div class="col-md-4">
 					<label style="float: left; text-align: center;">아이디</label> 
 					<input
-						type="text" class="form-control" name="id" id="id"
+						type="text" class="form-control" name="id" id="id" style="width: 180%;"
 						placeholder="영문,숫자 5~11글자" required>
 						<div id="msg"></div>
 						 <input type="button" id="btnIdCheck" class="btn btn-primary" value="중복검사">
 				</div>
 				<div class="col-md-4">
-					<label>비밀번호</label> <input type="password" class="form-control"
+					<label>비밀번호</label> <input type="password" class="form-control" style="width: 180%;"
 						name="password" id="password" placeholder="숫자,영문,특수문자 조합 최소8자"
 						required>
 				</div>
 				<div class="col-md-4">
-					<input type="password" class="form-control" name="password2"
+					<input type="password" class="form-control" name="password2" style="width: 180%;"
 						id="password2" placeholder="비밀번호 재입력" required>
 				</div>
 				<label style="width: 100px; text-align: center;">이메일</label>
 				<div style="display: flex;" class="col-md-4">
-					<input type="text" name="email" class="form-control"
+					<input type="text" name="email" class="form-control" style="width: 180%;"
 						placeholder="이메일 입력" style="width: 100px; display: inline;"
 						required> <span class="input-group-text" id="gbe"
 						style="width: 100px; display: inline;">@</span> <input type="text"
@@ -83,11 +83,11 @@
 					</select>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" name="name" id="name"
+					<input type="text" class="form-control" name="name" id="name" style="width: 180%;"
 						placeholder="성함" required>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" name="nickname"
+					<input type="text" class="form-control" name="nickname" style="width: 180%;"
 						id="nickname" placeholder="별명 한글 2~8자" required>
 				</div>
 				<div style="display: flex; align-items: baseline;" class="col-md-4">
@@ -112,17 +112,17 @@
 					<label>우편번호</label> <input type="text" name="c_code"
 						id="sample4_postcode" placeholder="우편번호" class="form-control"
 						readOnly> <input type="button"
-						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"
+						onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="width: 180%;"
 						class="form-control"><br> <input type="text"
 						name="address" id="sample4_roadAddress" placeholder="도로명주소"
-						class="form-control" readOnly> <input type="text"
+						class="form-control" readOnly style="width: 180%;"> <input type="text"
 						id="sample4_jibunAddress" placeholder="지번주소" style="width: 350px"
-						class="form-control" readOnly> <span id="guide"
-						style="color: #999; display: none" class="form-control"></span> <input
+						class="form-control" readOnly style="width: 180%;"> <span id="guide"
+						style="color: #999; display: none" class="form-control" style="width: 180%;"></span> <input
 						type="text" id="sample4_detailAddress" placeholder="상세주소"
-						class="form-control" name="realaddr" required> <input
+						class="form-control" name="realaddr" required style="width: 180%;"> <input
 						type="text" id="sample4_extraAddress" placeholder="참고항목"
-						class="form-control">
+						class="form-control" style="width: 180%;">
 				</div>
 				<div>
 					<label for="agree_all"> <input type="checkbox"

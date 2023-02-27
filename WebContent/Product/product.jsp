@@ -60,6 +60,7 @@
 						<form action="" name="form" method="post" id="storeForm">
 					<div id="cart">
 							<input type="hidden" name="id" value="${user.id }"> 
+							<input type="hidden" name="cartNum2" value="0"> 
 							<input type="hidden" name="fileName" value="${Pvo.fileName }">
 							<input type="hidden" name="productName" value="${Pvo.productName }"> 
 							<input type="hidden" name="productCategories" value="${Pvo.productCategories }">
@@ -76,7 +77,7 @@
 							<br>
 							<div class="price">
 								<b> 총 금액 &nbsp;&nbsp;&nbsp;
-								<input type="text" class="price_box" name="sum" size="7"
+								<input type="text" class="price_box" name="sum" size="7" name="totalPrice"
 									style="border: none; font-size: 20px;" readonly>원
 								</b>
 							</div>
@@ -306,8 +307,6 @@
 								run = false
 							}
 							if (run) {
-								df.action = 'community/communitywrite'
-				                df.method = 'POST'
 								df.submit()
 							}
 							
