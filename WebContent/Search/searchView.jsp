@@ -42,6 +42,9 @@ div> a {
 div>a:hover {
 	color: #FF6D00;
 }
+.product_div:hover {
+	padding: 2px;
+}
 </style>
 </head>
 <body>
@@ -50,12 +53,12 @@ div>a:hover {
 		<h3>상품검색</h3>
 		<br>
 		
-		<div style="border: 1px solid silver; width: 80%; margin: auto; border-radius: 5px;"><p style="display:inline; margin-left: 40px; font-size: 15px; margin-top:14px; font-size: 14px;">
+		<div style="border: 1px solid silver; width: 80%; margin: auto; border-radius: 20px;"><p style="display:inline; margin-left: 40px; font-size: 15px; margin-top:14px; font-size: 14px;">
 		<strong>${name }</strong>로 <strong>${count }</strong>건 검색되었습니다.</p>
 			<div style="float: right;">
-					<a id="productname" href="<%=request.getContextPath() %>/search?name=${name}">상품명</a>
-					<a id="productpricehigh" href="<%=request.getContextPath() %>/high?name=${name}">높은가격순</a>
-					<a id="productpricelow" href="<%=request.getContextPath() %>/low?name=${name}">낮은가격순</a>
+					<a class="look" id="productname" href="<%=request.getContextPath() %>/search?name=${name}">상품명</a>
+					<a class="look" id="productpricehigh" href="<%=request.getContextPath() %>/high?name=${name}">높은가격순</a>
+					<a class="look" id="productpricelow" href="<%=request.getContextPath() %>/low?name=${name}">낮은가격순</a>
 			</div>
 		</div>
 
@@ -63,8 +66,8 @@ div>a:hover {
 		<!-- grid -->
 		<div class="div_search">
 		<c:forEach items="${list }" var="vo">
-			<div
-				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
+			<div class = "product_div"
+				style="border: 1px solid silver; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
 					<a href="Product/product?productNum=${vo.productNum }&page=${paging.currentPage}">
 						<img alt="" src="<%=request.getContextPath() %>/images/Product/${vo.fileName }" style="width: 80%; height: 240px;margin-left: 20px;">

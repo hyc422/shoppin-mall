@@ -132,7 +132,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-    <c:if test="${sessionScope.user == null }">
+      <c:if test="${sessionScope.user == null }">
       <li class="nav-item active">
         <a class="nav-link" href="${pageContext.request.contextPath}/login">로그인<span class="sr-only">(current)</span></a>
       </li>
@@ -144,18 +144,16 @@
       <li class="nav-link"><span id="user">${user.name }님</span></li>
       <li><a class="nav-link" href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
       </c:if>
+      <c:if test="${user.admin == 'n' || user == null }">
       <li class="nav-item active">
         <a onclick="Cart2()" class="nav-link" href="#">장바구니<span class="sr-only">(current)</span></a>
       </li>
-      <c:if test="${user.admin=='n' }">
       <li class="nav-item dropdown">
         <a  style="color: white;" class="nav-link dropdown-toggle" href="myPage2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           마이페이지
         </a>
-      		<a  style="color: white;" class="nav-link dropdown-toggle" href="myPage2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          
-        </a>
-        <div class="dropdown-menu">
+        
+  <div class="dropdown-menu">
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" onclick="pay()">결재내역 조회</a>
           <div class="dropdown-divider"></div>
@@ -168,6 +166,7 @@
         </div>
       </li>
       </c:if>
+      
 	<c:if test="${user.admin =='y' }">
 	<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/admin">관리자페이지</a></li>
 	</c:if>

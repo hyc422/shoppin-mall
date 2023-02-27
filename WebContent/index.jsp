@@ -66,6 +66,10 @@
 	grid-template-rows: 1fr;
 	column-gap: 5px;
 }
+
+.product_div:hover {
+	padding: 2px;
+}
 </style>
 
 <meta charset="UTF-8">
@@ -85,7 +89,7 @@
 			style="max-width: 100%; margin: 0px;">
 			<a href="${pageContext.request.contextPath }/Product/product?productNum=40"><img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너1.jpg" style="width: 100%"></a>
 			<a href="${pageContext.request.contextPath }/Product/product?productNum=43"><img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너2.jpg" style="width: 100%"></a>
-			<a href="${pageContext.request.contextPath }"><img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너3.jpg" style="width: 100%"></a>
+			<img class="mySlides" src="<%=request.getContextPath() %>/images/BannerAndIcon/배너3.jpg" style="width: 100%">
 			<div
 				class="w3-center w3-section w3-large w3-text-white w3-display-bottomleft"
 				style="width: 100%">
@@ -135,8 +139,8 @@
 		<% 
 			for(int i=0; i<vo.size();i++) {
 		%>
-			<div
-				style="border: 1px solid black; border-radius: 30px; width: 80%; height: 330px; margin-left: 49px; margin-top: 10px;">
+			<div class = "product_div"
+				style="border: 1px solid silver; border-radius: 20px; width: 80%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
 					<a href="Product/product?productNum=<%=vo.get(i).getPRODUCTNUM() %>">
 					<img alt="" src="images/Product/<%=vo.get(i).getFILENAME() %>"
