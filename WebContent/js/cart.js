@@ -100,7 +100,27 @@ function deleteValue(){
 	document.querySelector('form[action="cart/selectDelete"]').submit();
 }
 
-
+function selectPay(){
+	const checkedCnt = document.querySelectorAll('.buy:Checked').length;
+	if(checkedCnt == 0){
+		alert('선택한 상품이 없습니다.');		
+		return ;
+		//리턴의 2가지 기능
+		//1)데이터를 넘기도록 돌려줄 값을 쓸 때(일반적) 
+		//2)자바에서는 메소드이기때문에 뒤에 아무값도없으면 더이상 읽지않도록 함수종료 기능.
+	}else{
+		
+	let cartNums = '';
+	const checkedBoxes = document.querySelectorAll('.buy:checked');
+		for(const checkBox of checkedBoxes){
+		const cartNum= checkBox.dataset.cartnum;
+			cartNums +=cartNum+',';
+		}
+	document.querySelector('form[action="Product/productAddPayment"]').cartNum2.value=cartNums;
+	document.querySelector('form[action="Product/productAddPayment"]').submit();
+	location.href = '${pageContext.request.contextPath }/Product/productAddPayment'
+	}
+}
 
 
 

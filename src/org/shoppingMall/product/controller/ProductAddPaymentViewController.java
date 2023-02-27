@@ -15,25 +15,29 @@ import org.shoppingMall.vo.CartVo;
 
 public class ProductAddPaymentViewController implements Controller {
 
+	@SuppressWarnings("unused")
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		CartDao cDao = CartDao.getInstance();
-		String id = (String)request.getSession().getAttribute("id");
-		
-		if(request.getParameter("productNum") != "") {	//바로 결제
+		String id = request.getParameter("id");
+		CartDao dao = CartDao.getInstance();
+		String cartNums = request.getParameter("cartNum2");
+		String[] num = cartNums.split(",");
+		int[] cartNumArr = new int[num.length];
+		int totalPrice = 0;
+		List<CartVo>list = new ArrayList<>();
+		if(cartNums.equals("0")) {
 			CartVo vo1 = new CartVo();
-			List<CartVo> vo = new ArrayList<>();
-			
+
 			int productNum = Integer.parseInt(request.getParameter("productNum"));
 			String productName = request.getParameter("productName");
 			String productCategories = request.getParameter("productCategories");
 			String fileName = request.getParameter("fileName");
 			int productPrice = Integer.parseInt(request.getParameter("productPrice"));
 			int amount = Integer.parseInt(request.getParameter("amount"));
-			
+
 			vo1.setId(id);
 			vo1.setProductNum(productNum);
 			vo1.setProductName(productName);
@@ -41,38 +45,31 @@ public class ProductAddPaymentViewController implements Controller {
 			vo1.setFileName(fileName);
 			vo1.setProductPrice(productPrice);
 			vo1.setAmount(amount);
-			
-			vo.add(vo1);
-			
-			/*request.setAttribute("productNum", productNum);
-			request.setAttribute("productName", productName);
-			request.setAttribute("productPrice", productPrice);
-			request.setAttribute("amount", amount);
-			request.setAttribute("productCategories", productCategories);
-			request.setAttribute("fileName", fileName);*/
-			
-			request.setAttribute("vo", vo);
-			
-		} else {	//장바구니 결제
-			List<CartVo> vo = new ArrayList<>();
-			
-			vo = cDao.list(id);
-			
-			request.setAttribute("vo", vo);
+
+			list.add(vo1);
+			totalPrice = productPrice*amount;
+		}else {
+			for (int i = 0; i < num.length; i++) {
+				cartNumArr[i] = Integer.parseInt(num[i]);
+			}
+
+			int size = cartNumArr.length;
+			for(int i=0; i<size; i++) {
+				list.add(dao.selectNum(cartNumArr[i]));
+			}
+
+			for (int i = 0; i < list.size(); i++) {
+				totalPrice += (list.get(i).getProductPrice() * list.get(i).getAmount());
+			}
+
 		}
-		
-		List<CartVo>list = cDao.list(id);
-		
-		int totalPrice = 0;
-		for(int i=0; i<list.size(); i++) {
-			totalPrice += (list.get(i).getProductPrice()*list.get(i).getAmount());
-		}
-		
 		request.setAttribute("totalPrice", totalPrice);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("productAddPayment.jsp");
+        request.setAttribute("vo", list);
+        request.setAttribute("id", id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("productAddPayment.jsp");
 		dispatcher.forward(request, response);
-		
+
 	}
 
 }
+

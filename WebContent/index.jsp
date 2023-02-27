@@ -132,14 +132,14 @@
 		
 		<!-- 추천상품 -->
 		<div class="div_cont">
-		<%
+		<% 
 			for(int i=0; i<vo.size();i++) {
 		%>
 			<div
 				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
-					<img alt="" src="images/Product/<%=vo.get(i).getFILENAME() %>"
-						style="width: 80%; height: 240px; margin-left: 25px;">
+					<a href="#"><img alt="" src="images/Product/<%=vo.get(i).getFILENAME() %>"
+						style="width: 80%; height: 240px; margin-left: 25px;"></a>
 				</div>
 				<hr style="margin: 0px;">
 				

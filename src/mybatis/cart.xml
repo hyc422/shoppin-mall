@@ -30,6 +30,15 @@
 	DELETE FROM TBL_CART
 	WHERE id='${value}'
 	</delete>
+	
+	<select id="selectNum" parameterType="int"
+		resultType="org.shoppingMall.vo.CartVo">
+		SELECT *FROM TBL_CART WHERE CARTNUM =#{cartnum}
+	</select>
+	<delete id="SelectDelete"  parameterType="java.util.Map">
+	DELETE FROM TBL_CART
+	WHERE id='${value}' and productNum = #{productNum}
+	</delete>
 </mapper>
 
  

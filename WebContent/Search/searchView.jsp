@@ -66,8 +66,8 @@ div>a:hover {
 			<div
 				style="border: 1px solid black; border-radius: 30px; width: 70%; height: 330px; margin-left: 49px; margin-top: 10px;">
 				<div>
-					<img alt="" src="<%=request.getContextPath() %>/images/Product/${vo.fileName }"
-						style="width: 80%; height: 240px;margin-left: 20px;">
+					<a href="${pageContext.request.contextPath }/Product/product?productNum=${vo.productNum}"><img alt="" src="<%=request.getContextPath() %>/images/Product/${vo.fileName }"
+						style="width: 80%; height: 240px;margin-left: 20px;"></a>
 				</div>
 				<hr style="margin: 0px;">
 				<h6 style="text-align: center;">

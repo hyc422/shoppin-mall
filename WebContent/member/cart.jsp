@@ -103,12 +103,16 @@
             </div>
             <div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: ${sum }개</div>
             <div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: ${totalPrice }원</div>
-    	
+            
             <div id="goorder" class="">
+    		<form method="get" action="Product/productAddPayment">
+            <input type="hidden" name="id" value="${user.id }">
+             <input type="hidden" name="cartNum2" id="cartNum2" value="">	
                 <div class="clear"></div>
                 <div class="buttongroup center-align cmd">
-                    <a href="javascript:void(0);" onclick="productAddPayment()">선택한 상품 주문</a>
+                   <button onclick="selectPay()" style="font-size: 30px; border: none; background: black; color: white; border-radius: 5px;">선택한 상품 주문</button>
                 </div>
+            </form>
             </div>
 
 		</section>
@@ -119,7 +123,7 @@
 </body>
 <script type="text/javascript">
 	function productAddPayment() {
-			location.href = '../Product/productAddPayment'
+			location.href = '${pageContext.request.contextPath }/Product/productAddPayment'
 	}
 </script>
 </html>

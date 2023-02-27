@@ -146,12 +146,14 @@
         </a>
         <div class="dropdown-menu">
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">주문조회</a>
+          <a class="dropdown-item" href="#" onclick="pay()">결재내역 조회</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">내가쓴글</a>
+          <a class="dropdown-item" href="#" onclick="review()">내가 쓴 리뷰</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" onclick="qnalist()">내가 쓴 QnA</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item"
-           href="${pageContext.request.contextPath }/update?idx=${user.idx }">회원정보수정</a>
+           href="#" onclick="update()">회원정보수정</a>
         </div>
       </li>
 	<c:if test="${user.admin =='y' }">
@@ -171,6 +173,46 @@
 				location.href = '${pageContext.request.contextPath }/cart?id=${user.id}'
 			}
 		}
+		function pay() {
+			let yn
+			if ('${user.id}' == '') {
+				yn = confirm('로그인이 필요합니다. 로그인 하시겠습니까?')
+				if (yn)
+					location.href = '${pageContext.request.contextPath }/login?back=w'
+			} else {
+				location.href = '${pageContext.request.contextPath }/paylist?id=${user.id}'
+			}
+		}
+		function review() {
+			let yn
+			if ('${user.id}' == '') {
+				yn = confirm('로그인이 필요합니다. 로그인 하시겠습니까?')
+				if (yn)
+					location.href = '${pageContext.request.contextPath }/login?back=w'
+			} else {
+				location.href = '${pageContext.request.contextPath }/review?nickname=${user.nickname}'
+			}
+		}
+		function qnalist() {
+			let yn
+			if ('${user.id}' == '') {
+				yn = confirm('로그인이 필요합니다. 로그인 하시겠습니까?')
+				if (yn)
+					location.href = '${pageContext.request.contextPath }/login?back=w'
+			} else {
+				location.href = '${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}'
+			}
+		}
+		function update() {
+			let yn
+			if ('${user.id}' == '') {
+				yn = confirm('로그인이 필요합니다. 로그인 하시겠습니까?')
+				if (yn)
+					location.href = '${pageContext.request.contextPath }/login?back=w'
+			} else {
+				location.href = '${pageContext.request.contextPath }/update?idx=${user.idx }'
+			}
+		}
 	</script>
 
 
@@ -180,10 +222,10 @@
     <div class="title">인기 주류 TOP5 </div>
     <div class="wrap">
         <ul>
-            <li class="current"><a href="/shoppingMall/Product/product?productNum=2&page=1">Golden Peach</a></li>
-            <li class="next"><a href="/shoppingMall/Product/product?productNum=8&page=1">연꽃 담은 술 8도 850ml</a></li>
-            <li><a href="/shoppingMall/Product/product?productNum=10&page=2">이화백주 940ml</a></li>
-            <li><a href="/shoppingMall/Product/product?productNum=12&page=2">오미나라 전통주 고운달 도자기숙성 52도 500ml</a></li>
+            <li class="current"><a href="/shoppingMall/Product/product?productNum=2">Golden Peach</a></li>
+            <li class="next"><a href="/shoppingMall/Product/product?productNum=24">연꽃 담은 술 8도 850ml</a></li>
+            <li><a href="/shoppingMall/Product/product?productNum=26">이화백주 940ml</a></li>
+            <li><a href="/shoppingMall/Product/product?productNum=28">오미나라 전통주 고운달 도자기숙성 52도 500ml</a></li>
             <li class="prev"><a href="/shoppingMall/Product/product?productNum=40">이도</a></li>
         </ul>
     </div>
