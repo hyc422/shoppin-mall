@@ -9,9 +9,11 @@
 	</select>
   
 	<insert id="register" parameterType="org.shoppingMall.vo.Member" useGeneratedKeys="false">
-	INSERT INTO js_member (idx, id, password, name, nickname, email, phone, c_code, address, birth)
+	INSERT INTO js_member (idx, id, password, name, nickname, email, phone, c_code, address1,address2,
+	address3, birth)
 	VALUES 
-	(member_idx_seq.nextval,#{id},#{password},#{name},#{nickname},#{email},#{phone},#{c_code},#{address},#{birth})
+	(member_idx_seq.nextval,#{id},#{password},#{name},#{nickname},#{email},#{phone},#{c_code},#{address1}
+	,#{address2},#{address3},#{birth})
 	
   <selectKey keyProperty="idx" resultType="long" order="AFTER">
 			SELECT member_idx_seq.currval 
@@ -46,5 +48,8 @@
   	</select>
 	<select id="idcheck" parameterType="String" resultType="int">
 	SELECT count(id) FROM js_member WHERE id=#{id}
+	</select>
+	<select id="nnamecheck" parameterType="String" resultType="int">
+	SELECT count(nickname) FROM js_member WHERE nickname=#{nickname}
 	</select>
 </mapper>
