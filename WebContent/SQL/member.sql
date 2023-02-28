@@ -1,17 +1,19 @@
 -- js_member TABLE
 CREATE TABLE js_member
 (
-   idx NUMBER(10),        			 --회원 번호
-   id varchar2(20) NOT NULL,         --회원 id
-   password varchar2(20) NOT NULL,   --회원 password
-   name varchar2(20) NOT NULL,       --회원 이름
-   nickname varchar2(30) NOT NULL,   --회원 별명
-   email varchar2(20),               --회원 이메일
-   phone varchar2(20),               --회원 전화번호
-   c_code varchar2(20)NOT NULL,      --회원 우편번호
-   address varchar2(100)NOT NULL,    --회원 주소
-   birth varchar2(20)NOT NULL,		 --회원 생일
-   admin varchar2(1) DEFAULT 'n'	 --관리자 여부
+   idx NUMBER(10),                    --회원 번호
+   id varchar2(20) NOT NULL ,         --회원id
+   password varchar2(20) NOT NULL ,   --회원 password
+   name varchar2(20) NOT NULL,        --회원 이름
+   nickname varchar2(30) NOT NULL,    --회원 별명
+   email varchar2(20),                --회원 이메일
+   phone varchar2(20),                --회원 전번
+   c_code varchar2(20) NOT NULL,      --회원 우편번호
+   address1 varchar2(40),             --회원 주소
+   address2 varchar2(40),             --회원 주소
+   address3 varchar2(40),             --회원 주소
+   birth varchar2(20)                 --회원 생년월일
+   admin varchar2(1) DEFAULT 'n'      --관리자 여부
    PRIMARY KEY(IDX)
 );
 
