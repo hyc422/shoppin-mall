@@ -105,15 +105,16 @@
 						function Cart() {
 							let yn
 							if ('${user.id}' == '') {
-								yn = confirm('장바구니에 추가하기 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?')
-								if (yn)
-									location.href = '../login?back=w'
-							} else {
+								yn = confirm('장바구니에 추가하기 위해서는 로그인이 필요합니다. 로그인 하시겠습니까?');
+								if (yn){
+									location.href = '../login?back=w';
+								}
+							}else {
+								alert('장바구니에 추가되었습니다');
 								document.forms[1].submit();
-								/* yn = confirm('장바구니로 이동 하시겠습니까?')
-								location.href = '${pageContext.request.contextPath }/cart?id=${user.id}' */
-							}
-						}
+							}//else
+							
+							}//function
 						
 						 function productAddPayment() {
 		                     document.forms[1].action = 'productAddPayment'

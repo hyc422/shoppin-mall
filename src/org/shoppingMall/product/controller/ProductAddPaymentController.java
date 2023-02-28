@@ -56,10 +56,13 @@ public class ProductAddPaymentController implements Controller {
 							fileName[i], amountArr[i], zipcode, address, addressDetail, addressEtc);
 			pDao.insertPayment(vo1);
 			vo.add(vo1);
-			Map<String,Object> map = new HashMap<>();
-			map.put("value",id);
-			map.put("productNum",productNumArr[i]);
-			cDao.selectDelete(map);
+			
+			if(cDao.list(id)!=null) {
+				Map<String,Object> map = new HashMap<>();
+				map.put("value",id);
+				map.put("productNum",productNumArr[i]);
+				cDao.selectDelete(map);
+			}
 		}
 //		if(cDao.list(id) == null) {	//일반 구매
 //			

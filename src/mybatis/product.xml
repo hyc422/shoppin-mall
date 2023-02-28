@@ -198,7 +198,7 @@
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	
-	<insert id="insertPayment" parameterType="org.shoppingMall.vo.ProductVO">
+	<insert id="insertPayment" parameterType="org.shoppingMall.vo.PaymentVO">
 		INSERT INTO TBL_PAYMENT
 		(IDX, ID, PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE, PRODUCTCATEGORIES, FILENAME, AMOUNT, ZIPCODE, ADDRESS, ADDRESSDETAIL, ADDRESSETC, pDate)
 		VALUES(SEQ_PAYMENT.NEXTVAL, #{id}, #{productNum}, #{productName}, #{productPrice}, #{productCategories}, 

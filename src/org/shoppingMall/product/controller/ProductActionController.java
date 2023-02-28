@@ -18,6 +18,7 @@ public class ProductActionController implements Controller {
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
+		String page = request.getParameter("page");
 		int productNum = Integer.parseInt(request.getParameter("productNum"));
 		String productName = request.getParameter("productName");
 		int productPrice = Integer.parseInt(request.getParameter("productPrice"));
@@ -39,7 +40,7 @@ public class ProductActionController implements Controller {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		if(result !=0) {
-			response.sendRedirect(request.getContextPath()+"/cart?id="+id);
+			response.sendRedirect(request.getContextPath()+"/Product/product?productNum="+productNum+"&page="+page);
 		}else {
 			response.sendRedirect(request.getContextPath());	//메인화면으로 이동
 		}
