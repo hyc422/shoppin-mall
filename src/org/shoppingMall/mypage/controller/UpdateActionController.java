@@ -18,7 +18,8 @@ public class UpdateActionController implements Controller {
 		request.setCharacterEncoding("UTF-8");
 		Member vo = new Member(Integer.parseInt(request.getParameter("idx")),request.getParameter("id"),
 				request.getParameter("password"),request.getParameter("name"),request.getParameter("nickname")
-				,request.getParameter("email"),request.getParameter("address"),request.getParameter("phone2")
+				,request.getParameter("email"),request.getParameter("address1"),request.getParameter("address2"),
+				request.getParameter("address3"),request.getParameter("phone2")
 				,request.getParameter("c_code"),request.getParameter("birth"), request.getParameter("admin"));
 		
 		MemberDao dao = MemberDao.getInstance();

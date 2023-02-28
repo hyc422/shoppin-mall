@@ -35,7 +35,7 @@ import org.shoppingMall.mypage.controller.CustomerController;
 import org.shoppingMall.mypage.controller.DeleteViewController;
 import org.shoppingMall.mypage.controller.PaylistActionController;
 import org.shoppingMall.mypage.controller.PaylistViewController;
-import org.shoppingMall.mypage.controller.ReivewViewController;
+import org.shoppingMall.mypage.controller.ReviewViewController;
 import org.shoppingMall.mypage.controller.UpdateActionController;
 import org.shoppingMall.mypage.controller.UpdateViewController;
 import org.shoppingMall.mypage.controller.qnalistViewController;
@@ -95,7 +95,7 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
 		mapping.put(new RequestKeyValue("/paylist","GET"), new PaylistViewController());
 //		mapping.put(new RequestKeyValue("/paylist","POST"), new PaylistActionController());
-		mapping.put(new RequestKeyValue("/review","GET"), new ReivewViewController());
+		mapping.put(new RequestKeyValue("/reviewlist","GET"), new ReviewViewController());
 		mapping.put(new RequestKeyValue("/qnalist","GET"), new qnalistViewController());
     
 	  	// Product

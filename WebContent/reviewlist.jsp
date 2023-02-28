@@ -66,8 +66,8 @@ body {
 }
 .form-group{
 	border: 1px solid #D3D3D3;
-	width: 800px;
-	    height: 400px;
+	width: 900px;
+	    height: auto;
 }
 input, textarea, select, button {
     font-family: sans-serif;
@@ -81,7 +81,7 @@ input, textarea, select, button {
 
 table{
    border-collapse:border;
-       width: 800px;
+       width: 900px;
 table-layout: fixed;
 border-bottom:1px solid #373737;
 font-size: 13px;
@@ -94,10 +94,10 @@ td,tr{
 border-left:none;
 border-top:none;
 border-bottom:none;
-padding: 10px;
-  }
 
-  
+  }
+/*  */
+  /*  */
   th{
    padding: 10px;
   border-bottom: 1px solid #373737;
@@ -133,12 +133,11 @@ padding: 10px;
 h2{
 	text-align: center;
 	color:black;
-	margin-right: 800px;
-	width : 800px;
+	margin-right: 900px;
+	width : 900px;
 	padding : 20px;
 }
 </style>
-
 
 </head>
 <body>
@@ -157,42 +156,43 @@ h2{
             <div class="tit">MY 정보</div>
             <ul class="sub">
                 <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
-            	    <li><a href="${pageContext.request.contextPath }/reviewlist?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
-            	     <li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>
+            	    <li><a href="${pageContext.request.contextPath }/reviewlist?nickname=${user.nickname}">내리뷰</a></li>
+            	<li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>
             </ul>
         </li>
            
-    </ul><!--  -->
+    </ul>
     </div>
     
     <main class="usermodify">
-    	
-    			<h2>QnA</h2>
+    		<h2>내가 쓴 리뷰</h2>
     	<div class="form-group">
+    			<input type="hidden" name="user" value="${user.nickname}">
     		<table class="userupdate" style="table-layout: fixed; "  >
     			<tr style="text-align: center;">
+    				<th>사진</th>
     				<th>닉네임</th>
     				<th>제목</th>
     				<th>조회수</th>
     				<th>댓글</th>
-    				<th>게시날짜</th>
+    				<th>작성날짜/시간</th>
     			</tr>
      <c:forEach items="${vo }" var="vo" varStatus="num">
-     
-    	<tr>
+    			<tr>
+    			<td><a href="${pageContext.request.contextPath }/community/communityread?idx=${vo.idx}&category=2"> 
+                        <img src="${pageContext.request.contextPath }/images/community/${vo.fileName }" width="60"></a></td>
     			<td><input type="text" name="nickname" value="${vo.nickname }" readonly="readonly" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			<td><input type="text" name="title" value="${vo.title }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			<td><input type="text" name="readCount" value="${vo.readCount }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			<td><input type="text" name="commentCount" value="${vo.commentCount }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><input type="text" pattern="YYYY-MM-dd" name="createdAt" value="<fmt:formatDate value="${vo.createdAt }" type="date" pattern="yyyy-MM-dd"/>" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
+    			<td><input type="text" name="createdAt" value="${vo.createdAt }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			</tr>
    </c:forEach>
-   
-   		
     		</table>
-    			<div class="review">
-    				<input type="button" class="button"name="button" value="문의 하러 가기">
+    	<div class="review">
+    				<input type="button" class="button"name="button" value="홈으로">
     			</div>
+    	
     	</div>
 </main>
 
