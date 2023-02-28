@@ -181,7 +181,21 @@ td {
 	
 						<tr>
 							<td class="code" style="width: 200px; text-align:right; background-color: #a8a8a8; ">우편번호</td>
-							<td><input type="text" name="c_code" value="${vo.c_code }"></td>
+							<td><input type="text" name="c_code"
+						id="sample4_postcode" placeholder="우편번호" class="form-control" value="${vo.c_code }">
+						<input type="button"
+						onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="width: 180%;"
+						class="form-control"readOnly><input type="text"
+						name="address1" id="sample4_roadAddress" placeholder="도로명주소"
+						class="form-control" readOnly style="width: 180%;"value="${vo.address1 }">
+						<input type="text" name="address2"
+						id="sample4_jibunAddress" placeholder="지번주소" style="width: 350px"
+						class="form-control" readOnly style="width: 180%;"value="${vo.address2 }">
+						<span id="guide"
+						style="color: #999; display: none" class="form-control" style="width: 180%;"></span> <input
+						type="text" id="sample4_detailAddress" placeholder="상세주소"
+						class="form-control" name="address3" required style="width: 180%;"value="${vo.address3 }">
+						</td>
 						</tr>
 	
 						<tr>
