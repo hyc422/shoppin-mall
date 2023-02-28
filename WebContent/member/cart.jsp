@@ -88,6 +88,9 @@
         	</c:forEach>
         <!-- onclick="deleteValue()" -->
             </div>
+            <div style=" padding-left: 18px;">
+    		<input type='checkbox' name='SelectAll' onclick='selectAll(this)' style="text-align : center; transform: scale(1.5); margin: 5px;"/><b>&nbsp;모두 선택</b>
+            </div>
             <div class="right-align basketrowcmd">
             <form method="post" action="cart/selectDelete">
     		  <input type="hidden" name="id" value="${user.id }">
@@ -125,5 +128,13 @@
 	function productAddPayment() {
 			location.href = '${pageContext.request.contextPath }/Product/productAddPayment'
 	}
+	function selectAll(selectAll)  {
+		  const checkboxes 
+		     = document.querySelectorAll('input[type="checkbox"]');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked
+		  })
+		}
 </script>
 </html>
