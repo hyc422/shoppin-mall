@@ -21,14 +21,16 @@ public class ProductAddUpdateViewController implements Controller {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		int productNum = Integer.parseInt(request.getParameter("productNum"));			
+		int productNum = 2;	
 		
 		ProductDAO pDao = ProductDAO.getInstance();
 		ProductVO vo = pDao.productSelectOne(productNum);
 		
+		System.out.println(request.getParameter("fileName"));
+		
 		request.setAttribute("vo", vo);
-		request.setAttribute("fileName", request.getParameter("product_file1"));
-		request.setAttribute("fileNameOriginal", request.getParameter("productImage"));
+		request.setAttribute("fileName", request.getParameter("fileName"));
+		request.setAttribute("fileNameOriginal", request.getParameter("fileNameOriginal"));
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productAddUpdate.jsp");
 		dispatcher.forward(request, response);
