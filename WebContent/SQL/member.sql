@@ -12,8 +12,8 @@ CREATE TABLE js_member
    address1 varchar2(40),             --회원 주소
    address2 varchar2(40),             --회원 주소
    address3 varchar2(40),             --회원 주소
-   birth varchar2(20)                 --회원 생년월일
-   admin varchar2(1) DEFAULT 'n'      --관리자 여부
+   birth varchar2(20),                --회원 생년월일
+   admin varchar2(1) DEFAULT 'n',     --관리자 여부
    PRIMARY KEY(IDX)
 );
 
