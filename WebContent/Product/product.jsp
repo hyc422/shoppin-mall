@@ -62,6 +62,7 @@
 							<input type="hidden" name="id" value="${user.id }"> 
 							<input type="hidden" name="cartNum2" value="0"> 
 							<input type="hidden" name="fileName" value="${Pvo.fileName }">
+							<input type="hidden" name="fileNameOriginal" value="${Pvo.fileNameOriginal }"> 
 							<input type="hidden" name="productName" value="${Pvo.productName }"> 
 							<input type="hidden" name="productCategories" value="${Pvo.productCategories }">
 							<input type="hidden" name="productNum" value="${Pvo.productNum }">
@@ -93,6 +94,10 @@
 						<button type="button" id="no_member_payBtn" class="order"
 							onclick="productUpdate()">수 정</button>
 							</c:if>
+							<c:if test="${user.admin =='y' }">
+						<button type="button" id="no_member_payBtn" class="order"
+							onclick="productDelete()">삭 제</button>
+							</c:if>
 					</div>
 						</form>
 
@@ -118,6 +123,12 @@
 
 		                  function productUpdate() {
 		                     document.forms[1].action = 'productAddUpdate'
+		                     document.forms[1].method = 'GET'
+		                     document.forms[1].submit();
+		                  }
+		                  
+		                  function productDelete() {
+		                     document.forms[1].action = 'productDelete'
 		                     document.forms[1].method = 'GET'
 		                     document.forms[1].submit();
 		                  }
