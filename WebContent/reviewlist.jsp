@@ -12,14 +12,11 @@
 	<%@ include file="../top.jsp"%>
 <style type="text/css">
 body {
+    margin:20px auto;
     padding: 0;
     font-family:"맑은 고딕";
-    display: block;
-    -webkit-text-size-adjust: none;
-    font-family: dotum,sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #666;
+    font-size:0.9em;
+    
 }
 main{
 height: auto;
@@ -31,7 +28,7 @@ height: auto;
 	
 }
 ul#navi {
-    width: auto;
+    width: 200px;
     text-indent: 15px;
 }
 ul#navi, ul#navi ul {
@@ -51,13 +48,25 @@ li.group div.tit {
     background-color: #323232;
     cursor:pointer;
 }
+body {
+    display: block;
+    margin: 20px;
+    
+}
+body {
+    -webkit-text-size-adjust: none;
+    font-family: dotum,sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+}	
 .usermodify {
     position: relative;
 }
 .form-group{
 	border: 1px solid #D3D3D3;
-	width: 1000px;
-	    height: auto;
+	width: 999px;
+	height: auto;
 }
 input, textarea, select, button {
     font-family: sans-serif;
@@ -70,7 +79,7 @@ input, textarea, select, button {
 
 table{
    border-collapse:border;
-   max-width:1400px;
+       width: auto;
 table-layout: fixed;
 border-bottom:1px solid #373737;
   
@@ -121,9 +130,10 @@ h2{
 	text-align: center;
 	color:black;
 	margin-right: 700px;
-	width : 1000px;
+	width : 900px;
 	padding : 20px;
 }
+
 </style>
 
 
@@ -137,15 +147,15 @@ h2{
         <li class="group">
             <div class="tit">My 쇼핑</div>
             <ul class="sub">
-                <li><a href="${pageContext.request.contextPath }/paylist?id=${user.id}">구매 내역/리뷰 작성</a></li>
+                <li><a href="${pageContext.request.contextPath }/paylist?idx=${user.idx}">구매 내역/리뷰 작성</a></li>
             </ul>
         </li>
         <li class="group">
             <div class="tit">MY 정보</div>
             <ul class="sub">
                 <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
-            	    <li><a href="${pageContext.request.contextPath }/rivewlist?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
-            	     <li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>
+            	    <li><a href="${pageContext.request.contextPath }/rivewlist?nickname=${user.nickname}">내리뷰</a></li>
+            	<li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>
             </ul>
         </li>
            
@@ -153,40 +163,34 @@ h2{
     </div>
     
     <main class="usermodify">
-    	
-    			<h2>구매내역</h2>
+    		<h2>내가 쓴 리뷰</h2>
     	<div class="form-group">
-    			<input type="hidden" name="id" value="${user.id}">
+    			<input type="hidden" name="user" value="${user.nickname}">
     		<table class="userupdate" style="table-layout: fixed; "  >
     			<tr style="text-align: center;">
-    				<th style="width: 200px;">구매 날짜</th>
-    				<th style="width: 200px;">이미지</th>
-    				<th style="width: 200px;">상품명</th>
-    				<th style="width: 200px;">가격</th>
-    				<th style="width: 200px;" class="num">수량</th>
-    				<th style="width: 200px;" class="sum">합계</th>
-    				<th style="width: 200px;" class="adress">주소</th>
+    				<th>사진</th>
+    				<th>닉네임</th>
+    				<th>제목</th>
+    				<th>조회수</th>
+    				<th>댓글</th>
+    				<th>작성날짜/시간</th>
     			</tr>
      <c:forEach items="${vo }" var="vo" varStatus="num">
-     	
-    	<tr>
-    			<td><input type="text" name="pDate" value="${vo.pDate }" readonly="readonly" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><a href="${pageContext.request.contextPath }/Product/product?productNum=${vo.productNum}"> 
-                        <img src="${pageContext.request.contextPath }/images/Product/${vo.fileName }" width="60"></a></td>
-    			<td><input type="text" name="productNum" value="${vo.productNum }" readonly="readonly" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><input type="text" name="productName" value="${vo.productName }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><input type="text" name="productPrice" value="${vo.productPrice }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><input type="text" name="amount" value="${vo.amount }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><input type="button" name="review" value="리뷰" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
+    			<tr>
+    			<td><a href="${pageContext.request.contextPath }/community/communityread?idx=${vo.idx}&category=2"> 
+                        <img src="${pageContext.request.contextPath }/images/community/${vo.fileName }" width="60"></a></td>
+    			<td><input type="text" name="nickname" value="${vo.nickName }" readonly="readonly" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
+    			<td><input type="text" name="title" value="${vo.title }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
+    			<td><input type="text" name="readCount" value="${vo.readCount }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
+    			<td><input type="text" name="commentCount" value="${vo.commentCount }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
+    			<td><input type="text" name="createdAt" value="${vo.createdAt }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			</tr>
    </c:forEach>
-   
-   		
     		</table>
-    			<div class="review">
-    				<a href="${pageContext.request.contextPath }"><input type="button" class="button"name="button" value="홈으로 가기"></a>
+    	<div class="review">
+    				<input type="button" class="button"name="button" value="홈으로">
     			</div>
-    			<br>
+    	
     	</div>
 </main>
 
