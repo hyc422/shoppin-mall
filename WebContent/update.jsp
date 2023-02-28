@@ -119,7 +119,7 @@ td {
             <ul class="sub">
             <li class="tit">MY 정보<li>
                 <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
-            	    <li><a href="${pageContext.request.contextPath }/rivewlist?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
+            	    <li><a href="${pageContext.request.contextPath }/reviewlist?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
             	<li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>               
             	
             </ul>
