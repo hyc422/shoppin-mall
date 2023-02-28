@@ -8,7 +8,8 @@ import org.shoppingMall.product.controller.ProductActionController;
 import org.shoppingMall.product.controller.ProductAddController;
 import org.shoppingMall.product.controller.ProductAddDeleteController;
 import org.shoppingMall.product.controller.ProductAddViewController;
-import org.shoppingMall.Admincontroller.AdminController;
+import org.shoppingMall.Admin.controller.AdminController;
+import org.shoppingMall.Admin.controller.AdminScoreController;
 import org.shoppingMall.Recommend.controller.DeleteRecommendProductController;
 import org.shoppingMall.Recommend.controller.IndexRecommendProductController;
 import org.shoppingMall.Recommend.controller.NewRecommendProductController;
@@ -60,6 +61,7 @@ public class RequestControllerMapping
 	{	
 		 // admin
 		mapping.put(new RequestKeyValue("/admin","GET"), new AdminController());
+		mapping.put(new RequestKeyValue("/admin/score","GET"), new AdminScoreController());
 		
 		 // index
 		 mapping.put(new RequestKeyValue("/RecommendUpdate","GET"), new IndexRecommendProductController());
