@@ -147,15 +147,21 @@ td {
 						</tr>
 						
 						<tr>
-							<td class="mail" style="width: 200px; text-align:right; background-color: #a8a8a8 ">이메일</td>
+							<td class="email" style="width: 200px; text-align:right; background-color: #a8a8a8 ">이메일</td>
+							
 						<td>
-							<select>
-								<option>naver.com</option>
-								<option>daum.net</option>
-								<option>gmail.com</option>
-								<option>직접 입력</option>
-							</select>
-							<input type="text" name="email" value="${vo.email }">
+						
+							<input type="text" id="email1" name="email1" class="ui_input" value="${email2 }">@
+							<input type="text" id="email2" name="email2" class="ui_input" value="${email3 }">
+							 <select id="email3" name="email3" title="이메일 주소 선택" class="ui_select">
+                <option value="">  이메일주소 직접입력  </option>
+                <option value="naver.com">naver.com</option>
+                <option value="nate.com">nate.com</option>
+                <option value="gmail.com">gmail.com</option>
+                <option value="yahoo.com">yahoo.com</option>
+                <option value="hanmail.net">hanmail.net</option>
+            </select>
+					
 						</td>
 						</tr>
 						
@@ -222,6 +228,7 @@ td {
 			alert('취소하셨습니다.')
 		}
 	}
+	
 	</script>
 		
 			</form>
@@ -240,6 +247,14 @@ td {
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
     </main>
+   
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $( "#email3" ).change(function(){
+            $("#email2").val( $("#email3").val() );
+        });
+    </script>
+   
     <script
    src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
