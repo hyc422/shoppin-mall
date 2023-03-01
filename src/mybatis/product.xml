@@ -34,12 +34,12 @@
 		WHERE PRODUCTNUM=#{productNum}
 	</update>
 
-	<select id="productSelectOne" parameterType="_int"
+	<select id="productSelectOne" parameterType="int"
 		resultType="org.shoppingMall.vo.ProductVO">
 		SELECT * FROM TBL_PRODUCT WHERE PRODUCTNUM = #{productNum}
 	</select>
 
-	<delete id="productAddDelete" parameterType="_int">
+	<delete id="productAddDelete" parameterType="int">
 		DELETE FROM
 		TBL_PRODUCT
 		WHERE PRODUCTNUM=#{productNum}

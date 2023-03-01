@@ -75,6 +75,12 @@ public class MemberDao {
 		mapper.close();
 		return result;
 	}
+	public int nnamecheck(String nickname) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.selectOne("member.nnamecheck",nickname);
+		mapper.close();
+		return result;
+	}
 	
 	public Member findid(Map<String,String> map) {
 		SqlSession mapper = SqlSessionBean.getSession();
@@ -85,6 +91,13 @@ public class MemberDao {
 	public Member findpwd(Map<String,String> map) {
 		SqlSession mapper = SqlSessionBean.getSession();
 		Member vo = mapper.selectOne("member.findpwd",map);
+		mapper.close();
+		return vo;
+	}
+	
+	public Member selectId(String id) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		Member vo = mapper.selectOne("member.selectId", id);
 		mapper.close();
 		return vo;
 	}

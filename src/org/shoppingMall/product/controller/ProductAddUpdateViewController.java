@@ -13,7 +13,6 @@ import org.shoppingMall.dao.ProductDAO;
 import org.shoppingMall.vo.ProductVO;
 
 
-// 요청 매핑 :	mapping.put(new RequestKeyValue("/community/update","GET"), new UpdateViewController() );
 public class ProductAddUpdateViewController implements Controller {
 
 	@Override
@@ -21,8 +20,7 @@ public class ProductAddUpdateViewController implements Controller {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		int productNum = 2;	
-		
+		int productNum = Integer.parseInt(request.getParameter("productNum"));	
 		ProductDAO pDao = ProductDAO.getInstance();
 		ProductVO vo = pDao.productSelectOne(productNum);
 		

@@ -42,6 +42,7 @@ public class UpdateActionController implements Controller {
 	            .address2(address2)
 	            .address3(address3)
 	            .build();
+
 		MemberDao dao = MemberDao.getInstance();
 		int result=0;
 		try {

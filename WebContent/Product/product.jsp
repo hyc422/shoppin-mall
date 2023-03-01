@@ -85,19 +85,18 @@
 							<br>
 					</div>
 					<div class="cart_put">
-						<button type="button" id="no_member_cart_put" class="order"
-							onclick="Cart()">장바구니</button>
-						<button type="button" id="no_member_payBtn" class="order"
-							onclick="productAddPayment()">구매하기</button>
-							
-							<c:if test="${user.admin =='y' }">
-						<button type="button" id="no_member_payBtn" class="order"
-							onclick="productUpdate()">수 정</button>
-							</c:if>
-							<c:if test="${user.admin =='y' }">
-						<button type="button" id="no_member_payBtn" class="order"
-							onclick="productDelete()">삭 제</button>
-							</c:if>
+						<c:if test="${user.admin !='y' }">
+							<button type="button" id="no_member_cart_put" class="order"
+								onclick="Cart()">장바구니</button>
+							<button type="button" id="no_member_payBtn" class="order"
+								onclick="productAddPayment()">구매하기</button>
+						</c:if>
+						<c:if test="${user.admin =='y' }">
+							<button type="button" id="no_member_payBtn" class="order"
+								onclick="productUpdate()">수 정</button>
+							<button type="button" id="no_member_payBtn" class="order"
+								onclick="productDelete()">삭 제</button>
+						</c:if>
 					</div>
 						</form>
 
@@ -116,23 +115,40 @@
 							
 							}//function
 						
-						 function productAddPayment() {
-		                     document.forms[1].action = 'productAddPayment'
-		                     document.forms[1].method = 'GET'
-		                     document.forms[1].submit();
-		                  }
+							 function productAddPayment() {
+								 if (confirm("구매 하시겠습니까?")) {
+									 document.forms[1].action = 'productAddPayment'
+				                     document.forms[1].method = 'GET'
+				                     document.forms[1].submit();
+								 } else {
+			                         alert("취소되었습니다.");
+			                         return;
+			                      } 
+			                     
+			                  }
 
-		                  function productUpdate() {
-		                     document.forms[1].action = 'productAddUpdate'
-		                     document.forms[1].method = 'GET'
-		                     document.forms[1].submit();
-		                  }
-		                  
-		                  function productDelete() {
-		                     document.forms[1].action = 'productDelete'
-		                     document.forms[1].method = 'GET'
-		                     document.forms[1].submit();
-		                  }
+			                  function productUpdate() {
+			                	  if (confirm("수정 하시겠습니까?")) {
+			                		 document.forms[1].action = 'productAddUpdate'
+		 		                     document.forms[1].method = 'GET'
+		 		                     document.forms[1].submit();
+			                      } else {
+			                         alert("취소되었습니다.");
+			                         return;
+			                      } 
+			                	 
+			                     
+			                  }
+			                  function productDelete() {
+			                	  if (confirm("삭제 하시겠습니까?")) {
+			                		  document.forms[1].action = 'productDelete'
+				                      document.forms[1].method = 'GET'
+				                      document.forms[1].submit();
+			                      } else {
+			                         alert("취소되었습니다.");
+			                         return;
+			                      } 
+			                  }
 
 					</script>
 
@@ -201,21 +217,6 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<%-- <div style="width: 700px; margin: auto; padding: 10px; text-align: center;">
-						<br> 
-						<hr>
-						<a class="pagenum" href="?productNum=${a }&ReVpage=1">&lt;&lt;</a>
-						<a class="pagenum" href="?productNum=${a }&ReVpage=${RevPaging.startPage-1 }"
-							style='<c:if test="${RevPaging.startPage==1 }">display:none;</c:if>'>&lt;</a>
-						<c:forEach var="i" begin="${RevPaging.startPage }"
-							end="${RevPaging.endPage }">
-							<a class="pagenum ieach" href="?productNum=${a }&ReVpage=${i }"><c:out
-									value="${i }" /></a>
-						</c:forEach>
-						<a class="pagenum" href="?productNum=${a }&ReVpage=${RevPaging.endPage+1 }"
-							style='<c:if test="${RevPaging.endPage==RevPaging.totalPage }">display:none;</c:if>'>&gt;</a>
-						<a class="pagenum" href="?productNum=${a }&ReVpage=${RevPaging.totalPage }">&gt;&gt;</a>
-						</div> --%>
 
 						<br> <br>
 					</div>
@@ -257,14 +258,14 @@
 							</tbody>
 						</table>
 						<!-- board seach area -->
+					<form action="${pageContext.request.contextPath }/community/communitywrite" method="post" id="boardForm" name="boardForm" role="form">
 						<div id="board-search">
 							<div class="container">
 								<div class="search-window">
-									<form action="community/communitywrite" method="post" id="boardForm">
 									<c:if test="${sessionScope.user != null }">
 											<div style="margin: auto; padding: 10px; float: center; text-align: center;">
 											제목입력 : <input name="title" class="input">
-											비밀번호 : <input name="password" class="input">
+											비밀번호 : <input name="password" class="input" type="password">
 											</div>
 									</c:if>
 										<div class="search-wrap">
@@ -285,20 +286,13 @@
 													class="btn btn-dark">로그인</button>
 											</c:if>
 										</div>
-									</form>
 								</div>
 							</div>
 						</div>
+					</form>
 						<script type="text/javascript">
 						function Qna() {
-							console.log(document.forms[2].title.value)
-							console.log(document.forms[2].password.value)
-							console.log(document.forms[2].category.value)
-							console.log(document.forms[2].nickname.value)
-							console.log(document.forms[2].productName.value)
-							console.log(document.forms[2].productnum.value)
-							console.log(document.forms[2].content.value)
-							const df = document.forms[2]
+							const df = document.boardForm
 							const title = df.title
 							const password = df.password
 							const content = df.content
@@ -331,23 +325,6 @@
 							}
 						}
 						</script>
-					<%-- 	<div
-						style="width: 700px; margin: auto; padding: 10px; text-align: center;">
-						<br> 
-						<hr>
-						<a class="pagenum" href="?productNum=${a }&QnApage=1">&lt;&lt;</a>
-						<a class="pagenum" href="?productNum=${a }&QnApage=${QnaPaging.startPage-1 }"
-							style='<c:if test="${QnaPaging.startPage==1 }">display:none;</c:if>'>&lt;</a>
-						<c:forEach var="i" begin="${QnaPaging.startPage }"
-							end="${QnaPaging.endPage }">
-							<a class="pagenum ieach" href="?productNum=${a }&QnApage=${i }"><c:out
-									value="${i }" /></a>
-						</c:forEach>
-						<a class="pagenum" href="?productNum=${a }&QnApage=${QnaPaging.endPage+1 }"
-							style='<c:if test="${QnaPaging.endPage==QnaPaging.totalPage }">display:none;</c:if>'>&gt;</a>
-
-						<a class="pagenum" href="?productNum=${a }&QnApage=${QnaPaging.totalPage }">&gt;&gt;</a>
-					</div> --%>
 					</div>
 				</div>
 			</div>
