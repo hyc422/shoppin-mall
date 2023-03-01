@@ -60,7 +60,7 @@ public class UpdateActionController implements Controller {
 			}else {
 				out.print("alert('회원 수정 문제가 발생 하였습니다.');");
 			}
-				out.print("location.href='update'");
+				out.print("location.href='update?idx="+idx+"'");
 				out.print("</script>");
 	}
 
