@@ -53,30 +53,34 @@
 					<input
 						type="text" class="form-control" name="id" id="id" style="width: 180%;"
 						placeholder="영문,숫자 5~11글자" required>
-						<div id="msg"></div>
-						 <input type="button" id="btnIdCheck" class="btn btn-primary" value="중복검사">
+						<div id="idcheckmsg"></div>
+						<div id="isidcheck"></div>
+						 <input type="button" id="idcheck" class="btn btn-primary" value="중복검사">
 				</div>
 				<div class="col-md-4">
 					<label>비밀번호</label> <input type="password" class="form-control" style="width: 180%;"
 						name="password" id="password" placeholder="숫자,영문,특수문자 조합 최소8자"
 						required>
+						<div id="pwdcheckmsg"></div>
 				</div>
 				<div class="col-md-4">
 					<input type="password" class="form-control" name="password2" style="width: 180%;"
 						id="password2" placeholder="비밀번호 재입력" required>
+						<div id="pwd2checkmsg"></div>
 				</div>
-				<label style="width: 100px; text-align: center;">이메일</label>
+				<label style="width: 150px; text-align: center;">이메일</label>
 				<div style="display: flex;" class="col-md-4">
-					<input type="text" name="email" class="form-control" style="width: 180%;"
-						placeholder="이메일 입력" style="width: 100px; display: inline;"
+				
+					<input type="text" name="email1" class="form-control"
+						placeholder="이메일 입력" onfocus="this.value='';" style="width: 100px; display: inline;"
 						required> <span class="input-group-text" id="gbe"
-						style="width: 100px; display: inline;">@</span> <input type="text"
-						name="email2" class="form-control"
-						style="width: 100px; display: inline;" value="" disabled>
-					<select name="email1" style="display: inline;" class="form-select"
-						onchange="email_change()" required>
-						<option value="0">선택</option>
-						<option value="9">직접 입력</option>
+						style="width: 100px; display: inline;">@</span>
+						
+						 <input type="text" id = "email2" name="email2" class="form-control"
+						style="width: 100px; display: inline;" disabled>
+						
+					<select name="email" style="display: inline;" class="form-select" onchange="email_change()"required>
+						<option value = "0">직접 입력</option>
 						<option value="naver.com">naver.com</option>
 						<option value="daum.net">daum.net</option>
 						<option value="gmail.com">gmail.com</option>
@@ -84,11 +88,14 @@
 				</div>
 				<div class="col-md-4">
 					<input type="text" class="form-control" name="name" id="name" style="width: 180%;"
-						placeholder="성함" required>
+						placeholder="성함" maxlength="4" required>
+						<div id="namecheckmsg"></div>
 				</div>
 				<div class="col-md-4">
 					<input type="text" class="form-control" name="nickname" style="width: 180%;"
-						id="nickname" placeholder="별명 한글 2~8자" required>
+						id="nickname" maxlength="8" placeholder="별명 한글 2~8자" required>
+						<input type="button" id="nncheck" class="btn btn-primary" value="중복검사">
+						<div id="nncheckmsg"></div>
 				</div>
 				<div style="display: flex; align-items: baseline;" class="col-md-4">
 					<select style="width: 100px; display: inline;" name="phone1"
@@ -114,12 +121,12 @@
 						readOnly> <input type="button"
 						onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="width: 180%;"
 						class="form-control"><br> <input type="text"
-						name="address" id="sample4_roadAddress" placeholder="도로명주소"
+						name="address1" id="sample4_roadAddress" placeholder="도로명주소"
 						class="form-control" readOnly style="width: 180%;"> <input type="text"
-						id="sample4_jibunAddress" placeholder="지번주소" style="width: 350px"
+						id="sample4_jibunAddress" placeholder="지번주소" name="address2" style="width: 350px"
 						class="form-control" readOnly style="width: 180%;"> <span id="guide"
 						style="color: #999; display: none" class="form-control" style="width: 180%;"></span> <input
-						type="text" id="sample4_detailAddress" placeholder="상세주소"
+						type="text" id="sample4_detailAddress" placeholder="상세주소" name="address3"
 						class="form-control" name="realaddr" required style="width: 180%;"> <input
 						type="text" id="sample4_extraAddress" placeholder="참고항목"
 						class="form-control" style="width: 180%;">
@@ -144,7 +151,7 @@
 					href="javascript:find_member()">아이디/비밀번호 찾기</a> <a
 					style="color: #212529;" href="../login">로그인</a><br>
 				<button class="btn btn-primary" type="button" name="rkdlq"
-					onclick="sendit()">회원가입</button>
+					id="rkdlq">회원가입</button>
 			</div>
 		</form>
 	</div>
@@ -152,94 +159,29 @@
 <script type="text/javascript" src="agreeCHK.js"></script>
 <script type="text/javascript" src="regist.js"></script>
 <script type="text/javascript">
+
+function email_change(){
+		if(document.join.email.options[document.join.email.selectedIndex].value == "0"){
+
+		 document.join.email2.disabled = false;
+
+		 document.join.email2.value = "" ;
+		 
+		 document.join.email2.focus();
+		} else{
+
+		 document.join.email2.disabled = true;
+
+		 document.join.email2.value = document.join.email.options[document.join.email.selectedIndex].value;
+
+		}
+}
+</script>
+<script type="text/javascript">
 function find_member(){
    window.open( "findmem.jsp", "Child", "width=450, height=400, top=50, left=50" );
 }
-function sendit(){
-	   var join = document.join;
-	   var pwdchk = /^(?=.[a-zA-Z])(?=.*[!@#$%^&*-])(?=.*[0-9]).{8,25}$/;
-	   var patternid = /^(?=.[a-zA-z])(?=.*[0-9]).{5,11}$/;
-	   var patternph = /^\d{4}$/;
-	   var patternnm = /^(?=.[가-힣]).{2,4}$/;
-	   var emailptn = /^[a-z]$/;
-	   let isValid = true;
-	   
-	   
-	   if(!patternid.test(join.id.value)){
-	      alert("영문 , 숫자 포함 5~11글자")
-	      join.id.focus();
-	      isValid = false;
-	   }
-	   
-	   if(!pwdchk.test(join.password.value)){
-	   alert("비밀번호는 8글자 이상, 숫자 , 대문자 , 소문자 , 특수문자를 포함해야함")
-	   join.password.focus();
-	   isValid = false;
-	   }
-	   
-	   if(join.password.value != join.password2.value){
-	      alert("비밀번호 불일치")
-	      join.password.focus();
-	      isValid = false;
-	   }
-	   
-	   if(!patternnm.test(join.name.value)){
-	      alert("이름을 다시 확인해주세요.")
-	      join.name.focus();
-	      isValid = false;
-	   }
-	   if(join.nickname.value.length < 2 || join.nickname.value.length > 8){
-	      alert("별명은 2글자 이상 8글자 이하")
-	         join.nickname.focus();
-	      isValid = false;
-	      }
-	   if(isValid){
-		   alert('회원완료');
-		   join.action='register';
-		   join.submit();
-	   }else{
-		   alert('검사 실패')
-	   }
-	}
 </script>
-<script type="text/javascript">
-	function idcheck(){
-		var join = document.join;
-		join.action='idCheckPro';
-		join.submit();
-	}
-</script>
-<script type="text/javascript">
-   function email_change(){
-      if(document.join.email1.options[document.join.email1.selectedIndex].value == '0'){
-
-          document.join.email2.disabled = true;
-
-          document.join.email2.value = "";
-
-         }
-
-         if(document.join.email1.options[document.join.email1.selectedIndex].value == '9'){
-
-          document.join.email2.disabled = false;
-
-          document.join.email2.value = "";
-
-          document.join.email2.focus();
-
-         } else{
-
-          document.join.email2.disabled = true;
-
-          document.join.email2.value = document.join.email1.options[document.join.email1.selectedIndex].value;
-
-          document.join.email2.focus();
-         }
-   }
-</script>
-
-
-
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

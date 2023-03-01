@@ -41,6 +41,8 @@ import org.shoppingMall.mypage.controller.UpdateViewController;
 import org.shoppingMall.mypage.controller.qnalistViewController;
 import org.shoppingMall.member.controller.Find_idController;
 import org.shoppingMall.member.controller.IDViewController;
+import org.shoppingMall.member.controller.IdCheckController;
+import org.shoppingMall.member.controller.NnameCheckController;
 import org.shoppingMall.product.controller.ProductAddPaymentController;
 import org.shoppingMall.product.controller.ProductAddPaymentViewController;
 import org.shoppingMall.product.controller.ProductAddUpdateController;
@@ -87,6 +89,8 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
 		mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());
 		mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
+		mapping.put(new RequestKeyValue("/2_idcheck","GET"), new IdCheckController());
+		mapping.put(new RequestKeyValue("/nnamecheck","GET"), new NnameCheckController());
     	
 		//mypage
 		mapping.put(new RequestKeyValue("/update","GET"), new UpdateViewController());

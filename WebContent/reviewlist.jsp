@@ -67,37 +67,34 @@ body {
 .form-group{
 	border: 1px solid #D3D3D3;
 	width: 900px;
-	    height: auto;
+	height: auto;
 }
 input, textarea, select, button {
     font-family: sans-serif;
     font-size: 100%;
 }
 .usermodify{
-    padding-left: 100px;
+  padding-left: 100px;
 	margin-left: 300px;
 	padding: 10px;
 }
 
 table{
-   border-collapse:border;
-       width: 900px;
+border-collapse:border;
+width: 900px;
 table-layout: fixed;
 border-bottom:1px solid #373737;
-font-size: 13px;
-  
-     
+font-size: 13px;  
 }
+
 td,tr{
   border-collapse : border;
     border-right:none;
 border-left:none;
 border-top:none;
 border-bottom:none;
+}
 
-  }
-/*  */
-  /*  */
   th{
    padding: 10px;
   border-bottom: 1px solid #373737;
@@ -113,6 +110,7 @@ border-bottom:none;
 	margin-left : 270px;
 	margin-top: 40px;
 }
+
 .shopping{
     margin-left: 900px;
 }
@@ -121,6 +119,7 @@ border-bottom:none;
 	margin-left: 340px;
     margin-top: 50px;
    font-size: 14px;
+
     
 }
 .button{
@@ -133,12 +132,12 @@ border-bottom:none;
 h2{
 	text-align: center;
 	color:black;
+
 	margin-right: 900px;
 	width : 900px;
 	padding : 20px;
 }
 </style>
-
 </head>
 <body>
 
