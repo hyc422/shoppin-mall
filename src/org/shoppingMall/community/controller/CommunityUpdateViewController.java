@@ -37,7 +37,12 @@ public class CommunityUpdateViewController implements Controller
 		Member user = (Member) session.getAttribute("user");
 		
 		request.setAttribute("category", category);
-		request.setAttribute("page",request.getParameter("page"));
+		
+		// page값 없을 시 page = 1
+		if (request.getParameter("page") == null)
+			request.setAttribute("page", 1);
+		else
+			request.setAttribute("page", request.getParameter("page"));
 		
 		logger.info(":::::nickname-{}:::::",user.getNickname());
 		

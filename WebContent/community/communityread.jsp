@@ -87,7 +87,7 @@
 							</ul>
 						</li>
 						<li>
-							<ul class="row">
+							<ul class="sample">
 								<li class="box" style="height:110px; line-height: 100px">상품 정보</li>
 								<li>
 									<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
@@ -109,7 +109,10 @@
 					<div style="text-align: center; margin-bottom: 10px;">
 						<c:if test="${user.nickname == vo.nickname }">
 							<a class="button" href="javascript:execute(1)">수정</a>
-							<a class="button" href="javascript:execute(2)">삭제</a>
+							<a class="button" href="javascript:execute(2)" onClick="javascript:goPost()">삭제</a>
+						</c:if>
+						<c:if test="${user.admin == 'y'}">
+							<a class="button" href="javascript:execute(2)" onClick="javascript:goPost()">삭제</a>
 						</c:if>
 							<a class="button" href="communitylist?category=${category}&page=${page}">목록</a>
 					</div>
@@ -117,7 +120,6 @@
 				<hr>
 		
 					<form action="communitycomments" method="post">
-					
 					<input type="hidden" name="mref" value="${vo.idx}">
 					<input type="hidden" name="idx" value="0">
 					<input type="hidden" name="f" value="0">
@@ -149,7 +151,7 @@
 							</li>
 							<li>
 									<span>댓글</span>
-									<span>[<c:out value="${vo.commentCount}" />]</span>
+									<span>[<c:out value="${vo.commentCount}"/>]</span>
 								<hr>
 							</li>
 							
@@ -198,7 +200,7 @@
 						</li>
 						<li>
 							<c:if test="${vo.productNum != null}">
-								<ul class="row">
+								<ul class="sample">
 									<li class="box" style="height:110px; line-height: 100px">상품 정보</li>
 									<li>
 										<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
@@ -234,26 +236,28 @@
 					<input type="hidden" name="page" value="${page}">
 					<input type="hidden" name="category" value="${category}">
 						<ul>
-							<li>
-								<ul class="row">
-									<li>작성자</li>	
-									<li><input name="nickname" class="input" value="${user.nickname}" readonly></li>	
-								</ul>
-							</li>
-							<li>
-								<ul style="display: flex;">
-									<li>
-										<textarea rows="5" cols="80" name="content" 
-										style="resize:none;margin-right:20px;" 
-										placeholder="관리자만 작성 가능합니다." class="input"></textarea>
-									</li>				
-									<c:if test="${user.admin == 'y'}">
-										<li style="align-self: center;margin-bottom: 20px;">
-											<button type="button" onclick="executeCmt('1',0)">저장</button>
-										</li>
-									</c:if>	
-								</ul>
-							</li>
+							<c:if test="${user.admin == 'y'}">
+							<c:if test="${vo.commentCount == 0}">
+								<li>
+									<ul class="row">
+										<li>작성자</li>	
+										<li><input name="nickname" class="input" value="${user.nickname}" readonly></li>	
+									</ul>
+								</li>
+								<li>
+									<ul style="display: flex;">
+										<li>
+											<textarea rows="5" cols="80" name="content" 
+											style="resize:none;margin-right:20px;" 
+											placeholder="관리자만 작성 가능합니다." class="input"></textarea>
+										</li>				
+											<li style="align-self: center;margin-bottom: 20px;">
+												<button type="button" onclick="executeCmt('1',0)">저장</button>
+											</li>
+									</ul>
+								</li>
+							</c:if>
+							</c:if>	
 							<li>
 									<span>댓글</span>
 									<span>[<c:out value="${vo.commentCount}" />]</span>
@@ -285,15 +289,37 @@
 		{
 			let url
 			let message
+			
 			if(f === 1)
 				message='글 수정하시겠습니까?'
 			else if(f === 2)
 				message='글 삭제하시겠습니까?'
+						
 			const yn = confirm(message)
+			
 			if(yn) 
 			{
-				url = (f === 1)? 'communityupdate?idx='+${vo.idx} :(f===2)? 'communitydelete?idx='+${vo.idx}:'#';
-				location.href=url+'&category='+${category}+'&page='+${page};
+				if(f === 1)
+				{
+					url = 'communityupdate?idx='+ ${vo.idx} + '&category=' + ${category} + '&page=' + ${page};
+					location.href = url;
+				}
+				else if(f === 2)
+				{
+					let f = document.createElement('form');
+				    
+				    let obj;
+				    obj = document.createElement('input');
+				    obj.setAttribute('type', 'hidden');
+				    obj.setAttribute('name', 'url');
+				    obj.setAttribute('value', 'communitydelete?idx=' + ${vo.idx} +'&category=' + ${category} + '&page='+${page});
+				    
+				    f.appendChild(obj);
+				    f.setAttribute('method', 'post');
+				    f.setAttribute('action', 'communitydelete?idx=' + ${vo.idx}+'&category=' + ${category} + '&page='+${page});
+				    document.body.appendChild(f);
+				    f.submit();
+				}
 			}
 			else
 				alert('취소합니다.')

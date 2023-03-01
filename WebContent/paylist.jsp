@@ -124,9 +124,19 @@ h2{
 	width : 1000px;
 	padding : 20px;
 }
+
+/* HYC */
+tr.out > td
+{
+	border:none;
+	border-right:0px; 
+	border-top:0px; 
+	boder-left:0px; 
+	boder-bottom:0px; 
+	text-align: center;
+}
+/* HYC */
 </style>
-
-
 </head>
 <body>
 
@@ -165,31 +175,49 @@ h2{
     				<th style="width: 200px;">가격</th>
     				<th style="width: 200px;" class="num">수량</th>
     				<th style="width: 200px;" class="sum">합계</th>
-    				<th style="width: 200px;" class="adress">주소</th>
+    				<th style="width: 200px;" class="adress">리뷰 작성</th>
     			</tr>
      <c:forEach items="${vo }" var="vo" varStatus="num">
      	
-    	<tr>
-    			<td><input type="text" name="pDate" value="${vo.pDate }" readonly="readonly" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><a href="${pageContext.request.contextPath }/Product/product?productNum=${vo.productNum}"> 
-                        <img src="${pageContext.request.contextPath }/images/Product/${vo.fileName }" width="60"></a></td>
-    			<td><input type="text" name="productNum" value="${vo.productNum }" readonly="readonly" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><input type="text" name="productName" value="${vo.productName }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><input type="text" name="productPrice" value="${vo.productPrice }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><input type="text" name="amount" value="${vo.amount }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><input type="button" name="review" value="리뷰" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			</tr>
-   </c:forEach>
-   
-   		
+     	<!-- HYC -->
+    	<tr class="out">	<!-- style 최하단에 추가 -->
+    			<td>${vo.pDate}</td>
+    			<td>
+    				<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}"> 
+                        <img src="${pageContext.request.contextPath}/images/Product/${vo.fileName }" width="60">
+                    </a>
+                </td>
+    			<td>${vo.productName}</td>
+    			<td>${vo.productPrice}</td>
+    			<td>${vo.amount}</td>
+    			<td>${vo.productPrice*vo.amount}</td>
+    			<td>
+    				<button type="button" onclick="select('${vo.idx}',2)">리뷰</button>
+    			</td>
+    	</tr>
+    	<!-- HYC -->
+	</c:forEach>
     		</table>
     			<div class="review">
-    				<a href="${pageContext.request.contextPath }"><input type="button" class="button"name="button" value="홈으로 가기"></a>
+    				<a href="${pageContext.request.contextPath}"><input type="button" class="button"name="button" value="홈으로 가기"></a>
     			</div>
     			<br>
     	</div>
 </main>
-
+<!-- HYC -->
+<script type="text/javascript">
+	function select(pidx,category)
+	{
+		location.href='community/communitywrite?category=' + category + '&idx=' + pidx
+	}
+	function cal(price,amount)
+	{
+		var sum = price * amount
+		console.log(sum)
+		document.getElementById('sum').innerHTML = sum
+	}
+</script>
+<!-- HYC -->
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>

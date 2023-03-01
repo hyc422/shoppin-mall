@@ -26,8 +26,8 @@
 	</update>
 	
 	<insert id="insert" parameterType="org.shoppingMall.vo.ReviewVo" useGeneratedKeys="false" >
- 		INSERT INTO review (idx,productnum,productname,filename,nickname,title,content,ip) 
-		VALUES (review_idx_seq.nextval,#{productnum},#{productname},#{filename},#{nickname},#{title},#{content},#{ip})
+ 		INSERT INTO review (idx,productNum,productName,fileName,nickname,title,content,point,ip) 
+		VALUES (review_idx_seq.nextval,#{productNum},#{productName},#{fileName},#{nickname},#{title},#{content},#{point},#{ip})
 		<selectKey keyProperty="idx" resultType="long" order="AFTER">
 			SELECT review_idx_seq.currval FROM dual
 		</selectKey>	
@@ -46,6 +46,11 @@
  	
  	<select id="count" resultType="int">
  		SELECT count(*) FROM review
+ 	</select>
+ 	
+ 	<!-- payment -->
+ 	<select id="paymentSelectByIdx" parameterType="int" resultType="org.shoppingMall.vo.PaymentVO">
+ 		SELECT * FROM tbl_payment WHERE idx=#{idx}
  	</select>
  	
 	<!-- comments -->
@@ -70,10 +75,10 @@
  	
  	<update id="setCommentCount" parameterType="long">
  		UPDATE review 
-		SET COMMENTCOUNT = 
+		SET commentCount = 
 			(SELECT count(*) 
 			 FROM reviewcomments 
-			 WHERE mref=#{idx})
+			 WHERE mref = #{idx})
 		WHERE idx = #{idx}
  	</update>
 </mapper>

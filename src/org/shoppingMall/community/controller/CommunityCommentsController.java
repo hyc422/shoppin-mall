@@ -14,7 +14,8 @@ import org.shoppingMall.vo.ReviewCommentsVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CommunityCommentsController implements Controller {
+public class CommunityCommentsController implements Controller 
+{
 	private static final Logger logger = LoggerFactory.getLogger(CommunityCommentsController.class);
 	
 	@Override
@@ -26,8 +27,17 @@ public class CommunityCommentsController implements Controller {
 		
 		logger.info("::::::CommentesController  f={} :::::::",f);
 		
-		String page = request.getParameter("page");
+		// page값 없을 시 page = 1
+		String page = null;
+		
+		if(request.getParameter("page") == null)
+			page = "1";
+		else
+			page = request.getParameter("page");
+		
 		int category = Integer.parseInt(request.getParameter("category"));
+		
+		logger.info(";;;;;;;;;;;;;;;;;;;;;;{}",mref);
 		
 		if(category == 2)
 		{

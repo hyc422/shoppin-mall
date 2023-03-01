@@ -15,10 +15,13 @@ import org.shoppingMall.vo.AnnouncementVo;
 import org.shoppingMall.vo.Member;
 import org.shoppingMall.vo.QnaVo;
 import org.shoppingMall.vo.ReviewVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CommunityDeleteController implements Controller 
 {
-
+	private static final Logger logger = LoggerFactory.getLogger(CommunityDeleteController.class);
+	
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
@@ -26,6 +29,8 @@ public class CommunityDeleteController implements Controller
 		
 		HttpSession session = request.getSession();
 		Member user = (Member) session.getAttribute("user");
+		
+		logger.info(user.getNickname());
 		
 		int category = Integer.parseInt(request.getParameter("category"));
 		
@@ -45,7 +50,7 @@ public class CommunityDeleteController implements Controller
 			ReviewDao dao = ReviewDao.getInstance();
 			ReviewVo vo = dao.selectByIdx(idx);
 			
-			if(vo==null || !vo.getNickname().equals(user.getNickname())) throw new RuntimeException();
+			if(vo==null || (!vo.getNickname().equals(user.getNickname()) && !user.getAdmin().equals("y"))) throw new RuntimeException();
 			
 			result = dao.delete(idx);
 		}

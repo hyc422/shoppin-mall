@@ -24,6 +24,7 @@ public class CommunityUpdateActionController implements Controller
 		int result = 0;
 		long idx = Long.parseLong(request.getParameter("idx"));
 		int category = Integer.parseInt(request.getParameter("category"));
+		String page = request.getParameter("page");
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
@@ -43,7 +44,7 @@ public class CommunityUpdateActionController implements Controller
 			result = dao.update(vo);
 			
 			if(result==1) 
-				response.sendRedirect("communityread?idx=" + idx + "&category=" + category + "&page=" + request.getParameter("page"));   
+				response.sendRedirect("communityread?idx=" + idx + "&category=" + category + "&page=" + page);   
 			else 
 				response.sendRedirect(request.getContextPath());
 		}
@@ -61,7 +62,7 @@ public class CommunityUpdateActionController implements Controller
 			result = dao.update(vo);
 			
 			if(result==1) 
-				response.sendRedirect("communityread?idx=" + idx + "&category=" + category + "&page=" + request.getParameter("page"));
+				response.sendRedirect("communityread?idx=" + idx + "&category=" + category + "&page=" + page);
 				// 링크 확인
 			else 
 				response.sendRedirect(request.getContextPath());
@@ -80,7 +81,7 @@ public class CommunityUpdateActionController implements Controller
 			result = dao.update(vo);
 			
 			if(result==1) 
-				response.sendRedirect("communityread?idx=" + idx + "&category=" + category + "&page=" + request.getParameter("page"));
+				response.sendRedirect("communityread?idx=" + idx + "&category=" + category + "&page=" + page);
 			else 
 				response.sendRedirect(request.getContextPath());
 		}

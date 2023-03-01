@@ -101,7 +101,7 @@
 										<c:out value="${vo.idx}"/>
 									</li>
 									<li>	
-										<a href="${pageContext.request.contextPath}/product?productNum=${vo.productNum}">
+										<a href="${pageContext.request.contextPath}/Product/product?productNum=${vo.productNum}">
 											<img src="../images/community/${vo.fileName}" border="0">
 										</a>
 									</li>
@@ -150,11 +150,6 @@
 							</li>
 					 	</c:forEach>
 					</ul>
-					<c:if test="${user.id != null}">
-						<div style="float:right;margin:10px;">
-							<a href="javascript:write()" class="button">글쓰기</a>
-						</div>
-					</c:if>
 				</c:if>
 				
 				<!-- community : QnA -->
@@ -179,7 +174,7 @@
 									</li>
 									<li>
 										<c:if test="${vo.fileName == null}">
-											<label>없음</label>
+											<label>N/A</label>
 											<%-- <img src="../images/community/${vo.fileName}" border="0"> --%>
 										</c:if>
 										<c:if test="${vo.fileName != null}">
@@ -193,14 +188,28 @@
 											<a href="communityread?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
 												<c:out value="${vo.title}"/>
 											</a>
+											
 										</c:if>
 										<c:if test="${vo.password != null}">
-											<a href="communitycheck?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
-												<c:out value="${vo.title}"/>
-											</a>
+											<c:if test="${user.admin == 'y'}">
+												<a href="communityread?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
+													<c:out value="${vo.title}"/>
+												</a>
+											</c:if>
+											<c:if test="${user.admin != 'y'}">
+												<a href="communitycheck?idx=${vo.idx}&category=${category}&page=${paging.currentPage}" class="title">
+													<c:out value="${vo.title}"/>
+												</a>
+											</c:if>
 											<img src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_lock.gif">
 										</c:if>
-								 		..<span style="color:orange;font-size: 80%;">(<c:out value="${vo.commentCount}"/>)
+								 		..<span style="color:orange;font-size: 80%;">
+								 			<c:if test="${vo.commentCount != 0}">
+									 			(답변 완료)
+								 			</c:if>
+								 			<c:if test="${vo.commentCount == 0}">
+									 			(답변 대기중)
+								 			</c:if>
 								 		</span></li>
 									<li>
 										<c:out value="${vo.nickname}"/>

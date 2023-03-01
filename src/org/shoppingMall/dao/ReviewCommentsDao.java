@@ -48,11 +48,11 @@ public class ReviewCommentsDao
 	
 	public int setCommentCount(long idx) 
 	{
-		SqlSession session = SqlSessionBean.getSession();
-		int result = session.update("review.setCommentCount", idx);
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.update("review.setCommentCount", idx);
 		
-		session.commit();
-		session.close();
+		mapperSession.commit();
+		mapperSession.close();
 		
 		return result;
 	}	// method end

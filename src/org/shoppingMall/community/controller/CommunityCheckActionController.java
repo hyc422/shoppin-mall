@@ -55,7 +55,7 @@ public class CommunityCheckActionController implements Controller
 				response.sendRedirect("communityread?idx=" + idx + "&category=" + category + "&page=" + request.getParameter("page"));
 			}
 			else
-				response.sendRedirect("communitycheck?idx=" + idx + "&category=" + category + "&page=" + request.getParameter("page"));
+				response.sendRedirect("communitycheck?idx=" + idx + "&category=" + category + "&page=" + request.getParameter("page") + "&fail=y");
 		}
 		catch (NumberFormatException  e) 
 		{response.sendRedirect("communitylist");}

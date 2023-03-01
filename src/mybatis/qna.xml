@@ -72,6 +72,22 @@
  		SELECT count(*) FROM qna
  	</select>
  	
+ 	<!-- payment -->
+ 	<select id="selectProductList" resultType="org.shoppingMall.vo.QnaProductVo">
+ 		SELECT tp.PRODUCTNUM, tp.PRODUCTNAME, tf.FILENAME
+		FROM TBL_PRODUCT tp
+		JOIN TBL_FILE tf
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM
+ 	</select>
+ 	
+ 	<select id="selectProductListByProductNum" parameterType="int" resultType="org.shoppingMall.vo.QnaProductVo">
+ 		SELECT tp.PRODUCTNUM, tp.PRODUCTNAME, tf.FILENAME
+		FROM TBL_PRODUCT tp
+		JOIN TBL_FILE tf
+		ON tp.PRODUCTNUM = tf.PRODUCTNUM
+		WHERE tp.PRODUCTNUM=#{PRODUCTNUM}
+ 	</select>
+ 	
  	<!-- comments -->
  	<select id="comments" parameterType="long" resultType="org.shoppingMall.vo.QnaCommentsVo">
 		SELECT * FROM qnacomments
@@ -79,10 +95,10 @@
 	</select>
 
 	<select resultType="org.shoppingMall.vo.QnaVo" id="selectqnalist" parameterType="String">
-  	SELECT *FROM QnA WHERE nickname = '${value}' 
-  </select>
+  		SELECT * FROM qna 
+  		WHERE nickname = '${value}' 
+  	</select>
 
-	
 	<insert id="commentsinsert" parameterType="org.shoppingMall.vo.QnaCommentsVo">
  		INSERT INTO qnacomments (idx,mref,nickname,content) 
 		VALUES (qnacomments_idx_seq.nextval,#{mref},#{nickname},#{content})
@@ -94,11 +110,12 @@
  	</delete>
  	
  	<update id="setCommentCount" parameterType="long">
- 		UPDATE review 
+ 		UPDATE qna 
 		SET COMMENTCOUNT = 
 			(SELECT count(*) 
 			 FROM qnacomments 
 			 WHERE mref=#{idx})
 		WHERE idx = #{idx}
  	</update>
+ 	
 </mapper>

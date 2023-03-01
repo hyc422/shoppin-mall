@@ -36,7 +36,12 @@ public class CommunityReadController implements Controller
 		long idx = 0;
 		int category = 0;
 		
-		request.setAttribute("page", request.getParameter("page"));
+		// page값 없을 시 page = 1
+		if (request.getParameter("page") == null)
+			request.setAttribute("page", 1);
+		else
+			request.setAttribute("page", request.getParameter("page"));
+		
 		request.setAttribute("category", request.getParameter("category"));
 		
 		try 
@@ -92,6 +97,7 @@ public class CommunityReadController implements Controller
 				if(vo==null) throw new RuntimeException();
 				
 				logger.debug("::::::: vo-{}:::::::",vo);
+				logger.info("::::::: vo.commentcount{}:::::::",vo.getCommentCount());
 				request.setAttribute("vo", vo);
 				
 				List<QnaCommentsVo> cmtlist = qcdao.comments(idx);

@@ -70,6 +70,7 @@
 					<input type="hidden" name="idx" value="${vo.idx}">
 					<input type="hidden" name="category" value="${category}">
 					<input type="hidden" name="productNum" value="${vo.productNum}">
+					<input type="hidden" name="page" value="${page}">
 					<table>
 						<tr>
 							<th>제목</th>
