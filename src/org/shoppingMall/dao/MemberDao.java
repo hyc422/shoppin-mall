@@ -88,5 +88,12 @@ public class MemberDao {
 		mapper.close();
 		return vo;
 	}
+	
+	public Member selectId(String id) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		Member vo = mapper.selectOne("member.selectId", id);
+		mapper.close();
+		return vo;
+	}
 
 }

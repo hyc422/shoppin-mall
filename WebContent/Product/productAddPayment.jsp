@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/payment.css" />
 </head>
 <body>
-	<%@ include file="../top.jsp" %>
+	<%-- <%@ include file="../top.jsp" %> --%>
 	
 	<form action="productAddPayment" method="post" name="productForm" id="productForm" class="label1">
 	<input type="hidden" value="${user.id}" name="id">
@@ -22,23 +22,23 @@
 		<div style="width: 700px; margin: auto; margin-bottom: 100px;" id="big1">
 			<p>
 				<label>
-					우편번호 <input type="text" id="zipcode" name="zipcode" class="postcodify_postcode5" value="" />
+					우편번호 <input type="text" id="zipcode" name="zipcode" class="postcodify_postcode5" value="${memberAddress.c_code }" />
 				</label>
 				<button type="button" id="postcodify_search_button">검색</button><br />
 			</p>
 			<p>
 				<label>
-					도로명주소 <input type="text" name="address" class="postcodify_address" value="" style="margin-left: 27px; width: 550px;"/><br />
+					도로명주소 <input type="text" name="address" class="postcodify_address" value="${memberAddress.address1 }" style="margin-left: 27px; width: 550px;"/><br />
 				</label>
 			</p>
 			<p>
 				<label>
-					상세주소 <input type="text" name="addressDetail" class="postcodify_details" value="" style="width: 550px;"/><br />
+					상세주소 <input type="text" name="addressDetail" class="postcodify_details" value="${memberAddress.address2 }" style="width: 550px;"/><br />
 				</label>
 			</p>
 			<p>
 				<label>
-					참고항목 <input type="text" name="addressEtc" class="postcodify_extra_info" value="" style="width: 550px;"/><br />
+					참고항목 <input type="text" name="addressEtc" class="postcodify_extra_info" value="${memberAddress.address3 }" style="width: 550px;"/><br />
 				</label>
 			</p>
 		</div>

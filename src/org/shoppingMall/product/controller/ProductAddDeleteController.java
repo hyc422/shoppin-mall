@@ -38,7 +38,7 @@ public class ProductAddDeleteController implements Controller {
 		fDao.deleteFiles(productNum);
 		pDao.productAddDelete(productNum);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("list11111111111컨트롤러 들러야함");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("productList.jsp");
 		dispatcher.forward(request, response);
 	}
 

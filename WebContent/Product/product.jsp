@@ -96,7 +96,7 @@
 							</c:if>
 							<c:if test="${user.admin =='y' }">
 						<button type="button" id="no_member_payBtn" class="order"
-							onclick="productDelete()">삭 제</button>
+							onclick="productAddDelete()">삭 제</button>
 							</c:if>
 					</div>
 						</form>
@@ -128,8 +128,8 @@
 		                     document.forms[1].submit();
 		                  }
 		                  
-		                  function productDelete() {
-		                     document.forms[1].action = 'productDelete'
+		                  function productAddDelete() {
+		                     document.forms[1].action = 'productAddDelete'
 		                     document.forms[1].method = 'GET'
 		                     document.forms[1].submit();
 		                  }

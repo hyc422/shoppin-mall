@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.shoppingMall.controller.Controller;
 import org.shoppingMall.dao.CartDao;
+import org.shoppingMall.dao.MemberDao;
 import org.shoppingMall.vo.CartVo;
 
 public class ProductAddPaymentViewController implements Controller {
@@ -23,12 +24,13 @@ public class ProductAddPaymentViewController implements Controller {
 		
 		String id = request.getParameter("id");
 		CartDao dao = CartDao.getInstance();
+		MemberDao mDao = MemberDao.getInstance();
 		String cartNums = request.getParameter("cartNum2");
-		String[] num = cartNums.split(",");
-		int[] cartNumArr = new int[num.length];
+		
 		int totalPrice = 0;
 		List<CartVo>list = new ArrayList<>();
-		if(cartNums.equals("0")) {
+		
+		if(cartNums == null) {
 			CartVo vo1 = new CartVo();
 
 			int productNum = Integer.parseInt(request.getParameter("productNum"));
@@ -49,6 +51,8 @@ public class ProductAddPaymentViewController implements Controller {
 			list.add(vo1);
 			totalPrice = productPrice*amount;
 		}else {
+			String[] num = cartNums.split(",");
+			int[] cartNumArr = new int[num.length];
 			for (int i = 0; i < num.length; i++) {
 				cartNumArr[i] = Integer.parseInt(num[i]);
 			}
@@ -63,10 +67,13 @@ public class ProductAddPaymentViewController implements Controller {
 			}
 
 		}
+		
 		request.setAttribute("totalPrice", totalPrice);
         request.setAttribute("vo", list);
         request.setAttribute("id", id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("productAddPayment.jsp");
+        request.setAttribute("memberAddress", mDao.selectId(id));
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("productList.jsp");
 		dispatcher.forward(request, response);
 
 	}
