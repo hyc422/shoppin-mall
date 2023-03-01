@@ -99,14 +99,19 @@ td {
 
 </head>
 <body>
-	
-	
+<script type="text/javascript">
+	function del() {
+		 const frm = document.forms[2];
+		 const value = frm.name;
+		if(confirm("회원탈퇴를 하시겠습니까?")) {
+		frm.submit();
+		} else {
+			alert('취소하셨습니다.')
+		}
+	}
+</script>	
 	
 <div style=" float: left; width: 33%;">
-
-<!--  -->
-	
-	
     <ul id="navi">
         <li class="group">
 		<h3>마이페이지</h3>
@@ -125,14 +130,13 @@ td {
             </ul>
         </li>
     </ul>
-	      </div>
-
-    		
+</div>
     <main class="usermodify">
-    <div>
-    	<h2 style="text-align: left;" style="background-color: #e6f1ff ">회원정보 수정</h2>
-    		<form action="update" method="post" >
-					<input type="hidden" name="idx" value="${vo.idx }">
+	    <div>
+	    	<h2 style="text-align: left;" style="background-color: #e6f1ff ">회원정보 수정</h2>
+	   		<form action="update" method="post" name="updateForm" id="updateForm" >
+				<input type="hidden" name="idx" value="${vo.idx}">
+	
 				<div class="form-group">
 					<table class="userupdate" style="table-layout: fixed; "  >
 					
@@ -149,22 +153,20 @@ td {
 						<tr>
 							<td class="email" style="width: 200px; text-align:right; background-color: #a8a8a8 ">이메일</td>
 							
-						<td>
-						
-							<input type="text" id="email1" name="email1" class="ui_input" value="${email2 }">@
-							<input type="text" id="email2" name="email2" class="ui_input" value="${email3 }">
-							 <select id="email3" name="email3" title="이메일 주소 선택" class="ui_select">
-                <option value="">  이메일주소 직접입력  </option>
-                <option value="naver.com">naver.com</option>
-                <option value="nate.com">nate.com</option>
-                <option value="gmail.com">gmail.com</option>
-                <option value="yahoo.com">yahoo.com</option>
-                <option value="hanmail.net">hanmail.net</option>
-            </select>
-					
-						</td>
+							<td>
+							
+								<input type="text" id="email1" name="email1" class="ui_input" value="${email2 }">@
+								<input type="text" id="email2" name="email2" class="ui_input" value="${email3 }">
+								<select id="email3" name="email3" title="이메일 주소 선택" class="ui_select">
+					            	<option value="">  이메일주소 직접입력  </option>
+					               	<option value="naver.com">naver.com</option>
+					               	<option value="nate.com">nate.com</option>
+					               	<option value="gmail.com">gmail.com</option>
+					               	<option value="yahoo.com">yahoo.com</option>
+					               	<option value="hanmail.net">hanmail.net</option>
+					           	</select>
+							</td>
 						</tr>
-						
 						<tr>
 							<td class="name1" style="width: 200px; text-align:right; background-color: #a8a8a8;" >이름</td>
 							<td><input type="text" name="name" value="${vo.name }"></td>
@@ -179,9 +181,6 @@ td {
 							<td class="tell" style="width: 200px;text-align:right;  background-color: #a8a8a8; ">연락처</td>
 							<td><input type="text" name="phone2" value="${vo.phone }"></td>
 						</tr>
-						
-						
-	
 						<tr>
 							<td class="code" style="width: 200px; text-align:right; background-color: #a8a8a8; ">주소</td>
 							<td><input type="text" name="c_code"
@@ -207,45 +206,23 @@ td {
 						</tr>
 					</table>
 				</div>
-				
-				
-				
-		<div class="Withdrawal">
-		<!-- <input type="submit" class="form-control" value="취소">
+			<div class="Withdrawal">
+			<!-- <input type="submit" class="form-control" value="취소">
 				<input type="submit" class="form-control" value="수정완료"> -->
-				<input type="submit" class="drawal" value="수정">
+				<input type="button" class="drawal" name="updateBtn" id="updateBtn" value="수정">
 				<input type="reset" class="drawal" value="다시입력">
 				<input type="button" class="drawal" value="회원탈퇴" onclick="del()">
+			</div>
+		</form>
 		</div>
-		
-	<script type="text/javascript">
-	function del() {
-		 const frm = document.forms[2];
-		 const value = frm.name;
-		if(confirm("회원탈퇴를 하시겠습니까?")) {
-		frm.submit();
-		} else {
-			alert('취소하셨습니다.')
-		}
-	}
-	
-	</script>
-		
-			</form>
-		</div>
-		
-			<!-- 회원탈퇴용 -->
-			<form action="deleteForm" method="POST" name="deform">
-				<input type="hidden" value="${vo.idx }" name="idx">
-			</form>
 			
-		
-		
-		
-		
+		<!-- 회원탈퇴용 -->
+		<form action="deleteForm" method="POST" name="deform">
+			<input type="hidden" value="${vo.idx }" name="idx">
+		</form>
 		<div class="col-lg-4"></div>
-	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
+		<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.js"></script>
     </main>
    
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -253,10 +230,13 @@ td {
         $( "#email3" ).change(function(){
             $("#email2").val( $("#email3").val() );
         });
+        
+        $("#updateBtn").click(function() {
+        	$("#updateForm").submit();
+        });
     </script>
    
-    <script
-   src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
@@ -287,7 +267,8 @@ td {
                 document.getElementById('sample4_postcode').value = data.zonecode;
                 document.getElementById("sample4_roadAddress").value = roadAddr;
                 document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-                
+                $('#sample4_detailAddress').val(''); // 상세주소 값을 비운다.
+/*                
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
                 if(roadAddr !== ''){
                     document.getElementById("sample4_extraAddress").value = extraRoadAddr;
@@ -310,6 +291,7 @@ td {
                     guideTextBox.innerHTML = '';
                     guideTextBox.style.display = 'none';
                 }
+*/
             }
         }).open();
     }
