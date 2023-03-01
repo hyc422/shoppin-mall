@@ -85,7 +85,7 @@
 							<br>
 					</div>
 					<div class="cart_put">
-						<c:if test="${user.admin =='n' }">
+						<c:if test="${user.admin !='y' }">
 							<button type="button" id="no_member_cart_put" class="order"
 								onclick="Cart()">장바구니</button>
 							<button type="button" id="no_member_payBtn" class="order"
@@ -115,23 +115,40 @@
 							
 							}//function
 						
-						 function productAddPayment() {
-		                     document.forms[1].action = 'productAddPayment'
-		                     document.forms[1].method = 'GET'
-		                     document.forms[1].submit();
-		                  }
+							 function productAddPayment() {
+								 if (confirm("구매 하시겠습니까?")) {
+									 document.forms[1].action = 'productAddPayment'
+				                     document.forms[1].method = 'GET'
+				                     document.forms[1].submit();
+								 } else {
+			                         alert("취소되었습니다.");
+			                         return;
+			                      } 
+			                     
+			                  }
 
-		                  function productUpdate() {
-		                     document.forms[1].action = 'productAddUpdate'
-		                     document.forms[1].method = 'GET'
-		                     document.forms[1].submit();
-		                  }
-		                  
-		                  function productDelete() {
-		                     document.forms[1].action = 'productDelete'
-		                     document.forms[1].method = 'GET'
-		                     document.forms[1].submit();
-		                  }
+			                  function productUpdate() {
+			                	  if (confirm("수정 하시겠습니까?")) {
+			                		 document.forms[1].action = 'productAddUpdate'
+		 		                     document.forms[1].method = 'GET'
+		 		                     document.forms[1].submit();
+			                      } else {
+			                         alert("취소되었습니다.");
+			                         return;
+			                      } 
+			                	 
+			                     
+			                  }
+			                  function productDelete() {
+			                	  if (confirm("삭제 하시겠습니까?")) {
+			                		  document.forms[1].action = 'productDelete'
+				                      document.forms[1].method = 'GET'
+				                      document.forms[1].submit();
+			                      } else {
+			                         alert("취소되었습니다.");
+			                         return;
+			                      } 
+			                  }
 
 					</script>
 
@@ -275,14 +292,6 @@
 					</form>
 						<script type="text/javascript">
 						function Qna() {
-							console.log(document.boardForm.title.value)
-							console.log(document.boardForm.password.value)
-							console.log(document.boardForm.category.value)
-							console.log(document.boardForm.nickname.value)
-							console.log(document.boardForm.productName.value)
-							console.log(document.boardForm.productnum.value)
-							console.log(document.boardForm.content.value)
-							console.log(document.boardForm.fileName.value)
 							const df = document.boardForm
 							const title = df.title
 							const password = df.password
