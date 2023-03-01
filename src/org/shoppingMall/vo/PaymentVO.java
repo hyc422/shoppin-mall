@@ -18,7 +18,8 @@ public class PaymentVO {
 	public PaymentVO() {;}
 
 	public PaymentVO(int idx, String id, int productNum, String productName, int productPrice, String productCategories,
-			String fileName, int amount, String zipcode, String address, String addressDetail, String addressEtc) {
+			String fileName, int amount, String zipcode, String address, String addressDetail, String addressEtc,
+			String pDate) {
 		super();
 		this.idx = idx;
 		this.id = id;
@@ -32,6 +33,7 @@ public class PaymentVO {
 		this.address = address;
 		this.addressDetail = addressDetail;
 		this.addressEtc = addressEtc;
+		this.pDate = pDate;
 	}
 
 	public PaymentVO(String id, int productNum, String productName, int productPrice, String productCategories,

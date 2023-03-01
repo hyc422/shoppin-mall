@@ -49,7 +49,7 @@
 	<select id="idcheck" parameterType="String" resultType="int">
 	SELECT count(id) FROM js_member WHERE id=#{id}
 	</select>
-	<select id="nnamecheck" parameterType="String" resultType="int">
-	SELECT count(nickname) FROM js_member WHERE nickname=#{nickname}
+	<select id="selectId" parameterType="String" resultType="org.shoppingMall.vo.Member">
+		SELECT * FROM js_member WHERE id=#{id}
 	</select>
 </mapper>
