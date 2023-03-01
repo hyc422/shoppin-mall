@@ -34,12 +34,12 @@
 		WHERE PRODUCTNUM=#{productNum}
 	</update>
 
-	<select id="productSelectOne" parameterType="_int"
+	<select id="productSelectOne" parameterType="int"
 		resultType="org.shoppingMall.vo.ProductVO">
 		SELECT * FROM TBL_PRODUCT WHERE PRODUCTNUM = #{productNum}
 	</select>
 
-	<delete id="productAddDelete" parameterType="_int">
+	<delete id="productAddDelete" parameterType="int">
 		DELETE FROM
 		TBL_PRODUCT
 		WHERE PRODUCTNUM=#{productNum}
@@ -235,8 +235,19 @@
 		TBL_PRODUCT tp
 		JOIN REVIEW r 
 		ON r.PRODUCTNUM = tp.PRODUCTNUM
-		ORDER BY point DESC) a
+		ORDER BY point DESC, r.PRODUCTNAME ASC) a
 		WHERE rownum BETWEEN 1 and 5
+	</select>
+	
+	<!-- 동해 -->
+	<!-- 별점 순으로 보기 -->
+	<select id="selectScore" resultType="org.shoppingMall.vo.Best5Vo">
+		SELECT a.* FROM
+		(SELECT r.PRODUCTNUM, tp.PRODUCTNAME, r.point FROM
+		TBL_PRODUCT tp
+		JOIN REVIEW r 
+		ON r.PRODUCTNUM = tp.PRODUCTNUM
+		ORDER BY point DESC, r.PRODUCTNAME ASC) a
 	</select>
 </mapper>
 

@@ -1,4 +1,4 @@
-package org.shoppingMall.Admincontroller;
+package org.shoppingMall.Admin.controller;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class AdminController implements Controller {
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
 		dispatcher.forward(request, response);
 	}
 

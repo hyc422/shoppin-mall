@@ -21,6 +21,13 @@ public class Best5Dao {
 		mapperSession.close();
 		return list;
 	}
+	
+	public List<Best5Vo> selectScore() {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<Best5Vo> list = mapperSession.selectList("product.selectScore");
+		mapperSession.close();
+		return list;
+	}
 
 	
 }

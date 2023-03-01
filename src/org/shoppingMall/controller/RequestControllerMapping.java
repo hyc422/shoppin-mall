@@ -8,7 +8,8 @@ import org.shoppingMall.product.controller.ProductActionController;
 import org.shoppingMall.product.controller.ProductAddController;
 import org.shoppingMall.product.controller.ProductAddDeleteController;
 import org.shoppingMall.product.controller.ProductAddViewController;
-import org.shoppingMall.Admincontroller.AdminController;
+import org.shoppingMall.Admin.controller.AdminController;
+import org.shoppingMall.Admin.controller.AdminScoreController;
 import org.shoppingMall.Recommend.controller.DeleteRecommendProductController;
 import org.shoppingMall.Recommend.controller.IndexRecommendProductController;
 import org.shoppingMall.Recommend.controller.NewRecommendProductController;
@@ -34,12 +35,14 @@ import org.shoppingMall.mypage.controller.CustomerController;
 import org.shoppingMall.mypage.controller.DeleteViewController;
 import org.shoppingMall.mypage.controller.PaylistActionController;
 import org.shoppingMall.mypage.controller.PaylistViewController;
-import org.shoppingMall.mypage.controller.ReivewViewController;
+import org.shoppingMall.mypage.controller.ReviewViewController;
 import org.shoppingMall.mypage.controller.UpdateActionController;
 import org.shoppingMall.mypage.controller.UpdateViewController;
 import org.shoppingMall.mypage.controller.qnalistViewController;
 import org.shoppingMall.member.controller.Find_idController;
 import org.shoppingMall.member.controller.IDViewController;
+import org.shoppingMall.member.controller.IdCheckController;
+import org.shoppingMall.member.controller.NnameCheckController;
 import org.shoppingMall.product.controller.ProductAddPaymentController;
 import org.shoppingMall.product.controller.ProductAddPaymentViewController;
 import org.shoppingMall.product.controller.ProductAddUpdateController;
@@ -60,6 +63,7 @@ public class RequestControllerMapping
 	{	
 		 // admin
 		mapping.put(new RequestKeyValue("/admin","GET"), new AdminController());
+		mapping.put(new RequestKeyValue("/admin/score","GET"), new AdminScoreController());
 		
 		 // index
 		 mapping.put(new RequestKeyValue("/RecommendUpdate","GET"), new IndexRecommendProductController());
@@ -85,6 +89,8 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/update","POST"), new UpdateActionController());
 		mapping.put(new RequestKeyValue("/deleteForm","GET"), new DeleteViewController());
 		mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
+		mapping.put(new RequestKeyValue("/2_idcheck","GET"), new IdCheckController());
+		mapping.put(new RequestKeyValue("/nnamecheck","GET"), new NnameCheckController());
     	
 		//mypage
 		mapping.put(new RequestKeyValue("/update","GET"), new UpdateViewController());
@@ -93,7 +99,7 @@ public class RequestControllerMapping
 		mapping.put(new RequestKeyValue("/deleteForm","POST"), new CustomerController());
 		mapping.put(new RequestKeyValue("/paylist","GET"), new PaylistViewController());
 //		mapping.put(new RequestKeyValue("/paylist","POST"), new PaylistActionController());
-		mapping.put(new RequestKeyValue("/review","GET"), new ReivewViewController());
+		mapping.put(new RequestKeyValue("/reviewlist","GET"), new ReviewViewController());
 		mapping.put(new RequestKeyValue("/qnalist","GET"), new qnalistViewController());
     
 	  	// Product

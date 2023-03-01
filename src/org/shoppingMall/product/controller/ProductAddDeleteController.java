@@ -20,14 +20,13 @@ public class ProductAddDeleteController implements Controller {
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
-		String saveFolder = "C:\\Users\\user\\Desktop\\project\\111\\shoppingMall\\WebContent\\upload";
+		response.setContentType("text/html");
+		String saveFolder = "D:\\iclass_1020\\upload";
 		
 		FileDAO fDao = FileDAO.getInstance();
 		ProductDAO pDao = ProductDAO.getInstance();
-		
 		int productNum = Integer.parseInt(request.getParameter("productNum"));
-		
+		String productCategories = request.getParameter("productCategories");
 		for(FileVO file : fDao.getFiles(productNum)) {
 			File f = new File(saveFolder, file.getFileName());
 			if(f.exists()) {
@@ -37,9 +36,10 @@ public class ProductAddDeleteController implements Controller {
 		
 		fDao.deleteFiles(productNum);
 		pDao.productAddDelete(productNum);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("productList.jsp");
-		dispatcher.forward(request, response);
-	}
 
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("productList.jsp");
+//	      dispatcher.forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/Product/productList?Categories="+productCategories);
+
+	}
 }

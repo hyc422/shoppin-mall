@@ -75,6 +75,12 @@ public class MemberDao {
 		mapper.close();
 		return result;
 	}
+	public int nnamecheck(String nickname) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.selectOne("member.nnamecheck",nickname);
+		mapper.close();
+		return result;
+	}
 	
 	public Member findid(Map<String,String> map) {
 		SqlSession mapper = SqlSessionBean.getSession();

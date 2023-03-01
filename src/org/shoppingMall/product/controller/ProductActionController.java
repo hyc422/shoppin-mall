@@ -1,6 +1,9 @@
 package org.shoppingMall.product.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +13,6 @@ import org.shoppingMall.controller.Controller;
 import org.shoppingMall.dao.CartDao;
 import org.shoppingMall.vo.CartVo;
 
-import lombok.Builder;
 
 public class ProductActionController implements Controller {
 
@@ -25,18 +27,40 @@ public class ProductActionController implements Controller {
 		String productCategories = request.getParameter("productCategories");
 		String fileName = request.getParameter("fileName");
 		int amount = Integer.parseInt(request.getParameter("amount"));
-		
+		int result=0;
 		CartDao dao = CartDao.getInstance();
-		int result = dao.insertCart(CartVo.builder()
-				.id(id)
-				.productNum(productNum)
-				.productName(productName)
-				.productPrice(productPrice)
-				.productCategories(productCategories)
-				.fileName(fileName)
-				.amount(amount)
-				.build()
-				);
+		List<CartVo> list = dao.list(id);
+		int run = 0;
+		int cartNum = 0;
+		int amountUpdate = 0;
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getProductNum()==productNum) {
+				cartNum = list.get(i).getCartNum();
+				amountUpdate = list.get(i).getAmount()+amount;
+				run = 1;
+				break;
+			}else {
+				run = 0;
+			}
+		}
+		if(run == 1) {
+			result = dao.cartUpdate(CartVo.builder()
+					.amount(amountUpdate)
+					.cartNum(cartNum)
+					.build()
+					);
+		}else {
+			result = dao.insertCart(CartVo.builder()
+					.id(id)
+					.productNum(productNum)
+					.productName(productName)
+					.productPrice(productPrice)
+					.productCategories(productCategories)
+					.fileName(fileName)
+					.amount(amount)
+					.build()
+					);
+		}
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		if(result !=0) {

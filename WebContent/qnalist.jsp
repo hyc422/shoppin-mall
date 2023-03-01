@@ -19,7 +19,7 @@ body {
     
 }
 main{
-height: 500px;
+height: auto;
 }
 .tit{
 	background-color: #373737;
@@ -62,10 +62,11 @@ body {
 }	
 .usermodify {
     position: relative;
+    padding: 10px;
 }
 .form-group{
 	border: 1px solid #D3D3D3;
-	width: 917px;
+	width: 800px;
 	    height: 400px;
 }
 input, textarea, select, button {
@@ -75,13 +76,15 @@ input, textarea, select, button {
 .usermodify{
     padding-left: 100px;
 	margin-left: 300px;
+	padding: 10px;
 }
 
 table{
    border-collapse:border;
-       width: auto;
+       width: 800px;
 table-layout: fixed;
 border-bottom:1px solid #373737;
+font-size: 13px;
   
      
 }
@@ -91,6 +94,7 @@ td,tr{
 border-left:none;
 border-top:none;
 border-bottom:none;
+padding: 10px;
   }
 
   
@@ -110,13 +114,13 @@ border-bottom:none;
 	margin-top: 40px;
 }
 .shopping{
-    margin-left: 1000px;
+    margin-left: 900px;
 }
 
 .review{
-	margin-left: 400px;
+	margin-left: 340px;
     margin-top: 50px;
-   
+   font-size: 14px;
     
 }
 .button{
@@ -129,8 +133,8 @@ border-bottom:none;
 h2{
 	text-align: center;
 	color:black;
-	margin-right: 700px;
-	width : 900px;
+	margin-right: 800px;
+	width : 800px;
 	padding : 20px;
 }
 </style>
@@ -153,7 +157,7 @@ h2{
             <div class="tit">MY 정보</div>
             <ul class="sub">
                 <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
-            	    <li><a href="${pageContext.request.contextPath }/rivew?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
+            	    <li><a href="${pageContext.request.contextPath }/reviewlist?nickname=${user.nickname}">내가 쓴 리뷰</a></li>
             	     <li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>
             </ul>
         </li>
@@ -171,7 +175,7 @@ h2{
     				<th>제목</th>
     				<th>조회수</th>
     				<th>댓글</th>
-    				<th>조회수</th>
+    				<th>게시날짜</th>
     			</tr>
      <c:forEach items="${vo }" var="vo" varStatus="num">
      
@@ -180,7 +184,7 @@ h2{
     			<td><input type="text" name="title" value="${vo.title }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			<td><input type="text" name="readCount" value="${vo.readCount }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			<td><input type="text" name="commentCount" value="${vo.commentCount }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
-    			<td><input type="text" name="createdAt" value="${vo.createdAt }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
+    			<td><input type="text" pattern="YYYY-MM-dd" name="createdAt" value="<fmt:formatDate value="${vo.createdAt }" type="date" pattern="yyyy-MM-dd"/>" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			</tr>
    </c:forEach>
    

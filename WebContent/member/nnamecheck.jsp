@@ -2,10 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String id = request.getParameter("id");
+	String nickname = request.getParameter("nickname");
 	MemberDao dao = MemberDao.getInstance();
 	
-	int result = dao.idcheck(id);
+	int result = dao.nnamecheck(nickname);
 	if(result >= 1){
 		out.print("no");
 	}else{

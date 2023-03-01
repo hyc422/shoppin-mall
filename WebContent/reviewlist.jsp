@@ -62,10 +62,11 @@ body {
 }	
 .usermodify {
     position: relative;
+    padding: 10px;
 }
 .form-group{
 	border: 1px solid #D3D3D3;
-	width: 999px;
+	width: 900px;
 	height: auto;
 }
 input, textarea, select, button {
@@ -73,27 +74,27 @@ input, textarea, select, button {
     font-size: 100%;
 }
 .usermodify{
-    padding-left: 100px;
+  padding-left: 100px;
 	margin-left: 300px;
+	padding: 10px;
 }
 
 table{
-   border-collapse:border;
-       width: auto;
+border-collapse:border;
+width: 900px;
 table-layout: fixed;
 border-bottom:1px solid #373737;
-  
-     
+font-size: 13px;  
 }
+
 td,tr{
   border-collapse : border;
     border-right:none;
 border-left:none;
 border-top:none;
 border-bottom:none;
-  }
+}
 
-  
   th{
    padding: 10px;
   border-bottom: 1px solid #373737;
@@ -109,14 +110,16 @@ border-bottom:none;
 	margin-left : 270px;
 	margin-top: 40px;
 }
+
 .shopping{
-    margin-left: 1000px;
+    margin-left: 900px;
 }
 
 .review{
-	margin-left: 400px;
+	margin-left: 340px;
     margin-top: 50px;
-   
+   font-size: 14px;
+
     
 }
 .button{
@@ -129,14 +132,12 @@ border-bottom:none;
 h2{
 	text-align: center;
 	color:black;
-	margin-right: 700px;
+
+	margin-right: 900px;
 	width : 900px;
 	padding : 20px;
 }
-
 </style>
-
-
 </head>
 <body>
 
@@ -154,7 +155,7 @@ h2{
             <div class="tit">MY 정보</div>
             <ul class="sub">
                 <li><a href="${pageContext.request.contextPath }/update?idx=${user.idx}">개인정보확인/수정</a></li>                
-            	    <li><a href="${pageContext.request.contextPath }/rivewlist?nickname=${user.nickname}">내리뷰</a></li>
+            	    <li><a href="${pageContext.request.contextPath }/reviewlist?nickname=${user.nickname}">내리뷰</a></li>
             	<li><a href="${pageContext.request.contextPath }/qnalist?nickname=${user.nickname}">QnA</a></li>
             </ul>
         </li>
@@ -179,7 +180,7 @@ h2{
     			<tr>
     			<td><a href="${pageContext.request.contextPath }/community/communityread?idx=${vo.idx}&category=2"> 
                         <img src="${pageContext.request.contextPath }/images/community/${vo.fileName }" width="60"></a></td>
-    			<td><input type="text" name="nickname" value="${vo.nickName }" readonly="readonly" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
+    			<td><input type="text" name="nickname" value="${vo.nickname }" readonly="readonly" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			<td><input type="text" name="title" value="${vo.title }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			<td><input type="text" name="readCount" value="${vo.readCount }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
     			<td><input type="text" name="commentCount" value="${vo.commentCount }" readonly="readonly"style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; text-align: center;"></td>
