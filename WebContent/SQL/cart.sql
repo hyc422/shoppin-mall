@@ -8,12 +8,11 @@ CREATE TABLE Tbl_cart(
 	fileName VARCHAR2(2000) NOT NULL,
 	amount number(10) NOT null
 );
+
  DROP TABLE tbl_cart;
  
 CREATE SEQUENCE SEQ_cart;
 SEQ_CART.nextval
-
-
 
 SELECT *FROM TBL_CART tc ;
 

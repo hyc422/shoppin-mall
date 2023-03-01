@@ -70,6 +70,12 @@
 				</div>
 			</form>
 		</main>
+	<c:if test="${param.fail == 'y'}">
+		<script type="text/javascript">
+			alert('비밀번호가 틀렸습니다!')
+			location.href = "communitycheck?idx=" + ${idx} + "&category=" + ${category} + "&page=" + ${page}
+		</script>
+	</c:if>
 	
 	<script type="text/javascript">
 		function check()

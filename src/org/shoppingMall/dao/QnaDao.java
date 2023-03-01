@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.shoppingMall.vo.QnaProductVo;
 import org.shoppingMall.vo.QnaVo;
 
 import mybatis.SqlSessionBean;
@@ -48,10 +49,12 @@ public class QnaDao
 	}	// method end
   
 	public List<QnaVo> selectqnalist(String nickname)
-  {
+	{
 		SqlSession mapper = SqlSessionBean.getSession();
 		List<QnaVo> list = mapper.selectList("qna.selectqnalist",nickname);
+		
 		mapper.close();
+		
 		return list;
 	} // method end
 	
@@ -130,4 +133,24 @@ public class QnaDao
 		
 		return result;
 	}	// method end
+	
+	public List<QnaProductVo> selectProductList()
+	{
+		SqlSession mapper = SqlSessionBean.getSession();
+		List<QnaProductVo> list = mapper.selectList("qna.selectProductList");
+		
+		mapper.close();
+		
+		return list;
+	} // method end
+	
+	public QnaProductVo selectProductListByProductNum(int productNum)
+	{
+		SqlSession mapper = SqlSessionBean.getSession();
+		QnaProductVo vo = mapper.selectOne("qna.selectProductListByProductNum",productNum);
+		
+		mapper.close();
+		
+		return vo;
+	} // method end
 }	// Class end

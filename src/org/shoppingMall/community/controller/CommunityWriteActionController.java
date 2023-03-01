@@ -13,11 +13,14 @@ import org.shoppingMall.dao.ReviewDao;
 import org.shoppingMall.vo.AnnouncementVo;
 import org.shoppingMall.vo.QnaVo;
 import org.shoppingMall.vo.ReviewVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 //글쓰기 저장 POST
 public class CommunityWriteActionController implements Controller 
 {
-
+	private static final Logger logger = LoggerFactory.getLogger(CommunityWriteActionController.class);
+	
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -46,9 +49,12 @@ public class CommunityWriteActionController implements Controller
 		}
 		else if(category == 2)
 		{
-			int productNum = Integer.parseInt(request.getParameter("productnum"));
+			int productNum = Integer.parseInt(request.getParameter("productNum"));
 			String fileName = request.getParameter("fileName");
 			String productName = request.getParameter("productName");
+			int point = Integer.parseInt(request.getParameter("point"));
+			
+			logger.info(":::::::::::::point-{}",point);
 			
 			ReviewVo vo = ReviewVo.builder()
 					.title(title)
@@ -57,6 +63,7 @@ public class CommunityWriteActionController implements Controller
 					.fileName(fileName)
 					.productName(productName)
 					.content(content)
+					.point(point)
 					.ip(ip)
 					.build();
 			
@@ -66,7 +73,7 @@ public class CommunityWriteActionController implements Controller
 		}
 		else if(category == 3)
 		{
-			String productNum = request.getParameter("productnum");
+			String productNum = request.getParameter("productNum");
 			String fileName = request.getParameter("fileName");
 			String productName = request.getParameter("productName");
 			String password = request.getParameter("password");

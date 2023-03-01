@@ -152,8 +152,5 @@ public class PaymentVO {
 
 	public void setpDate(String pDate) {
 		this.pDate = pDate;
-	}
-	
-	
-	
+	}	
 }

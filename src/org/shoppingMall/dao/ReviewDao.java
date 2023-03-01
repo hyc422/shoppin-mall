@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
-import org.shoppingMall.vo.QnaVo;
+import org.shoppingMall.vo.PaymentVO;
 import org.shoppingMall.vo.ReviewVo;
 
 import mybatis.SqlSessionBean;
@@ -97,5 +97,15 @@ public class ReviewDao
 		mapperSession.close();
 		
 		return result;
+	}	// method end
+	
+	public PaymentVO paymentSelectByIdx(int idx)
+	{
+		SqlSession mapper = SqlSessionBean.getSession();
+		PaymentVO vo = mapper.selectOne("review.paymentSelectByIdx", idx);
+		
+		mapper.close();
+		
+		return vo;
 	}	// method end
 }	// Class end

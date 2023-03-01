@@ -33,7 +33,7 @@ import org.shoppingMall.login.controller.LoginViewController;
 import org.shoppingMall.login.controller.LogoutController;
 import org.shoppingMall.mypage.controller.CustomerController;
 import org.shoppingMall.mypage.controller.DeleteViewController;
-import org.shoppingMall.mypage.controller.PaylistActionController;
+// import org.shoppingMall.mypage.controller.PaylistActionController;
 import org.shoppingMall.mypage.controller.PaylistViewController;
 import org.shoppingMall.mypage.controller.ReviewViewController;
 import org.shoppingMall.mypage.controller.UpdateActionController;
